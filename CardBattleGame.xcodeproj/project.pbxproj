@@ -523,7 +523,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CardBattleGame/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SoftVision.CardBattleGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -536,7 +536,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = CardBattleGame/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SoftVision.CardBattleGame;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -617,6 +617,7 @@
 				8B3119791EF1427800DD9E78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B31197A1EF1427800DD9E78 /* Build configuration list for PBXNativeTarget "CardBattleGameTests" */ = {
 			isa = XCConfigurationList;
@@ -625,6 +626,7 @@
 				8B31197C1EF1427800DD9E78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8B31197D1EF1427800DD9E78 /* Build configuration list for PBXNativeTarget "CardBattleGameUITests" */ = {
 			isa = XCConfigurationList;
@@ -633,6 +635,7 @@
 				8B31197F1EF1427800DD9E78 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
