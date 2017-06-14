@@ -13,6 +13,7 @@ class MainMenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print("HELLO WORLD")
+        print("HELLO WORLD")
         // Do any additional setup after loading the view.
     }
 
