@@ -15,6 +15,13 @@
 		8B3119681EF1427800DD9E78 /* CardBattleGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3119671EF1427800DD9E78 /* CardBattleGameTests.swift */; };
 		8B3119731EF1427800DD9E78 /* CardBattleGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3119721EF1427800DD9E78 /* CardBattleGameUITests.swift */; };
 		8B3119A21EF144AB00DD9E78 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3119A01EF144AB00DD9E78 /* MainMenuViewController.swift */; };
+		E3775D501EF16E6F00991CEC /* MainMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */; };
+		E3775D521EF16E7D00991CEC /* EditDeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */; };
+		E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */; };
+		E3775D561EF16E9700991CEC /* BattleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D551EF16E9700991CEC /* BattleViewModel.swift */; };
+		E3775D581EF16EAA00991CEC /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D571EF16EAA00991CEC /* BattleViewController.swift */; };
+		E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D591EF16EB400991CEC /* DeckListViewController.swift */; };
+		E3775D5C1EF16EC000991CEC /* EditDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +56,13 @@
 		8B3119721EF1427800DD9E78 /* CardBattleGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBattleGameUITests.swift; sourceTree = "<group>"; };
 		8B3119741EF1427800DD9E78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3119A01EF144AB00DD9E78 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
+		E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewModel.swift; sourceTree = "<group>"; };
+		E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckViewModel.swift; sourceTree = "<group>"; };
+		E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewModel.swift; sourceTree = "<group>"; };
+		E3775D551EF16E9700991CEC /* BattleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewModel.swift; sourceTree = "<group>"; };
+		E3775D571EF16EAA00991CEC /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
+		E3775D591EF16EB400991CEC /* DeckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewController.swift; sourceTree = "<group>"; };
+		E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,11 +113,11 @@
 		8B31194E1EF1427700DD9E78 /* CardBattleGame */ = {
 			isa = PBXGroup;
 			children = (
+				E3775D4B1EF16E4900991CEC /* Model */,
+				E3775D4C1EF16E4900991CEC /* ServiceManager */,
+				E3775D4D1EF16E4900991CEC /* Utility */,
+				E3775D4E1EF16E4900991CEC /* Views */,
 				8B3119981EF144AB00DD9E78 /* ViewControllers */,
-				8B3119941EF1448E00DD9E78 /* Model */,
-				8B3119951EF1448E00DD9E78 /* ServiceManager */,
-				8B3119961EF1448E00DD9E78 /* Utility */,
-				8B3119971EF1448E00DD9E78 /* Views */,
 				8B31194F1EF1427700DD9E78 /* AppDelegate.swift */,
 				8B3119531EF1427800DD9E78 /* Main.storyboard */,
 				8B3119591EF1427800DD9E78 /* Assets.xcassets */,
@@ -132,104 +146,111 @@
 			path = CardBattleGameUITests;
 			sourceTree = "<group>";
 		};
-		8B3119941EF1448E00DD9E78 /* Model */ = {
+		8B3119981EF144AB00DD9E78 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E3775D451EF16E0200991CEC /* BattleViewController */,
+				E3775D471EF16E0200991CEC /* DeckListViewController */,
+				E3775D491EF16E0200991CEC /* EditDeckViewController */,
+				8B31199F1EF144AB00DD9E78 /* MainMenuViewController */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		8B31199F1EF144AB00DD9E78 /* MainMenuViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E3775D441EF16DB400991CEC /* MainMenuViewModel */,
+				8B3119A01EF144AB00DD9E78 /* MainMenuViewController.swift */,
+			);
+			path = MainMenuViewController;
+			sourceTree = "<group>";
+		};
+		E3775D441EF16DB400991CEC /* MainMenuViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */,
+			);
+			path = MainMenuViewModel;
+			sourceTree = "<group>";
+		};
+		E3775D451EF16E0200991CEC /* BattleViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E3775D461EF16E0200991CEC /* BattleViewModel */,
+				E3775D571EF16EAA00991CEC /* BattleViewController.swift */,
+			);
+			path = BattleViewController;
+			sourceTree = "<group>";
+		};
+		E3775D461EF16E0200991CEC /* BattleViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3775D551EF16E9700991CEC /* BattleViewModel.swift */,
+			);
+			path = BattleViewModel;
+			sourceTree = "<group>";
+		};
+		E3775D471EF16E0200991CEC /* DeckListViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E3775D481EF16E0200991CEC /* DeckListViewModel */,
+				E3775D591EF16EB400991CEC /* DeckListViewController.swift */,
+			);
+			path = DeckListViewController;
+			sourceTree = "<group>";
+		};
+		E3775D481EF16E0200991CEC /* DeckListViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */,
+			);
+			path = DeckListViewModel;
+			sourceTree = "<group>";
+		};
+		E3775D491EF16E0200991CEC /* EditDeckViewController */ = {
+			isa = PBXGroup;
+			children = (
+				E3775D4A1EF16E0200991CEC /* EditDeckViewModel */,
+				E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */,
+			);
+			path = EditDeckViewController;
+			sourceTree = "<group>";
+		};
+		E3775D4A1EF16E0200991CEC /* EditDeckViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */,
+			);
+			path = EditDeckViewModel;
+			sourceTree = "<group>";
+		};
+		E3775D4B1EF16E4900991CEC /* Model */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		8B3119951EF1448E00DD9E78 /* ServiceManager */ = {
+		E3775D4C1EF16E4900991CEC /* ServiceManager */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = ServiceManager;
 			sourceTree = "<group>";
 		};
-		8B3119961EF1448E00DD9E78 /* Utility */ = {
+		E3775D4D1EF16E4900991CEC /* Utility */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Utility;
 			sourceTree = "<group>";
 		};
-		8B3119971EF1448E00DD9E78 /* Views */ = {
+		E3775D4E1EF16E4900991CEC /* Views */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		8B3119981EF144AB00DD9E78 /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				8B3119991EF144AB00DD9E78 /* BattleViewController */,
-				8B31199B1EF144AB00DD9E78 /* DeckListViewController */,
-				8B31199D1EF144AB00DD9E78 /* EditDeckViewController */,
-				8B31199F1EF144AB00DD9E78 /* MainMenuViewController */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		8B3119991EF144AB00DD9E78 /* BattleViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8B31199A1EF144AB00DD9E78 /* BattleViewModel */,
-			);
-			path = BattleViewController;
-			sourceTree = "<group>";
-		};
-		8B31199A1EF144AB00DD9E78 /* BattleViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = BattleViewModel;
-			sourceTree = "<group>";
-		};
-		8B31199B1EF144AB00DD9E78 /* DeckListViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8B31199C1EF144AB00DD9E78 /* DeckListViewModel */,
-			);
-			path = DeckListViewController;
-			sourceTree = "<group>";
-		};
-		8B31199C1EF144AB00DD9E78 /* DeckListViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = DeckListViewModel;
-			sourceTree = "<group>";
-		};
-		8B31199D1EF144AB00DD9E78 /* EditDeckViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8B31199E1EF144AB00DD9E78 /* EditDeckViewModel */,
-			);
-			path = EditDeckViewController;
-			sourceTree = "<group>";
-		};
-		8B31199E1EF144AB00DD9E78 /* EditDeckViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = EditDeckViewModel;
-			sourceTree = "<group>";
-		};
-		8B31199F1EF144AB00DD9E78 /* MainMenuViewController */ = {
-			isa = PBXGroup;
-			children = (
-				8B3119A01EF144AB00DD9E78 /* MainMenuViewController.swift */,
-				8B3119A11EF144AB00DD9E78 /* MainMenuViewModel */,
-			);
-			path = MainMenuViewController;
-			sourceTree = "<group>";
-		};
-		8B3119A11EF144AB00DD9E78 /* MainMenuViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = MainMenuViewModel;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -366,7 +387,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3775D581EF16EAA00991CEC /* BattleViewController.swift in Sources */,
+				E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */,
+				E3775D501EF16E6F00991CEC /* MainMenuViewModel.swift in Sources */,
+				E3775D561EF16E9700991CEC /* BattleViewModel.swift in Sources */,
 				8B3119A21EF144AB00DD9E78 /* MainMenuViewController.swift in Sources */,
+				E3775D521EF16E7D00991CEC /* EditDeckViewModel.swift in Sources */,
+				E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */,
+				E3775D5C1EF16EC000991CEC /* EditDeckViewController.swift in Sources */,
 				8B3119501EF1427700DD9E78 /* AppDelegate.swift in Sources */,
 				8B3119581EF1427800DD9E78 /* CardBattleGame.xcdatamodeld in Sources */,
 			);
