@@ -14,6 +14,7 @@ class MainMenuViewController: UIViewController {
         super.viewDidLoad()
         print("HELLO WORLD")
         print("HELLO WORLD")
+        print("HELLO WORLD")
         // Do any additional setup after loading the view.
     }
 
