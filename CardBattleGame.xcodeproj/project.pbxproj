@@ -26,6 +26,10 @@
 		8B561F561EF3A1A800104486 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F551EF3A1A800104486 /* LocationManager.swift */; };
 		8B561F591EF3A30000104486 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B561F581EF3A30000104486 /* CoreLocation.framework */; };
 		8B561F5C1EF3ABAE00104486 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F5B1EF3ABAE00104486 /* CoreDataStackManager.swift */; };
+		8B561F601EF3F1DE00104486 /* CardList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B561F5F1EF3F1DE00104486 /* CardList.plist */; };
+		8B561F621EF3F54300104486 /* CardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F611EF3F54300104486 /* CardListDataSource.swift */; };
+		8B561F641EF3F57800104486 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F631EF3F57800104486 /* Card.swift */; };
+		8B561F671EF4011100104486 /* DeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F661EF4011100104486 /* DeckCollectionViewCell.swift */; };
 		E3775D501EF16E6F00991CEC /* MainMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */; };
 		E3775D521EF16E7D00991CEC /* EditDeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */; };
 		E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */; };
@@ -79,6 +83,10 @@
 		8B561F551EF3A1A800104486 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8B561F581EF3A30000104486 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8B561F5B1EF3ABAE00104486 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		8B561F5F1EF3F1DE00104486 /* CardList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CardList.plist; sourceTree = "<group>"; };
+		8B561F611EF3F54300104486 /* CardListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListDataSource.swift; sourceTree = "<group>"; };
+		8B561F631EF3F57800104486 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		8B561F661EF4011100104486 /* DeckCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewCell.swift; sourceTree = "<group>"; };
 		E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewModel.swift; sourceTree = "<group>"; };
 		E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckViewModel.swift; sourceTree = "<group>"; };
 		E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewModel.swift; sourceTree = "<group>"; };
@@ -139,6 +147,7 @@
 		8B31194E1EF1427700DD9E78 /* CardBattleGame */ = {
 			isa = PBXGroup;
 			children = (
+				8B561F5E1EF3F1C100104486 /* Resources */,
 				8B561F5A1EF3AB9A00104486 /* CoreDataStack */,
 				8B42F4C81EF292250097D28A /* Extensions */,
 				E3775D4B1EF16E4900991CEC /* Model */,
@@ -200,6 +209,7 @@
 				8B42F4C01EF252520097D28A /* ConnectionManager.swift */,
 				8B561F521EF3A06600104486 /* PersistanceManager.swift */,
 				8B561F551EF3A1A800104486 /* LocationManager.swift */,
+				8B561F611EF3F54300104486 /* CardListDataSource.swift */,
 			);
 			path = DataManager;
 			sourceTree = "<group>";
@@ -227,6 +237,22 @@
 				8B561F5B1EF3ABAE00104486 /* CoreDataStackManager.swift */,
 			);
 			path = CoreDataStack;
+			sourceTree = "<group>";
+		};
+		8B561F5E1EF3F1C100104486 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8B561F5F1EF3F1DE00104486 /* CardList.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		8B561F651EF400F100104486 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8B561F661EF4011100104486 /* DeckCollectionViewCell.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		E3775D441EF16DB400991CEC /* MainMenuViewModel */ = {
@@ -258,6 +284,7 @@
 		E3775D471EF16E0200991CEC /* DeckListViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8B561F651EF400F100104486 /* View */,
 				E3775D481EF16E0200991CEC /* DeckListViewModel */,
 				E3775D591EF16EB400991CEC /* DeckListViewController.swift */,
 			);
@@ -293,6 +320,7 @@
 			isa = PBXGroup;
 			children = (
 				8B42F4C21EF2562F0097D28A /* WeatherData.swift */,
+				8B561F631EF3F57800104486 /* Card.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -431,6 +459,7 @@
 			files = (
 				8B31195D1EF1427800DD9E78 /* LaunchScreen.storyboard in Resources */,
 				8B31195A1EF1427800DD9E78 /* Assets.xcassets in Resources */,
+				8B561F601EF3F1DE00104486 /* CardList.plist in Resources */,
 				8B3119551EF1427800DD9E78 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,6 +489,7 @@
 				E3775D581EF16EAA00991CEC /* BattleViewController.swift in Sources */,
 				8B42F4C31EF2562F0097D28A /* WeatherData.swift in Sources */,
 				8B561F531EF3A06700104486 /* PersistanceManager.swift in Sources */,
+				8B561F671EF4011100104486 /* DeckCollectionViewCell.swift in Sources */,
 				8B42F4C71EF265D70097D28A /* CBGErrorHandler.swift in Sources */,
 				8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */,
 				8B42F4C11EF252520097D28A /* ConnectionManager.swift in Sources */,
@@ -477,6 +507,8 @@
 				8B3119501EF1427700DD9E78 /* AppDelegate.swift in Sources */,
 				8B561F561EF3A1A800104486 /* LocationManager.swift in Sources */,
 				8B3119581EF1427800DD9E78 /* CardBattleGame.xcdatamodeld in Sources */,
+				8B561F621EF3F54300104486 /* CardListDataSource.swift in Sources */,
+				8B561F641EF3F57800104486 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
