@@ -42,6 +42,7 @@ class MainMenuViewModel: NSObject {
         NotificationCenter.default.addObserver(forName: LocationNotification.kLocationUpdated, object: nil, queue: nil){ [weak self] (notification) in
             self?.notificationForLocationUpdate(notification)
         }
+    
     }
     
     
@@ -97,7 +98,6 @@ class MainMenuViewModel: NSObject {
                     do {
                         
                         jsonDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                        
                     } catch {
                         
                         CBGErrorHandler.handle(error : .invalidResponse)

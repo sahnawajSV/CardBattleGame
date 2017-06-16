@@ -14,6 +14,10 @@ class ServiceManager: NSObject {
     
     typealias DataCompletion = (Data?, URLResponse?, Error?) -> ()
     
+    
+    var cardListDataSource = CardListDataSource()
+    
+    
     // Connection Manager Lazy Initializer
     lazy var  connectionManager: ConnectionManager = {
         let connectionManager = ConnectionManager()
@@ -62,6 +66,17 @@ class ServiceManager: NSObject {
     //
     func managedObjContext() -> NSManagedObjectContext {
         return cdstore.persistentContainer.viewContext
+    }
+    
+    
+    
+    
+    func  fetchCardList() -> [Card] {
+        return cardListDataSource.cardList
+    }
+    
+    func numbeOfCards() -> Int {
+        return cardListDataSource.numbeOfCards()
     }
     
 }
