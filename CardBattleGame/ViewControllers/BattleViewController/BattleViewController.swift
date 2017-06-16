@@ -8,27 +8,19 @@
 
 import UIKit
 
-class BattleViewController: UIViewController
+class BattleViewController: UIViewController, BattleProtocolDelegate
 {
     // MARK: - Properties
     // MARK: -- Internal
     
     var viewModel : BattleViewModel?
-    {
-        didSet
-        {
-            viewModel?.delegate = self as? BattleProtocolDelegate
-        }
-    }
+
     
     private var allPlayerHandCards : NSMutableArray? = NSMutableArray();
     private var allAIHandCards : NSMutableArray? = NSMutableArray();
     
     private var allPlayerPlayedCards : NSMutableArray? = NSMutableArray();
     private var allAIPlayedCards : NSMutableArray? = NSMutableArray();
-    
-    //Initial Initialization for Unwanted Value
-    private var selectedCardForAttack : Int? = 99;
     
     @IBOutlet private weak var playerDeckListText: UILabel!
     @IBOutlet private weak var playerBattlePointText: UILabel!
@@ -49,6 +41,11 @@ class BattleViewController: UIViewController
     @IBOutlet private weak var AIView: UIView!
     @IBOutlet private weak var AIDeckView: UIView!
     @IBOutlet private weak var AIGameAreaView: UIView!
+    
+    //Gameplay Variables
+    //Initial Initialization for Unwanted Value
+    private var selectedCardForAttack : Int? = 99;
+    private var isAttacking : Bool? = false;
     
     /* AIHand
      * 84, -80, 194, 254
@@ -81,6 +78,14 @@ class BattleViewController: UIViewController
      * 690, 29, 194, 254
      * 892, 29, 194, 254
      */
+    
+    /* PlayerGameArea Without SuperView
+     * 84, 552, 194, 254
+     * 286, 552, 194, 254
+     * 488, 552, 194, 254
+     * 690, 552, 194, 254
+     * 892, 552, 194, 254
+     */
 
     
     //MARK: - LifeCycle Methods
@@ -89,10 +94,13 @@ class BattleViewController: UIViewController
         super.viewDidLoad()
 
         viewModel = BattleViewModel()
+        viewModel?.delegate = self
         viewModel?.initializeTheGame()
         configureAllViews()
         createInHandCardForPlayerView()
         createInHandCardForAIView()
+        //TEMP
+        createInPlayCardForAIView()
     }
 
     override func didReceiveMemoryWarning()
@@ -366,7 +374,7 @@ class BattleViewController: UIViewController
             
             cardView.addSubview(nameView)
             
-            playerGameAreaView.addSubview(cardView)
+            self.view.addSubview(cardView)
             allPlayerPlayedCards?.add(cardView)
             
             lastXValue = xValue
@@ -457,7 +465,7 @@ class BattleViewController: UIViewController
             
             cardView.addSubview(nameView)
             
-            playerGameAreaView.addSubview(cardView)
+            self.view.addSubview(cardView)
             allAIPlayedCards?.add(cardView)
             
             lastXValue = xValue
@@ -509,55 +517,96 @@ class BattleViewController: UIViewController
     //MARK: Touch For Attack
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
-        let touch = touches.first
-        let location = touch?.location(in: self.view)
-        
-        for (index,_) in (allPlayerPlayedCards?.enumerated())!
-        {
-            let card = allPlayerPlayedCards?[index] as! UIView
-            if (card.superview?.frame.contains(location!))!
-            {
-                selectedCardForAttack = index
-                break
-            }
-        }
-    }
-
-    //TODO: - MOVE LOGIC TO VIEW MODAL CLASS
-    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        if selectedCardForAttack! <= 5
+        if !isAttacking!
         {
             let touch = touches.first
             let location = touch?.location(in: self.view)
             
-            let attackCard : Dictionary<String, Any> = viewModel?.playerCardsInPlay?[selectedCardForAttack!] as! Dictionary<String, Any>
-            
-            if AIView.frame.contains(location!)
+            for (index,_) in (allPlayerPlayedCards?.enumerated())!
             {
-                let AIHealthText : String = (viewModel?.AIHealth)!
-                var AIHealth = Int(AIHealthText)
-                
-                let attackValueText : String = attackCard["attack"] as! String
-                let attackValue = Int(attackValueText)
-                
-                AIHealth = AIHealth! - attackValue!
-                
-                viewModel?.AIHealth = String(describing: AIHealth!)
-            }
-            else
-            {
-                for (index,_) in (allAIPlayedCards?.enumerated())!
+                let card = allPlayerPlayedCards?[index] as! UIView
+                if (card.frame.contains(location!))
                 {
-                    let card = allAIPlayedCards?[index] as! UIView
-                    if (card.superview?.frame.contains(location!))!
+                    selectedCardForAttack = index
+                    viewModel?.originalCardViewFrame = card.frame
+                    break
+                }
+            }
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        if !isAttacking!
+        {
+            if selectedCardForAttack! <= 5
+            {
+                let touch = touches.first
+                let location = touch?.location(in: self.view)
+                
+                let cardView  = allPlayerPlayedCards?[selectedCardForAttack!] as! UIView
+                cardView.frame = CGRect(x: (location?.x)! - (cardView.frame.size.width / 2), y: (location?.y)!, width: (cardView.frame.size.width), height: (cardView.frame.size.height))
+            }
+        }
+    }
+
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        if !isAttacking!
+        {
+            if selectedCardForAttack! <= 5
+            {
+                let touch = touches.first
+                let location = touch?.location(in: self.view)
+                
+                if AIView.frame.contains(location!)
+                {
+                    let cardView  = allPlayerPlayedCards?[selectedCardForAttack!] as! UIView
+                    isAttacking = true
+                    viewModel?.PerformCardToAvatarAttackAnimation(cardView: cardView, toView: AIView, cardIndex: selectedCardForAttack!)
+                }
+                else
+                {
+                    var isIntersecting : Bool = false;
+                    
+                    for (index,_) in (allAIPlayedCards?.enumerated())!
                     {
-                        //WRITE LOGIC IN VIEW MODAL TO DO DMG TO CARD OR DESTROY IT IF HEALTH IS ZERO
+                        let card = allAIPlayedCards?[index] as! UIView
+                        if (card.frame.contains(location!))
+                        {
+                            //ADD TARGET TO PERFORM CARD ATTACK as PARAMETER
+                            isAttacking = true
+                            isIntersecting = true;
+                            let cardView  = allPlayerPlayedCards?[selectedCardForAttack!] as! UIView
+                            viewModel?.PerformCardToCardAttackAnimation(cardView: cardView, toView: card, attackCardIndex: selectedCardForAttack!, defendCardIndex: index)
+                        }
+                    }
+                    
+                    if !isIntersecting
+                    {
+                        isAttacking = false
+                        let cardView  = allPlayerPlayedCards?[selectedCardForAttack!] as! UIView
+                        viewModel?.PerformBackToPlaceAnimation(cardView: cardView, toFrame: (viewModel?.originalCardViewFrame)!)
                     }
                 }
             }
-            
-            configureAllViews()
+            else
+            {
+                isAttacking = false
+            }
         }
     }
+    
+    //MARK: - Delegates
+    
+    func reloadAllViewData()
+    {
+        isAttacking = false
+        selectedCardForAttack = 99
+        configureAllViews()
+        createInPlayCardForPlayerView()
+        createInPlayCardForAIView()
+    }
 }
+
+

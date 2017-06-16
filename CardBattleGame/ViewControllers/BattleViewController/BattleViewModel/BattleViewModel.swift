@@ -42,12 +42,16 @@ protocol BattleProtocol
     
     func endTurnPressed()
     func PlayCardPressed(cardIndex : Int)
+    func PerformCardToAvatarAttackAnimation(cardView : UIView, toView : UIView, cardIndex: Int)
+    func PerformCardToCardAttackAnimation(cardView : UIView, toView : UIView, attackCardIndex: Int, defendCardIndex: Int)
+    func PerformBackToPlaceAnimation(cardView : UIView, toFrame : CGRect)
 }
 
 protocol BattleProtocolDelegate: class
 {
-    func CardDrawn(forPlayer : Bool)
-    func CardPlayed(byPlayer : Bool)
+//    func CardDrawn(forPlayer : Bool)
+//    func CardPlayed(byPlayer : Bool)
+    func reloadAllViewData()
 }
 
 class BattleViewModel: BattleProtocol
@@ -82,6 +86,8 @@ class BattleViewModel: BattleProtocol
     var AIGameAreaStartRect : CGRect?
     var AIGameAreaGap : Int!
     
+    var originalCardViewFrame : CGRect?
+    
     //MARK: Game Variables
     var isPlayerTurn: Bool? = false
     
@@ -109,6 +115,10 @@ class BattleViewModel: BattleProtocol
             
             AICardsInDeck?.add(populatedDictionary)
         }
+        
+        //TEMPORARY - Adding a card to play for the AI
+        let tempDict = randomCard(myArray: AICardsInDeck!)
+        AICardsInPlay?.add(tempDict)
         
         drawInitialCards()
         setCardInHandRects()
@@ -145,9 +155,9 @@ class BattleViewModel: BattleProtocol
     
     func setCardInPlayRects()
     {
-        playerGameAreaStartRect = CGRect(x: 488, y: 29, width: 194, height: 254)
+        playerGameAreaStartRect = CGRect(x: 488, y: 552, width: 194, height: 254)
         playerGameAreaGap = 8;
-        AIGameAreaStartRect = CGRect(x: 488, y: 29, width: 194, height: 254)
+        AIGameAreaStartRect = CGRect(x: 488, y: 217, width: 194, height: 254)
         AIGameAreaGap = 8;
     }
     
@@ -270,6 +280,196 @@ class BattleViewModel: BattleProtocol
         
         let playedCard = [String: Any]()
         return playedCard
+    }
+    
+    func AttackAvatar(cardIndex : Int)
+    {
+        if isPlayerTurn!
+        {
+            let attackCard : Dictionary<String, Any> = playerCardsInPlay?[cardIndex] as! Dictionary<String, Any>
+            let attackValueText : String = attackCard["attack"] as! String
+            let attackValue = Int(attackValueText)
+            
+            let AIHealthText : String = AIHealth!
+            var AIHealthValue = Int(AIHealthText)
+            
+            AIHealthValue = AIHealthValue! - attackValue!
+            
+            AIHealth = String(describing: AIHealthValue!)
+        }
+        else
+        {
+            let attackCard : Dictionary<String, Any> = AICardsInPlay?[cardIndex] as! Dictionary<String, Any>
+            let attackValueText : String = attackCard["attack"] as! String
+            let attackValue = Int(attackValueText)
+            
+            let playerHeathText : String = playerHealth!
+            var playerHealthValue = Int(playerHeathText)
+            
+            playerHealthValue = playerHealthValue! - attackValue!
+            
+            playerHealth = String(describing: playerHealthValue!)
+        }
+    }
+    
+    func AttackCard(attackCardIndex : Int, defenceCardIndex : Int)
+    {
+        var attackIndex = attackCardIndex
+        var defenceIndex = defenceCardIndex
+        if !isPlayerTurn!
+        {
+            let temp = attackIndex
+            attackIndex = defenceIndex
+            defenceIndex = temp
+        }
+        
+        var shouldRemoveAICard : Bool = false
+        var shouldRemovePLCard : Bool = false
+        
+        let attackCard : Dictionary<String, Any> = playerCardsInPlay?[attackIndex] as! Dictionary<String, Any>
+        let attackValueText : String = attackCard["attack"] as! String
+        let attackValue = Int(attackValueText)
+        
+        var defenceCard : Dictionary<String, Any> = AICardsInPlay?[defenceIndex] as! Dictionary<String, Any>
+        let defenceValueText : String = defenceCard["health"] as! String
+        var defenceValue = Int(defenceValueText)
+        
+        defenceValue = defenceValue! - attackValue!
+        
+        if defenceValue! <= 0
+        {
+            shouldRemoveAICard = true
+        }
+        else
+        {
+            defenceCard["health"] = String(describing: defenceValue!)
+            AICardsInPlay?.replaceObject(at: defenceIndex, with: defenceCard)
+        }
+        
+        let AIattackCard = AICardsInPlay?[attackIndex] as! Dictionary<String, Any>
+        let AIattackValueText = AIattackCard["attack"] as! String
+        let AIattackValue = Int(AIattackValueText)
+        
+        var PLdefenceCard = playerCardsInPlay?[defenceIndex] as! Dictionary<String, Any>
+        let PLdefenceValueText = PLdefenceCard["health"] as! String
+        var PLdefenceValue = Int(PLdefenceValueText)
+        
+        PLdefenceValue = PLdefenceValue! - AIattackValue!
+        
+        if PLdefenceValue! <= 0
+        {
+            shouldRemovePLCard = true
+        }
+        else
+        {
+            PLdefenceCard["health"] = String(describing: defenceValue!)
+            playerCardsInPlay?.replaceObject(at: attackIndex, with: PLdefenceCard)
+        }
+        
+        if shouldRemoveAICard
+        {
+            AICardsInPlay?.removeObject(at: defenceIndex)
+        }
+        
+        if shouldRemovePLCard
+        {
+            playerCardsInPlay?.removeObject(at: attackIndex)
+        }
+    }
+    
+    func PerformCardToAvatarAttackAnimation(cardView : UIView, toView : UIView, cardIndex: Int)
+    {
+        var y : CGFloat?
+        var chargeY : CGFloat?
+        var fallbackY : CGFloat?
+        
+        if isPlayerTurn!
+        {
+            y = toView.frame.origin.y + toView.frame.size.height + 100
+            chargeY = toView.frame.origin.y + (toView.frame.size.height / 2)
+            fallbackY = toView.frame.origin.y + toView.frame.size.height + 30
+        }
+        else
+        {
+            y = toView.frame.origin.y - 100
+            chargeY = toView.frame.origin.y - (toView.frame.size.height / 2)
+            fallbackY = toView.frame.origin.y - 30
+        }
+        
+        //Move Back
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations:
+        {
+            cardView.frame = CGRect(x: toView.frame.origin.x +  ((toView.frame.size.width - cardView.frame.size.width) / 2), y: y!, width: (cardView.frame.size.width), height: (cardView.frame.size.height))
+        }, completion: { (finished: Bool) in
+            //Charge
+            UIView.animate(withDuration: 0.20, delay: 0.0, options: [], animations:
+            {
+                    cardView.frame = CGRect(x: toView.frame.origin.x + ((toView.frame.size.width - cardView.frame.size.width) / 2), y: chargeY!, width: (cardView.frame.size.width), height: (cardView.frame.size.height))
+            }, completion: { (finished: Bool) in
+                //Fall a little after attack
+                UIView.animate(withDuration: 0.10, delay: 0.0, options: [], animations:
+                    {
+                        cardView.frame = CGRect(x: toView.frame.origin.x + ((toView.frame.size.width - cardView.frame.size.width) / 2), y: fallbackY!, width: (cardView.frame.size.width), height: (cardView.frame.size.height))
+                }, completion: { (finished: Bool) in
+                    self.AttackAvatar(cardIndex: cardIndex)
+                    self.PerformBackToPlaceAnimation(cardView: cardView, toFrame: self.originalCardViewFrame!)
+                })
+            })
+        })
+    }
+    
+    func PerformCardToCardAttackAnimation(cardView : UIView, toView : UIView, attackCardIndex: Int, defendCardIndex: Int)
+    {
+        var y : CGFloat?
+        var chargeY : CGFloat?
+        var fallbackY : CGFloat?
+        
+        if isPlayerTurn!
+        {
+            y = toView.frame.origin.y + toView.frame.size.height + 100
+            chargeY = toView.frame.origin.y + (toView.frame.size.height / 2)
+            fallbackY = toView.frame.origin.y + toView.frame.size.height + 30
+        }
+        else
+        {
+            y = toView.frame.origin.y - 100
+            chargeY = toView.frame.origin.y - (toView.frame.size.height / 2)
+            fallbackY = toView.frame.origin.y - 30
+        }
+        
+        //Move Back
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations:
+            {
+                cardView.frame = CGRect(x: toView.frame.origin.x +  ((toView.frame.size.width - cardView.frame.size.width) / 2), y: y!, width: (cardView.frame.size.width), height: (cardView.frame.size.height))
+        }, completion: { (finished: Bool) in
+            //Charge
+            UIView.animate(withDuration: 0.20, delay: 0.0, options: [], animations:
+                {
+                    cardView.frame = CGRect(x: toView.frame.origin.x + ((toView.frame.size.width - cardView.frame.size.width) / 2), y: chargeY!, width: (cardView.frame.size.width), height: (cardView.frame.size.height))
+            }, completion: { (finished: Bool) in
+                //Fall a little after attack
+                UIView.animate(withDuration: 0.10, delay: 0.0, options: [], animations:
+                {
+                        cardView.frame = CGRect(x: toView.frame.origin.x + ((toView.frame.size.width - cardView.frame.size.width) / 2), y: fallbackY!, width: (cardView.frame.size.width), height: (cardView.frame.size.height))
+                }, completion: { (finished: Bool) in
+                    self.AttackCard(attackCardIndex: attackCardIndex, defenceCardIndex: defendCardIndex)
+                    self.PerformBackToPlaceAnimation(cardView: cardView, toFrame: self.originalCardViewFrame!)
+                })
+            })
+        })
+    }
+
+    
+    func PerformBackToPlaceAnimation(cardView : UIView, toFrame : CGRect)
+    {
+        //Go back to original position
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: [], animations:
+            {
+                cardView.frame = toFrame
+                self.delegate?.reloadAllViewData()
+        }, completion: { (finished: Bool) in
+            
+        })
     }
     
     
@@ -431,27 +631,27 @@ class BattleViewModel: BattleProtocol
         {
             if (playerCardsInPlay?.count)! <= 1
             {
-                playerGameAreaStartRect = CGRect(x: 488, y: 29, width: 194, height: 254)
+                playerGameAreaStartRect = CGRect(x: 488, y: 552, width: 194, height: 254)
                 playerGameAreaGap = 8;
             }
             else if (playerCardsInPlay?.count)! == 2
             {
-                playerGameAreaStartRect = CGRect(x: 387, y: 29, width: 194, height: 254)
+                playerGameAreaStartRect = CGRect(x: 387, y: 552, width: 194, height: 254)
                 playerGameAreaGap = 8;
             }
             else if (playerCardsInPlay?.count)! == 3
             {
-                playerGameAreaStartRect = CGRect(x: 286, y: 29, width: 194, height: 254)
+                playerGameAreaStartRect = CGRect(x: 286, y: 552, width: 194, height: 254)
                 playerGameAreaGap = 8;
             }
             else if (playerCardsInPlay?.count)! == 4
             {
-                playerGameAreaStartRect = CGRect(x: 185, y: 29, width: 194, height: 254)
+                playerGameAreaStartRect = CGRect(x: 185, y: 552, width: 194, height: 254)
                 playerGameAreaGap = 8;
             }
             else if (playerCardsInPlay?.count)! == 5
             {
-                playerGameAreaStartRect = CGRect(x: 84, y: 29, width: 194, height: 254)
+                playerGameAreaStartRect = CGRect(x: 84, y: 552, width: 194, height: 254)
                 playerGameAreaGap = 8;
             }
         }
@@ -459,27 +659,27 @@ class BattleViewModel: BattleProtocol
         {
             if (AICardsInPlay?.count)! <= 1
             {
-                AIGameAreaStartRect = CGRect(x: 286, y: 29, width: 194, height: 254)
+                AIGameAreaStartRect = CGRect(x: 488, y: 217, width: 194, height: 254)
                 AIGameAreaGap = 8;
             }
             else if (AICardsInPlay?.count)! == 2
             {
-                AIGameAreaStartRect = CGRect(x: 286, y: 29, width: 194, height: 254)
+                AIGameAreaStartRect = CGRect(x: 387, y: 217, width: 194, height: 254)
                 AIGameAreaGap = 8;
             }
             else if (AICardsInPlay?.count)! == 3
             {
-                AIGameAreaStartRect = CGRect(x: 286, y: 29, width: 194, height: 254)
+                AIGameAreaStartRect = CGRect(x: 286, y: 217, width: 194, height: 254)
                 AIGameAreaGap = 8;
             }
             else if (AICardsInPlay?.count)! == 4
             {
-                AIGameAreaStartRect = CGRect(x: 286, y: 29, width: 194, height: 254)
+                AIGameAreaStartRect = CGRect(x: 185, y: 217, width: 194, height: 254)
                 AIHandGap = 8;
             }
             else if (AICardsInPlay?.count)! == 5
             {
-                AIGameAreaStartRect = CGRect(x: 286, y: 29, width: 194, height: 254)
+                AIGameAreaStartRect = CGRect(x: 84, y: 217, width: 194, height: 254)
                 AIGameAreaGap = 8;
             }
 
