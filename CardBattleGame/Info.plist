@@ -33,5 +33,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Location will be used for Weather Update</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location will be used for Weather Update</string>
 </dict>
 </plist>

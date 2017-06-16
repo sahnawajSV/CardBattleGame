@@ -14,7 +14,7 @@ struct Defaults {
     
     static let Latitude: Double = 51.400592
     static let Longitude: Double = 4.760970
-    
+    static let DISTANCE_FILTER = 5000.0
 }
 
 struct API {

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import CoreLocation
 // MARK :  Update Weather Data
 //
 protocol MainMenuViewModelDelegate: class{
@@ -19,6 +19,10 @@ protocol MainMenuViewModelDelegate: class{
 
 class MainMenuViewModel: NSObject {
     
+    
+    var latitude = Defaults.Latitude
+    var longitude = Defaults.Longitude
+    
     weak var delegate : MainMenuViewModelDelegate?
     
     // Initialize Weather Data Model
@@ -26,20 +30,63 @@ class MainMenuViewModel: NSObject {
     var weatherData: WeatherData = WeatherData()
     
     
+    
+    override init() {
+        super .init()
+        
+        // Start Location Update
+        ServiceManager.sharedInstance.startLocationUpdate()
+        
+        // Location Update Observer
+        //
+        NotificationCenter.default.addObserver(forName: LocationNotification.kLocationUpdated, object: nil, queue: nil){ [weak self] (notification) in
+            self?.notificationForLocationUpdate(notification)
+        }
+    }
+    
+    
+    //  MARK : Deinitializer
+    //
+    deinit {
+        
+        //Remove Location Update Notification Observer
+        NotificationCenter.default.removeObserver(self, name: LocationNotification.kLocationUpdated, object: nil)
+        
+        // Start Location Update
+        ServiceManager.sharedInstance.stopLocationUpdate()
+    }
+    
+    
+    // MARK : Location Update Notification Handler
+    //
+    func notificationForLocationUpdate(_ notification:Notification) -> Void {
+        guard let locations:[CLLocation] = notification.userInfo?["locations"] as? [CLLocation] else {
+            return
+        }
+        for location in locations{
+            
+                self.latitude = location.coordinate.latitude
+                self.longitude = location.coordinate.longitude
+                
+                fetchWeatherReport()
+        }
+    }
+
+    
     // MARK : Featch Weather Report
     //
     func fetchWeatherReport() -> Void {
         
-        let appendUrl = "\(API.APIKey)/\(Defaults.Latitude),\(Defaults.Longitude)"
+        let appendUrl = "\(API.APIKey)/\(latitude),\(longitude)"
         
         let baseURL : URL = API.BaseURL
         let url = baseURL.appendingPathComponent(appendUrl)
         
         ServiceManager.sharedInstance.fetchDataForGetConnection(url) { (data, response, error) in
             
-            if let error = error {
+            if error != nil {
                 
-                print(error.localizedDescription)
+                CBGErrorHandler.handle(error : .failedRequest)
                 
             } else if let data = data, let response = response as? HTTPURLResponse {
                 
@@ -53,8 +100,7 @@ class MainMenuViewModel: NSObject {
                         
                     } catch {
                         
-                        print("InvalidResponse")
-                        
+                        CBGErrorHandler.handle(error : .invalidResponse)
                     }
             
                     do {
@@ -63,26 +109,25 @@ class MainMenuViewModel: NSObject {
                         
                     } catch {
                         
-                        print("Unable to parse data")
-                        
+                        CBGErrorHandler.handle(error : .faildParseWeatherData)
                     }
                     
                     
                 } else {
                     
-                    print("failedRequest")
-                    
+                    CBGErrorHandler.handle(error : .failedRequest)
                 }
                 
             } else {
                 
-                print("unknown")
-                
+                CBGErrorHandler.handle(error : .unknown)
             }
         }
     }
     
     
+    // MARK : Parsing WEATHER JSON DATA
+    //
     private func decodeJSON(_ jsonDictionary: [String: Any]) throws {
         
         let timeZone = jsonDictionary["timezone"] as? String
