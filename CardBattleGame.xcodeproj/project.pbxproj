@@ -33,6 +33,7 @@
 		E3775D581EF16EAA00991CEC /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D571EF16EAA00991CEC /* BattleViewController.swift */; };
 		E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D591EF16EB400991CEC /* DeckListViewController.swift */; };
 		E3775D5C1EF16EC000991CEC /* EditDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */; };
+		E3775D5E1EF3F1A900991CEC /* AIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D5D1EF3F1A900991CEC /* AIViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,7 @@
 		E3775D571EF16EAA00991CEC /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
 		E3775D591EF16EB400991CEC /* DeckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewController.swift; sourceTree = "<group>"; };
 		E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckViewController.swift; sourceTree = "<group>"; };
+		E3775D5D1EF3F1A900991CEC /* AIViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				E3775D551EF16E9700991CEC /* BattleViewModel.swift */,
+				E3775D5D1EF3F1A900991CEC /* AIViewModel.swift */,
 			);
 			path = BattleViewModel;
 			sourceTree = "<group>";
@@ -460,6 +463,7 @@
 				8B42F4C71EF265D70097D28A /* CBGErrorHandler.swift in Sources */,
 				8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */,
 				8B42F4C11EF252520097D28A /* ConnectionManager.swift in Sources */,
+				E3775D5E1EF3F1A900991CEC /* AIViewModel.swift in Sources */,
 				8B42F4CA1EF292430097D28A /* Conversions.swift in Sources */,
 				E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */,
 				E3775D501EF16E6F00991CEC /* MainMenuViewModel.swift in Sources */,

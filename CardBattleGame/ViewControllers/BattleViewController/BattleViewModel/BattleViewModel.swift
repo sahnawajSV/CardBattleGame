@@ -52,11 +52,15 @@ protocol BattleProtocolDelegate: class
 //    func CardDrawn(forPlayer : Bool)
 //    func CardPlayed(byPlayer : Bool)
     func reloadAllViewData()
+    func attackPlayerCard(fromIndex : Int, toIndex : Int)
+    func attackPlayerAvatar(fromIndex : Int)
 }
 
 class BattleViewModel: BattleProtocol
 {
     weak var delegate: BattleProtocolDelegate?
+    
+    var AILogic : AIViewModel?
     
     var playerName: String? = "Player Name"
     var playerHealth: String? = "100"
@@ -221,6 +225,13 @@ class BattleViewModel: BattleProtocol
         
         calculateCardInHandRects()
         calculateCardInformation()
+        
+        if AILogic == nil
+        {
+            AILogic = AIViewModel()
+        }
+        
+        AILogic?.FightWithPlayableCards()
     }
     
     func PlayCardPressed(cardIndex : Int)

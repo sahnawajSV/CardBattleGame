@@ -514,7 +514,7 @@ class BattleViewController: UIViewController, BattleProtocolDelegate
     }
     
     
-    //MARK: Touch For Attack
+    //MARK: Touch and Drag For Attack
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
         if !isAttacking!
@@ -606,6 +606,23 @@ class BattleViewController: UIViewController, BattleProtocolDelegate
         configureAllViews()
         createInPlayCardForPlayerView()
         createInPlayCardForAIView()
+    }
+    
+    func attackPlayerCard(fromIndex : Int, toIndex : Int)
+    {
+        let PLCardView  = allPlayerPlayedCards?[toIndex] as! UIView
+        let AICardView  = allAIPlayedCards?[fromIndex] as! UIView
+        
+        isAttacking = true
+        viewModel?.PerformCardToCardAttackAnimation(cardView: AICardView, toView: PLCardView, attackCardIndex: fromIndex, defendCardIndex: toIndex)
+    }
+    
+    func attackPlayerAvatar(fromIndex : Int)
+    {
+        let AICardView  = allAIPlayedCards?[fromIndex] as! UIView
+        
+        isAttacking = true
+        viewModel?.PerformCardToAvatarAttackAnimation(cardView: AICardView, toView: playerView, cardIndex: fromIndex)
     }
 }
 
