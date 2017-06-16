@@ -63,17 +63,12 @@ class MainMenuViewModel: NSObject {
         guard let locations:[CLLocation] = notification.userInfo?["locations"] as? [CLLocation] else {
             return
         }
-        //print("\(locations)")
         for location in locations{
-            //let howRecent = location.timestamp.timeIntervalSinceNow
             
-            //if abs(howRecent) < 10 {
-                
                 self.latitude = location.coordinate.latitude
                 self.longitude = location.coordinate.longitude
                 
                 fetchWeatherReport()
-            //}
         }
     }
 
@@ -89,9 +84,9 @@ class MainMenuViewModel: NSObject {
         
         ServiceManager.sharedInstance.fetchDataForGetConnection(url) { (data, response, error) in
             
-            if let error = error {
+            if error != nil {
                 
-                print(error.localizedDescription)
+                CBGErrorHandler.handle(error : .failedRequest)
                 
             } else if let data = data, let response = response as? HTTPURLResponse {
                 
@@ -105,8 +100,7 @@ class MainMenuViewModel: NSObject {
                         
                     } catch {
                         
-                        print("InvalidResponse")
-                        
+                        CBGErrorHandler.handle(error : .invalidResponse)
                     }
             
                     do {
@@ -115,21 +109,18 @@ class MainMenuViewModel: NSObject {
                         
                     } catch {
                         
-                        print("Unable to parse data")
-                        
+                        CBGErrorHandler.handle(error : .faildParseWeatherData)
                     }
                     
                     
                 } else {
                     
-                    print("failedRequest")
-                    
+                    CBGErrorHandler.handle(error : .failedRequest)
                 }
                 
             } else {
                 
-                print("unknown")
-                
+                CBGErrorHandler.handle(error : .unknown)
             }
         }
     }
