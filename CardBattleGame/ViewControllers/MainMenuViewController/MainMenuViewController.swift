@@ -10,7 +10,7 @@ import UIKit
 
 class MainMenuViewController: UIViewController {
 
-    let mainViewModel = MainMenuViewModel()
+    var mainViewModel = MainMenuViewModel()
     
     @IBOutlet weak var timeZoneLbl: UILabel!
     @IBOutlet weak var dateTimeLbl: UILabel!
