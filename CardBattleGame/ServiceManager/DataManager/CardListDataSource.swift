@@ -40,8 +40,7 @@ class CardListDataSource: NSObject {
     }
     
     // MARK:-Return Cards
-    func getCards(_ index: Int) -> [Card] {
-        
+    func  fetchCardList() -> [Card] {
         return cardList
     }
     
