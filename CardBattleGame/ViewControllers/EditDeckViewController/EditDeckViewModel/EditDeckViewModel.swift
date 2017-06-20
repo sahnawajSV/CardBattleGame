@@ -24,7 +24,7 @@ class EditDeckViewModel: NSObject {
     do {
       let result = try CoreDataStackManager.sharedInstance.managedObjContext().fetch(fetchRequest)
       if result.count == 0{
-        let newItem: Cards = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: ServiceManager.sharedInstance.managedObjContext()) as! Cards
+        let newItem: Cards = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: CoreDataStackManager.sharedInstance.managedObjContext()) as! Cards
         newItem.attack = card.attack
         newItem.battlepoint = card.battlepoint
         newItem.health = card.health

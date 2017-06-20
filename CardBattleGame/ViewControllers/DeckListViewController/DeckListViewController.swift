@@ -55,7 +55,7 @@ extension DeckListViewController: UICollectionViewDelegate, UICollectionViewData
   
   // Collection View - Number Of Items In Section
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return ServiceManager.sharedInstance.numbeOfCards()
+    return CardListDataSource.sharedInstance.numbeOfCards()
   }
   
   /// Collection View - Cell For Row At Index Path
@@ -64,7 +64,7 @@ extension DeckListViewController: UICollectionViewDelegate, UICollectionViewData
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) as! DeckCollectionViewCell
     
     
-    let cardList: [Card] = ServiceManager.sharedInstance.fetchCardList()
+    let cardList: [Card] = CardListDataSource.sharedInstance.fetchCardList()
     let card = cardList[indexPath.row]
     
     
