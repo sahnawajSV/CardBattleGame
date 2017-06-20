@@ -61,7 +61,7 @@ class Game: NSObject
     func playCard(cardIndex: Int)
     {
         let card : Card = inHand[cardIndex]
-        let newBattlePoints = Int(battlePoints)! - Int(card.battlepoint)!
+        let newBattlePoints = Int(battlePoints)! - Int(card.battlepoint)
         battlePoints = String(describing: newBattlePoints)
         inPlay.append(inHand[cardIndex])
         inHand.remove(at: cardIndex)
@@ -78,9 +78,9 @@ class Game: NSObject
     func incrementBattlePoints()
     {
         var battlePoints : Int = Int(self.battlePoints)!
-        if battlePoints < Defaults.MAXIMUM_BATTLE_POINTS
+        if battlePoints < Defaults.maximum_battle_point
         {
-            battlePoints = battlePoints + Defaults.BATTLE_POINT_INCREMENT
+            battlePoints = battlePoints + Defaults.battle_point_increment
         }
         
         self.battlePoints = String(battlePoints)

@@ -41,8 +41,8 @@ class GameManager: NSObject {
     let emptyArray: [Card] = []
     
     //TODO: Change it based on deck selected for play before the game starts
-    playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: String(Defaults.BATTLE_POINTS), health: String(Defaults.HEALTH)))
-    aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: String(Defaults.BATTLE_POINTS), health: String(Defaults.HEALTH)))
+    playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: String(Defaults.battle_points), health: String(Defaults.health)))
+    aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: String(Defaults.battle_points), health: String(Defaults.health)))
     
     //Pass the message to ViewController - To check if initialization was a success or failure
     if (playerDeckList.cardList.count) > 5 && (aiDeckList.cardList.count) > 5 {
@@ -54,8 +54,8 @@ class GameManager: NSObject {
   
   //Draw initial cards from deck
   func drawCardsFromDeck() {
-    drawPlayerCards(numToDraw: Defaults.NUM_OF_CARDS_TO_DRAW_INITIALLY)
-    drawAICards(numToDraw: Defaults.NUM_OF_CARDS_TO_DRAW_INITIALLY)
+    drawPlayerCards(numToDraw: Defaults.num_of_cards_to_draw_initially)
+    drawAICards(numToDraw: Defaults.num_of_cards_to_draw_initially)
   }
   
   func drawPlayerCards(numToDraw: Int) {
@@ -91,7 +91,7 @@ class GameManager: NSObject {
     aiStats.gameStats.incrementBattlePoints()
     
     //Draw a Card
-    drawAICards(numToDraw: Defaults.NUM_OF_CARDS_TO_DRAW_EACH_TURN)
+    drawAICards(numToDraw: Defaults.num_of_cards_to_draw_each_turn)
     
     return true
   }
@@ -101,7 +101,7 @@ class GameManager: NSObject {
     playerStats.gameStats.incrementBattlePoints()
     
     //Draw a Card
-    drawPlayerCards(numToDraw: Defaults.NUM_OF_CARDS_TO_DRAW_EACH_TURN)
+    drawPlayerCards(numToDraw: Defaults.num_of_cards_to_draw_each_turn)
     
     return true
   }

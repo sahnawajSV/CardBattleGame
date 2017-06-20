@@ -68,9 +68,9 @@ extension DeckListViewController: UICollectionViewDelegate, UICollectionViewData
         let card = cardList[indexPath.row]
         
         
-        cell.attackLbl.text = card.attack
-        cell.healthLbl.text = card.health
-        cell.battlePointLbl.text = card.battlepoint
+        cell.attackLbl.text = String(card.attack)
+        cell.healthLbl.text = String(card.health)
+        cell.battlePointLbl.text = String(card.battlepoint)
         cell.nameLbl.text = card.name
         
         print(card.name)

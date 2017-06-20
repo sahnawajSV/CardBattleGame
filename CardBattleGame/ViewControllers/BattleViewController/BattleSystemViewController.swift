@@ -144,9 +144,9 @@ class BattleSystemViewController: UIViewController, GameDelegate {
       
       let cardView: CardView = CardView(frame: cardFrame)
       
-      cardView.bpText.text = card.battlepoint
-      cardView.attackText.text = card.attack
-      cardView.healthText.text = card.health
+      cardView.bpText.text = String(card.battlepoint)
+      cardView.attackText.text = String(card.attack)
+      cardView.healthText.text = String(card.health)
       cardView.nameText.text = card.name
       
       self.view.addSubview(cardView)
@@ -187,9 +187,9 @@ class BattleSystemViewController: UIViewController, GameDelegate {
       
       let cardView: CardView = CardView(frame: cardFrame)
       
-      cardView.bpText.text = card.battlepoint
-      cardView.attackText.text = card.attack
-      cardView.healthText.text = card.health
+      cardView.bpText.text = String(card.battlepoint)
+      cardView.attackText.text = String(card.attack)
+      cardView.healthText.text = String(card.health)
       cardView.nameText.text = card.name
       
       self.view.addSubview(cardView)

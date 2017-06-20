@@ -83,10 +83,10 @@ class GameViewModel: GameProtocol {
     aiName = gManager.aiStats.name
     aiHealth = gManager.aiStats.gameStats.health
     
-    playerNumOfCardsInDeckText = "\(String(describing: gManager.playerStats.gameStats.inDeck.count)) / \(Defaults.MAXIMUM_CARD_PER_DECK) Cards"
-    aiNumOfCardsInDeckText = "\(String(describing: gManager.aiStats.gameStats.inDeck.count)) / \(Defaults.MAXIMUM_CARD_PER_DECK) Cards"
-    playerTotalBattlePointsText = "\(String(describing: gManager.playerStats.gameStats.battlePoints)) / \(Defaults.MAXIMUM_BATTLE_POINTS) BP"
-    aiTotalBattlePointsText = "\(String(describing: gManager.aiStats.gameStats.battlePoints)) / \(Defaults.MAXIMUM_BATTLE_POINTS) BP"
+    playerNumOfCardsInDeckText = "\(String(describing: gManager.playerStats.gameStats.inDeck.count)) / \(Defaults.maximum_card_per_deck) Cards"
+    aiNumOfCardsInDeckText = "\(String(describing: gManager.aiStats.gameStats.inDeck.count)) / \(Defaults.maximum_card_per_deck) Cards"
+    playerTotalBattlePointsText = "\(String(describing: gManager.playerStats.gameStats.battlePoints)) / \(Defaults.maximum_battle_point) BP"
+    aiTotalBattlePointsText = "\(String(describing: gManager.aiStats.gameStats.battlePoints)) / \(Defaults.maximum_battle_point) BP"
     
     playerNumOfCardsInDeck = gManager.playerStats.gameStats.inDeck.count
     aiNumOfCardsInDeck = gManager.aiStats.gameStats.inDeck.count
