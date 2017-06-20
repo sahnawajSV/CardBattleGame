@@ -32,19 +32,15 @@
 		8B561F671EF4011100104486 /* DeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F661EF4011100104486 /* DeckCollectionViewCell.swift */; };
 		E37605ED1EF7A11E001AEBBB /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605EC1EF7A11E001AEBBB /* GameManager.swift */; };
 		E37605F11EF7E00E001AEBBB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605F01EF7E00E001AEBBB /* CardView.swift */; };
+		E37605F31EF92C77001AEBBB /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605F21EF92C77001AEBBB /* GameViewModel.swift */; };
 		E3775D501EF16E6F00991CEC /* MainMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */; };
 		E3775D521EF16E7D00991CEC /* EditDeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */; };
 		E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */; };
-		E3775D561EF16E9700991CEC /* BattleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D551EF16E9700991CEC /* BattleViewModel.swift */; };
-		E3775D581EF16EAA00991CEC /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D571EF16EAA00991CEC /* BattleViewController.swift */; };
 		E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D591EF16EB400991CEC /* DeckListViewController.swift */; };
 		E3775D5C1EF16EC000991CEC /* EditDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */; };
-		E3775D5E1EF3F1A900991CEC /* AIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D5D1EF3F1A900991CEC /* AIViewModel.swift */; };
 		E3D362C21EF790BC008FB5A7 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D362C11EF790BC008FB5A7 /* Deck.swift */; };
 		E3D362C41EF79174008FB5A7 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D362C31EF79174008FB5A7 /* Stats.swift */; };
-		E3D362C61EF791F6008FB5A7 /* BattleSystemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D362C51EF791F6008FB5A7 /* BattleSystemViewModel.swift */; };
 		E3D362C81EF792A6008FB5A7 /* BattleSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D362C71EF792A6008FB5A7 /* BattleSystemViewController.swift */; };
-		E3D362CA1EF79372008FB5A7 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D362C91EF79372008FB5A7 /* Common.swift */; };
 		E3D362CC1EF79FAA008FB5A7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D362CB1EF79FAA008FB5A7 /* Game.swift */; };
 /* End PBXBuildFile section */
 
@@ -95,21 +91,17 @@
 		8B561F611EF3F54300104486 /* CardListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListDataSource.swift; sourceTree = "<group>"; };
 		8B561F631EF3F57800104486 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		8B561F661EF4011100104486 /* DeckCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewCell.swift; sourceTree = "<group>"; };
-		E37605EC1EF7A11E001AEBBB /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		E37605EC1EF7A11E001AEBBB /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameManager.swift; path = BattleViewModel/GameManager.swift; sourceTree = "<group>"; };
 		E37605F01EF7E00E001AEBBB /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		E37605F21EF92C77001AEBBB /* GameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewModel.swift; sourceTree = "<group>"; };
 		E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckViewModel.swift; sourceTree = "<group>"; };
 		E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewModel.swift; sourceTree = "<group>"; };
-		E3775D551EF16E9700991CEC /* BattleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewModel.swift; sourceTree = "<group>"; };
-		E3775D571EF16EAA00991CEC /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
 		E3775D591EF16EB400991CEC /* DeckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewController.swift; sourceTree = "<group>"; };
 		E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckViewController.swift; sourceTree = "<group>"; };
-		E3775D5D1EF3F1A900991CEC /* AIViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIViewModel.swift; sourceTree = "<group>"; };
 		E3D362C11EF790BC008FB5A7 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		E3D362C31EF79174008FB5A7 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
-		E3D362C51EF791F6008FB5A7 /* BattleSystemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleSystemViewModel.swift; sourceTree = "<group>"; };
 		E3D362C71EF792A6008FB5A7 /* BattleSystemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleSystemViewController.swift; sourceTree = "<group>"; };
-		E3D362C91EF79372008FB5A7 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		E3D362CB1EF79FAA008FB5A7 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -279,6 +271,14 @@
 			path = CardView;
 			sourceTree = "<group>";
 		};
+		E37605F41EF93C81001AEBBB /* GameManager */ = {
+			isa = PBXGroup;
+			children = (
+				E37605EC1EF7A11E001AEBBB /* GameManager.swift */,
+			);
+			name = GameManager;
+			sourceTree = "<group>";
+		};
 		E3775D441EF16DB400991CEC /* MainMenuViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,8 +290,8 @@
 		E3775D451EF16E0200991CEC /* BattleViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E37605F41EF93C81001AEBBB /* GameManager */,
 				E3775D461EF16E0200991CEC /* BattleViewModel */,
-				E3775D571EF16EAA00991CEC /* BattleViewController.swift */,
 				E3D362C71EF792A6008FB5A7 /* BattleSystemViewController.swift */,
 			);
 			path = BattleViewController;
@@ -300,10 +300,7 @@
 		E3775D461EF16E0200991CEC /* BattleViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E3D362C51EF791F6008FB5A7 /* BattleSystemViewModel.swift */,
-				E37605EC1EF7A11E001AEBBB /* GameManager.swift */,
-				E3775D551EF16E9700991CEC /* BattleViewModel.swift */,
-				E3775D5D1EF3F1A900991CEC /* AIViewModel.swift */,
+				E37605F21EF92C77001AEBBB /* GameViewModel.swift */,
 			);
 			path = BattleViewModel;
 			sourceTree = "<group>";
@@ -369,7 +366,6 @@
 			children = (
 				8B42F4BD1EF251700097D28A /* Configuration.swift */,
 				8B42F4C61EF265D70097D28A /* CBGErrorHandler.swift */,
-				E3D362C91EF79372008FB5A7 /* Common.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -520,7 +516,6 @@
 				8B42F4BC1EF24E710097D28A /* ServiceManager.swift in Sources */,
 				E3D362CC1EF79FAA008FB5A7 /* Game.swift in Sources */,
 				E3D362C41EF79174008FB5A7 /* Stats.swift in Sources */,
-				E3775D581EF16EAA00991CEC /* BattleViewController.swift in Sources */,
 				8B42F4C31EF2562F0097D28A /* WeatherData.swift in Sources */,
 				8B561F531EF3A06700104486 /* PersistanceManager.swift in Sources */,
 				8B561F671EF4011100104486 /* DeckCollectionViewCell.swift in Sources */,
@@ -528,19 +523,16 @@
 				8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */,
 				E3D362C21EF790BC008FB5A7 /* Deck.swift in Sources */,
 				8B42F4C11EF252520097D28A /* ConnectionManager.swift in Sources */,
-				E3775D5E1EF3F1A900991CEC /* AIViewModel.swift in Sources */,
 				8B42F4CA1EF292430097D28A /* Conversions.swift in Sources */,
-				E3D362CA1EF79372008FB5A7 /* Common.swift in Sources */,
 				E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */,
 				E3775D501EF16E6F00991CEC /* MainMenuViewModel.swift in Sources */,
 				E3D362C81EF792A6008FB5A7 /* BattleSystemViewController.swift in Sources */,
-				E3775D561EF16E9700991CEC /* BattleViewModel.swift in Sources */,
 				E37605ED1EF7A11E001AEBBB /* GameManager.swift in Sources */,
 				8B3119A21EF144AB00DD9E78 /* MainMenuViewController.swift in Sources */,
+				E37605F31EF92C77001AEBBB /* GameViewModel.swift in Sources */,
 				8B42F4BE1EF251700097D28A /* Configuration.swift in Sources */,
 				8B561F5C1EF3ABAE00104486 /* CoreDataStackManager.swift in Sources */,
 				E3775D521EF16E7D00991CEC /* EditDeckViewModel.swift in Sources */,
-				E3D362C61EF791F6008FB5A7 /* BattleSystemViewModel.swift in Sources */,
 				E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */,
 				E3775D5C1EF16EC000991CEC /* EditDeckViewController.swift in Sources */,
 				8B3119501EF1427700DD9E78 /* AppDelegate.swift in Sources */,

@@ -73,7 +73,7 @@ extension DeckListViewController: UICollectionViewDelegate, UICollectionViewData
         cell.battlePointLbl.text = card.battlepoint
         cell.nameLbl.text = card.name
         
-        print(card.name!)
+        print(card.name)
         
         return cell
     }

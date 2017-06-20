@@ -10,10 +10,10 @@ import UIKit
 
 class Stats: NSObject
 {
-    var name:String?
-    var id:String?
-    var deckList:Array<Deck>?
-    var gameStats: Game?
+    var name:String = ""
+    var id:String = ""
+    var deckList:Array<Deck> = Array<Deck>()
+    var gameStats: Game
     
     init(name: String, id: String, deckList: Array<Deck>, gameStats: Game)
     {

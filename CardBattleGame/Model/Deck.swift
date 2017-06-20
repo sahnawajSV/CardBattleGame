@@ -10,9 +10,9 @@ import UIKit
 
 class Deck: NSObject {
 
-    var name:String?
-    var id:String?
-    var cardList:Array<Card>?
+    var name:String = ""
+    var id:String = ""
+    var cardList:Array<Card> = Array<Card>()
     
     init(name: String, id: String, cardList: Array<Card>) {
         self.name = name

@@ -9,12 +9,12 @@
 
 class Card{
     
-    var name:String?
-    var id:String?
-    var attack:String?
-    var battlepoint:String?
-    var health:String?
-    var canAttack:Bool?
+    var name:String = ""
+    var id:String = ""
+    var attack:String = ""
+    var battlepoint:String = ""
+    var health:String = ""
+    var canAttack:Bool = false
     
     init(name: String, id: String, attack: String, battlepoint: String, health: String, canAttack: Bool) {
         self.name = name

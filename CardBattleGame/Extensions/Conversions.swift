@@ -19,8 +19,6 @@ extension Double {
     }
 }
 
-
-
 extension Date
 {
     func toString( dateFormat format  : String ) -> String
@@ -45,5 +43,14 @@ extension UIView {
         self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
         self.layer.shouldRasterize = true
         self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
+    }
+}
+
+extension UILabel {
+    
+    func setDefaultProperties() {
+        self.font = UIFont(name: "systemFont-Bold", size: 14)
+        self.textColor = UIColor.white
+        self.textAlignment = NSTextAlignment.center
     }
 }
