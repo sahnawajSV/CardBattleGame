@@ -11,6 +11,13 @@ import CoreData
 
 class CoreDataStackManager: NSObject {
     
+    static let sharedInstance: CoreDataStackManager = {
+        let cdstore = CoreDataStackManager()
+        return cdstore
+    }()
+
+    
+    
     lazy var persistentContainer: NSPersistentContainer = {
         
         let container = NSPersistentContainer(name: "CardBattleGame")
@@ -33,4 +40,10 @@ class CoreDataStackManager: NSObject {
         return container
     }()
     
+    
+    // MARK - Core Data Managed Object Context
+    //
+    func managedObjContext() -> NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
 }
