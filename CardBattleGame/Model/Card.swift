@@ -5,6 +5,7 @@
 //  Created by SAHNAWAJ BISWAS on 16/06/17.
 //  Copyright © 2017 SAHNAWAJ BISWAS. All rights reserved.
 //
+import Foundation
 
 
 class Card{
@@ -24,4 +25,15 @@ class Card{
         self.health = health
         self.canAttack = canAttack
     }
+    
+    self.name = name
+    self.id = id
+    self.attack = attack
+    self.battlepoint = battlepoint
+    self.health = health
+    
+    super.init()
+    
+  }
+  
 }

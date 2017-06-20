@@ -24,13 +24,3 @@ struct Defaults {
     static let NUM_OF_CARDS_TO_DRAW_EACH_TURN = 1
 }
 
-struct API {
-    
-    static let APIKey = "9035e8294254f66c2a5e636c76907571"
-    static let BaseURL = URL(string: "https://api.darksky.net/forecast/")!
-    
-    static var AuthenticatedBaseURL: URL {
-        return BaseURL.appendingPathComponent(APIKey)
-    }
-    
-}

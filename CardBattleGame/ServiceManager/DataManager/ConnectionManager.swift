@@ -8,31 +8,31 @@
 
 import Foundation
 
-enum ConnectionManagerError: Error {
-    
-    case unknown
-    case failedRequest
-    case invalidResponse
-    
-}
-
 enum ConnectionType{
     case WEATHER_REPORT
 }
+
+struct API {
+    
+    static let APIKey = "9035e8294254f66c2a5e636c76907571"
+    static let BaseURL = URL(string: "https://api.darksky.net/forecast/")!
+    
+    static var AuthenticatedBaseURL: URL {
+        return BaseURL.appendingPathComponent(APIKey)
+    }
+    
+}
+
 
 class ConnectionManager {
     
     typealias DataCompletion = (Data?, URLResponse?, Error?) -> ()
     
-    // MARK: - Properties
-    //
     
-    
-    
-    // MARK: - Initialization
-    //
-    
-    
+    static let sharedInstance: ConnectionManager = {
+        let sharedInstance = ConnectionManager()
+        return sharedInstance
+    }()
     
     
     // MARK: - Requesting Data
@@ -40,6 +40,7 @@ class ConnectionManager {
     func fetchDataForGetConnection(_ url : URL, completion: @escaping DataCompletion) {
         
         let sessionConfiguration = URLSessionConfiguration.ephemeral
+        
         let session = URLSession(configuration: sessionConfiguration)
         
          // Create Data Task
@@ -50,7 +51,5 @@ class ConnectionManager {
             
         }.resume()
     }
-    
-   
     
 }

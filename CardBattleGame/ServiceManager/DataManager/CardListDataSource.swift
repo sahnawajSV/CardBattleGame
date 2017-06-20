@@ -37,7 +37,9 @@ class CardListDataSource: NSObject {
                     }
                 }
             }
+          }
         }
+      }
     }
     
     //Remove Methods
