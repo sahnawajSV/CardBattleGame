@@ -16,27 +16,14 @@ class Card: NSObject {
     var health:String?
     
 
-    
     init?(dictionary: NSDictionary) {
         
-        guard let name: String = dictionary["name"] as? String else {
-            return nil
-        }
-        
-        guard let id: String = dictionary["id"] as? String else {
-            return nil
-        }
-        
-        guard let attack: String = dictionary["attack"] as? String else {
-            return nil
-        }
-        
-        guard let battlepoint: String = dictionary["battlepoint"] as? String else {
-            return nil
-        }
-        
-        guard let health: String = dictionary["health"] as? String else {
-            return nil
+        guard let name = dictionary["name"] as? String,
+            let id = dictionary["id"] as? String,
+            let attack = dictionary["attack"] as? String,
+            let battlepoint = dictionary["battlepoint"] as? String,
+            let health: String = dictionary["health"] as? String else {
+                return nil
         }
         
         
@@ -46,8 +33,9 @@ class Card: NSObject {
         self.battlepoint = battlepoint
         self.health = health
         
-       
+        
         super.init()
+
     }
 
 }
