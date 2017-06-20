@@ -36,7 +36,7 @@ class CardListDataSource: NSObject {
                 for item in dictArray {
                     if let dict = item as? NSDictionary {
                         let cardData = Card(dictionary: dict)
-                        if let cardData = cardData {
+                        if let data = cardData {
                             cardList.append(data)
                         }
                     }
