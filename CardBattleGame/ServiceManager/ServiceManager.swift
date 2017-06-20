@@ -72,7 +72,7 @@ class ServiceManager: NSObject {
     
     
     func  fetchCardList() -> [Card] {
-        return cardListDataSource.cardList
+        return cardListDataSource.fetchCardList()
     }
     
     func numbeOfCards() -> Int {

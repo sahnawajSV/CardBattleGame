@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B0464DB1EF8F08900A620D7 /* EditDeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0464DA1EF8F08900A620D7 /* EditDeckCollectionViewCell.swift */; };
+		8B2D57771EF7EA140026CFAA /* DeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B2D57761EF7EA140026CFAA /* DeckCollectionViewCell.swift */; };
 		8B3119501EF1427700DD9E78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31194F1EF1427700DD9E78 /* AppDelegate.swift */; };
 		8B3119551EF1427800DD9E78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B3119531EF1427800DD9E78 /* Main.storyboard */; };
 		8B3119581EF1427800DD9E78 /* CardBattleGame.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8B3119561EF1427800DD9E78 /* CardBattleGame.xcdatamodeld */; };
@@ -29,7 +31,6 @@
 		8B561F601EF3F1DE00104486 /* CardList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B561F5F1EF3F1DE00104486 /* CardList.plist */; };
 		8B561F621EF3F54300104486 /* CardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F611EF3F54300104486 /* CardListDataSource.swift */; };
 		8B561F641EF3F57800104486 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F631EF3F57800104486 /* Card.swift */; };
-		8B561F671EF4011100104486 /* DeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F661EF4011100104486 /* DeckCollectionViewCell.swift */; };
 		E3775D501EF16E6F00991CEC /* MainMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */; };
 		E3775D521EF16E7D00991CEC /* EditDeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */; };
 		E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */; };
@@ -58,6 +59,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B0464DA1EF8F08900A620D7 /* EditDeckCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckCollectionViewCell.swift; sourceTree = "<group>"; };
+		8B2D57761EF7EA140026CFAA /* DeckCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B31194C1EF1427700DD9E78 /* CardBattleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardBattleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B31194F1EF1427700DD9E78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B3119541EF1427800DD9E78 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -86,7 +89,6 @@
 		8B561F5F1EF3F1DE00104486 /* CardList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CardList.plist; sourceTree = "<group>"; };
 		8B561F611EF3F54300104486 /* CardListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListDataSource.swift; sourceTree = "<group>"; };
 		8B561F631EF3F57800104486 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
-		8B561F661EF4011100104486 /* DeckCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckCollectionViewCell.swift; sourceTree = "<group>"; };
 		E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewModel.swift; sourceTree = "<group>"; };
 		E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckViewModel.swift; sourceTree = "<group>"; };
 		E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewModel.swift; sourceTree = "<group>"; };
@@ -123,6 +125,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8B0464D91EF8F07500A620D7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8B0464DA1EF8F08900A620D7 /* EditDeckCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		8B3119431EF1427700DD9E78 = {
 			isa = PBXGroup;
 			children = (
@@ -250,7 +260,7 @@
 		8B561F651EF400F100104486 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8B561F661EF4011100104486 /* DeckCollectionViewCell.swift */,
+				8B2D57761EF7EA140026CFAA /* DeckCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -302,6 +312,7 @@
 		E3775D491EF16E0200991CEC /* EditDeckViewController */ = {
 			isa = PBXGroup;
 			children = (
+				8B0464D91EF8F07500A620D7 /* View */,
 				E3775D4A1EF16E0200991CEC /* EditDeckViewModel */,
 				E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */,
 			);
@@ -489,13 +500,14 @@
 				E3775D581EF16EAA00991CEC /* BattleViewController.swift in Sources */,
 				8B42F4C31EF2562F0097D28A /* WeatherData.swift in Sources */,
 				8B561F531EF3A06700104486 /* PersistanceManager.swift in Sources */,
-				8B561F671EF4011100104486 /* DeckCollectionViewCell.swift in Sources */,
 				8B42F4C71EF265D70097D28A /* CBGErrorHandler.swift in Sources */,
 				8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */,
 				8B42F4C11EF252520097D28A /* ConnectionManager.swift in Sources */,
 				E3775D5E1EF3F1A900991CEC /* AIViewModel.swift in Sources */,
+				8B0464DB1EF8F08900A620D7 /* EditDeckCollectionViewCell.swift in Sources */,
 				8B42F4CA1EF292430097D28A /* Conversions.swift in Sources */,
 				E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */,
+				8B2D57771EF7EA140026CFAA /* DeckCollectionViewCell.swift in Sources */,
 				E3775D501EF16E6F00991CEC /* MainMenuViewModel.swift in Sources */,
 				E3775D561EF16E9700991CEC /* BattleViewModel.swift in Sources */,
 				8B3119A21EF144AB00DD9E78 /* MainMenuViewController.swift in Sources */,
