@@ -16,6 +16,7 @@ class CardListDataSource: NSObject {
         populateData()
     }
     
+    //Make Read Only - Let only variable
     var cardList:[Card] = []
     
     
@@ -31,7 +32,7 @@ class CardListDataSource: NSObject {
                         let battlepoint = dict["battlepoint"] as! String
                         let health = dict["health"] as! String
                         
-                        let cardData = Card(name: name, id: id, attack: attack, battlepoint: battlepoint, health: health)
+                        let cardData = Card(name: name, id: id, attack: attack, battlepoint: battlepoint, health: health, canAttack: false)
                         cardList.append(cardData)
                     }
                 }
@@ -39,11 +40,13 @@ class CardListDataSource: NSObject {
         }
     }
     
+    //Remove Methods
     // MARK:-Return Cards
-    func getCards(_ index: Int) -> [Card] {
-        
+    func  fetchCardList() -> [Card]
+    {
         return cardList
     }
+    
     
     // MARK : - Get Number Of Cards
     func numbeOfCards() -> Int {
