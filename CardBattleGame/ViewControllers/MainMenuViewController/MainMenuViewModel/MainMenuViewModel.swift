@@ -20,8 +20,8 @@ protocol MainMenuViewModelDelegate: class{
 class MainMenuViewModel: NSObject {
     
     
-    var latitude = Defaults.Latitude
-    var longitude = Defaults.Longitude
+    var latitude = LocationManager.LATITUDE
+    var longitude = LocationManager.LONGITUDE
     
     weak var delegate : MainMenuViewModelDelegate?
     
@@ -30,12 +30,11 @@ class MainMenuViewModel: NSObject {
     var weatherData: WeatherData = WeatherData()
     
     
-    
     override init() {
         super .init()
         
         // Start Location Update
-        ServiceManager.sharedInstance.startLocationUpdate()
+        LocationManager.sharedInstance.startLocationUpdate()
         
         // Location Update Observer
         //
@@ -54,7 +53,7 @@ class MainMenuViewModel: NSObject {
         NotificationCenter.default.removeObserver(self, name: LocationNotification.kLocationUpdated, object: nil)
         
         // Start Location Update
-        ServiceManager.sharedInstance.stopLocationUpdate()
+        LocationManager.sharedInstance.stopLocationUpdate()
     }
     
     
@@ -83,7 +82,7 @@ class MainMenuViewModel: NSObject {
         let baseURL : URL = API.BaseURL
         let url = baseURL.appendingPathComponent(appendUrl)
         
-        ServiceManager.sharedInstance.fetchDataForGetConnection(url) { (data, response, error) in
+        ConnectionManager.sharedInstance.fetchDataForGetConnection(url) {  (data, response, error) in
             
             if error != nil {
                 
@@ -96,22 +95,15 @@ class MainMenuViewModel: NSObject {
                     var jsonDictionary: [String: Any]?
                     
                     do {
-                        
                         jsonDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                    } catch {
-                        
-                        CBGErrorHandler.handle(error : .invalidResponse)
-                    }
-            
-                    do {
                         
                         try self.decodeJSON(jsonDictionary!)
                         
+                    } catch ErrorTpe.failedRequest{
+                        CBGErrorHandler.handle(error : .invalidResponse)
                     } catch {
-                        
                         CBGErrorHandler.handle(error : .faildParseWeatherData)
                     }
-                    
                     
                 } else {
                     
