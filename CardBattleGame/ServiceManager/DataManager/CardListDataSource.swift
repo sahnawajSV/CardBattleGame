@@ -35,8 +35,7 @@ class CardListDataSource: NSObject {
             if let dictArray = NSArray(contentsOfFile: path) {
                 for item in dictArray {
                     if let dict = item as? NSDictionary {
-                        let cardData = Card(dictionary: dict)
-                        if let data = cardData {
+                        if let data = Card(dictionary: dict) {
                             cardList.append(data)
                         }
                     }
