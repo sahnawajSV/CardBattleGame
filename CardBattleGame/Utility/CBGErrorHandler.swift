@@ -44,7 +44,7 @@ class CBGErrorHandler: Error {
         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
         
         alertWindow.rootViewController = UIViewController()
-        alertWindow.windowLevel = UIWindowLevelAlert + 1;
+        alertWindow.windowLevel = UIWindowLevelAlert;
         alertWindow.makeKeyAndVisible()
         
         alertWindow.rootViewController?.present(alertController, animated: true, completion: nil)
