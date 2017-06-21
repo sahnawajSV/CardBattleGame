@@ -36,7 +36,7 @@ class CardView: UIView {
     let bpView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     bpView.backgroundColor = UIColor.blue
     
-    bpText.setDefaultProperties()
+    //bpText.setDefaultProperties()
     bpView.addSubview(bpText)
     
     cardView.addSubview(bpView)
@@ -45,7 +45,7 @@ class CardView: UIView {
     let attackView = UIView(frame: CGRect(x: 0, y: 0 + (cardView.frame.size.height) - 50, width: 50, height: 50))
     attackView.backgroundColor = UIColor.red
     
-    attackText.setDefaultProperties()
+    //attackText.setDefaultProperties()
     attackView.addSubview(attackText)
     cardView.addSubview(attackView)
     
@@ -53,7 +53,7 @@ class CardView: UIView {
     let healthView = UIView(frame: CGRect(x: 0 + (cardView.frame.size.width) - 50, y: 0 + (cardView.frame.size.height) - 50, width: 50, height: 50))
     healthView.backgroundColor = UIColor.green
     
-    healthText.setDefaultProperties()
+    //healthText.setDefaultProperties()
     healthView.addSubview(healthText)
     
     cardView.addSubview(healthView)
@@ -63,7 +63,7 @@ class CardView: UIView {
     nameView.backgroundColor = UIColor.clear
     
     nameText = UILabel(frame: CGRect(x: 0 , y: 0, width: (nameView.frame.size.width), height: (nameView.frame.size.height)))
-    nameText.setDefaultProperties()
+    //nameText.setDefaultProperties()
     
     nameView.addSubview(nameText)
     cardView.addSubview(nameView)

@@ -48,9 +48,7 @@ class GameViewModel: GameProtocol {
   
   //MARK: - Initalizers
   func initializeTheGame() {
-    let success: Bool = gManager.initializeTheGame()
-    
-    if success {
+  
       //Draw inital Cards from deck
       gManager.drawCardsFromDeck()
       
@@ -59,7 +57,6 @@ class GameViewModel: GameProtocol {
       
       //Reload the UI
       tellDelegateToReloadViewData()
-    }
   }
   
   func toggleTurn() {
@@ -83,10 +80,10 @@ class GameViewModel: GameProtocol {
     aiName = gManager.aiStats.name
     aiHealth = gManager.aiStats.gameStats.health
     
-    playerNumOfCardsInDeckText = "\(String(describing: gManager.playerStats.gameStats.inDeck.count)) / \(Defaults.maximum_card_per_deck) Cards"
-    aiNumOfCardsInDeckText = "\(String(describing: gManager.aiStats.gameStats.inDeck.count)) / \(Defaults.maximum_card_per_deck) Cards"
-    playerTotalBattlePointsText = "\(String(describing: gManager.playerStats.gameStats.battlePoints)) / \(Defaults.maximum_battle_point) BP"
-    aiTotalBattlePointsText = "\(String(describing: gManager.aiStats.gameStats.battlePoints)) / \(Defaults.maximum_battle_point) BP"
+    playerNumOfCardsInDeckText = "\(String(describing: gManager.playerStats.gameStats.inDeck.count)) / \(Game.maximumCardPerDeck) Cards"
+    aiNumOfCardsInDeckText = "\(String(describing: gManager.aiStats.gameStats.inDeck.count)) / \(Game.maximumCardPerDeck) Cards"
+    playerTotalBattlePointsText = "\(String(describing: gManager.playerStats.gameStats.battlePoints)) / \(Game.maximumBattlePoint) BP"
+    aiTotalBattlePointsText = "\(String(describing: gManager.aiStats.gameStats.battlePoints)) / \(Game.maximumBattlePoint) BP"
     
     playerNumOfCardsInDeck = gManager.playerStats.gameStats.inDeck.count
     aiNumOfCardsInDeck = gManager.aiStats.gameStats.inDeck.count
@@ -108,4 +105,5 @@ class GameViewModel: GameProtocol {
     delegate?.reloadAllViews(delegate!)
     delegate?.createInHandViews(delegate!)
   }
+
 }
