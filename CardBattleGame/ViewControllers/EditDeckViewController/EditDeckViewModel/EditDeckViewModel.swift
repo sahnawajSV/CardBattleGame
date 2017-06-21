@@ -11,6 +11,10 @@ import CoreData
 
 class EditDeckViewModel: NSObject {
   
+  
+  /// Add Card to Persistance Storage
+  ///
+  /// - Parameter card: Card
   func add(card: Card) {
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
     fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
@@ -22,16 +26,20 @@ class EditDeckViewModel: NSObject {
     fetchRequest.entity = entityDescription
     
     do {
-      let result = try CoreDataStackManager.sharedInstance.managedObjContext().fetch(fetchRequest)
+      let managedObjectContext = CoreDataStackManager.sharedInstance.managedObjContext()
+      
+      let result = try managedObjectContext.fetch(fetchRequest)
       if result.count == 0{
-        let newItem: Cards = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: CoreDataStackManager.sharedInstance.managedObjContext()) as! Cards
+        let newItem: Cards = NSEntityDescription.insertNewObject(forEntityName: "Cards", into: managedObjectContext) as! Cards
         newItem.attack = card.attack
         newItem.battlepoint = card.battlepoint
         newItem.health = card.health
         newItem.id = card.id
         newItem.name = card.name
       }
-      saveContext(CoreDataStackManager.sharedInstance.managedObjContext())
+      
+      CoreDataStackManager.sharedInstance.saveContext()
+      
     } catch {
       let fetchError = error as NSError
       print(fetchError)
@@ -39,20 +47,64 @@ class EditDeckViewModel: NSObject {
   }
   
   
-  
-  func saveContext(_ context: NSManagedObjectContext) {
-    var error: NSError? = nil
-    //        if context.hasChanges {
+  /// Delete Card to Persistance Storage
+  ///
+  /// - Parameter card: Card
+  func delete(card: Card) {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+    fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
+    
+    // Create Entity Description
+    let entityDescription = NSEntityDescription.entity(forEntityName: "Cards", in: CoreDataStackManager.sharedInstance.managedObjContext())
+    
+    // Configure Fetch Request
+    fetchRequest.entity = entityDescription
+    
     do {
-      try context.save()
-    } catch let error1 as NSError {
-      error = error1
-      // Replace this implementation with code to handle the error appropriately.
-      // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-      NSLog("Unresolved error \(String(describing: error)), \(error!.userInfo)")
-      abort()
+      let managedObjectContext = CoreDataStackManager.sharedInstance.managedObjContext()
+      
+      let result = try managedObjectContext.fetch(fetchRequest)
+      let resultData = result as! [Cards]
+      for object in resultData {
+        managedObjectContext.delete(object)
+      }
+      
+      CoreDataStackManager.sharedInstance.saveContext()
+      
+    } catch {
+      let fetchError = error as NSError
+      print(fetchError)
     }
-    //        }
+  }
+  
+  
+  /// Check if the card is available in the Persistance Storage
+  ///
+  /// - Parameter card: Card
+  /// - Returns: True is exist
+  func checkCardState(card: Card) -> Bool {
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
+    fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
+    
+    // Create Entity Description
+    let entityDescription = NSEntityDescription.entity(forEntityName: "Cards", in: CoreDataStackManager.sharedInstance.managedObjContext())
+    
+    // Configure Fetch Request
+    fetchRequest.entity = entityDescription
+    
+    do {
+      let managedObjectContext = CoreDataStackManager.sharedInstance.managedObjContext()
+      
+      let result = try managedObjectContext.fetch(fetchRequest)
+      
+      return result.count > 0
+      
+    } catch {
+      let fetchError = error as NSError
+      print(fetchError)
+      
+      return false
+    }
   }
   
 }
