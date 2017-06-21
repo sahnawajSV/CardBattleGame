@@ -17,16 +17,18 @@ protocol MainMenuViewModelDelegate: class{
 
 class MainMenuViewModel: NSObject {
   
+  var timeText: String = ""
+  var timeZoneText : String = ""
+  var windSpeedText: String = ""
+  var tempratureText: String = ""
+  var summaryText: String = ""
+  var iconImage: UIImage?
+  
   
   var latitude = LocationManager.LATITUDE
   var longitude = LocationManager.LONGITUDE
   
   weak var delegate : MainMenuViewModelDelegate?
-  
-  // Initialize Weather Data Model
-  //
-  var weatherData: WeatherData = WeatherData()
-  
   
   override init() {
     super .init()
@@ -113,6 +115,7 @@ class MainMenuViewModel: NSObject {
         CBGErrorHandler.handle(error : .unknown)
       }
     }
+    
   }
   
   
@@ -120,22 +123,62 @@ class MainMenuViewModel: NSObject {
   //
   private func decodeJSON(_ jsonDictionary: [String: Any]) throws {
     
-    let timeZone = jsonDictionary["timezone"] as? String
-    let currently: [String: Any] = (jsonDictionary["currently"] as? [String : Any])!
-    let time = currently["time"] as? Double
-    let summary = currently["summary"] as? String
-    let temperature = currently["temperature"] as? Double
-    let windSpeed = currently["windSpeed"] as? Double
-    let icon = currently["icon"] as? String
-    let apparentTemperature = currently["apparentTemperature"] as? Double
-    
-    let dtTime = Date(timeIntervalSince1970: time! / 1000.0)
-    let minTemprature = temperature?.toCelcius()
-    let maxTemprature = apparentTemperature?.toCelcius()
-    
-    weatherData.updateWeatherData(time: dtTime, timeZone: timeZone! , windSpeed: windSpeed!, minTemprature: minTemprature!, summary: summary!, icon: icon!, maxTemprature: maxTemprature!)
+    if let timeZone = jsonDictionary["timezone"] as? String{
+      timeZoneText = timeZone
+    }
+    if let currently: [String: Any] = jsonDictionary["currently"] as? [String : Any]{
+      
+      if let time = currently["time"] as? Double{
+        let dtTime = Date(timeIntervalSince1970: time / 1000.0)
+        timeText = dtTime.toString(dateFormat: "dd MMM yy hh:mm")
+      }
+      
+      if let windSpeed = currently["windSpeed"] as? Double{
+        windSpeedText = String(format: "%.f KPH", windSpeed)
+      }
+      
+      if let temperature = currently["temperature"] as? Double, let apparentTemperature = currently["apparentTemperature"] as? Double{
+        let minTemprature = temperature.toCelcius()
+        let maxTemprature = apparentTemperature.toCelcius()
+        let min = String(format: "%.0f°", minTemprature)
+        let max = String(format: "%.0f°", maxTemprature)
+        tempratureText = "\(min) - \(max)"
+      }
+      
+      if let summary = currently["summary"] as? String{
+        summaryText = summary
+      }
+      
+      if let icon = currently["icon"] as? String{
+        iconImage = imageForWeatherIcon(withName: icon)
+      }
+      
+    }
     
     self.delegate?.updateWeatherData()
+  }
+  
+  
+  //  Mark :  Helper Method
+  //
+  private func imageForWeatherIcon(withName name: String) -> UIImage? {
+    
+    switch name {
+    case "clear-day":
+      return UIImage(named: "clear-day")
+    case "clear-night":
+      return UIImage(named: "clear-night")
+    case "rain":
+      return UIImage(named: "rain")
+    case "snow":
+      return UIImage(named: "snow")
+    case "sleet":
+      return UIImage(named: "sleet")
+    case "wind", "cloudy", "partly-cloudy-day", "partly-cloudy-night":
+      return UIImage(named: "cloudy")
+    default:
+      return UIImage(named: "clear-day")
+    }
   }
   
 }
