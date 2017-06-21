@@ -97,7 +97,7 @@ class MainMenuViewModel: NSObject {
           do {
             jsonDictionary = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             
-            try self.decodeJSON(jsonDictionary!)
+            self.decodeJSON(jsonDictionary!)
             
           } catch ErrorTpe.failedRequest{
             CBGErrorHandler.handle(error : .invalidResponse)
@@ -121,7 +121,7 @@ class MainMenuViewModel: NSObject {
   
   // MARK : Parsing WEATHER JSON DATA
   //
-  private func decodeJSON(_ jsonDictionary: [String: Any]) throws {
+  private func decodeJSON(_ jsonDictionary: [String: Any]) {
     
     if let timeZone = jsonDictionary["timezone"] as? String{
       timeZoneText = timeZone
