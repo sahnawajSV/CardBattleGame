@@ -12,6 +12,7 @@ enum ErrorTpe: Error {
     case failedRequest
     case faildParseWeatherData
     case invalidResponse
+    case failedToIntializeTheGame
     case unknown
 }
 
@@ -25,6 +26,8 @@ class CBGErrorHandler: Error {
             errorAlert(errorTitle: "Error", errorMsg: "Faild To Parse Weather Data")
         case .invalidResponse:
             errorAlert(errorTitle: "Error", errorMsg: "Invalid Response")
+        case .failedToIntializeTheGame:
+            errorAlert(errorTitle: "Error", errorMsg: "Failed to Initialize the Game")
         default:
             errorAlert(errorTitle: "Error", errorMsg: "Unknown")
         }
@@ -44,7 +47,7 @@ class CBGErrorHandler: Error {
         let alertWindow = UIWindow(frame: UIScreen.main.bounds)
         
         alertWindow.rootViewController = UIViewController()
-        alertWindow.windowLevel = UIWindowLevelAlert + 1;
+        alertWindow.windowLevel = UIWindowLevelAlert;
         alertWindow.makeKeyAndVisible()
         
         alertWindow.rootViewController?.present(alertController, animated: true, completion: nil)
