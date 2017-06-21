@@ -8,16 +8,16 @@
 
 import UIKit
 
-class GameManager: NSObject {
+class GameManager {
   //MARK: - Model Handlers
-  var playerStats: Stats!
-  var aiStats: Stats!
+  var playerStats: Stats
+  var aiStats: Stats
   
   //Mark: - Game Handlers
   var isPlayerTurn: Bool = true
   
   //MARK: - Game Initialization
-  func initializeTheGame() -> Bool {
+  init() {
     let globalCardData = CardListDataSource()
     let cardList = globalCardData.fetchCardList()
     
@@ -25,14 +25,9 @@ class GameManager: NSObject {
     var ai_CardArray: [Card]  = []
     
     //Adding Player Cards
-    for i in 0...(cardList.count-1) {
-      let card: Card = cardList[i]
-      
-      pl_CardArray.append(card)
-      
-      //TODO: TEMP - Create AI Card List based on Player Card Strength
-      ai_CardArray.append(card)
-    }
+    pl_CardArray.append(contentsOf: cardList)
+    //TODO: Add AI cards based on player strength
+    ai_CardArray.append(contentsOf: cardList)
     
     let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: pl_CardArray)
     let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: ai_CardArray)
@@ -41,21 +36,14 @@ class GameManager: NSObject {
     let emptyArray: [Card] = []
     
     //TODO: Change it based on deck selected for play before the game starts
-    playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: String(Defaults.battle_points), health: String(Defaults.health)))
-    aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: String(Defaults.battle_points), health: String(Defaults.health)))
-    
-    //Pass the message to ViewController - To check if initialization was a success or failure
-    if (playerDeckList.cardList.count) > 5 && (aiDeckList.cardList.count) > 5 {
-      return true
-    } else {
-      return false
-    }
+    playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: String(Game.startingBattlePoints), health: String(Game.health)))
+    aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: String(Game.startingBattlePoints), health: String(Game.health)))
   }
   
   //Draw initial cards from deck
   func drawCardsFromDeck() {
-    drawPlayerCards(numToDraw: Defaults.num_of_cards_to_draw_initially)
-    drawAICards(numToDraw: Defaults.num_of_cards_to_draw_initially)
+    drawPlayerCards(numToDraw: Game.numOfCardstoDrawInitially)
+    drawAICards(numToDraw: Game.numOfCardstoDrawInitially)
   }
   
   func drawPlayerCards(numToDraw: Int) {
@@ -91,7 +79,7 @@ class GameManager: NSObject {
     aiStats.gameStats.incrementBattlePoints()
     
     //Draw a Card
-    drawAICards(numToDraw: Defaults.num_of_cards_to_draw_each_turn)
+    drawAICards(numToDraw: Game.numOfCardsToDrawEachTurn)
     
     return true
   }
@@ -101,7 +89,7 @@ class GameManager: NSObject {
     playerStats.gameStats.incrementBattlePoints()
     
     //Draw a Card
-    drawPlayerCards(numToDraw: Defaults.num_of_cards_to_draw_each_turn)
+    drawPlayerCards(numToDraw: Game.numOfCardsToDrawEachTurn)
     
     return true
   }
