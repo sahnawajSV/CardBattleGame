@@ -61,20 +61,20 @@ extension DeckListViewController: UICollectionViewDelegate, UICollectionViewData
     /// Collection View - Cell For Row At Index Path
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) as! DeckCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) 
         
         
-        let cardList: [Card] = ServiceManager.sharedInstance.fetchCardList()
-        let card = cardList[indexPath.row]
-        
-        
-        cell.attackLbl.text = String(card.attack)
-        cell.healthLbl.text = String(card.health)
-        cell.battlePointLbl.text = String(card.battlepoint)
-        cell.nameLbl.text = card.name
-        
-        print(card.name)
-        
+//        let cardList: [Card] = ServiceManager.sharedInstance.fetchCardList()
+//        let card = cardList[indexPath.row]
+//        
+      
+//        cell.attackLbl.text = String(card.attack)
+//        cell.healthLbl.text = String(card.health)
+//        cell.battlePointLbl.text = String(card.battlepoint)
+//        cell.nameLbl.text = card.name
+//        
+//        print(card.name)
+      
         return cell
     }
     
