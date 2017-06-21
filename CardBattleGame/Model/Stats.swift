@@ -8,18 +8,16 @@
 
 import UIKit
 
-class Stats: NSObject
-{
-    var name:String = ""
-    var id:String = ""
-    var deckList:Array<Deck> = Array<Deck>()
-    var gameStats: Game
-    
-    init(name: String, id: String, deckList: Array<Deck>, gameStats: Game)
-    {
-        self.name = name
-        self.id = id
-        self.deckList = deckList
-        self.gameStats = gameStats
-    }
+class Stats {
+  var name: String
+  var id: String
+  var deckList: [Deck]
+  var gameStats: Game
+  
+  init(name: String, id: String, deckList: [Deck], gameStats: Game) {
+    self.name = name
+    self.id = id
+    self.deckList = deckList
+    self.gameStats = gameStats
+  }
 }

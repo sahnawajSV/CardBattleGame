@@ -11,72 +11,72 @@ import CoreData
 
 
 class ServiceManager: NSObject {
-    
-    typealias DataCompletion = (Data?, URLResponse?, Error?) -> ()
-    
-    
-    var cardListDataSource = CardListDataSource()
-    
-    
-    // Connection Manager Lazy Initializer
-    lazy var  connectionManager: ConnectionManager = {
-        let connectionManager = ConnectionManager()
-        return connectionManager
-    }()
-    
-    // Core Data Stack Lazy Initializer
-    lazy var cdstore: CoreDataStackManager = {
-        let cdstore = CoreDataStackManager()
-        return cdstore
-    }()
-
-    
-    static let sharedInstance: ServiceManager = {
-        let instance = ServiceManager()
-        // setup code
-        return instance
-    }()
-    
-    override init(){
-        super.init()
+  
+  typealias DataCompletion = (Data?, URLResponse?, Error?) -> ()
+  
+  
+  var cardListDataSource = CardListDataSource()
+  
+  
+  // Connection Manager Lazy Initializer
+  lazy var  connectionManager: ConnectionManager = {
+    let connectionManager = ConnectionManager()
+    return connectionManager
+  }()
+  
+  // Core Data Stack Lazy Initializer
+  lazy var cdstore: CoreDataStackManager = {
+    let cdstore = CoreDataStackManager()
+    return cdstore
+  }()
+  
+  
+  static let sharedInstance: ServiceManager = {
+    let instance = ServiceManager()
+    // setup code
+    return instance
+  }()
+  
+  override init(){
+    super.init()
+  }
+  
+  
+  // MARK : Fetch Data From Connection
+  //
+  func fetchDataForGetConnection(_ url : URL, completion: @escaping DataCompletion) {
+    connectionManager.fetchDataForGetConnection(url) { (data, response, error) in
+      completion(data,response,error)
     }
-    
-    
-    // MARK : Fetch Data From Connection
-    //
-    func fetchDataForGetConnection(_ url : URL, completion: @escaping DataCompletion) {
-        connectionManager.fetchDataForGetConnection(url) { (data, response, error) in
-            completion(data,response,error)
-        }
-    }
-    
-    
-    // MARK :  Start and Stop Location Update
-    //
-    func startLocationUpdate() {
-        LocationManager.sharedInstance.startLocationUpdate()
-    }
-    
-    func stopLocationUpdate()  {
-        LocationManager.sharedInstance.stopLocationUpdate()
-    }
-    
-    
-    // MARK - Core Data Managed Object Context
-    //
-    func managedObjContext() -> NSManagedObjectContext {
-        return cdstore.persistentContainer.viewContext
-    }
-    
-    
-    
-    
-    func  fetchCardList() -> [Card] {
-        return cardListDataSource.fetchCardList()
-    }
-    
-    func numbeOfCards() -> Int {
-        return cardListDataSource.numbeOfCards()
-    }
-    
+  }
+  
+  
+  // MARK :  Start and Stop Location Update
+  //
+  func startLocationUpdate() {
+    LocationManager.sharedInstance.startLocationUpdate()
+  }
+  
+  func stopLocationUpdate()  {
+    LocationManager.sharedInstance.stopLocationUpdate()
+  }
+  
+  
+  // MARK - Core Data Managed Object Context
+  //
+  func managedObjContext() -> NSManagedObjectContext {
+    return cdstore.persistentContainer.viewContext
+  }
+  
+  
+  
+  
+  func  fetchCardList() -> [Card] {
+    return cardListDataSource.fetchCardList()
+  }
+  
+  func numbeOfCards() -> Int {
+    return cardListDataSource.numbeOfCards()
+  }
+  
 }

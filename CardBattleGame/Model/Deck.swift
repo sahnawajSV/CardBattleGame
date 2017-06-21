@@ -8,15 +8,15 @@
 
 import UIKit
 
-class Deck: NSObject {
-
-    var name:String = ""
-    var id:String = ""
-    var cardList:Array<Card> = Array<Card>()
-    
-    init(name: String, id: String, cardList: Array<Card>) {
-        self.name = name
-        self.id = id
-        self.cardList = cardList
-    }
+class Deck {
+  
+  var name: String
+  var id: String
+  var cardList: [Card]
+  
+  init(name: String, id: String, cardList: [Card]) {
+    self.name = name
+    self.id = id
+    self.cardList = cardList
+  }
 }

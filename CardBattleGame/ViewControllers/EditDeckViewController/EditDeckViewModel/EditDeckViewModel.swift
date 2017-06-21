@@ -36,7 +36,7 @@ class EditDeckViewModel: NSObject {
       let fetchError = error as NSError
       print(fetchError)
     }
-  } 
+  }
   
   
   
