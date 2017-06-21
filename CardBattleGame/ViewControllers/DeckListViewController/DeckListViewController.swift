@@ -18,8 +18,8 @@ class DeckListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.deckCollectionView.delegate = self
-        self.deckCollectionView.dataSource = self
+//        self.deckCollectionView.delegate = self
+//        self.deckCollectionView.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -47,67 +47,67 @@ class DeckListViewController: UIViewController {
 }
 
 
-extension DeckListViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-   
-
-    
-    // MARK:- UICollectionView DataSource
-    
-    // Collection View - Number Of Items In Section
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return ServiceManager.sharedInstance.numbeOfCards()
-    }
-    
-    /// Collection View - Cell For Row At Index Path
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) as! DeckCollectionViewCell
-        
-        
-        let cardList: [Card] = ServiceManager.sharedInstance.fetchCardList()
-        let card = cardList[indexPath.row]
-        
-        
-        cell.attackLbl.text = String(card.attack)
-        cell.healthLbl.text = String(card.health)
-        cell.battlePointLbl.text = String(card.battlepoint)
-        cell.nameLbl.text = card.name
-        
-        print(card.name)
-        
-        return cell
-    }
-    
-    
-    
-    
-    // MARK:- UICollectionViewDelegate Methods
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        highlightCell(indexPath, flag: true)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-        highlightCell(indexPath, flag: false)
-    }
-    
-    // MARK:- UICollectioViewDelegateFlowLayout methods
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    {
-        let length = (UIScreen.main.bounds.width-4)/3
-        return CGSize(width: length,height: length);
-    }
-    
-    
-    // MARK:- Highlight
-    func highlightCell(_ indexPath : IndexPath, flag: Bool) {
-        
-        let cell = deckCollectionView.cellForItem(at: indexPath)
-        
-        if flag {
-            cell?.contentView.backgroundColor = UIColor.orange
-        } else {
-            cell?.contentView.backgroundColor = nil
-        }
-    }
-    
-}
+//extension DeckListViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+//   
+//
+//    
+//    // MARK:- UICollectionView DataSource
+//    
+//    // Collection View - Number Of Items In Section
+//    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+//        return ServiceManager.sharedInstance.numbeOfCards()
+//    }
+//    
+//    /// Collection View - Cell For Row At Index Path
+//    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//        
+//        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) as! DeckCollectionViewCell
+//        
+//        
+//        let cardList: [Card] = ServiceManager.sharedInstance.fetchCardList()
+//        let card = cardList[indexPath.row]
+//        
+//        
+//        cell.attackLbl.text = String(card.attack)
+//        cell.healthLbl.text = String(card.health)
+//        cell.battlePointLbl.text = String(card.battlepoint)
+//        cell.nameLbl.text = card.name
+//        
+//        print(card.name)
+//        
+//        return cell
+//    }
+//    
+//    
+//    
+//    
+//    // MARK:- UICollectionViewDelegate Methods
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//        highlightCell(indexPath, flag: true)
+//    }
+//    
+//    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+//        highlightCell(indexPath, flag: false)
+//    }
+//    
+//    // MARK:- UICollectioViewDelegateFlowLayout methods
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+//    {
+//        let length = (UIScreen.main.bounds.width-4)/3
+//        return CGSize(width: length,height: length);
+//    }
+//    
+//    
+//    // MARK:- Highlight
+//    func highlightCell(_ indexPath : IndexPath, flag: Bool) {
+//        
+//        let cell = deckCollectionView.cellForItem(at: indexPath)
+//        
+//        if flag {
+//            cell?.contentView.backgroundColor = UIColor.orange
+//        } else {
+//            cell?.contentView.backgroundColor = nil
+//        }
+//    }
+//
+//}
