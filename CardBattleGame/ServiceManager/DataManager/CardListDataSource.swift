@@ -31,17 +31,17 @@ class CardListDataSource: NSObject {
   // MARK:- Populate Data from plist
   //
   func populateData() {
-    if let path = Bundle.main.path(forResource: "CardList", ofType: "plist") {
-      if let dictArray = NSArray(contentsOfFile: path) {
-        for item in dictArray {
-          if let dict = item as? NSDictionary {
-            if let data = Card(dictionary: dict) {
-              cardList.append(data)
-            }
-          }
-        }
-      }
+    guard let path = Bundle.main.path(forResource: "CardList", ofType: "plist"), let dictArray = NSArray(contentsOfFile: path) else {
+      return
     }
+    
+    for item in dictArray {
+      guard let dict = item as? Dictionary<String, Any>, let data = Card(dictionary: dict) else {
+        continue
+      }
+      cardList.append(data)
+    }
+    
   }
   
   

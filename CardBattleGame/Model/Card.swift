@@ -5,24 +5,23 @@
 //  Created by SAHNAWAJ BISWAS on 16/06/17.
 //  Copyright © 2017 SAHNAWAJ BISWAS. All rights reserved.
 //
-import Foundation
 
-class Card: NSObject {
+class Card {
   
-  var name: String = ""
-  var id: Int16 = 0
-  var attack: Int16 = 0
-  var battlepoint: Int16 = 0
-  var health: Int16 = 0
+  var name: String
+  var id: Int16
+  var attack: Int16
+  var battlepoint: Int16
+  var health: Int16
   
   
-  init?(dictionary: NSDictionary) {
+  init?(dictionary: Dictionary<String, Any>) {
     
     guard let name = dictionary["name"] as? String,
-      let id = Int16((dictionary["id"] as? String)!),
-      let attack = Int16((dictionary["attack"] as? String)!),
-      let battlepoint = Int16((dictionary["battlepoint"] as? String)!),
-      let health = Int16((dictionary["health"] as? String)!) else {
+      let id = dictionary["id"] as? Int16,
+      let attack = dictionary["attack"]  as? Int16,
+      let battlepoint = dictionary["battlepoint"] as? Int16,
+      let health = dictionary["health"]  as? Int16 else {
         return nil
     }
     
@@ -31,8 +30,6 @@ class Card: NSObject {
     self.attack = attack
     self.battlepoint = battlepoint
     self.health = health
-    
-    super.init()
     
   }
   

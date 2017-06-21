@@ -6,121 +6,121 @@
 		<key>name</key>
 		<string>Card_1</string>
 		<key>id</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>attack</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>battlepoint</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>health</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>name</key>
 		<string>Card_2</string>
 		<key>id</key>
-		<string>2</string>
+		<integer>2</integer>
 		<key>attack</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>battlepoint</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>health</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>name</key>
 		<string>Card_3</string>
 		<key>id</key>
-		<string>3</string>
+		<integer>3</integer>
 		<key>attack</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>battlepoint</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>health</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>name</key>
 		<string>Card_4</string>
 		<key>id</key>
-		<string>4</string>
+		<integer>4</integer>
 		<key>attack</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>battlepoint</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>health</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>name</key>
 		<string>Card_5</string>
 		<key>id</key>
-		<string>5</string>
+		<integer>5</integer>
 		<key>attack</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>battlepoint</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>health</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>name</key>
 		<string>Card_6</string>
 		<key>id</key>
-		<string>6</string>
+		<integer>6</integer>
 		<key>attack</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>battlepoint</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>health</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>name</key>
 		<string>Card_7</string>
 		<key>id</key>
-		<string>7</string>
+		<integer>7</integer>
 		<key>attack</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>battlepoint</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>health</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>name</key>
 		<string>Card_8</string>
 		<key>id</key>
-		<string>8</string>
+		<integer>8</integer>
 		<key>attack</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>battlepoint</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>health</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>name</key>
 		<string>Card_9</string>
 		<key>id</key>
-		<string>9</string>
+		<integer>9</integer>
 		<key>attack</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>battlepoint</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>health</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>name</key>
 		<string>Card_10</string>
 		<key>id</key>
-		<string>10</string>
+		<integer>10</integer>
 		<key>attack</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>battlepoint</key>
-		<string>1</string>
+		<integer>1</integer>
 		<key>health</key>
-		<string>1</string>
+		<integer>1</integer>
 	</dict>
 </array>
 </plist>
