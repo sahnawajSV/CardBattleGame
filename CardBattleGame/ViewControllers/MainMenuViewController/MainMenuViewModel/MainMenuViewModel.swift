@@ -25,8 +25,8 @@ class MainMenuViewModel: NSObject {
   var iconImage: UIImage?
   
   
-  var latitude = LocationManager.LATITUDE
-  var longitude = LocationManager.LONGITUDE
+  var latitude = LocationManager.defaultLatitude
+  var longitude = LocationManager.defaultLongitude
   
   weak var delegate : MainMenuViewModelDelegate?
   

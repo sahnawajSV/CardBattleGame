@@ -13,9 +13,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
   
   
   
-  static let LATITUDE: Double = 51.400592
-  static let LONGITUDE: Double = 4.760970
-  static let DISTANCE_FILTER = 5000.0
+  static let defaultLatitude: Double = 51.400592
+  static let defaultLongitude: Double = 4.760970
+  static let defaultDistanceFilter = 5000.0
   
   static let sharedInstance: LocationManager = {
     let instance = LocationManager()
@@ -29,7 +29,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     var _locationManager = CLLocationManager()
     _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     _locationManager.activityType = .otherNavigation
-    _locationManager.distanceFilter = DISTANCE_FILTER
+    _locationManager.distanceFilter = defaultDistanceFilter
     _locationManager.delegate = self
     _locationManager.requestAlwaysAuthorization()
     _locationManager.requestWhenInUseAuthorization()
