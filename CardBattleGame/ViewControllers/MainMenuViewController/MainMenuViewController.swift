@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+/// MainMenuViewController : Card Battle Game Main Menu
 class MainMenuViewController: UIViewController {
   
   var mainViewModel = MainMenuViewModel()
@@ -20,7 +22,6 @@ class MainMenuViewController: UIViewController {
   @IBOutlet weak var windLbl: UILabel!
   @IBOutlet weak var weatherInfoView: UIView!
   
-  
   override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -28,11 +29,8 @@ class MainMenuViewController: UIViewController {
     //
     self.weatherInfoView.alpha = 0
     
-    // Set Main MOdel View Delegate
+    // Set Main Model View Delegate
     mainViewModel.delegate = self
-    
-    // Request For Weather Data
-    mainViewModel.fetchWeatherReport()
   }
   
   override func didReceiveMemoryWarning() {
@@ -41,7 +39,6 @@ class MainMenuViewController: UIViewController {
   }
   
 }
-
 
 extension MainMenuViewController : MainMenuViewModelDelegate{
   

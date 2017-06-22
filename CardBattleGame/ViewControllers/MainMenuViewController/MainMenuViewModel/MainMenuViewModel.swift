@@ -8,14 +8,15 @@
 
 import UIKit
 import CoreLocation
-// MARK :  Update Weather Data
-//
+
+
 protocol MainMenuViewModelDelegate: class{
   
   func updateWeatherData () -> Void
 }
 
-class MainMenuViewModel: NSObject {
+/// Main Menu View Model(Follow MVVM pattern): Looks for user current location based on that it provides Weather Report
+class MainMenuViewModel {
   
   var timeText: String = ""
   var timeZoneText : String = ""
@@ -25,32 +26,34 @@ class MainMenuViewModel: NSObject {
   var iconImage: UIImage?
   
   
-  var latitude = LocationManager.defaultLatitude
-  var longitude = LocationManager.defaultLongitude
+  private var latitude = LocationManager.defaultLatitude
+  private var longitude = LocationManager.defaultLongitude
   
   weak var delegate : MainMenuViewModelDelegate?
   
-  override init() {
-    super .init()
-    
+  private var myObserver: NSObjectProtocol?
+  
+  init() {
     // Start Location Update
     LocationManager.sharedInstance.startLocationUpdate()
     
-    // Location Update Observer
-    //
-    NotificationCenter.default.addObserver(forName: LocationNotification.kLocationUpdated, object: nil, queue: nil){ [weak self] (notification) in
+    //Add Location Update Observer
+    myObserver = NotificationCenter.default.addObserver(forName: Notification.Name.kLocationUpdated, object: nil, queue: nil){ [weak self] (notification) in
       self?.notificationForLocationUpdate(notification)
     }
     
+    // Request For Weather Data
+    fetchWeatherReport()
   }
-  
   
   //  MARK : Deinitializer
   //
   deinit {
     
     //Remove Location Update Notification Observer
-    NotificationCenter.default.removeObserver(self, name: LocationNotification.kLocationUpdated, object: nil)
+    if let observer = myObserver {
+      NotificationCenter.default.removeObserver(observer, name: Notification.Name.kLocationUpdated, object: nil)
+    }
     
     // Start Location Update
     LocationManager.sharedInstance.stopLocationUpdate()
@@ -59,7 +62,7 @@ class MainMenuViewModel: NSObject {
   
   // MARK : Location Update Notification Handler
   //
-  func notificationForLocationUpdate(_ notification:Notification) -> Void {
+  private func notificationForLocationUpdate(_ notification:Notification) -> Void {
     guard let locations:[CLLocation] = notification.userInfo?["locations"] as? [CLLocation] else {
       return
     }
@@ -72,14 +75,13 @@ class MainMenuViewModel: NSObject {
     }
   }
   
-  
-  // MARK : Featch Weather Report
+  // MARK : Featch Weather Report And Parse Data
   //
-  func fetchWeatherReport() -> Void {
+  private func fetchWeatherReport() -> Void {
     
-    let appendUrl = "\(API.APIKey)/\(latitude),\(longitude)"
+    let appendUrl = "/\(latitude),\(longitude)"
     
-    let baseURL : URL = API.BaseURL
+    let baseURL : URL = API.authenticatedBaseURL
     let url = baseURL.appendingPathComponent(appendUrl)
     
     ConnectionManager.sharedInstance.fetchDataForGetConnection(url) {  (data, response, error) in
@@ -118,11 +120,7 @@ class MainMenuViewModel: NSObject {
     
   }
   
-  
-  // MARK : Parsing WEATHER JSON DATA
-  //
   private func decodeJSON(_ jsonDictionary: [String: Any]) {
-    
     if let timeZone = jsonDictionary["timezone"] as? String{
       timeZoneText = timeZone
     }
@@ -156,11 +154,7 @@ class MainMenuViewModel: NSObject {
     self.delegate?.updateWeatherData()
   }
   
-  
-  //  Mark :  Helper Method
-  //
   private func imageForWeatherIcon(withName name: String) -> UIImage? {
-    
     switch name {
     case "clear-day":
       return UIImage(named: "clear-day")
