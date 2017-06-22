@@ -140,9 +140,7 @@ class MainMenuViewModel: NSObject {
       if let temperature = currently["temperature"] as? Double, let apparentTemperature = currently["apparentTemperature"] as? Double{
         let minTemprature = temperature.toCelcius()
         let maxTemprature = apparentTemperature.toCelcius()
-        let min = String(format: "%.0f°", minTemprature)
-        let max = String(format: "%.0f°", maxTemprature)
-        tempratureText = "\(min) - \(max)"
+        tempratureText = String(format: "%.0f° - %.0f°", minTemprature, maxTemprature)
       }
       
       if let summary = currently["summary"] as? String{
