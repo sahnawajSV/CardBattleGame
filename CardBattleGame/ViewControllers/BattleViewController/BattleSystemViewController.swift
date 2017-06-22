@@ -37,32 +37,16 @@ class BattleSystemViewController: UIViewController, GameDelegate {
   @IBOutlet private weak var aiDeckView: UIView!
   
   //InHand Player Cards
-  @IBOutlet private weak var ih_player_cardOne: UIView!
-  @IBOutlet private weak var ih_player_cardTwo: UIView!
-  @IBOutlet private weak var ih_player_cardThree: UIView!
-  @IBOutlet private weak var ih_player_cardFour: UIView!
-  @IBOutlet private weak var ih_player_cardFive: UIView!
+  var plOneInHandController : PlayerOneInHandViewController = PlayerOneInHandViewController()
   
   //InHand AI Cards
-  @IBOutlet private weak var ih_ai_cardOne: UIView!
-  @IBOutlet private weak var ih_ai_cardTwo: UIView!
-  @IBOutlet private weak var ih_ai_cardThree: UIView!
-  @IBOutlet private weak var ih_ai_cardFour: UIView!
-  @IBOutlet private weak var ih_ai_cardFive: UIView!
+  var plTwoInHandController : PlayerTwoInHandViewController = PlayerTwoInHandViewController()
   
   //InPlay Player Cards
-  @IBOutlet private weak var ip_player_cardOne: UIView!
-  @IBOutlet private weak var ip_player_cardTwo: UIView!
-  @IBOutlet private weak var ip_player_cardThree: UIView!
-  @IBOutlet private weak var ip_player_cardFour: UIView!
-  @IBOutlet private weak var ip_player_cardFive: UIView!
+  var plOneInPlayController : PlayerOneInPlayViewController = PlayerOneInPlayViewController()
   
   //InPlay AI Cards
-  @IBOutlet private weak var ip_ai_cardOne: UIView!
-  @IBOutlet private weak var ip_ai_cardTwo: UIView!
-  @IBOutlet private weak var ip_ai_cardThree: UIView!
-  @IBOutlet private weak var ip_ai_cardFour: UIView!
-  @IBOutlet private weak var ip_ai_cardFive: UIView!
+  var plTwoInPlayController : PlayerTwoInPlayViewController = PlayerTwoInPlayViewController()
   
   //MARK: - Gameplay Variables
   //To be used to find the card in the hand that is currently held down by Touch Began and Moved
@@ -139,7 +123,6 @@ class BattleSystemViewController: UIViewController, GameDelegate {
         addCard(cardView: cardView, card: card)
       }
     }
-
   }
   
   func addCard(cardView: CardView, card: Card)

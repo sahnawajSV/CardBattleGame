@@ -214,226 +214,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zzY-oQ-gcm" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="84" y="859" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dqE-un-4S2">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFB-JF-5yv" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="286" y="859" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPf-F1-zfg">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ibb-mN-W79" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="488" y="859" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O8L-Sl-5oI">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RyN-nI-EPr" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="690" y="859" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OPI-2i-ZhI">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Xk-Zy-HMb" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="892" y="859" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zw3-GU-POw">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wqy-Me-YcG" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="84" y="-80" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6c-OZ-8Xd">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wvO-OT-fWF" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="286" y="-80" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zw8-Fy-FAS">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9Ah-rh-JVO" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="488" y="-80" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z9k-WG-ABh">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e4k-56-5ve" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="690" y="-80" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rtb-Ut-2JX">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQZ-qb-OHp" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="892" y="-80" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aEV-qT-6qR">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rKE-b4-kgx" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="84" y="222" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="riz-Lr-7NE">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FsC-Rw-ed9" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="286" y="222" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1gb-Lf-rdH">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="q8h-HH-JEu" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="488" y="222" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eor-vc-QvV">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="W4O-tq-J3l" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="690" y="222" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="An6-Ku-VfP">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CSd-Be-Xvi" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="892" y="222" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5i-94-p2T">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WNU-lu-SD3" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="84" y="549" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jXc-g2-TrI">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O2i-4X-lFB" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="286" y="549" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4qe-jU-oL0">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hGe-wQ-1dv" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="488" y="549" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UF7-6Q-Rtm">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="brt-vi-3pg" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="690" y="549" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="so8-fa-q1h">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OVm-9i-r2d" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="892" y="549" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDq-wb-6Oq">
-                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="43l-f1-LpM">
+                                <rect key="frame" x="78" y="543" width="1015" height="266"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="SO1-pN-hh0" kind="embed" id="756-Gt-vSr"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G4n-RG-pdb">
+                                <rect key="frame" x="78" y="853" width="1015" height="266"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="Tpm-nG-faD" kind="embed" id="IZI-K0-eT0"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lYD-3C-4Db">
+                                <rect key="frame" x="78" y="216" width="1015" height="266"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="cQ5-sA-pjJ" kind="embed" id="CFb-U9-kIq"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-XC-g1P">
+                                <rect key="frame" x="78" y="-86" width="1015" height="266"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="0dn-E3-vQ8" kind="embed" id="hpl-8V-OTZ"/>
+                                </connections>
+                            </containerView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U2E-ef-aeJ" userLabel="AIView">
                                 <rect key="frame" x="462" y="0.0" width="240" height="93"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -501,26 +309,6 @@
                         <outlet property="aiInDeckText" destination="znn-71-2WD" id="MfU-IW-2Vr"/>
                         <outlet property="aiNameText" destination="SIY-qA-8fi" id="FOn-9V-bCR"/>
                         <outlet property="aiView" destination="U2E-ef-aeJ" id="lcy-kh-kjW"/>
-                        <outlet property="ih_ai_cardFive" destination="aQZ-qb-OHp" id="eTt-Qy-jPJ"/>
-                        <outlet property="ih_ai_cardFour" destination="e4k-56-5ve" id="wte-z7-XYL"/>
-                        <outlet property="ih_ai_cardOne" destination="wqy-Me-YcG" id="1wM-dH-slH"/>
-                        <outlet property="ih_ai_cardThree" destination="9Ah-rh-JVO" id="QOK-Lu-Fue"/>
-                        <outlet property="ih_ai_cardTwo" destination="wvO-OT-fWF" id="wp4-c8-Kup"/>
-                        <outlet property="ih_player_cardFive" destination="9Xk-Zy-HMb" id="Yuz-ca-e43"/>
-                        <outlet property="ih_player_cardFour" destination="RyN-nI-EPr" id="Gnh-IB-WX2"/>
-                        <outlet property="ih_player_cardOne" destination="zzY-oQ-gcm" id="Mpg-LZ-xWy"/>
-                        <outlet property="ih_player_cardThree" destination="Ibb-mN-W79" id="dIn-0G-j7X"/>
-                        <outlet property="ih_player_cardTwo" destination="WFB-JF-5yv" id="IxR-bX-UhO"/>
-                        <outlet property="ip_ai_cardFive" destination="CSd-Be-Xvi" id="acq-cW-AYI"/>
-                        <outlet property="ip_ai_cardFour" destination="W4O-tq-J3l" id="z9Z-bH-6Os"/>
-                        <outlet property="ip_ai_cardOne" destination="rKE-b4-kgx" id="0lo-e8-279"/>
-                        <outlet property="ip_ai_cardThree" destination="q8h-HH-JEu" id="SSF-jD-pwI"/>
-                        <outlet property="ip_ai_cardTwo" destination="FsC-Rw-ed9" id="u4D-On-kyJ"/>
-                        <outlet property="ip_player_cardFive" destination="OVm-9i-r2d" id="EOF-Ac-p4N"/>
-                        <outlet property="ip_player_cardFour" destination="brt-vi-3pg" id="YPq-cQ-My7"/>
-                        <outlet property="ip_player_cardOne" destination="WNU-lu-SD3" id="GdY-nx-sa5"/>
-                        <outlet property="ip_player_cardThree" destination="hGe-wQ-1dv" id="aId-cW-VAa"/>
-                        <outlet property="ip_player_cardTwo" destination="O2i-4X-lFB" id="Zg0-QO-rUW"/>
                         <outlet property="playerBattlePointText" destination="XMa-xw-XgU" id="f5k-1L-Xmz"/>
                         <outlet property="playerDeckView" destination="fn3-vn-CmY" id="tQf-Fe-3n8"/>
                         <outlet property="playerHealthText" destination="GDJ-Aq-QGl" id="3ZP-6f-Ydk"/>
@@ -859,6 +647,330 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxk-Kg-Nyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1307.1742313323571" y="-52.1484375"/>
+        </scene>
+        <!--Player One In Hand View Controller-->
+        <scene sceneID="gJe-dh-zTP">
+            <objects>
+                <viewController id="Tpm-nG-faD" customClass="PlayerOneInHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Iu4-Kn-Agw">
+                        <rect key="frame" x="0.0" y="0.0" width="1015" height="266"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Yz-uZ-L37" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="6" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnu-IW-IVF">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="siD-J6-DiZ" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="208" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2V-ed-TBZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NE6-Qk-KTa" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="411" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYQ-Ho-ylC">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqd-rz-zxH" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="613" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIr-xZ-EU6">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTg-S1-3RJ" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="815" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5He-EL-kdJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cardFive" destination="5He-EL-kdJ" id="4zz-Bb-Unh"/>
+                        <outlet property="cardFour" destination="fIr-xZ-EU6" id="XkO-kH-WMg"/>
+                        <outlet property="cardOne" destination="Lnu-IW-IVF" id="oJG-LH-HVe"/>
+                        <outlet property="cardThree" destination="cYQ-Ho-ylC" id="S1x-Pn-vKV"/>
+                        <outlet property="cardTwo" destination="J2V-ed-TBZ" id="FzV-6G-Jht"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S1x-sg-Bem" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1700" y="445"/>
+        </scene>
+        <!--Player One In Play View Controller-->
+        <scene sceneID="dk8-dD-T98">
+            <objects>
+                <viewController id="SO1-pN-hh0" customClass="PlayerOneInPlayViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EmM-NA-Zq0"/>
+                        <viewControllerLayoutGuide type="bottom" id="EVA-x9-001"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="pxx-ua-3Lx">
+                        <rect key="frame" x="0.0" y="0.0" width="1015" height="266"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nCT-7M-Ri1" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="6" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVe-pB-xyX">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUn-V0-MY8" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="208" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5B-kS-uvV">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VDt-0e-mw5" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="411" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhW-Io-wdk">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="omb-M8-6WX" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="613" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ve1-WC-UH8">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghl-e2-snX" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="815" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vho-if-kVG">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cardFive" destination="vho-if-kVG" id="eDj-a1-mgu"/>
+                        <outlet property="cardFour" destination="Ve1-WC-UH8" id="Ogg-B2-7D1"/>
+                        <outlet property="cardOne" destination="jVe-pB-xyX" id="1bP-uR-GeN"/>
+                        <outlet property="cardThree" destination="IhW-Io-wdk" id="4mn-J7-vHO"/>
+                        <outlet property="cardTwo" destination="U5B-kS-uvV" id="Ph6-Je-Rab"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oOW-Of-qFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1700" y="664"/>
+        </scene>
+        <!--Player Two In Play View Controller-->
+        <scene sceneID="k8S-vN-LE0">
+            <objects>
+                <viewController id="cQ5-sA-pjJ" customClass="PlayerTwoInPlayViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mBE-rE-VI4"/>
+                        <viewControllerLayoutGuide type="bottom" id="5Gc-YD-KAY"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Meo-GO-ORx">
+                        <rect key="frame" x="0.0" y="0.0" width="1015" height="266"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e3G-u9-pnf" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="6" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhY-Tc-YiT">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TjY-XI-OHM" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="208" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cys-Oe-Mnd">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bNK-TJ-rPT" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="411" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8U9-Yg-hKW">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yS7-3j-SQq" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="613" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnE-12-0oy">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvD-5C-6i8" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="815" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSc-GI-oWk">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cardFive" destination="vSc-GI-oWk" id="svw-es-306"/>
+                        <outlet property="cardFour" destination="BnE-12-0oy" id="GdQ-cQ-Wk4"/>
+                        <outlet property="cardOne" destination="hhY-Tc-YiT" id="j6F-Ex-oVi"/>
+                        <outlet property="cardThree" destination="8U9-Yg-hKW" id="EbK-F6-4pK"/>
+                        <outlet property="cardTwo" destination="cys-Oe-Mnd" id="5Xw-0W-d5H"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XsL-My-YHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2177" y="664"/>
+        </scene>
+        <!--Player Two In Hand View Controller-->
+        <scene sceneID="7SW-FL-aka">
+            <objects>
+                <viewController id="0dn-E3-vQ8" customClass="PlayerTwoInHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="diw-s9-acZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="Zys-vv-K1m"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="R5y-fr-itY">
+                        <rect key="frame" x="0.0" y="0.0" width="1015" height="266"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVo-UL-C15" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="6" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvH-6c-kUS">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYP-jq-9kZ" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="208" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9UV-nW-bb8">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0H-fP-1AM" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="411" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1H-MA-FLB">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R5e-sN-goI" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="613" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Og-d0-ccW">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f9l-iJ-B25" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="815" y="6" width="194" height="254"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iig-6b-dc5">
+                                        <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <connections>
+                        <outlet property="cardFive" destination="Iig-6b-dc5" id="bhR-W8-OM0"/>
+                        <outlet property="cardFour" destination="3Og-d0-ccW" id="N29-dA-6Sn"/>
+                        <outlet property="cardOne" destination="nvH-6c-kUS" id="f6K-hm-RD3"/>
+                        <outlet property="cardThree" destination="c1H-MA-FLB" id="WpW-MM-dBs"/>
+                        <outlet property="cardTwo" destination="9UV-nW-bb8" id="2xP-3I-nig"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gqz-2i-kNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2177" y="445"/>
         </scene>
     </scenes>
 </document>

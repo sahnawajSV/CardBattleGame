@@ -29,6 +29,10 @@
 		8B561F621EF3F54300104486 /* CardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F611EF3F54300104486 /* CardListDataSource.swift */; };
 		8B561F641EF3F57800104486 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F631EF3F57800104486 /* Card.swift */; };
 		E326D59B1EFA915B0034F35B /* CardBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59A1EFA915B0034F35B /* CardBGView.swift */; };
+		E326D59E1EFB8FC90034F35B /* PlayerOneInHandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59D1EFB8FC90034F35B /* PlayerOneInHandViewController.swift */; };
+		E326D5A01EFB8FDF0034F35B /* PlayerTwoInHandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59F1EFB8FDF0034F35B /* PlayerTwoInHandViewController.swift */; };
+		E326D5A21EFB90090034F35B /* PlayerOneInPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A11EFB90090034F35B /* PlayerOneInPlayViewController.swift */; };
+		E326D5A41EFB90150034F35B /* PlayerTwoInPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A31EFB90150034F35B /* PlayerTwoInPlayViewController.swift */; };
 		E37605ED1EF7A11E001AEBBB /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605EC1EF7A11E001AEBBB /* GameManager.swift */; };
 		E37605F11EF7E00E001AEBBB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605F01EF7E00E001AEBBB /* CardView.swift */; };
 		E37605F31EF92C77001AEBBB /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605F21EF92C77001AEBBB /* GameViewModel.swift */; };
@@ -89,6 +93,10 @@
 		8B561F611EF3F54300104486 /* CardListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListDataSource.swift; sourceTree = "<group>"; };
 		8B561F631EF3F57800104486 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		E326D59A1EFA915B0034F35B /* CardBGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBGView.swift; sourceTree = "<group>"; };
+		E326D59D1EFB8FC90034F35B /* PlayerOneInHandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerOneInHandViewController.swift; sourceTree = "<group>"; };
+		E326D59F1EFB8FDF0034F35B /* PlayerTwoInHandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTwoInHandViewController.swift; sourceTree = "<group>"; };
+		E326D5A11EFB90090034F35B /* PlayerOneInPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerOneInPlayViewController.swift; sourceTree = "<group>"; };
+		E326D5A31EFB90150034F35B /* PlayerTwoInPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlayerTwoInPlayViewController.swift; sourceTree = "<group>"; };
 		E37605EC1EF7A11E001AEBBB /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameManager.swift; path = BattleViewModel/GameManager.swift; sourceTree = "<group>"; };
 		E37605F01EF7E00E001AEBBB /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E37605F21EF92C77001AEBBB /* GameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
@@ -276,6 +284,17 @@
 			path = CardBGView;
 			sourceTree = "<group>";
 		};
+		E326D59C1EFB8F290034F35B /* CardControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E326D59D1EFB8FC90034F35B /* PlayerOneInHandViewController.swift */,
+				E326D59F1EFB8FDF0034F35B /* PlayerTwoInHandViewController.swift */,
+				E326D5A11EFB90090034F35B /* PlayerOneInPlayViewController.swift */,
+				E326D5A31EFB90150034F35B /* PlayerTwoInPlayViewController.swift */,
+			);
+			path = CardControllers;
+			sourceTree = "<group>";
+		};
 		E37605EF1EF7E004001AEBBB /* CardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -303,6 +322,7 @@
 		E3775D451EF16E0200991CEC /* BattleViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E326D59C1EFB8F290034F35B /* CardControllers */,
 				E37605F41EF93C81001AEBBB /* GameManager */,
 				E3775D461EF16E0200991CEC /* BattleViewModel */,
 				E3D362C71EF792A6008FB5A7 /* BattleSystemViewController.swift */,
@@ -528,11 +548,14 @@
 			files = (
 				8B42F4BC1EF24E710097D28A /* ServiceManager.swift in Sources */,
 				E3D362CC1EF79FAA008FB5A7 /* Game.swift in Sources */,
+				E326D59E1EFB8FC90034F35B /* PlayerOneInHandViewController.swift in Sources */,
+				E326D5A01EFB8FDF0034F35B /* PlayerTwoInHandViewController.swift in Sources */,
 				E3D362C41EF79174008FB5A7 /* Stats.swift in Sources */,
 				8B561F531EF3A06700104486 /* PersistanceManager.swift in Sources */,
 				8B42F4C71EF265D70097D28A /* CBGErrorHandler.swift in Sources */,
 				8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */,
 				E3D362C21EF790BC008FB5A7 /* Deck.swift in Sources */,
+				E326D5A21EFB90090034F35B /* PlayerOneInPlayViewController.swift in Sources */,
 				8B1ECD451EFA7B76001EE399 /* EditDeckCollectionViewCell.swift in Sources */,
 				8B42F4C11EF252520097D28A /* ConnectionManager.swift in Sources */,
 				8B42F4CA1EF292430097D28A /* Conversions.swift in Sources */,
@@ -543,6 +566,7 @@
 				E37605ED1EF7A11E001AEBBB /* GameManager.swift in Sources */,
 				8B3119A21EF144AB00DD9E78 /* MainMenuViewController.swift in Sources */,
 				E37605F31EF92C77001AEBBB /* GameViewModel.swift in Sources */,
+				E326D5A41EFB90150034F35B /* PlayerTwoInPlayViewController.swift in Sources */,
 				8B561F5C1EF3ABAE00104486 /* CoreDataStackManager.swift in Sources */,
 				E3775D521EF16E7D00991CEC /* EditDeckViewModel.swift in Sources */,
 				E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */,
