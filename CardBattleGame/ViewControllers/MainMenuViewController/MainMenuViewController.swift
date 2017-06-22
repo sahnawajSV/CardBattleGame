@@ -16,7 +16,7 @@ class MainMenuViewController: UIViewController {
   @IBOutlet weak var dateTimeLbl: UILabel!
   @IBOutlet weak var summeryLbl: UILabel!
   @IBOutlet weak var weatherIcon: UIImageView!
-  @IBOutlet weak var tempratureLbl: UILabel!
+  @IBOutlet weak var temperatureLbl: UILabel!
   @IBOutlet weak var windLbl: UILabel!
   @IBOutlet weak var weatherInfoView: UIView!
   
@@ -47,7 +47,7 @@ extension MainMenuViewController : MainMenuViewModelDelegate{
   
   func updateWeatherData() {
     
-    self.tempratureLbl.text = self.mainViewModel.tempratureText
+    self.temperatureLbl.text = self.mainViewModel.temperatureText
     self.dateTimeLbl.text = self.mainViewModel.timeText
     self.timeZoneLbl.text = self.mainViewModel.timeZoneText
     self.summeryLbl.text = self.mainViewModel.summaryText

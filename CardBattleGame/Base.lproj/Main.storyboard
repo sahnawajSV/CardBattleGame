@@ -662,7 +662,7 @@
                     <connections>
                         <outlet property="dateTimeLbl" destination="y4V-1a-Fqh" id="euQ-oo-Aom"/>
                         <outlet property="summeryLbl" destination="E1v-UG-iLU" id="jag-0c-xLR"/>
-                        <outlet property="tempratureLbl" destination="8iC-3G-mTG" id="BlU-6v-6gV"/>
+                        <outlet property="temperatureLbl" destination="8iC-3G-mTG" id="pAH-Lg-OqO"/>
                         <outlet property="timeZoneLbl" destination="T6D-tZ-exl" id="fet-wT-1Ht"/>
                         <outlet property="weatherIcon" destination="86g-T7-lI3" id="23q-3e-TgW"/>
                         <outlet property="weatherInfoView" destination="ZtV-8G-Rl0" id="MKg-P4-Rap"/>

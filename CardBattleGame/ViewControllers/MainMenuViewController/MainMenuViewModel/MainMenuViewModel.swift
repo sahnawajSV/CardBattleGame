@@ -20,7 +20,7 @@ class MainMenuViewModel: NSObject {
   var timeText: String = ""
   var timeZoneText : String = ""
   var windSpeedText: String = ""
-  var tempratureText: String = ""
+  var temperatureText: String = ""
   var summaryText: String = ""
   var iconImage: UIImage?
   
@@ -138,9 +138,9 @@ class MainMenuViewModel: NSObject {
       }
       
       if let temperature = currently["temperature"] as? Double, let apparentTemperature = currently["apparentTemperature"] as? Double{
-        let minTemprature = temperature.toCelcius()
-        let maxTemprature = apparentTemperature.toCelcius()
-        tempratureText = String(format: "%.0f° - %.0f°", minTemprature, maxTemprature)
+        let minTemperature = temperature.toCelcius()
+        let maxTemperature = apparentTemperature.toCelcius()
+        temperatureText = String(format: "%.0f° - %.0f°", minTemperature, maxTemperature)
       }
       
       if let summary = currently["summary"] as? String{
