@@ -8,29 +8,25 @@
 
 import UIKit
 
-class CardListDataSource: NSObject {
+
+/// Card List Data Source :  Read the Card List from the Plist
+class CardListDataSource {
   
+  /// Shared Instance
   static let sharedInstance: CardListDataSource = {
     let instance = CardListDataSource()
     return instance
   }()
   
-  // MARK: - Properties
-  //
+  /// Properties
   private var cardList:[Card] = []
   
-  
-  // MARK: - Initialization
-  //
-  override init() {
-    super.init()
+  /// Initialization
+  init() {
     populateData()
   }
   
-  
-  // MARK:- Populate Data from plist
-  //
-  func populateData() {
+  private func populateData() {
     guard let path = Bundle.main.path(forResource: "CardList", ofType: "plist"), let dictArray = NSArray(contentsOfFile: path) else {
       return
     }
@@ -44,16 +40,16 @@ class CardListDataSource: NSObject {
     
   }
   
-  
-  // MARK:-Return Cards
-  //
+  /// Returns Card List Array
+  ///
+  /// - Returns: return value Card array
   func  fetchCardList() -> [Card] {
     return cardList
   }
   
-  
-  // MARK : - Get Number Of Cards
-  //
+  /// Read Number of Cards
+  ///
+  /// - Returns: return value number of card
   func numbeOfCards() -> Int {
     return cardList.count
   }

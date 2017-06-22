@@ -16,12 +16,10 @@
 		8B3119681EF1427800DD9E78 /* CardBattleGameTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3119671EF1427800DD9E78 /* CardBattleGameTests.swift */; };
 		8B3119731EF1427800DD9E78 /* CardBattleGameUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3119721EF1427800DD9E78 /* CardBattleGameUITests.swift */; };
 		8B3119A21EF144AB00DD9E78 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3119A01EF144AB00DD9E78 /* MainMenuViewController.swift */; };
-		8B42F4BC1EF24E710097D28A /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42F4BB1EF24E710097D28A /* ServiceManager.swift */; };
 		8B42F4C11EF252520097D28A /* ConnectionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42F4C01EF252520097D28A /* ConnectionManager.swift */; };
 		8B42F4C71EF265D70097D28A /* CBGErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42F4C61EF265D70097D28A /* CBGErrorHandler.swift */; };
 		8B42F4CA1EF292430097D28A /* Conversions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42F4C91EF292430097D28A /* Conversions.swift */; };
 		8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B42F4CB1EF29B1C0097D28A /* ViewAnimation.swift */; };
-		8B561F531EF3A06700104486 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F521EF3A06600104486 /* PersistanceManager.swift */; };
 		8B561F561EF3A1A800104486 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F551EF3A1A800104486 /* LocationManager.swift */; };
 		8B561F591EF3A30000104486 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B561F581EF3A30000104486 /* CoreLocation.framework */; };
 		8B561F5C1EF3ABAE00104486 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F5B1EF3ABAE00104486 /* CoreDataStackManager.swift */; };
@@ -80,12 +78,10 @@
 		8B3119721EF1427800DD9E78 /* CardBattleGameUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardBattleGameUITests.swift; sourceTree = "<group>"; };
 		8B3119741EF1427800DD9E78 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8B3119A01EF144AB00DD9E78 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
-		8B42F4BB1EF24E710097D28A /* ServiceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		8B42F4C01EF252520097D28A /* ConnectionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectionManager.swift; sourceTree = "<group>"; };
 		8B42F4C61EF265D70097D28A /* CBGErrorHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CBGErrorHandler.swift; sourceTree = "<group>"; };
 		8B42F4C91EF292430097D28A /* Conversions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Conversions.swift; sourceTree = "<group>"; };
 		8B42F4CB1EF29B1C0097D28A /* ViewAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewAnimation.swift; sourceTree = "<group>"; };
-		8B561F521EF3A06600104486 /* PersistanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		8B561F551EF3A1A800104486 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		8B561F581EF3A30000104486 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		8B561F5B1EF3ABAE00104486 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
@@ -229,7 +225,6 @@
 			isa = PBXGroup;
 			children = (
 				8B42F4C01EF252520097D28A /* ConnectionManager.swift */,
-				8B561F521EF3A06600104486 /* PersistanceManager.swift */,
 				8B561F551EF3A1A800104486 /* LocationManager.swift */,
 				8B561F611EF3F54300104486 /* CardListDataSource.swift */,
 			);
@@ -389,7 +384,6 @@
 			isa = PBXGroup;
 			children = (
 				8B42F4BF1EF2521D0097D28A /* DataManager */,
-				8B42F4BB1EF24E710097D28A /* ServiceManager.swift */,
 			);
 			path = ServiceManager;
 			sourceTree = "<group>";
@@ -546,12 +540,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B42F4BC1EF24E710097D28A /* ServiceManager.swift in Sources */,
 				E3D362CC1EF79FAA008FB5A7 /* Game.swift in Sources */,
 				E326D59E1EFB8FC90034F35B /* PlayerOneInHandViewController.swift in Sources */,
 				E326D5A01EFB8FDF0034F35B /* PlayerTwoInHandViewController.swift in Sources */,
 				E3D362C41EF79174008FB5A7 /* Stats.swift in Sources */,
-				8B561F531EF3A06700104486 /* PersistanceManager.swift in Sources */,
 				8B42F4C71EF265D70097D28A /* CBGErrorHandler.swift in Sources */,
 				8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */,
 				E3D362C21EF790BC008FB5A7 /* Deck.swift in Sources */,

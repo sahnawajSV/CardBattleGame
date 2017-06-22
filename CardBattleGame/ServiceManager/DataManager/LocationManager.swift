@@ -9,23 +9,21 @@
 import UIKit
 import CoreLocation
 
-class LocationManager: NSObject, CLLocationManagerDelegate {
-  
-  
+/// Location Manager : Determines User Current Location
+class LocationManager: NSObject {
   
   static let defaultLatitude: Double = 51.400592
   static let defaultLongitude: Double = 4.760970
   static let defaultDistanceFilter = 5000.0
   
-  static let sharedInstance: LocationManager = {
+  private var locations = [CLLocation]()
+  
+  	static let sharedInstance: LocationManager = {
     let instance = LocationManager()
-    
     return instance
   }()
   
-  var locations = [CLLocation]()
-  
-  lazy var locationManager:CLLocationManager = {
+  private lazy var locationManager:CLLocationManager = {
     var _locationManager = CLLocationManager()
     _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     _locationManager.activityType = .otherNavigation
@@ -36,15 +34,21 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     return _locationManager
   }()
   
+  /// Start Location Update
   func startLocationUpdate(){
     // Here, the location manager will be lazily instantiated
     locationManager.startUpdatingLocation()
   }
   
+  /// Stop Location Update
   func stopLocationUpdate(){
     locationManager.stopUpdatingLocation()
   }
   
+}
+
+// MARK: - CLLocationManagerDelegate
+extension LocationManager: CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
     switch status {
     case .authorizedAlways:
@@ -61,9 +65,8 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    // post a notification
-    NotificationCenter.default.post(name:LocationNotification.kLocationUpdated, object: nil, userInfo: ["locations":locations])
-    
+    // post a location update notification to the observer class
+    NotificationCenter.default.post(name:Notification.Name.kLocationUpdated, object: nil, userInfo: ["locations":locations])
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -71,8 +74,9 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
   }
 }
 
-struct LocationNotification {
-  static let kLocationUpdated = Notification.Name("LocationUpdated")
+
+extension Notification.Name {
+  static let kLocationUpdated = Notification.Name(rawValue: "LocationUpdated")
   static let kAuthorizationStatusChanged = Notification.Name(rawValue: "AuthorizationStatusChanged")
   static let kLocationManagerDidFailWithError = Notification.Name(rawValue: "LocationManagerDidFailWithError")
 }

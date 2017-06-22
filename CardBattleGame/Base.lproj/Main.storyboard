@@ -626,7 +626,7 @@
                                 </cells>
                             </collectionView>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="fj4-6U-jld" firstAttribute="top" secondItem="JP3-eJ-kLe" secondAttribute="bottom" id="MTI-Bh-v4q"/>
                             <constraint firstItem="cGe-xa-Omm" firstAttribute="top" secondItem="IBZ-sz-92a" secondAttribute="bottom" id="NE3-Hv-AQZ"/>
@@ -652,6 +652,10 @@
         <scene sceneID="gJe-dh-zTP">
             <objects>
                 <viewController id="Tpm-nG-faD" customClass="PlayerOneInHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="hck-77-yZZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wa8-Gp-g2H"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Iu4-Kn-Agw">
                         <rect key="frame" x="0.0" y="0.0" width="1015" height="266"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
