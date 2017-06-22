@@ -9,10 +9,9 @@
 import UIKit
 import CoreData
 
+
+/// EditDeckViewController : Create Deck, Edit or Delete Existing Deck
 class EditDeckViewController: UIViewController {
-  
-  // Temporary Added:  Deck Limit
-  let deckLimit = 20
   
   // NSFetchedResultsController to updated uitableview if there is any changes in the Coredata storage
   var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
@@ -39,14 +38,13 @@ class EditDeckViewController: UIViewController {
     
     updateSelectedDeckLabel()
   }
-  
+
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
   
-  
-  //#pragma mark - Creating a Fetched Results Controller
+  //Creating a Fetched Results Controller
   private func initializeFetchedResultsController() {
     let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
     let departmentSort = NSSortDescriptor(key: "id", ascending: true)
@@ -65,14 +63,16 @@ class EditDeckViewController: UIViewController {
     }
   }
   
-  
   //  Mark :  Helper Method
   //
   fileprivate func updateSelectedDeckLabel() {
-    self.selectedDeckLabel.text = String(format: "\(numberOfAddedCard()) - \(deckLimit)")
+    self.selectedDeckLabel.text = String(format: "\(numberOfCardAdded()) - \(Game.maximumCardPerDeck)")
   }
   
-  fileprivate func numberOfAddedCard() -> Int {
+  /// Number of cards available in the storage
+  ///
+  /// - Returns: Total Number of cards
+  fileprivate func numberOfCardAdded() -> Int {
     guard let sections = fetchedResultsController.sections else {
       fatalError("No sections in fetchedResultsController")
     }
@@ -80,52 +80,45 @@ class EditDeckViewController: UIViewController {
     return sectionInfo.numberOfObjects
   }
   
+  /// Update Card Collection View
   fileprivate func reloadCollectionView() {
     deckCollectionView.reloadData()
   }
   
+  // MARK : Action
+  //
   @IBAction func saveDeckAction(_ sender: Any) {
     
   }
   
-  // Add Deck Button Action
   @IBAction func addButtonTapped(_ sender: UIButton) {
     
     let cardList: [Card] = CardListDataSource.sharedInstance.fetchCardList()
     let card = cardList[sender.tag]
-    editDeckViewModel.add(card: card)
+    editDeckViewModel.addRemove(card: card, type: .add)
     
     reloadCollectionView()
   }
 }
 
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
-  // MARK : Table View Delegates
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return numberOfAddedCard()
+    return numberOfCardAdded()
   }
   
   
-  // create a cell for each table view row
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell:UITableViewCell = UITableViewCell.init(style: .default,
                                                     reuseIdentifier: nil)as UITableViewCell!
     
     let newItem: Cards = fetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0)) as! Cards
-    print(newItem.name!)
     cell.textLabel?.text = newItem.name
-    cell.tag = Int(newItem.id)
     
-    cell.textLabel?.backgroundColor = .orange
+    cell.tag = Int(newItem.id)
     return cell
-  }
-  
-  
-  // method to run when table view cell is tapped
-  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    print("You tapped cell number \(indexPath.row).")
   }
   
   
@@ -144,7 +137,7 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
     
     for card in cardList {
       if card.id == Int16(cell.tag) {
-        editDeckViewModel.delete(card: card)
+        editDeckViewModel.addRemove(card: card, type: .delete)
         break
       }
     }
@@ -154,6 +147,7 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
+// MARK: - NSFetchedResultsControllerDelegate
 extension EditDeckViewController: NSFetchedResultsControllerDelegate {
   
   func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
@@ -163,7 +157,6 @@ extension EditDeckViewController: NSFetchedResultsControllerDelegate {
   func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
     switch type {
     case .insert:
-      
       selectedDeckTableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
     case .delete:
       selectedDeckTableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
@@ -177,13 +170,15 @@ extension EditDeckViewController: NSFetchedResultsControllerDelegate {
   func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
     switch type {
     case .insert:
-      selectedDeckTableView.insertRows(at: [IndexPath(row: newIndexPath!.row, section: 0)], with: .fade)
+      if let index = newIndexPath {
+        selectedDeckTableView.insertRows(at: [IndexPath(row: index.row, section: 0)], with: .fade)
+      }
     case .delete:
-      selectedDeckTableView.deleteRows(at: [IndexPath(row: indexPath!.row, section: 0)], with: .fade)
-    case .update:
-      selectedDeckTableView.reloadRows(at: [IndexPath(row: indexPath!.row, section: 0)], with: .fade)
-    case .move:
-      selectedDeckTableView.moveRow(at: IndexPath(row: indexPath!.row, section: 0), to: IndexPath(row: newIndexPath!.row, section: 0))
+      if let index = indexPath {
+        selectedDeckTableView.deleteRows(at: [IndexPath(row: index.row, section: 0)], with: .fade)
+      }
+    default:
+      break
     }
   }
   
@@ -196,11 +191,8 @@ extension EditDeckViewController: NSFetchedResultsControllerDelegate {
 
 
 
-extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
-  
-  
-  
-  // MARK:- UICollectionView DataSource
+// MARK: - UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
+extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
   
   // Collection View - Number Of Items In Section
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -208,7 +200,7 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
   }
   
   
-  /// Collection View - Cell For Row At Index Path
+  // Collection View - Cell For Row At Index Path
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) as! EditDeckCollectionViewCell
@@ -217,7 +209,7 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
     let cardList: [Card] = CardListDataSource.sharedInstance.fetchCardList()
     let card = cardList[indexPath.row]
     
-    cell.attackLbl.text = "\(String(describing: card.attack))"
+    cell.attackLbl.text = String(describing: card.attack)
     cell.healthLbl.text = String(describing: card.health)
     cell.battlePointLbl.text = String(describing: card.battlepoint)
     cell.nameLbl.text = String(describing: card.name)
@@ -235,11 +227,8 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
     return cell
   }
   
-  
-  
-  
   // MARK:- UICollectionViewDelegate Methods
-
+  
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: CGFloat((collectionView.frame.size.width / 3) - 15), height: CGFloat(328))
   }

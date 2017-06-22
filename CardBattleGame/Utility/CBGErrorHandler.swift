@@ -13,6 +13,7 @@ enum ErrorTpe: Error {
   case faildParseWeatherData
   case invalidResponse
   case failedToIntializeTheGame
+  case failedManagedObjectFetchRequest
   case unknown
 }
 
@@ -28,6 +29,8 @@ class CBGErrorHandler: Error {
       errorAlert(errorTitle: "Error", errorMsg: "Invalid Response")
     case .failedToIntializeTheGame:
       errorAlert(errorTitle: "Error", errorMsg: "Failed to Initialize the Game")
+    case .failedManagedObjectFetchRequest:
+      errorAlert(errorTitle: "Error", errorMsg: "Failed To Perform Managed Object Fetch Request")
     default:
       errorAlert(errorTitle: "Error", errorMsg: "Unknown")
     }

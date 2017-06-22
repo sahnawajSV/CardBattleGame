@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+/// Edit Deck UICollectionViewCell used to set the IBOutlet to the custom Deck cell  
 class EditDeckCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var nameLbl: UILabel!
