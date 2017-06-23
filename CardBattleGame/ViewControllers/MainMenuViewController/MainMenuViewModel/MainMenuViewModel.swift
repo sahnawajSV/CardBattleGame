@@ -126,7 +126,7 @@ class MainMenuViewModel {
       
       if let time = currently["time"] as? Double{
         let dtTime = Date(timeIntervalSince1970: time / 1000.0)
-        timeText = dtTime.toString(dateFormat: "dd MMM yy hh:mm")
+        timeText = dtTime.toString(withFormat: "dd MMM yy hh:mm")
       }
       
       if let windSpeed = currently["windSpeed"] as? Double{
