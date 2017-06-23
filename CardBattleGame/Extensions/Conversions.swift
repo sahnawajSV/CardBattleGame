@@ -20,7 +20,7 @@ extension Double {
 }
 
 extension Date {
-  func toString( dateFormat format  : String ) -> String {
+  func toString(withFormat format: String) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = format
     print(dateFormatter.string(from: self))
