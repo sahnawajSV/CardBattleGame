@@ -14,6 +14,7 @@ class CardView: UIView {
   var attackText: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
   var healthText: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
   var nameText: UILabel = UILabel(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
+  var cardButton: UIButton = UIButton(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -67,6 +68,10 @@ class CardView: UIView {
     
     nameView.addSubview(nameText)
     cardView.addSubview(nameView)
+    
+    //CARD BUTTON
+    cardView.addSubview(cardButton)
+    
     
     self.addSubview(cardView)
   }

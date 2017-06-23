@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3e6-Qr-JeC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vvz-Fk-ms2">
     <device id="ipad12_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -218,28 +218,28 @@
                                 <rect key="frame" x="78" y="543" width="1015" height="266"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="SO1-pN-hh0" kind="embed" id="756-Gt-vSr"/>
+                                    <segue destination="SO1-pN-hh0" kind="embed" identifier="PlayerOneInPlay" id="756-Gt-vSr"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G4n-RG-pdb">
                                 <rect key="frame" x="78" y="853" width="1015" height="266"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="Tpm-nG-faD" kind="embed" id="IZI-K0-eT0"/>
+                                    <segue destination="Tpm-nG-faD" kind="embed" identifier="PlayerOneInHand" id="IZI-K0-eT0"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lYD-3C-4Db">
                                 <rect key="frame" x="78" y="216" width="1015" height="266"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="cQ5-sA-pjJ" kind="embed" id="CFb-U9-kIq"/>
+                                    <segue destination="cQ5-sA-pjJ" kind="embed" identifier="PlayerTwoInPlay" id="CFb-U9-kIq"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-XC-g1P">
                                 <rect key="frame" x="78" y="-86" width="1015" height="266"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
-                                    <segue destination="0dn-E3-vQ8" kind="embed" id="hpl-8V-OTZ"/>
+                                    <segue destination="0dn-E3-vQ8" kind="embed" identifier="PlayerTwoInHand" id="hpl-8V-OTZ"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U2E-ef-aeJ" userLabel="AIView">
@@ -648,10 +648,10 @@
             </objects>
             <point key="canvasLocation" x="1307.1742313323571" y="-52.1484375"/>
         </scene>
-        <!--Player One In Hand View Controller-->
+        <!--In Hand View Controller-->
         <scene sceneID="gJe-dh-zTP">
             <objects>
-                <viewController id="Tpm-nG-faD" customClass="PlayerOneInHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Tpm-nG-faD" customClass="InHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hck-77-yZZ"/>
                         <viewControllerLayoutGuide type="bottom" id="wa8-Gp-g2H"/>
@@ -664,7 +664,7 @@
                                 <rect key="frame" x="6" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnu-IW-IVF">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnu-IW-IVF">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -675,7 +675,7 @@
                                 <rect key="frame" x="208" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2V-ed-TBZ">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2V-ed-TBZ">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -686,7 +686,7 @@
                                 <rect key="frame" x="411" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYQ-Ho-ylC">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYQ-Ho-ylC">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -697,7 +697,7 @@
                                 <rect key="frame" x="613" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIr-xZ-EU6">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIr-xZ-EU6">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -719,21 +719,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="cardFive" destination="5He-EL-kdJ" id="4zz-Bb-Unh"/>
-                        <outlet property="cardFour" destination="fIr-xZ-EU6" id="XkO-kH-WMg"/>
-                        <outlet property="cardOne" destination="Lnu-IW-IVF" id="oJG-LH-HVe"/>
-                        <outlet property="cardThree" destination="cYQ-Ho-ylC" id="S1x-Pn-vKV"/>
-                        <outlet property="cardTwo" destination="J2V-ed-TBZ" id="FzV-6G-Jht"/>
+                        <outlet property="cardFive" destination="XTg-S1-3RJ" id="F8S-vQ-dGj"/>
+                        <outlet property="cardFour" destination="jqd-rz-zxH" id="zNO-IH-OTh"/>
+                        <outlet property="cardOne" destination="4Yz-uZ-L37" id="9tF-8w-w6T"/>
+                        <outlet property="cardThree" destination="NE6-Qk-KTa" id="ZIw-Dq-Yh3"/>
+                        <outlet property="cardTwo" destination="siD-J6-DiZ" id="CfR-P6-Raf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1x-sg-Bem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1700" y="445"/>
         </scene>
-        <!--Player One In Play View Controller-->
+        <!--In Play View Controller-->
         <scene sceneID="dk8-dD-T98">
             <objects>
-                <viewController id="SO1-pN-hh0" customClass="PlayerOneInPlayViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SO1-pN-hh0" customClass="InPlayViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EmM-NA-Zq0"/>
                         <viewControllerLayoutGuide type="bottom" id="EVA-x9-001"/>
@@ -746,9 +746,12 @@
                                 <rect key="frame" x="6" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVe-pB-xyX">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVe-pB-xyX">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="Rzp-ne-DsQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -757,9 +760,12 @@
                                 <rect key="frame" x="208" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5B-kS-uvV">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5B-kS-uvV">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="mpg-Fw-PGG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -768,9 +774,12 @@
                                 <rect key="frame" x="411" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhW-Io-wdk">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhW-Io-wdk">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="eyJ-g9-pvD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -779,9 +788,12 @@
                                 <rect key="frame" x="613" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ve1-WC-UH8">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ve1-WC-UH8">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="Ydg-cH-NRC"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -793,6 +805,9 @@
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vho-if-kVG">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="EHV-we-Bkm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -801,21 +816,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="cardFive" destination="vho-if-kVG" id="eDj-a1-mgu"/>
-                        <outlet property="cardFour" destination="Ve1-WC-UH8" id="Ogg-B2-7D1"/>
-                        <outlet property="cardOne" destination="jVe-pB-xyX" id="1bP-uR-GeN"/>
-                        <outlet property="cardThree" destination="IhW-Io-wdk" id="4mn-J7-vHO"/>
-                        <outlet property="cardTwo" destination="U5B-kS-uvV" id="Ph6-Je-Rab"/>
+                        <outlet property="cardFive" destination="ghl-e2-snX" id="HsK-td-nex"/>
+                        <outlet property="cardFour" destination="omb-M8-6WX" id="3wI-Z3-cMM"/>
+                        <outlet property="cardOne" destination="nCT-7M-Ri1" id="g6r-Cp-VxH"/>
+                        <outlet property="cardThree" destination="VDt-0e-mw5" id="cox-qF-gHp"/>
+                        <outlet property="cardTwo" destination="ZUn-V0-MY8" id="72J-La-NYj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOW-Of-qFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1700" y="664"/>
         </scene>
-        <!--Player Two In Play View Controller-->
+        <!--In Play View Controller-->
         <scene sceneID="k8S-vN-LE0">
             <objects>
-                <viewController id="cQ5-sA-pjJ" customClass="PlayerTwoInPlayViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="cQ5-sA-pjJ" customClass="InPlayViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mBE-rE-VI4"/>
                         <viewControllerLayoutGuide type="bottom" id="5Gc-YD-KAY"/>
@@ -828,7 +843,7 @@
                                 <rect key="frame" x="6" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhY-Tc-YiT">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhY-Tc-YiT">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -839,7 +854,7 @@
                                 <rect key="frame" x="208" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cys-Oe-Mnd">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cys-Oe-Mnd">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -850,7 +865,7 @@
                                 <rect key="frame" x="411" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8U9-Yg-hKW">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8U9-Yg-hKW">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -861,7 +876,7 @@
                                 <rect key="frame" x="613" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnE-12-0oy">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnE-12-0oy">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -883,21 +898,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="cardFive" destination="vSc-GI-oWk" id="svw-es-306"/>
-                        <outlet property="cardFour" destination="BnE-12-0oy" id="GdQ-cQ-Wk4"/>
-                        <outlet property="cardOne" destination="hhY-Tc-YiT" id="j6F-Ex-oVi"/>
-                        <outlet property="cardThree" destination="8U9-Yg-hKW" id="EbK-F6-4pK"/>
-                        <outlet property="cardTwo" destination="cys-Oe-Mnd" id="5Xw-0W-d5H"/>
+                        <outlet property="cardFive" destination="fvD-5C-6i8" id="Vo0-IH-zPK"/>
+                        <outlet property="cardFour" destination="yS7-3j-SQq" id="Fq5-8M-xmi"/>
+                        <outlet property="cardOne" destination="e3G-u9-pnf" id="kSP-4J-2zU"/>
+                        <outlet property="cardThree" destination="bNK-TJ-rPT" id="aVd-Dt-22l"/>
+                        <outlet property="cardTwo" destination="TjY-XI-OHM" id="fHP-Kh-epl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XsL-My-YHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2177" y="664"/>
         </scene>
-        <!--Player Two In Hand View Controller-->
+        <!--In Hand View Controller-->
         <scene sceneID="7SW-FL-aka">
             <objects>
-                <viewController id="0dn-E3-vQ8" customClass="PlayerTwoInHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="0dn-E3-vQ8" customClass="InHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="diw-s9-acZ"/>
                         <viewControllerLayoutGuide type="bottom" id="Zys-vv-K1m"/>
@@ -910,7 +925,7 @@
                                 <rect key="frame" x="6" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvH-6c-kUS">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvH-6c-kUS">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -921,7 +936,7 @@
                                 <rect key="frame" x="208" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9UV-nW-bb8">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9UV-nW-bb8">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -932,7 +947,7 @@
                                 <rect key="frame" x="411" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1H-MA-FLB">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1H-MA-FLB">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -943,7 +958,7 @@
                                 <rect key="frame" x="613" y="6" width="194" height="254"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Og-d0-ccW">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Og-d0-ccW">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
@@ -965,11 +980,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="cardFive" destination="Iig-6b-dc5" id="bhR-W8-OM0"/>
-                        <outlet property="cardFour" destination="3Og-d0-ccW" id="N29-dA-6Sn"/>
-                        <outlet property="cardOne" destination="nvH-6c-kUS" id="f6K-hm-RD3"/>
-                        <outlet property="cardThree" destination="c1H-MA-FLB" id="WpW-MM-dBs"/>
-                        <outlet property="cardTwo" destination="9UV-nW-bb8" id="2xP-3I-nig"/>
+                        <outlet property="cardFive" destination="f9l-iJ-B25" id="VP7-xM-9GN"/>
+                        <outlet property="cardFour" destination="R5e-sN-goI" id="IE3-iU-FmD"/>
+                        <outlet property="cardOne" destination="nVo-UL-C15" id="wUH-H9-IYH"/>
+                        <outlet property="cardThree" destination="s0H-fP-1AM" id="AGu-ii-swT"/>
+                        <outlet property="cardTwo" destination="MYP-jq-9kZ" id="hCq-MP-nIa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gqz-2i-kNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
