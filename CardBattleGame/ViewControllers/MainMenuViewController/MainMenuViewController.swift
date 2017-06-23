@@ -31,6 +31,8 @@ class MainMenuViewController: UIViewController {
     
     // Set Main Model View Delegate
     mainViewModel.delegate = self
+    // Request For Weather Data
+    mainViewModel.fetchWeatherReport()
   }
   
   override func didReceiveMemoryWarning() {

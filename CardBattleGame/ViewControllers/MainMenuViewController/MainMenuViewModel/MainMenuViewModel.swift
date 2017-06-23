@@ -42,8 +42,6 @@ class MainMenuViewModel {
       self?.notificationForLocationUpdate(notification)
     }
     
-    // Request For Weather Data
-    fetchWeatherReport()
   }
   
   //  MARK : Deinitializer
@@ -77,7 +75,7 @@ class MainMenuViewModel {
   
   // MARK : Featch Weather Report And Parse Data
   //
-  private func fetchWeatherReport() -> Void {
+   func fetchWeatherReport() -> Void {
     
     let appendUrl = "/\(latitude),\(longitude)"
     
