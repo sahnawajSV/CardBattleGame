@@ -99,7 +99,7 @@ class MainMenuViewModel {
             
             self.decodeJSON(jsonDictionary!)
             
-          } catch ErrorTpe.failedRequest{
+          } catch ErrorType.failedRequest{
             CBGErrorHandler.handle(error : .invalidResponse)
           } catch {
             CBGErrorHandler.handle(error : .faildParseWeatherData)
