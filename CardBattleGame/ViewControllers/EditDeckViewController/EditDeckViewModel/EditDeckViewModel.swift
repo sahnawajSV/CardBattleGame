@@ -87,4 +87,11 @@ class EditDeckViewModel: NSObject {
     }
   }
   
+  func fetchCardFromPlist() -> [Card] {
+    return CardListDataSource.sharedInstance.fetchCardList()
+  }
+  
+  func numberOfCardInPlist() -> Int {
+    return CardListDataSource.sharedInstance.numbeOfCards()
+  }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum ErrorTpe: Error {
+enum ErrorType: Error {
   case failedRequest
   case faildParseWeatherData
   case invalidResponse
@@ -19,7 +19,7 @@ enum ErrorTpe: Error {
 
 class CBGErrorHandler: Error {
   
-  static func handle( error : ErrorTpe)  {
+  static func handle( error : ErrorType)  {
     switch error {
     case .failedRequest:
       errorAlert(errorTitle: "Error", errorMsg: "Failed Request")
@@ -38,22 +38,16 @@ class CBGErrorHandler: Error {
   
   
   static private func errorAlert(errorTitle: String, errorMsg: String){
+    let alertWindow = UIWindow(frame: UIScreen.main.bounds)
     
     let alertController =  UIAlertController(title: errorTitle, message: errorMsg, preferredStyle: UIAlertControllerStyle.alert)
     let okAction  = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action) in
-      
+      alertWindow.isHidden = true
     }
-    
     alertController.addAction(okAction)
-    
-    
-    let alertWindow = UIWindow(frame: UIScreen.main.bounds)
-    
     alertWindow.rootViewController = UIViewController()
     alertWindow.windowLevel = UIWindowLevelAlert;
     alertWindow.makeKeyAndVisible()
-    
     alertWindow.rootViewController?.present(alertController, animated: true, completion: nil)
-    
   }
 }

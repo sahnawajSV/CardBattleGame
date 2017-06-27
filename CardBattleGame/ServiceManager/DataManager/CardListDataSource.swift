@@ -13,10 +13,7 @@ import UIKit
 class CardListDataSource {
   
   /// Shared Instance
-  static let sharedInstance: CardListDataSource = {
-    let instance = CardListDataSource()
-    return instance
-  }()
+  static let sharedInstance: CardListDataSource = CardListDataSource()
   
   /// Properties
   private var cardList:[Card] = []
@@ -30,13 +27,13 @@ class CardListDataSource {
     guard let path = Bundle.main.path(forResource: "CardList", ofType: "plist"), let dictArray = NSArray(contentsOfFile: path) else {
       return
     }
-    
-    for item in dictArray {
-      guard let dict = item as? Dictionary<String, Any>, let data = Card(dictionary: dict) else {
-        continue
-      }
-      cardList.append(data)
-    }
+    cardList = dictArray.map({ Card(dictionary: ($0 as! [String : Any]))!})
+//    
+//    let closure: ([String: Any]) -> Card?
+//    closure = { dictionary in
+//      return Card(dictionary: dictionary)
+//    }
+//    cardList = dictArray.flatMap(closure)
     
   }
   

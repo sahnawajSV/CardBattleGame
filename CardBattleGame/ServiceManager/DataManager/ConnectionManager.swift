@@ -24,10 +24,7 @@ class ConnectionManager {
   
   typealias DataCompletion = (Data?, URLResponse?, Error?) -> ()
   
-  static let sharedInstance: ConnectionManager = {
-      let sharedInstance = ConnectionManager()
-      return sharedInstance
-  }()
+  static let sharedInstance = ConnectionManager()
   
   /// Perform Get Connection using Session Data Task over ephmereal configuration and return using completation handler
   ///
@@ -41,9 +38,7 @@ class ConnectionManager {
       
     // Create Data Task
     session.dataTask(with: url) { (data, response, error) in
-      DispatchQueue.main.async {
         completion(data, response, error)
-      }
     }.resume()
   }
     

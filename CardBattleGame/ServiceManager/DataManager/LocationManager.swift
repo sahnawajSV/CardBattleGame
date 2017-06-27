@@ -16,23 +16,29 @@ class LocationManager: NSObject {
   static let defaultLongitude: Double = 4.760970
   static let defaultDistanceFilter = 5000.0
   
+  /// Shared Instance
+  static let sharedInstance: LocationManager = LocationManager()
+  
+  /// Initialise Location Manger
+  private let locationManager = CLLocationManager()
+
   private var locations = [CLLocation]()
   
-  	static let sharedInstance: LocationManager = {
-    let instance = LocationManager()
-    return instance
-  }()
+  override init() {
+    super.init()
+    configureLocationManager()
+  }
   
-  private lazy var locationManager:CLLocationManager = {
-    var _locationManager = CLLocationManager()
-    _locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-    _locationManager.activityType = .otherNavigation
-    _locationManager.distanceFilter = defaultDistanceFilter
-    _locationManager.delegate = self
-    _locationManager.requestAlwaysAuthorization()
-    _locationManager.requestWhenInUseAuthorization()
-    return _locationManager
-  }()
+  /// Configure Location Manager
+  func configureLocationManager() {
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+    locationManager.activityType = .otherNavigation
+    locationManager.distanceFilter = LocationManager.defaultDistanceFilter
+    locationManager.delegate = self
+    locationManager.requestAlwaysAuthorization()
+    locationManager.requestWhenInUseAuthorization()
+  }
+  
   
   /// Start Location Update
   func startLocationUpdate(){
