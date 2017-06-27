@@ -88,12 +88,12 @@ class EditDeckViewController: UIViewController {
   // MARK : Action
   //
   @IBAction func saveDeckAction(_ sender: Any) {
-    
+    self.dismiss(animated: true, completion: nil)
   }
   
   @IBAction func addButtonTapped(_ sender: UIButton) {
     
-    let cardList: [Card] = CardListDataSource.sharedInstance.fetchCardList()
+    let cardList: [Card] = editDeckViewModel.fetchCardFromPlist()
     let card = cardList[sender.tag]
     editDeckViewModel.addRemove(card: card, type: .add)
     
@@ -133,7 +133,7 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     let cell : UITableViewCell = tableView.cellForRow(at: indexPath)!
-    let cardList: [Card] = CardListDataSource.sharedInstance.fetchCardList()
+    let cardList: [Card] = editDeckViewModel.fetchCardFromPlist()
     
     for card in cardList {
       if card.id == Int16(cell.tag) {
@@ -196,7 +196,7 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
   
   // Collection View - Number Of Items In Section
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return CardListDataSource.sharedInstance.numbeOfCards()
+    return editDeckViewModel.numberOfCardInPlist()
   }
   
   
@@ -206,7 +206,7 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) as! EditDeckCollectionViewCell
     
     
-    let cardList: [Card] = CardListDataSource.sharedInstance.fetchCardList()
+    let cardList: [Card] = editDeckViewModel.fetchCardFromPlist()
     let card = cardList[indexPath.row]
     
     cell.attackLbl.text = String(describing: card.attack)
