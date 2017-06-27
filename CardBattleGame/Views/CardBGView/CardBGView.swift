@@ -20,7 +20,7 @@ class CardBGView: UIView {
   }
   
   func addUIBehavior() {
-    self.dropShadow(scale: true)
+//    self.dropShadow(scale: true)
   }
 
 }

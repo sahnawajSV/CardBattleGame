@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Holds information on all the Decks and its cards that were created by the Player. 
 class Deck {
   
   var name: String

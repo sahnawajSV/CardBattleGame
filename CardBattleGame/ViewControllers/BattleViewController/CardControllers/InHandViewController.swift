@@ -49,9 +49,10 @@ class InHandViewController: UIViewController {
       cardView.attackText.text = String(card.attack)
       cardView.healthText.text = String(card.health)
       cardView.nameText.text = card.name
+      cardView.cardButton.tag = index
       cardView.cardButton.addTarget(self, action: #selector(selectInHandCard(button:)), for: .touchUpInside)
       self.view.addSubview(cardView)
-      
+      self.view.layoutIfNeeded()
       
       cardsAdded.append(cardView)
     }

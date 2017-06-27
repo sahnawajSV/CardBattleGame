@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		184AC27A1F02332A00440D19 /* cardLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184AC2791F02332A00440D19 /* cardLabel.swift */; };
 		8B1ECD451EFA7B76001EE399 /* EditDeckCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B1ECD441EFA7B76001EE399 /* EditDeckCollectionViewCell.swift */; };
 		8B3119501EF1427700DD9E78 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B31194F1EF1427700DD9E78 /* AppDelegate.swift */; };
 		8B3119551EF1427800DD9E78 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B3119531EF1427800DD9E78 /* Main.storyboard */; };
@@ -61,6 +62,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		184AC2791F02332A00440D19 /* cardLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = cardLabel.swift; sourceTree = "<group>"; };
 		8B1ECD441EFA7B76001EE399 /* EditDeckCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckCollectionViewCell.swift; sourceTree = "<group>"; };
 		8B31194C1EF1427700DD9E78 /* CardBattleGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardBattleGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B31194F1EF1427700DD9E78 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +131,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		184AC2781F02330A00440D19 /* CardLabel */ = {
+			isa = PBXGroup;
+			children = (
+				184AC2791F02332A00440D19 /* cardLabel.swift */,
+			);
+			path = CardLabel;
+			sourceTree = "<group>";
+		};
 		8B1ECD431EFA7B76001EE399 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -393,6 +403,7 @@
 		E3775D4E1EF16E4900991CEC /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				184AC2781F02330A00440D19 /* CardLabel */,
 				E326D5991EFA914A0034F35B /* CardBGView */,
 				E37605EF1EF7E004001AEBBB /* CardView */,
 			);
@@ -554,6 +565,7 @@
 				8B561F5C1EF3ABAE00104486 /* CoreDataStackManager.swift in Sources */,
 				E3775D521EF16E7D00991CEC /* EditDeckViewModel.swift in Sources */,
 				E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */,
+				184AC27A1F02332A00440D19 /* cardLabel.swift in Sources */,
 				E3775D5C1EF16EC000991CEC /* EditDeckViewController.swift in Sources */,
 				8B3119501EF1427700DD9E78 /* AppDelegate.swift in Sources */,
 				8B561F561EF3A1A800104486 /* LocationManager.swift in Sources */,

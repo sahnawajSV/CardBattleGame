@@ -76,9 +76,9 @@ class GameViewModel: GameProtocol {
   //MARK: - Model Updates Received
   func updateData() {
     playerName = gManager.playerStats.name
-    playerHealth = gManager.playerStats.gameStats.health
+    playerHealth = String(gManager.playerStats.gameStats.health)
     aiName = gManager.aiStats.name
-    aiHealth = gManager.aiStats.gameStats.health
+    aiHealth = String(gManager.aiStats.gameStats.health)
     
     playerNumOfCardsInDeckText = "\(String(describing: gManager.playerStats.gameStats.inDeck.count)) / \(Game.maximumCardPerDeck) Cards"
     aiNumOfCardsInDeckText = "\(String(describing: gManager.aiStats.gameStats.inDeck.count)) / \(Game.maximumCardPerDeck) Cards"
@@ -87,8 +87,8 @@ class GameViewModel: GameProtocol {
     
     playerNumOfCardsInDeck = gManager.playerStats.gameStats.inDeck.count
     aiNumOfCardsInDeck = gManager.aiStats.gameStats.inDeck.count
-    playerTotalBattlePoints = Int(gManager.playerStats.gameStats.battlePoints)!
-    aiTotalBattlePoints = Int(gManager.aiStats.gameStats.battlePoints)!
+    playerTotalBattlePoints = gManager.playerStats.gameStats.battlePoints
+    aiTotalBattlePoints = gManager.aiStats.gameStats.battlePoints
     
     playerInHandCards = gManager.playerStats.gameStats.inHand
     playerInDeckCards = gManager.playerStats.gameStats.inDeck

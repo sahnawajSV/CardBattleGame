@@ -41,10 +41,3 @@ extension UIView {
   }
 }
 
-extension UILabel {
-  func setDefaultProperties() {
-    UILabel.appearance().font = UIFont(name: "systemFont-Bold", size: 14)
-    UILabel.appearance().textColor = UIColor.white
-    UILabel.appearance().textAlignment = NSTextAlignment.center
-  }
-}

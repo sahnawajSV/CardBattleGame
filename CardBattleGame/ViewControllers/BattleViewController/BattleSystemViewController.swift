@@ -10,7 +10,7 @@ import UIKit
 
 class BattleSystemViewController: UIViewController, GameDelegate {
   //MARK: - Internal Variables
-  var gViewModel: GameViewModel = GameViewModel()
+  private var gViewModel: GameViewModel = GameViewModel()
   
   //MARK: - View Collection
   var allPlayerHandCards: [CardView] = []
@@ -54,25 +54,31 @@ class BattleSystemViewController: UIViewController, GameDelegate {
     super.viewDidLoad()
     
     //Assign View Model and Call Initializers
-    gViewModel.delegate = self;
-    gViewModel.initializeTheGame()
+    gViewModel.delegate = self
     
     NotificationCenter.default.addObserver(self, selector: #selector(createInPlayCardsForPlayerOne(withNotification:)), name: NSNotification.Name(rawValue: "MoveToPlayerOneTargetPosition"), object: nil)
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    gViewModel.initializeTheGame()
+  }
+  
+  override func viewDidLayoutSubviews() {
+    self.view.translatesAutoresizingMaskIntoConstraints = true
   }
   
   //MARK: - Create In Hand Cards
   func createInHandCards() {
     if (allPlayerHandCards.count) > 0 {
-      for (index,_) in (allPlayerHandCards.enumerated()) {
-        let cardView = allPlayerHandCards[index]
-        cardView.removeFromSuperview()
+      for (_,element) in (allPlayerHandCards.enumerated()) {
+        element.removeFromSuperview()
       }
     }
     
     if (allAIHandCards.count) > 0 {
-      for (index,_) in (allAIHandCards.enumerated()) {
-        let cardView = allAIHandCards[index]
-        cardView.removeFromSuperview()
+      for (_,element) in (allAIHandCards.enumerated()) {
+        element.removeFromSuperview()
       }
     }
     
@@ -89,6 +95,7 @@ class BattleSystemViewController: UIViewController, GameDelegate {
       let success: Bool = playerOnePlayController.updateInHandData(cardView: allPlayerHandCards[playerOneInHandController.selectedCardIndex])
       
       if success {
+        gViewModel.playCardToGameArea(cardIndex: playerOneInHandController.selectedCardIndex, forPlayer: true)
         allPlayerPlayCards.append(allPlayerHandCards[playerOneInHandController.selectedCardIndex])
         allPlayerHandCards.remove(at: playerOneInHandController.selectedCardIndex)
       }

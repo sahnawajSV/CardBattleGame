@@ -6,6 +6,8 @@
 //  Copyright © 2017 SAHNAWAJ BISWAS. All rights reserved.
 //
 
+
+/// Card Model class to hold data for every individual class
 class Card {
   
   var name: String
