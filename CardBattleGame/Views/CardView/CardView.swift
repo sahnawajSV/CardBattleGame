@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This is the actual Card View containing the BattlePoints, Name, Attack and Health Points data
 class CardView: UIView {
   //MARK: - Accessor Objects
   var bpText: cardLabel = cardLabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
@@ -16,6 +17,7 @@ class CardView: UIView {
   var nameText: cardLabel = cardLabel(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
   var cardButton: UIButton = UIButton(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
   
+  //MARK: - Class Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)
     addUIBehavior(frame: frame)

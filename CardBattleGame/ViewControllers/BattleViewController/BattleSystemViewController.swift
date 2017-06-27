@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Handles the BattleSystemViewController implementation. Used to update the Views and Labels. Handle Card Play and Toggle Turn interactions / actions.
 class BattleSystemViewController: UIViewController, GameDelegate {
   //MARK: - Internal Variables
   private var gViewModel: GameViewModel = GameViewModel()
@@ -113,7 +114,7 @@ class BattleSystemViewController: UIViewController, GameDelegate {
 
   
   //MARK: - Delegates
-  func reloadAllViews(_ gameDelegate: GameDelegate) {
+  func reloadAllViews(_ gameProtocol: GameProtocol) {
     playerInDeckText.text = gViewModel.playerNumOfCardsInDeckText
     aiInDeckText.text = gViewModel.aiNumOfCardsInDeckText
     
@@ -127,7 +128,7 @@ class BattleSystemViewController: UIViewController, GameDelegate {
     aiHealthText.text = gViewModel.aiHealth
   }
   
-  func createInHandViews(_ gameDelegate: GameDelegate) {
+  func createInHandViews(_ gameProtocol: GameProtocol) {
     createInHandCards()
   }
   

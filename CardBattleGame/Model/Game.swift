@@ -36,7 +36,7 @@ class Game {
     self.health = health
   }
   
-  //Draw card based on numToDraw. Add to hand only if less than maxNumber allowed. Else Draw and Destory the card
+  /// Draw card based on numToDraw. Add to hand only if less than maxNumber allowed. Else Draw and Destory the card
   func drawCards(numToDraw : Int) {
     var counter = 0
     while counter < numToDraw, !inDeck.isEmpty {
@@ -49,6 +49,7 @@ class Game {
     }
   }
   
+  /// Used to play a card from InHand to InPlay
   func playCard(cardIndex: Int) {
       let card: Card = inHand[cardIndex]
       let updatedBattlePoints = battlePoints - Int(card.battlepoint)
@@ -64,6 +65,7 @@ class Game {
     return Int(randomNumber)
   }
   
+  /// Increment Battle Points everytime a turn starts for a player
   func incrementBattlePoints() {
       var updatedBattlePoints = battlePoints
       if battlePoints < Game.maximumBattlePoint {

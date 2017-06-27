@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Label subclass to customize the Labels displayed on the Card
 class cardLabel: UILabel {
 
   required init(coder aDecoder: NSCoder) {

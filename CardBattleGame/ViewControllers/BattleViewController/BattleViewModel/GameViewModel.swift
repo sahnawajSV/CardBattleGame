@@ -13,10 +13,11 @@ protocol GameProtocol {
 }
 
 protocol GameDelegate: class {
-  func reloadAllViews(_ gameDelegate: GameDelegate)
-  func createInHandViews(_ gameDelegate: GameDelegate)
+  func reloadAllViews(_ gameProtocol: GameProtocol)
+  func createInHandViews(_ gameProtocol: GameProtocol)
 }
 
+/// This is a viewModel and a Formatting class. Fetches the required information from the GameManager class to provide easy to use variables to the ViewController to update the UI. Also handles all Delegate calls for the ViewController
 class GameViewModel: GameProtocol {
   
   weak var delegate: GameDelegate?
@@ -102,8 +103,8 @@ class GameViewModel: GameProtocol {
   //MARK: - Delegates
   func tellDelegateToReloadViewData() {
     //Pass the message to ViewController to display required Data
-    delegate?.reloadAllViews(delegate!)
-    delegate?.createInHandViews(delegate!)
+    delegate?.reloadAllViews(self)
+    delegate?.createInHandViews(self)
   }
 
 }

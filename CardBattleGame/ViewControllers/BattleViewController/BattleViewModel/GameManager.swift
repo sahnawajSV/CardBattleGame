@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Handles all Gameplay logic. Includes Player Initialization and logic for Fetching Model information
 class GameManager {
   //MARK: - Model Handlers
   var playerStats: Stats
