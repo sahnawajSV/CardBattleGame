@@ -27,6 +27,7 @@ class Game {
   var inPlay: [Card]
   var battlePoints: Int
   var health: Int
+  var turnNumber: Int = 0
   
   init(inDeck: [Card], inHand: [Card], inPlay: [Card], battlePoints: Int, health: Int) {
     self.inDeck = inDeck
@@ -65,12 +66,16 @@ class Game {
     return Int(randomNumber)
   }
   
+  func incrementTurn() {
+    turnNumber += 1
+  }
+  
   /// Increment Battle Points everytime a turn starts for a player
   func incrementBattlePoints() {
-      var updatedBattlePoints = battlePoints
-      if battlePoints < Game.maximumBattlePoint {
-        updatedBattlePoints = battlePoints + Game.battlePointIncrement
-      }
-      battlePoints = updatedBattlePoints
+    if turnNumber > Game.maximumBattlePoint {
+      battlePoints = Game.maximumBattlePoint
+    } else {
+      battlePoints = turnNumber
     }
+  }
 }

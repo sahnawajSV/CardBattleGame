@@ -76,6 +76,9 @@ class GameManager {
   
   //Mark: Turn Logic
   func aiTurnStart() -> Bool {
+    //Increment Turn Number
+    aiStats.gameStats.incrementTurn()
+    
     //increment Battle Point Per Turn
     aiStats.gameStats.incrementBattlePoints()
     
@@ -86,6 +89,9 @@ class GameManager {
   }
   
   func playerTurnStart() -> Bool {
+    //Increment Turn Number
+    playerStats.gameStats.incrementTurn()
+    
     //increment Battle Point Per Turn
     playerStats.gameStats.incrementBattlePoints()
     
