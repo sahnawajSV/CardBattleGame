@@ -8,30 +8,51 @@
 
 import UIKit
 
+
+/// MainMenuViewController : Card Battle Game Main Menu
 class MainMenuViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print("HELLO WORLD")
-        print("HELLO WORLD")
-        print("HELLO WORLD")
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  
+  var mainViewModel = MainMenuViewModel()
+  
+  @IBOutlet weak var timeZoneLbl: UILabel!
+  @IBOutlet weak var dateTimeLbl: UILabel!
+  @IBOutlet weak var summeryLbl: UILabel!
+  @IBOutlet weak var weatherIcon: UIImageView!
+  @IBOutlet weak var temperatureLbl: UILabel!
+  @IBOutlet weak var windLbl: UILabel!
+  @IBOutlet weak var weatherInfoView: UIView!
+  
+  override func viewDidLoad() {
+    super.viewDidLoad()
     
+    // Hide the Weather Info VIew
+    //
+    self.weatherInfoView.alpha = 0
+    
+    // Set Main Model View Delegate
+    mainViewModel.delegate = self
+    // Request For Weather Data
+    mainViewModel.fetchWeatherReport()
+  }
+  
+  override func didReceiveMemoryWarning() {
+    super.didReceiveMemoryWarning()
+    // Dispose of any resources that can be recreated.
+  }
+  
+}
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+extension MainMenuViewController : MainMenuViewModelDelegate{
+  
+  func updateWeatherData() {
+    
+    self.temperatureLbl.text = self.mainViewModel.temperatureText
+    self.dateTimeLbl.text = self.mainViewModel.timeText
+    self.timeZoneLbl.text = self.mainViewModel.timeZoneText
+    self.summeryLbl.text = self.mainViewModel.summaryText
+    self.windLbl.text = self.mainViewModel.windSpeedText
+    self.weatherIcon.image = self.mainViewModel.iconImage
+    
+    self.weatherInfoView.fadeIn()
+  }
 }
