@@ -8,6 +8,8 @@
 
 import UIKit
 
+
+/// Stats Model holds data for both Player One and Player Two stats. This is the base model class used to initialize and access the Game Class as well.
 class Stats {
   var name: String
   var id: String

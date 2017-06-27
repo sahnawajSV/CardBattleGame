@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Contains implementations for Card BG View - This is the view visible before the actual card is played on top of it
 class CardBGView: UIView {
   
   required init?(coder aDecoder: NSCoder) {
@@ -20,7 +21,7 @@ class CardBGView: UIView {
   }
   
   func addUIBehavior() {
-    self.dropShadow(scale: true)
+//    self.dropShadow(scale: true)
   }
 
 }

@@ -19,14 +19,16 @@ extension Game {
   static let maximumInHandCards = 5
 }
 
+
+/// Game Class is used to hold on-going game information. This class is re-initialized on every game start. It holds necessary information to play the game for both Player One and Player Two.
 class Game {
   var inDeck: [Card]
   var inHand: [Card]
   var inPlay: [Card]
-  var battlePoints: String
-  var health: String
+  var battlePoints: Int
+  var health: Int
   
-  init(inDeck: [Card], inHand: [Card], inPlay: [Card], battlePoints: String, health: String) {
+  init(inDeck: [Card], inHand: [Card], inPlay: [Card], battlePoints: Int, health: Int) {
     self.inDeck = inDeck
     self.inHand = inHand
     self.inPlay = inPlay
@@ -34,7 +36,7 @@ class Game {
     self.health = health
   }
   
-  //Draw card based on numToDraw. Add to hand only if less than maxNumber allowed. Else Draw and Destory the card
+  /// Draw card based on numToDraw. Add to hand only if less than maxNumber allowed. Else Draw and Destory the card
   func drawCards(numToDraw : Int) {
     var counter = 0
     while counter < numToDraw, !inDeck.isEmpty {
@@ -46,43 +48,14 @@ class Game {
       counter += 1
     }
   }
-
-//  func drawCards(numToDraw : Int) {
-//    var cardsDrawnIndexes = [Int]()
-//    
-//    for _ in 0..<numToDraw {
-//      let cardIndex = getRandomNumber(maxNumber: inDeck.count)
-//      cardsDrawnIndexes.append(cardIndex)
-//    }
-//    
-//    var newInDeck: [Card] = inDeck
-//    
-//    for index in 0...cardsDrawnIndexes.count-1 {
-//      let cardIndex = cardsDrawnIndexes[index]
-//      let card = inDeck[cardIndex]
-//      if let itemToRemoveIndex = newInDeck.index(where: { (card) -> Bool in
-//        return true
-//      }) {
-//        newInDeck.remove(at: itemToRemoveIndex)
-//      }
-//      
-//      //Append only if there are 4 or less cards in Hand
-//      if inHand.count <= 4 {
-//        inHand.append(card)
-//      }
-//    }
-//    
-//    inDeck = newInDeck
-//  }
   
+  /// Used to play a card from InHand to InPlay
   func playCard(cardIndex: Int) {
-    if let battlePointsValue = Int(battlePoints) {
       let card: Card = inHand[cardIndex]
-      let updatedBattlePoints = battlePointsValue - Int(card.battlepoint)
-      battlePoints = String(describing: updatedBattlePoints)
+      let updatedBattlePoints = battlePoints - Int(card.battlepoint)
+      battlePoints = updatedBattlePoints
       inPlay.append(card)
       inHand.remove(at: cardIndex)
-    }
   }
   
   
@@ -92,13 +65,12 @@ class Game {
     return Int(randomNumber)
   }
   
+  /// Increment Battle Points everytime a turn starts for a player
   func incrementBattlePoints() {
-    if let battlePoints = Int(self.battlePoints) {
       var updatedBattlePoints = battlePoints
       if battlePoints < Game.maximumBattlePoint {
         updatedBattlePoints = battlePoints + Game.battlePointIncrement
       }
-      self.battlePoints = String(updatedBattlePoints)
+      battlePoints = updatedBattlePoints
     }
-  }
 }

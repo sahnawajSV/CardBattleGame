@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Handles all Gameplay logic. Includes Player Initialization and logic for Fetching Model information
 class GameManager {
   //MARK: - Model Handlers
   var playerStats: Stats
@@ -36,8 +37,8 @@ class GameManager {
     let emptyArray: [Card] = []
     
     //TODO: Change it based on deck selected for play before the game starts
-    playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: String(Game.startingBattlePoints), health: String(Game.health)))
-    aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: String(Game.startingBattlePoints), health: String(Game.health)))
+    playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: Game.startingBattlePoints, health: Game.health))
+    aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: Game.startingBattlePoints, health: Game.health))
   }
   
   //Draw initial cards from deck

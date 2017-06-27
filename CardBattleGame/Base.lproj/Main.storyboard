@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3e6-Qr-JeC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vvz-Fk-ms2">
     <device id="ipad12_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -211,38 +212,195 @@
                         <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Neo-Pz-dEQ" userLabel="AIDeck">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Neo-Pz-dEQ" userLabel="AIDeck">
                                 <rect key="frame" x="1162" y="20" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20 / 20 Cards" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znn-71-2WD">
-                                        <rect key="frame" x="4" y="52" width="186" height="150"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 / 20 Cards" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="znn-71-2WD">
+                                        <rect key="frame" x="0.0" y="79.5" width="194" height="95.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
                                         <color key="textColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20977401070000001" green="0.1219047228" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Neo-Pz-dEQ" secondAttribute="height" multiplier="97:127" id="USd-Gd-NiB"/>
+                                    <constraint firstItem="znn-71-2WD" firstAttribute="centerX" secondItem="Neo-Pz-dEQ" secondAttribute="centerX" id="Xwa-d7-FrO"/>
+                                    <constraint firstItem="znn-71-2WD" firstAttribute="width" secondItem="Neo-Pz-dEQ" secondAttribute="width" id="apg-G9-GUr"/>
+                                    <constraint firstItem="znn-71-2WD" firstAttribute="centerY" secondItem="Neo-Pz-dEQ" secondAttribute="centerY" id="qUV-8n-dZX"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fn3-vn-CmY" userLabel="PlayerDeck">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fn3-vn-CmY" userLabel="PlayerDeck">
                                 <rect key="frame" x="1162" y="753" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="20 / 20 Cards" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Px5-Gw-ouJ">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 / 20 Cards" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Px5-Gw-ouJ">
                                         <rect key="frame" x="4" y="52" width="186" height="150"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Px5-Gw-ouJ" secondAttribute="height" multiplier="31:25" id="o5p-Nq-No6"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="40"/>
                                         <color key="textColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
                                 <color key="backgroundColor" red="0.20977401065758927" green="0.1219047228246235" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="Px5-Gw-ouJ" firstAttribute="centerX" secondItem="fn3-vn-CmY" secondAttribute="centerX" id="42E-Z4-3Ef"/>
+                                    <constraint firstItem="Px5-Gw-ouJ" firstAttribute="centerY" secondItem="fn3-vn-CmY" secondAttribute="centerY" id="R7L-dL-Fux"/>
+                                    <constraint firstAttribute="width" secondItem="fn3-vn-CmY" secondAttribute="height" multiplier="97:127" id="cxU-SN-aEO"/>
+                                    <constraint firstItem="Px5-Gw-ouJ" firstAttribute="width" secondItem="fn3-vn-CmY" secondAttribute="height" multiplier="93:127" id="sGc-cr-GId"/>
+                                </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4Z-dk-sZI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 10 Battle Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMa-xw-XgU">
+                                <rect key="frame" x="1187" y="714" width="144" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="144" id="Eyc-7U-FZn"/>
+                                    <constraint firstAttribute="height" constant="20.5" id="bz8-CL-mNh"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 10 Battle Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my2-eg-hkM">
+                                <rect key="frame" x="1187" y="291" width="144" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="51" id="OEf-0u-Ogm"/>
+                                    <constraint firstAttribute="width" constant="144" id="W2U-B2-dxK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="43l-f1-LpM" userLabel="BottomPlay">
+                                <rect key="frame" x="78" y="536" width="1015" height="266"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="43l-f1-LpM" secondAttribute="height" multiplier="145:38" id="AS7-QZ-cqR"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="SO1-pN-hh0" kind="embed" identifier="PlayerOneInPlay" id="756-Gt-vSr"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4n-RG-pdb" userLabel="BottomHand">
+                                <rect key="frame" x="78" y="838" width="1015" height="266"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="G4n-RG-pdb" secondAttribute="height" multiplier="145:38" id="FY1-PS-yLP"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="Tpm-nG-faD" kind="embed" identifier="PlayerOneInHand" id="IZI-K0-eT0"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lYD-3C-4Db" userLabel="TopPlay">
+                                <rect key="frame" x="78" y="216" width="1015" height="266"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lYD-3C-4Db" secondAttribute="height" multiplier="145:38" id="ucq-2m-3Fu"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="Meg-Bm-Gtl" kind="embed" identifier="PlayerTwoInPlay" id="lSw-Am-Zle"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-XC-g1P" userLabel="TopHand">
+                                <rect key="frame" x="78" y="-86" width="1015" height="266"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="N8R-XC-g1P" secondAttribute="height" multiplier="145:38" id="GUq-t8-FoL"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="gnC-mP-iYT" kind="embed" identifier="PlayerTwoInHand" id="Obe-jt-5OX"/>
+                                </connections>
+                            </containerView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2E-ef-aeJ" userLabel="AIView">
+                                <rect key="frame" x="466" y="0.0" width="240" height="93"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SIY-qA-8fi">
+                                        <rect key="frame" x="0.0" y="50" width="240" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="YLO-Lw-dWW"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="puR-kp-Fkz">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UL5-vo-1uQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                                <color key="textColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="0.019934921729999999" blue="0.0038865550540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="UL5-vo-1uQ" firstAttribute="centerX" secondItem="puR-kp-Fkz" secondAttribute="centerX" id="8mA-iV-HBA"/>
+                                            <constraint firstAttribute="height" constant="44" id="BFc-59-gqt"/>
+                                            <constraint firstItem="UL5-vo-1uQ" firstAttribute="height" secondItem="puR-kp-Fkz" secondAttribute="height" id="MZg-dx-L6g"/>
+                                            <constraint firstAttribute="width" secondItem="puR-kp-Fkz" secondAttribute="height" multiplier="60:11" id="gjN-tx-zyP"/>
+                                            <constraint firstItem="UL5-vo-1uQ" firstAttribute="width" secondItem="puR-kp-Fkz" secondAttribute="width" id="mdM-P0-zVp"/>
+                                            <constraint firstItem="UL5-vo-1uQ" firstAttribute="centerY" secondItem="puR-kp-Fkz" secondAttribute="centerY" id="sd2-fw-F8R"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1188665132" green="1" blue="0.46979806280000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="SIY-qA-8fi" firstAttribute="width" secondItem="U2E-ef-aeJ" secondAttribute="height" multiplier="80:31" id="4fI-Yc-Vfi"/>
+                                    <constraint firstAttribute="height" constant="93" id="8Cf-YQ-ykY"/>
+                                    <constraint firstItem="SIY-qA-8fi" firstAttribute="centerX" secondItem="U2E-ef-aeJ" secondAttribute="centerX" id="JNb-L4-Ww2"/>
+                                    <constraint firstAttribute="bottom" secondItem="SIY-qA-8fi" secondAttribute="bottom" constant="7" id="MiN-Pu-myb"/>
+                                    <constraint firstItem="puR-kp-Fkz" firstAttribute="top" secondItem="U2E-ef-aeJ" secondAttribute="top" id="P4k-U7-9qu"/>
+                                    <constraint firstItem="SIY-qA-8fi" firstAttribute="width" secondItem="U2E-ef-aeJ" secondAttribute="width" id="PQG-Y4-kgd"/>
+                                    <constraint firstItem="puR-kp-Fkz" firstAttribute="centerX" secondItem="U2E-ef-aeJ" secondAttribute="centerX" id="dBd-Ui-BRF"/>
+                                    <constraint firstItem="puR-kp-Fkz" firstAttribute="width" secondItem="U2E-ef-aeJ" secondAttribute="width" id="pkr-ww-AaP"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhu-Re-wVF" userLabel="PlayerView">
+                                <rect key="frame" x="465" y="930" width="242" height="94"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jjE-F5-ZQS">
+                                        <rect key="frame" x="0.0" y="44" width="242" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="49.5" id="JeV-vx-3jX"/>
+                                            <constraint firstAttribute="width" secondItem="jjE-F5-ZQS" secondAttribute="height" multiplier="237:49" id="hVB-G9-atx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BM9-uq-YcI">
+                                        <rect key="frame" x="0.0" y="0.0" width="242" height="44"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GDJ-Aq-QGl">
+                                                <rect key="frame" x="93" y="1" width="57" height="42"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
+                                                <color key="textColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="1" green="0.019934921733053224" blue="0.0038865550540087002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="GDJ-Aq-QGl" firstAttribute="centerY" secondItem="BM9-uq-YcI" secondAttribute="centerY" id="7Mb-CU-Ps5"/>
+                                            <constraint firstItem="GDJ-Aq-QGl" firstAttribute="top" secondItem="BM9-uq-YcI" secondAttribute="top" constant="1" id="qC6-t2-ruP"/>
+                                            <constraint firstItem="GDJ-Aq-QGl" firstAttribute="centerX" secondItem="BM9-uq-YcI" secondAttribute="centerX" id="rPm-jD-6zp"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1188665132" green="1" blue="0.46979806280000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="bhu-Re-wVF" secondAttribute="height" multiplier="80:31" id="G4c-h4-G9c"/>
+                                    <constraint firstItem="jjE-F5-ZQS" firstAttribute="centerX" secondItem="bhu-Re-wVF" secondAttribute="centerX" id="YEP-fM-jMl"/>
+                                    <constraint firstAttribute="bottom" secondItem="jjE-F5-ZQS" secondAttribute="bottom" id="ZNZ-Pa-npI"/>
+                                    <constraint firstItem="BM9-uq-YcI" firstAttribute="width" secondItem="bhu-Re-wVF" secondAttribute="width" id="a5q-XX-Cnk"/>
+                                    <constraint firstItem="jjE-F5-ZQS" firstAttribute="top" secondItem="BM9-uq-YcI" secondAttribute="bottom" id="dBS-dO-j8x"/>
+                                    <constraint firstItem="jjE-F5-ZQS" firstAttribute="width" secondItem="bhu-Re-wVF" secondAttribute="width" id="h0M-Kw-XIX"/>
+                                    <constraint firstItem="BM9-uq-YcI" firstAttribute="centerX" secondItem="bhu-Re-wVF" secondAttribute="centerX" id="nbx-Kd-Eej"/>
+                                    <constraint firstItem="BM9-uq-YcI" firstAttribute="top" secondItem="bhu-Re-wVF" secondAttribute="top" id="o02-ZD-Pfi"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4Z-dk-sZI">
                                 <rect key="frame" x="1179" y="474" width="160" height="76"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="1" green="0.61827965122801609" blue="0.054927028705691772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="d4Z-dk-sZI" secondAttribute="height" multiplier="40:19" id="BoD-n8-hkY"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
                                 <state key="normal" title="END TURN">
                                     <color key="titleColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -251,106 +409,39 @@
                                     <action selector="endTurnPressedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="0Wy-Nj-egY"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 / 10 Battle Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XMa-xw-XgU">
-                                <rect key="frame" x="1187" y="684" width="144" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0 / 10 Battle Points" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="my2-eg-hkM">
-                                <rect key="frame" x="1187" y="291" width="144" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="43l-f1-LpM">
-                                <rect key="frame" x="78" y="543" width="1015" height="266"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="SO1-pN-hh0" kind="embed" id="756-Gt-vSr"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G4n-RG-pdb">
-                                <rect key="frame" x="78" y="853" width="1015" height="266"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="Tpm-nG-faD" kind="embed" id="IZI-K0-eT0"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lYD-3C-4Db">
-                                <rect key="frame" x="78" y="216" width="1015" height="266"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="cQ5-sA-pjJ" kind="embed" id="CFb-U9-kIq"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-XC-g1P">
-                                <rect key="frame" x="78" y="-86" width="1015" height="266"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <connections>
-                                    <segue destination="0dn-E3-vQ8" kind="embed" id="hpl-8V-OTZ"/>
-                                </connections>
-                            </containerView>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U2E-ef-aeJ" userLabel="AIView">
-                                <rect key="frame" x="462" y="0.0" width="240" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="SIY-qA-8fi">
-                                        <rect key="frame" x="8" y="59" width="224" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="puR-kp-Fkz">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="UL5-vo-1uQ">
-                                                <rect key="frame" x="8" y="12" width="224" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
-                                                <color key="textColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="0.019934921729999999" blue="0.0038865550540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.1188665132" green="1" blue="0.46979806280000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bhu-Re-wVF" userLabel="PlayerView">
-                                <rect key="frame" x="462" y="931" width="240" height="93"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player Name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="jjE-F5-ZQS">
-                                        <rect key="frame" x="3" y="44" width="237" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BM9-uq-YcI">
-                                        <rect key="frame" x="0.0" y="0.0" width="240" height="44"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="GDJ-Aq-QGl">
-                                                <rect key="frame" x="8" y="12" width="224" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="31"/>
-                                                <color key="textColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <color key="backgroundColor" red="1" green="0.019934921733053224" blue="0.0038865550540087002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    </view>
-                                </subviews>
-                                <color key="backgroundColor" red="0.1188665132" green="1" blue="0.46979806280000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="my2-eg-hkM" secondAttribute="trailing" constant="15" id="06L-8A-n2q"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="XMa-xw-XgU" secondAttribute="trailing" constant="15" id="1ib-2k-1ev"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Neo-Pz-dEQ" secondAttribute="trailing" constant="-10" id="2nr-Nm-wWP"/>
+                            <constraint firstItem="G4n-RG-pdb" firstAttribute="leading" secondItem="ph9-XW-D8F" secondAttribute="leadingMargin" constant="58" id="6xY-J8-LuV"/>
+                            <constraint firstItem="fn3-vn-CmY" firstAttribute="width" secondItem="ph9-XW-D8F" secondAttribute="height" multiplier="97:512" id="9ix-t5-3Ar"/>
+                            <constraint firstItem="N8R-XC-g1P" firstAttribute="top" secondItem="tmB-7h-yoq" secondAttribute="bottom" constant="-106" id="BDT-KS-bSf"/>
+                            <constraint firstItem="U2E-ef-aeJ" firstAttribute="top" secondItem="tmB-7h-yoq" secondAttribute="bottom" constant="-20" id="DfT-8O-xtO"/>
+                            <constraint firstItem="lYD-3C-4Db" firstAttribute="width" secondItem="ph9-XW-D8F" secondAttribute="height" multiplier="1015:1024" id="EXR-qT-Yy6"/>
+                            <constraint firstItem="d4Z-dk-sZI" firstAttribute="width" secondItem="ph9-XW-D8F" secondAttribute="height" multiplier="5:32" id="Hh1-6j-HYp"/>
+                            <constraint firstItem="my2-eg-hkM" firstAttribute="top" secondItem="Neo-Pz-dEQ" secondAttribute="bottom" constant="17" id="I4U-bq-FpT"/>
+                            <constraint firstItem="fn3-vn-CmY" firstAttribute="top" secondItem="XMa-xw-XgU" secondAttribute="bottom" constant="18" id="JNn-nH-nYQ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fn3-vn-CmY" secondAttribute="trailing" constant="-10" id="QQW-GQ-Cus"/>
+                            <constraint firstItem="0kC-az-IMN" firstAttribute="top" secondItem="G4n-RG-pdb" secondAttribute="bottom" constant="-80" id="TBG-ff-LSB"/>
+                            <constraint firstItem="d4Z-dk-sZI" firstAttribute="centerY" secondItem="ph9-XW-D8F" secondAttribute="centerY" id="c9q-am-ZIm"/>
+                            <constraint firstItem="N8R-XC-g1P" firstAttribute="leading" secondItem="ph9-XW-D8F" secondAttribute="leadingMargin" constant="58" id="dlp-OE-yDM"/>
+                            <constraint firstItem="bhu-Re-wVF" firstAttribute="centerX" secondItem="G4n-RG-pdb" secondAttribute="centerX" id="kdR-bw-gqD"/>
+                            <constraint firstItem="Neo-Pz-dEQ" firstAttribute="top" secondItem="tmB-7h-yoq" secondAttribute="bottom" id="kpw-Wf-RRL"/>
+                            <constraint firstItem="N8R-XC-g1P" firstAttribute="width" secondItem="ph9-XW-D8F" secondAttribute="height" multiplier="1015:1024" id="kq2-oX-mUM"/>
+                            <constraint firstItem="G4n-RG-pdb" firstAttribute="width" secondItem="ph9-XW-D8F" secondAttribute="height" multiplier="1015:1024" id="liO-Cg-bTv"/>
+                            <constraint firstItem="G4n-RG-pdb" firstAttribute="top" secondItem="43l-f1-LpM" secondAttribute="bottom" constant="36" id="lqQ-YF-Ezh"/>
+                            <constraint firstItem="43l-f1-LpM" firstAttribute="leading" secondItem="ph9-XW-D8F" secondAttribute="leadingMargin" constant="58" id="qaj-bD-bgc"/>
+                            <constraint firstItem="Neo-Pz-dEQ" firstAttribute="width" secondItem="ph9-XW-D8F" secondAttribute="height" multiplier="97:512" id="r9c-v4-dew"/>
+                            <constraint firstItem="0kC-az-IMN" firstAttribute="top" secondItem="fn3-vn-CmY" secondAttribute="bottom" constant="17" id="rO2-5A-h4J"/>
+                            <constraint firstItem="lYD-3C-4Db" firstAttribute="top" secondItem="N8R-XC-g1P" secondAttribute="bottom" constant="36" id="s2t-QT-9nW"/>
+                            <constraint firstItem="lYD-3C-4Db" firstAttribute="leading" secondItem="ph9-XW-D8F" secondAttribute="leadingMargin" constant="58" id="sQ4-9o-eNs"/>
+                            <constraint firstItem="43l-f1-LpM" firstAttribute="width" secondItem="ph9-XW-D8F" secondAttribute="height" multiplier="1015:1024" id="scL-AJ-1KM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="d4Z-dk-sZI" secondAttribute="trailing" constant="7" id="uvA-lB-zJ4"/>
+                            <constraint firstItem="0kC-az-IMN" firstAttribute="top" secondItem="bhu-Re-wVF" secondAttribute="bottom" id="wXy-pd-0Rd"/>
+                            <constraint firstItem="U2E-ef-aeJ" firstAttribute="centerX" secondItem="N8R-XC-g1P" secondAttribute="centerX" id="y0q-Tz-Shp"/>
+                        </constraints>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
                     <connections>
@@ -709,10 +800,10 @@
             </objects>
             <point key="canvasLocation" x="1307.1742313323571" y="-52.1484375"/>
         </scene>
-        <!--Player One In Hand View Controller-->
+        <!--In Hand View Controller-->
         <scene sceneID="gJe-dh-zTP">
             <objects>
-                <viewController id="Tpm-nG-faD" customClass="PlayerOneInHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Tpm-nG-faD" customClass="InHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hck-77-yZZ"/>
                         <viewControllerLayoutGuide type="bottom" id="wa8-Gp-g2H"/>
@@ -721,53 +812,60 @@
                         <rect key="frame" x="0.0" y="0.0" width="1015" height="266"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4Yz-uZ-L37" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Yz-uZ-L37" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
                                 <rect key="frame" x="6" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnu-IW-IVF">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lnu-IW-IVF">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="4Yz-uZ-L37" secondAttribute="height" multiplier="97:127" id="pJr-EY-fMF"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="siD-J6-DiZ" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="siD-J6-DiZ" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
                                 <rect key="frame" x="208" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2V-ed-TBZ">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2V-ed-TBZ">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="siD-J6-DiZ" secondAttribute="height" multiplier="97:127" id="iHx-J8-sFq"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NE6-Qk-KTa" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NE6-Qk-KTa" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
                                 <rect key="frame" x="411" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYQ-Ho-ylC">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYQ-Ho-ylC">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="NE6-Qk-KTa" secondAttribute="height" multiplier="97:127" id="6y1-fi-9TP"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jqd-rz-zxH" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jqd-rz-zxH" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
                                 <rect key="frame" x="613" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIr-xZ-EU6">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fIr-xZ-EU6">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="jqd-rz-zxH" secondAttribute="height" multiplier="97:127" id="kB6-hg-4Eb"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XTg-S1-3RJ" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XTg-S1-3RJ" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
                                 <rect key="frame" x="815" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5He-EL-kdJ">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
@@ -775,26 +873,46 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XTg-S1-3RJ" secondAttribute="height" multiplier="97:127" id="78i-Lg-cHB"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="leading" secondItem="siD-J6-DiZ" secondAttribute="trailing" constant="9" id="9r1-Xc-SIy"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="bottom" secondItem="siD-J6-DiZ" secondAttribute="bottom" id="Ixv-KQ-AwR"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="top" secondItem="siD-J6-DiZ" secondAttribute="top" id="QXd-Bc-pVf"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="bottom" secondItem="XTg-S1-3RJ" secondAttribute="bottom" id="TkQ-4E-lpd"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="top" secondItem="hck-77-yZZ" secondAttribute="bottom" constant="6" id="TwO-i6-9aM"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="top" secondItem="jqd-rz-zxH" secondAttribute="top" id="XbN-lJ-3Nu"/>
+                            <constraint firstItem="jqd-rz-zxH" firstAttribute="leading" secondItem="NE6-Qk-KTa" secondAttribute="trailing" constant="8" symbolic="YES" id="apa-jN-UHm"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="centerY" secondItem="Iu4-Kn-Agw" secondAttribute="centerY" id="ax6-bB-Xmw"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="top" secondItem="4Yz-uZ-L37" secondAttribute="top" id="g0C-Sk-fq0"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="top" secondItem="XTg-S1-3RJ" secondAttribute="top" id="rIh-FJ-Am9"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="centerX" secondItem="Iu4-Kn-Agw" secondAttribute="centerX" id="syu-mP-3TA"/>
+                            <constraint firstItem="siD-J6-DiZ" firstAttribute="leading" secondItem="4Yz-uZ-L37" secondAttribute="trailing" constant="8" symbolic="YES" id="szV-Vl-0hZ"/>
+                            <constraint firstItem="XTg-S1-3RJ" firstAttribute="leading" secondItem="jqd-rz-zxH" secondAttribute="trailing" constant="8" symbolic="YES" id="yhz-a4-qSf"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="bottom" secondItem="jqd-rz-zxH" secondAttribute="bottom" id="zae-SV-ziA"/>
+                            <constraint firstItem="NE6-Qk-KTa" firstAttribute="bottom" secondItem="4Yz-uZ-L37" secondAttribute="bottom" id="zly-B2-d8l"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="cardFive" destination="5He-EL-kdJ" id="4zz-Bb-Unh"/>
-                        <outlet property="cardFour" destination="fIr-xZ-EU6" id="XkO-kH-WMg"/>
-                        <outlet property="cardOne" destination="Lnu-IW-IVF" id="oJG-LH-HVe"/>
-                        <outlet property="cardThree" destination="cYQ-Ho-ylC" id="S1x-Pn-vKV"/>
-                        <outlet property="cardTwo" destination="J2V-ed-TBZ" id="FzV-6G-Jht"/>
+                        <outlet property="cardFive" destination="XTg-S1-3RJ" id="F8S-vQ-dGj"/>
+                        <outlet property="cardFour" destination="jqd-rz-zxH" id="zNO-IH-OTh"/>
+                        <outlet property="cardOne" destination="4Yz-uZ-L37" id="9tF-8w-w6T"/>
+                        <outlet property="cardThree" destination="NE6-Qk-KTa" id="ZIw-Dq-Yh3"/>
+                        <outlet property="cardTwo" destination="siD-J6-DiZ" id="CfR-P6-Raf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S1x-sg-Bem" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1700" y="445"/>
         </scene>
-        <!--Player One In Play View Controller-->
+        <!--In Play View Controller-->
         <scene sceneID="dk8-dD-T98">
             <objects>
-                <viewController id="SO1-pN-hh0" customClass="PlayerOneInPlayViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SO1-pN-hh0" customClass="InPlayViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EmM-NA-Zq0"/>
                         <viewControllerLayoutGuide type="bottom" id="EVA-x9-001"/>
@@ -803,239 +921,350 @@
                         <rect key="frame" x="0.0" y="0.0" width="1015" height="266"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nCT-7M-Ri1" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nCT-7M-Ri1" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
                                 <rect key="frame" x="6" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVe-pB-xyX">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVe-pB-xyX">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="Rzp-ne-DsQ"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="nCT-7M-Ri1" secondAttribute="height" multiplier="97:127" id="D8D-rx-Vsr"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZUn-V0-MY8" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZUn-V0-MY8" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
                                 <rect key="frame" x="208" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5B-kS-uvV">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5B-kS-uvV">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="mpg-Fw-PGG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ZUn-V0-MY8" secondAttribute="height" multiplier="97:127" id="KJJ-VR-3z6"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VDt-0e-mw5" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VDt-0e-mw5" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
                                 <rect key="frame" x="411" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhW-Io-wdk">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhW-Io-wdk">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="eyJ-g9-pvD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="VDt-0e-mw5" secondAttribute="height" multiplier="97:127" id="M5U-Ih-4J6"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="omb-M8-6WX" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="omb-M8-6WX" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
                                 <rect key="frame" x="613" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ve1-WC-UH8">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ve1-WC-UH8">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="Ydg-cH-NRC"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="omb-M8-6WX" secondAttribute="height" multiplier="97:127" id="bQJ-6H-aFB"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ghl-e2-snX" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ghl-e2-snX" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
                                 <rect key="frame" x="815" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vho-if-kVG">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="EHV-we-Bkm"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ghl-e2-snX" secondAttribute="height" multiplier="97:127" id="gNU-iE-uGe"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ghl-e2-snX" firstAttribute="leading" secondItem="omb-M8-6WX" secondAttribute="trailing" constant="8" symbolic="YES" id="17N-4B-3MB"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="top" secondItem="ghl-e2-snX" secondAttribute="top" id="F3N-Er-3Pi"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="bottom" secondItem="omb-M8-6WX" secondAttribute="bottom" id="FRj-rq-N2N"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="leading" secondItem="ZUn-V0-MY8" secondAttribute="trailing" constant="9" id="J9G-bq-MfK"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="centerX" secondItem="pxx-ua-3Lx" secondAttribute="centerX" id="Q6G-QS-hUy"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="centerY" secondItem="pxx-ua-3Lx" secondAttribute="centerY" id="Rec-RM-MI4"/>
+                            <constraint firstItem="ZUn-V0-MY8" firstAttribute="leading" secondItem="nCT-7M-Ri1" secondAttribute="trailing" constant="8" symbolic="YES" id="TDP-4V-zkz"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="top" secondItem="omb-M8-6WX" secondAttribute="top" id="axR-b8-rPc"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="bottom" secondItem="ghl-e2-snX" secondAttribute="bottom" id="bgW-aq-pTe"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="bottom" secondItem="nCT-7M-Ri1" secondAttribute="bottom" id="ckK-OK-zv1"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="top" secondItem="EmM-NA-Zq0" secondAttribute="bottom" constant="6" id="g1B-3h-onV"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="top" secondItem="nCT-7M-Ri1" secondAttribute="top" id="hl0-ur-MJ6"/>
+                            <constraint firstItem="omb-M8-6WX" firstAttribute="leading" secondItem="VDt-0e-mw5" secondAttribute="trailing" constant="8" symbolic="YES" id="qmd-U1-M5o"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="top" secondItem="ZUn-V0-MY8" secondAttribute="top" id="w21-ij-yc4"/>
+                            <constraint firstItem="VDt-0e-mw5" firstAttribute="bottom" secondItem="ZUn-V0-MY8" secondAttribute="bottom" id="xxd-he-UD8"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="cardFive" destination="vho-if-kVG" id="eDj-a1-mgu"/>
-                        <outlet property="cardFour" destination="Ve1-WC-UH8" id="Ogg-B2-7D1"/>
-                        <outlet property="cardOne" destination="jVe-pB-xyX" id="1bP-uR-GeN"/>
-                        <outlet property="cardThree" destination="IhW-Io-wdk" id="4mn-J7-vHO"/>
-                        <outlet property="cardTwo" destination="U5B-kS-uvV" id="Ph6-Je-Rab"/>
+                        <outlet property="cardFive" destination="ghl-e2-snX" id="HsK-td-nex"/>
+                        <outlet property="cardFour" destination="omb-M8-6WX" id="3wI-Z3-cMM"/>
+                        <outlet property="cardOne" destination="nCT-7M-Ri1" id="g6r-Cp-VxH"/>
+                        <outlet property="cardThree" destination="VDt-0e-mw5" id="cox-qF-gHp"/>
+                        <outlet property="cardTwo" destination="ZUn-V0-MY8" id="72J-La-NYj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oOW-Of-qFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1700" y="664"/>
         </scene>
-        <!--Player Two In Play View Controller-->
-        <scene sceneID="k8S-vN-LE0">
+        <!--In Hand View Controller-->
+        <scene sceneID="EKX-X5-1iH">
             <objects>
-                <viewController id="cQ5-sA-pjJ" customClass="PlayerTwoInPlayViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="gnC-mP-iYT" customClass="InHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="mBE-rE-VI4"/>
-                        <viewControllerLayoutGuide type="bottom" id="5Gc-YD-KAY"/>
+                        <viewControllerLayoutGuide type="top" id="sp4-1D-LOE"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ur7-oz-4m4"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Meo-GO-ORx">
+                    <view key="view" contentMode="scaleToFill" id="Unl-ve-Sre">
                         <rect key="frame" x="0.0" y="0.0" width="1015" height="266"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e3G-u9-pnf" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="6" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XWW-KB-Y7O" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="5.5" y="6" width="194" height="254"/>
                                 <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hhY-Tc-YiT">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xbf-aQ-eU3">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XWW-KB-Y7O" secondAttribute="height" multiplier="97:127" id="o0F-X3-gi8"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TjY-XI-OHM" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="208" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7bG-A6-4BI" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="207.5" y="6" width="194" height="254"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cys-Oe-Mnd">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LKZ-Gi-U35">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="7bG-A6-4BI" secondAttribute="height" multiplier="97:127" id="9BQ-0b-SDq"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bNK-TJ-rPT" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="411" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1HQ-no-g1I" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="410.5" y="6" width="194" height="254"/>
                                 <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8U9-Yg-hKW">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZKL-jg-NQv">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="1HQ-no-g1I" secondAttribute="height" multiplier="97:127" id="J0t-6S-wKW"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yS7-3j-SQq" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="613" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R91-4e-IKb" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="612.5" y="6" width="194" height="254"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BnE-12-0oy">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGg-69-Wdp">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="R91-4e-IKb" secondAttribute="height" multiplier="97:127" id="YN5-RC-fLg"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fvD-5C-6i8" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="815" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JLc-zV-N2j" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="814.5" y="6" width="194" height="254"/>
                                 <subviews>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vSc-GI-oWk">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zmk-fb-YgG">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="JLc-zV-N2j" secondAttribute="height" multiplier="97:127" id="KXI-yu-aKA"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="top" secondItem="7bG-A6-4BI" secondAttribute="top" id="22b-kZ-Kve"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="top" secondItem="JLc-zV-N2j" secondAttribute="top" id="5kh-d4-5rD"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="centerY" secondItem="Unl-ve-Sre" secondAttribute="centerY" id="BFe-1M-34b"/>
+                            <constraint firstItem="JLc-zV-N2j" firstAttribute="leading" secondItem="R91-4e-IKb" secondAttribute="trailing" constant="8" symbolic="YES" id="Q7l-aM-Wz4"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="bottom" secondItem="R91-4e-IKb" secondAttribute="bottom" id="RI9-AX-slZ"/>
+                            <constraint firstItem="7bG-A6-4BI" firstAttribute="leading" secondItem="XWW-KB-Y7O" secondAttribute="trailing" constant="8" symbolic="YES" id="UYZ-71-QpN"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="leading" secondItem="7bG-A6-4BI" secondAttribute="trailing" constant="9" id="Y2f-2h-QhT"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="top" secondItem="sp4-1D-LOE" secondAttribute="bottom" constant="6" id="Z4N-8k-5La"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="bottom" secondItem="7bG-A6-4BI" secondAttribute="bottom" id="Z4f-JM-ry7"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="bottom" secondItem="XWW-KB-Y7O" secondAttribute="bottom" id="bsx-Qh-htV"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="top" secondItem="R91-4e-IKb" secondAttribute="top" id="djX-Cz-c0P"/>
+                            <constraint firstItem="R91-4e-IKb" firstAttribute="leading" secondItem="1HQ-no-g1I" secondAttribute="trailing" constant="8" symbolic="YES" id="gQ8-Zd-luk"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="bottom" secondItem="JLc-zV-N2j" secondAttribute="bottom" id="kHP-OT-pnw"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="centerX" secondItem="Unl-ve-Sre" secondAttribute="centerX" id="kdK-cA-GXj"/>
+                            <constraint firstItem="1HQ-no-g1I" firstAttribute="top" secondItem="XWW-KB-Y7O" secondAttribute="top" id="ukx-NA-c0o"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="cardFive" destination="vSc-GI-oWk" id="svw-es-306"/>
-                        <outlet property="cardFour" destination="BnE-12-0oy" id="GdQ-cQ-Wk4"/>
-                        <outlet property="cardOne" destination="hhY-Tc-YiT" id="j6F-Ex-oVi"/>
-                        <outlet property="cardThree" destination="8U9-Yg-hKW" id="EbK-F6-4pK"/>
-                        <outlet property="cardTwo" destination="cys-Oe-Mnd" id="5Xw-0W-d5H"/>
+                        <outlet property="cardFive" destination="JLc-zV-N2j" id="wpI-V2-eYy"/>
+                        <outlet property="cardFour" destination="R91-4e-IKb" id="wZf-Gi-0vy"/>
+                        <outlet property="cardOne" destination="XWW-KB-Y7O" id="bSy-2u-a95"/>
+                        <outlet property="cardThree" destination="1HQ-no-g1I" id="t6H-To-keY"/>
+                        <outlet property="cardTwo" destination="7bG-A6-4BI" id="KLB-45-0Yo"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="XsL-My-YHr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bRo-nH-HQ8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2177" y="664"/>
+            <point key="canvasLocation" x="2191" y="445"/>
         </scene>
-        <!--Player Two In Hand View Controller-->
-        <scene sceneID="7SW-FL-aka">
+        <!--In Play View Controller-->
+        <scene sceneID="r8S-xM-geR">
             <objects>
-                <viewController id="0dn-E3-vQ8" customClass="PlayerTwoInHandViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Meg-Bm-Gtl" customClass="InPlayViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="diw-s9-acZ"/>
-                        <viewControllerLayoutGuide type="bottom" id="Zys-vv-K1m"/>
+                        <viewControllerLayoutGuide type="top" id="wyI-Jk-aes"/>
+                        <viewControllerLayoutGuide type="bottom" id="cMK-KP-FQz"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="R5y-fr-itY">
+                    <view key="view" contentMode="scaleToFill" id="CNV-Lx-Mq9">
                         <rect key="frame" x="0.0" y="0.0" width="1015" height="266"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nVo-UL-C15" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="6" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ewD-7W-sJN" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="5.5" y="6" width="194" height="254"/>
                                 <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nvH-6c-kUS">
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qah-4V-2K5">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="Meg-Bm-Gtl" eventType="touchUpInside" id="95Y-0g-jmD"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ewD-7W-sJN" secondAttribute="height" multiplier="97:127" id="L0t-dZ-S4k"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MYP-jq-9kZ" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="208" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ucR-7R-5Ed" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="207.5" y="6" width="194" height="254"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9UV-nW-bb8">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQo-Mf-lbR">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="Meg-Bm-Gtl" eventType="touchUpInside" id="oNf-JW-4U2"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ucR-7R-5Ed" secondAttribute="height" multiplier="97:127" id="kBX-c3-6Mb"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s0H-fP-1AM" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="411" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JRQ-Uh-wg8" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="410.5" y="6" width="194" height="254"/>
                                 <subviews>
-                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1H-MA-FLB">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hv-XQ-N5b">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="Meg-Bm-Gtl" eventType="touchUpInside" id="b6R-3x-sMY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="JRQ-Uh-wg8" secondAttribute="height" multiplier="97:127" id="j9T-cd-FhD"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="R5e-sN-goI" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="613" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zCq-dA-riY" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="612.5" y="6" width="194" height="254"/>
                                 <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Og-d0-ccW">
+                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGh-cO-d39">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="Meg-Bm-Gtl" eventType="touchUpInside" id="07f-tg-7vG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="zCq-dA-riY" secondAttribute="height" multiplier="97:127" id="Ahf-O4-JJq"/>
+                                </constraints>
                             </view>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f9l-iJ-B25" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="815" y="6" width="194" height="254"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hgM-qY-bCL" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="814.5" y="6" width="194" height="254"/>
                                 <subviews>
-                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iig-6b-dc5">
+                                    <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHh-JN-gFY">
                                         <rect key="frame" x="0.0" y="0.0" width="194" height="254"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="moveCardToTargetWithSender:" destination="Meg-Bm-Gtl" eventType="touchUpInside" id="g9L-0K-1NU"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.88066432049999999" blue="0.128397547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hgM-qY-bCL" secondAttribute="height" multiplier="97:127" id="f8F-UK-sOG"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="centerX" secondItem="CNV-Lx-Mq9" secondAttribute="centerX" id="0wo-QA-FyG"/>
+                            <constraint firstItem="ucR-7R-5Ed" firstAttribute="leading" secondItem="ewD-7W-sJN" secondAttribute="trailing" constant="8" symbolic="YES" id="2S6-VJ-Z0l"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="top" secondItem="zCq-dA-riY" secondAttribute="top" id="44G-Q5-0uI"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="bottom" secondItem="ewD-7W-sJN" secondAttribute="bottom" id="6IS-rF-SRr"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="bottom" secondItem="ucR-7R-5Ed" secondAttribute="bottom" id="Gw4-li-NSb"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="leading" secondItem="ucR-7R-5Ed" secondAttribute="trailing" constant="9" id="L9L-My-fUx"/>
+                            <constraint firstItem="zCq-dA-riY" firstAttribute="leading" secondItem="JRQ-Uh-wg8" secondAttribute="trailing" constant="8" symbolic="YES" id="O8R-7W-ovC"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="top" secondItem="ucR-7R-5Ed" secondAttribute="top" id="Pzy-iq-Cxe"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="bottom" secondItem="hgM-qY-bCL" secondAttribute="bottom" id="YkH-BL-bOz"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="centerY" secondItem="CNV-Lx-Mq9" secondAttribute="centerY" id="Ysi-uj-9nS"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="top" secondItem="hgM-qY-bCL" secondAttribute="top" id="fkh-R0-2eP"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="top" secondItem="ewD-7W-sJN" secondAttribute="top" id="kZi-hY-jif"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="bottom" secondItem="zCq-dA-riY" secondAttribute="bottom" id="r72-xN-tYh"/>
+                            <constraint firstItem="JRQ-Uh-wg8" firstAttribute="top" secondItem="wyI-Jk-aes" secondAttribute="bottom" constant="6" id="xhi-sX-yZ1"/>
+                            <constraint firstItem="hgM-qY-bCL" firstAttribute="leading" secondItem="zCq-dA-riY" secondAttribute="trailing" constant="8" symbolic="YES" id="y9p-bT-foL"/>
+                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="cardFive" destination="Iig-6b-dc5" id="bhR-W8-OM0"/>
-                        <outlet property="cardFour" destination="3Og-d0-ccW" id="N29-dA-6Sn"/>
-                        <outlet property="cardOne" destination="nvH-6c-kUS" id="f6K-hm-RD3"/>
-                        <outlet property="cardThree" destination="c1H-MA-FLB" id="WpW-MM-dBs"/>
-                        <outlet property="cardTwo" destination="9UV-nW-bb8" id="2xP-3I-nig"/>
+                        <outlet property="cardFive" destination="hgM-qY-bCL" id="BrX-Uc-IvB"/>
+                        <outlet property="cardFour" destination="zCq-dA-riY" id="mqS-Pk-pxc"/>
+                        <outlet property="cardOne" destination="ewD-7W-sJN" id="jC9-bG-d1G"/>
+                        <outlet property="cardThree" destination="JRQ-Uh-wg8" id="FRV-6v-xva"/>
+                        <outlet property="cardTwo" destination="ucR-7R-5Ed" id="O1m-L0-ZhU"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gqz-2i-kNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6iI-9m-go3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2177" y="445"/>
+            <point key="canvasLocation" x="2191" y="664"/>
         </scene>
     </scenes>
 </document>

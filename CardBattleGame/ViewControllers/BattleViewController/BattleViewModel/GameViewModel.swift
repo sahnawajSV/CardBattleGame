@@ -13,10 +13,11 @@ protocol GameProtocol {
 }
 
 protocol GameDelegate: class {
-  func reloadAllViews(_ gameDelegate: GameDelegate)
-  func createInHandViews(_ gameDelegate: GameDelegate)
+  func reloadAllViews(_ gameProtocol: GameProtocol)
+  func createInHandViews(_ gameProtocol: GameProtocol)
 }
 
+/// This is a viewModel and a Formatting class. Fetches the required information from the GameManager class to provide easy to use variables to the ViewController to update the UI. Also handles all Delegate calls for the ViewController
 class GameViewModel: GameProtocol {
   
   weak var delegate: GameDelegate?
@@ -76,9 +77,9 @@ class GameViewModel: GameProtocol {
   //MARK: - Model Updates Received
   func updateData() {
     playerName = gManager.playerStats.name
-    playerHealth = gManager.playerStats.gameStats.health
+    playerHealth = String(gManager.playerStats.gameStats.health)
     aiName = gManager.aiStats.name
-    aiHealth = gManager.aiStats.gameStats.health
+    aiHealth = String(gManager.aiStats.gameStats.health)
     
     playerNumOfCardsInDeckText = "\(String(describing: gManager.playerStats.gameStats.inDeck.count)) / \(Game.maximumCardPerDeck) Cards"
     aiNumOfCardsInDeckText = "\(String(describing: gManager.aiStats.gameStats.inDeck.count)) / \(Game.maximumCardPerDeck) Cards"
@@ -87,8 +88,8 @@ class GameViewModel: GameProtocol {
     
     playerNumOfCardsInDeck = gManager.playerStats.gameStats.inDeck.count
     aiNumOfCardsInDeck = gManager.aiStats.gameStats.inDeck.count
-    playerTotalBattlePoints = Int(gManager.playerStats.gameStats.battlePoints)!
-    aiTotalBattlePoints = Int(gManager.aiStats.gameStats.battlePoints)!
+    playerTotalBattlePoints = gManager.playerStats.gameStats.battlePoints
+    aiTotalBattlePoints = gManager.aiStats.gameStats.battlePoints
     
     playerInHandCards = gManager.playerStats.gameStats.inHand
     playerInDeckCards = gManager.playerStats.gameStats.inDeck
@@ -102,8 +103,8 @@ class GameViewModel: GameProtocol {
   //MARK: - Delegates
   func tellDelegateToReloadViewData() {
     //Pass the message to ViewController to display required Data
-    delegate?.reloadAllViews(delegate!)
-    delegate?.createInHandViews(delegate!)
+    delegate?.reloadAllViews(self)
+    delegate?.createInHandViews(self)
   }
 
 }

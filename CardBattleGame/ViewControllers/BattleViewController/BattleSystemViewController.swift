@@ -8,9 +8,10 @@
 
 import UIKit
 
+/// Handles the BattleSystemViewController implementation. Used to update the Views and Labels. Handle Card Play and Toggle Turn interactions / actions.
 class BattleSystemViewController: UIViewController, GameDelegate {
   //MARK: - Internal Variables
-  var gViewModel: GameViewModel = GameViewModel()
+  private var gViewModel: GameViewModel = GameViewModel()
   
   //MARK: - View Collection
   var allPlayerHandCards: [CardView] = []
@@ -36,17 +37,10 @@ class BattleSystemViewController: UIViewController, GameDelegate {
   @IBOutlet private weak var aiView: UIView!
   @IBOutlet private weak var aiDeckView: UIView!
   
-  //InHand Player Cards
-  var plOneInHandController : PlayerOneInHandViewController = PlayerOneInHandViewController()
-  
-  //InHand AI Cards
-  var plTwoInHandController : PlayerTwoInHandViewController = PlayerTwoInHandViewController()
-  
-  //InPlay Player Cards
-  var plOneInPlayController : PlayerOneInPlayViewController = PlayerOneInPlayViewController()
-  
-  //InPlay AI Cards
-  var plTwoInPlayController : PlayerTwoInPlayViewController = PlayerTwoInPlayViewController()
+  var playerOneInHandController : InHandViewController!
+  var playerOnePlayController : InPlayViewController!
+  var playerTwoInHandController : InHandViewController!
+  var playerTwoPlayController : InPlayViewController!
   
   //MARK: - Gameplay Variables
   //To be used to find the card in the hand that is currently held down by Touch Began and Moved
@@ -61,90 +55,66 @@ class BattleSystemViewController: UIViewController, GameDelegate {
     super.viewDidLoad()
     
     //Assign View Model and Call Initializers
-    gViewModel.delegate = self;
+    gViewModel.delegate = self
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(createInPlayCardsForPlayerOne(withNotification:)), name: NSNotification.Name(rawValue: "MoveToPlayerOneTargetPosition"), object: nil)
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
     gViewModel.initializeTheGame()
   }
   
+  override func viewDidLayoutSubviews() {
+    self.view.translatesAutoresizingMaskIntoConstraints = true
+  }
+  
   //MARK: - Create In Hand Cards
-  //TODO: Write better logic
-  func createInHandCards()
-  {
+  func createInHandCards() {
     if (allPlayerHandCards.count) > 0 {
-      for (index,_) in (allPlayerHandCards.enumerated()) {
-        let cardView = allPlayerHandCards[index]
-        cardView.removeFromSuperview()
+      for (_,element) in (allPlayerHandCards.enumerated()) {
+        element.removeFromSuperview()
       }
     }
     
     if (allAIHandCards.count) > 0 {
-      for (index,_) in (allAIHandCards.enumerated()) {
-        let cardView = allAIHandCards[index]
-        cardView.removeFromSuperview()
+      for (_,element) in (allAIHandCards.enumerated()) {
+        element.removeFromSuperview()
       }
     }
     
     allPlayerHandCards.removeAll()
     allAIHandCards.removeAll()
     
-    let playerCards = [ih_player_cardOne, ih_player_cardTwo, ih_player_cardThree, ih_player_cardFour, ih_player_cardFive]
-    let aiCards = [ih_ai_cardOne, ih_ai_cardTwo, ih_ai_cardThree, ih_ai_cardFour, ih_ai_cardFive]
-    
-    for (index,element) in playerCards.enumerated() {
+    allPlayerHandCards = playerOneInHandController.createCard(playerInHandCards: gViewModel.playerInHandCards)
+    allAIHandCards = playerTwoInHandController.createCard(playerInHandCards: gViewModel.aiInHandCards)
+  }
+  
+  //MARK: - Create In Hand Cards
+  func createInPlayCardsForPlayerOne(withNotification notification : NSNotification) {
+    if playerOneInHandController.selectedCardIndex != 99 {
+      let success: Bool = playerOnePlayController.updateInHandData(cardView: allPlayerHandCards[playerOneInHandController.selectedCardIndex])
       
-      guard let element = element else {
-        continue
+      if success {
+        gViewModel.playCardToGameArea(cardIndex: playerOneInHandController.selectedCardIndex, forPlayer: true)
+        allPlayerPlayCards.append(allPlayerHandCards[playerOneInHandController.selectedCardIndex])
+        allPlayerHandCards.remove(at: playerOneInHandController.selectedCardIndex)
       }
       
-      var frame: CGRect = CGRect()
-      var card: Card?
-      var cardView: CardView = CardView(frame: frame)
-      
-      if gViewModel.playerInHandCards.count > index {
-        frame = element.frame
-        card = gViewModel.playerInHandCards[index]
-        cardView = CardView(frame: frame)
-        
-        guard let card = card else {
-          continue
-        }
-        
-        addCard(cardView: cardView, card: card)
-      }
-      
-      if gViewModel.aiInHandCards.count > index {
-        frame = (aiCards[index]?.frame)!
-        card = gViewModel.aiInHandCards[index]
-        cardView = CardView(frame: frame)
-        
-        guard let card = card else {
-          continue
-        }
-        
-        addCard(cardView: cardView, card: card)
-      }
+      //Reset
+      playerOneInHandController.selectedCardIndex = 99
     }
   }
   
-  func addCard(cardView: CardView, card: Card)
-  {
-    cardView.bpText.text = String(card.battlepoint)
-    cardView.attackText.text = String(card.attack)
-    cardView.healthText.text = String(card.health)
-    cardView.nameText.text = card.name
-    
-    self.view.addSubview(cardView)
-    allPlayerHandCards.append(cardView)
-    self.view.bringSubview(toFront: playerView)
-  }
-
   
   //MARK: - Action Methods
   @IBAction private func endTurnPressed(sender: UIButton) {
     gViewModel.toggleTurn()
   }
+
   
   //MARK: - Delegates
-  func reloadAllViews(_ gameDelegate: GameDelegate) {
+  func reloadAllViews(_ gameProtocol: GameProtocol) {
     playerInDeckText.text = gViewModel.playerNumOfCardsInDeckText
     aiInDeckText.text = gViewModel.aiNumOfCardsInDeckText
     
@@ -158,7 +128,38 @@ class BattleSystemViewController: UIViewController, GameDelegate {
     aiHealthText.text = gViewModel.aiHealth
   }
   
-  func createInHandViews(_ gameDelegate: GameDelegate) {
+  func createInHandViews(_ gameProtocol: GameProtocol) {
     createInHandCards()
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let identifier = segue.identifier else {
+      return
+    }
+    
+    switch identifier {
+    case "PlayerOneInHand":
+      if let handController = segue.destination as? InHandViewController {
+        self.playerOneInHandController = handController
+      }
+      break
+    case "PlayerOneInPlay":
+      if let playController = segue.destination as? InPlayViewController {
+        self.playerOnePlayController = playController
+      }
+      break
+    case "PlayerTwoInHand":
+      if let handController = segue.destination as? InHandViewController {
+        self.playerTwoInHandController = handController
+      }
+      break
+    case "PlayerTwoInPlay":
+      if let playController = segue.destination as? InPlayViewController {
+        self.playerTwoPlayController = playController
+      }
+      break
+    default:
+      break
+    }
   }
 }
