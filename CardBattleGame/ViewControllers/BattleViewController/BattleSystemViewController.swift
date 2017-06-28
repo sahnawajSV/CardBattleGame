@@ -93,16 +93,18 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   //MARK: - Create In Hand Cards
   func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController) {
     if playerOneInHandController.selectedCardIndex != 99 {
-      let success: Bool = playerOnePlayController.updateInHandData(cardView: allPlayerHandCards[playerOneInHandController.selectedCardIndex])
-      
-      if success {
-        gViewModel.playCardToGameArea(cardIndex: playerOneInHandController.selectedCardIndex, forPlayer: true)
-        allPlayerPlayCards.append(allPlayerHandCards[playerOneInHandController.selectedCardIndex])
-        allPlayerHandCards.remove(at: playerOneInHandController.selectedCardIndex)
+      let canPlay = gViewModel.playCardToGameArea(cardIndex: playerOneInHandController.selectedCardIndex, forPlayer: true)
+      if canPlay {
+        let success: Bool = playerOnePlayController.updateInHandData(cardView: allPlayerHandCards[playerOneInHandController.selectedCardIndex])
+        
+        if success {
+          allPlayerPlayCards.append(allPlayerHandCards[playerOneInHandController.selectedCardIndex])
+          allPlayerHandCards.remove(at: playerOneInHandController.selectedCardIndex)
+        }
       }
-      
       //Reset
       playerOneInHandController.selectedCardIndex = 99
+      createInHandCards()
     }
   }
   
@@ -113,7 +115,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   }
 
   
-  //MARK: - Delegates
+  //MARK: - Delegates - Create an Extension for the Delegate Methods
   func reloadAllViews(_ gameProtocol: GameProtocol) {
     playerInDeckText.text = gViewModel.playerNumOfCardsInDeckText
     aiInDeckText.text = gViewModel.aiNumOfCardsInDeckText
