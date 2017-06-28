@@ -8,12 +8,7 @@
 
 import UIKit
 
-class Common: NSObject {
-  
-  static let shared = Common()
-  
   func getRandomNumber(maxNumber: Int) -> Int {
     let randomNumber = arc4random_uniform(UInt32(maxNumber))
     return Int(randomNumber)
   }
-}
