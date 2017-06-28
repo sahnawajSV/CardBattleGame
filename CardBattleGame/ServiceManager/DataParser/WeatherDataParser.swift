@@ -24,8 +24,11 @@ class WeatherDataParser {
       throw ErrorType.faildParseWeatherData
     }
     let jsonDictionary: [String: Any] = decoder.decodeJSON(JSONData)
-    
-    return WeatherData(dictionary: jsonDictionary)!
+    if let weatherData = WeatherData(dictionary: jsonDictionary) {
+      return weatherData
+    } else {
+      throw ErrorType.faildParseWeatherData
+    }
   }
   
   

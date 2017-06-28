@@ -9,12 +9,12 @@
 import UIKit
 
 class WeatherData {
-  var timeZone: String
-  var time: String
-  var windSpeed: String
-  var temperature: String
-  var summary: String
-  var icon: String
+  let timeZone: String
+  let time: String
+  let windSpeed: String
+  let temperature: String
+  let summary: String
+  let icon: String
  
   init?(dictionary: [String: Any]) {
     guard let timeZone = dictionary["timeZone"] as? String,

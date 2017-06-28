@@ -89,6 +89,7 @@ class MainMenuViewModel {
         self.timeText = response.time
         self.windSpeedText = response.windSpeed
         self.temperatureText = response.temperature
+        self.summaryText = response.summary
         self.iconImage = self.imageForWeatherIcon(withName: response.icon)
         self.delegate?.updateWeatherData()
       }
