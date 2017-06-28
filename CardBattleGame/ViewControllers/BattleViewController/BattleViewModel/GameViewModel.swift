@@ -69,9 +69,15 @@ class GameViewModel: GameProtocol {
     }
   }
   
-  func playCardToGameArea(cardIndex: Int, forPlayer: Bool) {
-    gManager.playCardToGameArea(cardIndex: cardIndex, forPlayer: forPlayer)
-    updateData()
+  func playCardToGameArea(cardIndex: Int, forPlayer: Bool) -> Bool {
+    let success = gManager.playCardToGameArea(cardIndex: cardIndex, forPlayer: forPlayer)
+    if success {
+      updateData()
+      tellDelegateToReloadViewData()
+      return true
+    } else {
+      return false
+    }
   }
   
   //MARK: - Model Updates Received
