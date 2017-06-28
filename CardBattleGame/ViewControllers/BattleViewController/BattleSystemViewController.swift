@@ -91,7 +91,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   }
   
   //MARK: - Create In Hand Cards
-  func createInPlayCardsForPlayerOne() {
+  func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController) {
     if playerOneInHandController.selectedCardIndex != 99 {
       let success: Bool = playerOnePlayController.updateInHandData(cardView: allPlayerHandCards[playerOneInHandController.selectedCardIndex])
       

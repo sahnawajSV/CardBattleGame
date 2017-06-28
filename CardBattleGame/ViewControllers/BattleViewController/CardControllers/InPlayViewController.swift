@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol InPlayViewControllerDelegate: class {
-  func createInPlayCardsForPlayerOne()
+  func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController)
 }
 
 
@@ -81,6 +81,6 @@ class InPlayViewController: UIViewController {
   
   //Delegate Notifications
   func tellDelegateToMoveCard() {
-    delegate?.createInPlayCardsForPlayerOne()
+    delegate?.inPlayViewControllerDidChangeSelectedTargetPosition(self)
   }
 }
