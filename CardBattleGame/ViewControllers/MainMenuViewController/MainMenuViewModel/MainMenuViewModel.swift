@@ -29,7 +29,7 @@ class MainMenuViewModel {
   private var latitude = LocationManager.defaultLatitude
   private var longitude = LocationManager.defaultLongitude
   
-  private var locationManager = LocationManager.sharedInstance
+  private let locationManager = LocationManager.sharedInstance
   private let connectionManager = ConnectionManager.sharedInstance
   
   weak var delegate : MainMenuViewModelDelegate?
