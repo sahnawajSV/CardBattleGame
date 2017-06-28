@@ -59,13 +59,6 @@ class Game {
       inHand.remove(at: cardIndex)
   }
   
-  
-  //Mark: -- Logic Handlers
-  func getRandomNumber(maxNumber: Int) -> Int {
-    let randomNumber = arc4random_uniform(UInt32(maxNumber))
-    return Int(randomNumber)
-  }
-  
   func incrementTurn() {
     turnNumber += 1
   }
