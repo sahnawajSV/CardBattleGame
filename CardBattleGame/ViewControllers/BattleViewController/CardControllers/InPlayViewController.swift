@@ -8,7 +8,15 @@
 
 import UIKit
 
+
+protocol InPlayViewControllerDelegate: class {
+  func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController)
+}
+
+
 class InPlayViewController: UIViewController {
+  
+  weak var delegate: InPlayViewControllerDelegate?
 
   @IBOutlet private weak var cardOne: UIView!
   @IBOutlet private weak var cardTwo: UIView!
@@ -64,10 +72,15 @@ class InPlayViewController: UIViewController {
   //Action Methods
   @IBAction private func moveCardToTarget(sender: UIButton) {
     selectedTargetPosition = sender.tag
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "MoveToPlayerOneTargetPosition"), object: nil)
+    tellDelegateToMoveCard()
   }
   
   func selectInPlayCard(button: UIButton) {
     
+  }
+  
+  //Delegate Notifications
+  func tellDelegateToMoveCard() {
+    delegate?.inPlayViewControllerDidChangeSelectedTargetPosition(self)
   }
 }

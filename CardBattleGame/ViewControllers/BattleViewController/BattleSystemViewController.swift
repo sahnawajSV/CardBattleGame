@@ -9,7 +9,7 @@
 import UIKit
 
 /// Handles the BattleSystemViewController implementation. Used to update the Views and Labels. Handle Card Play and Toggle Turn interactions / actions.
-class BattleSystemViewController: UIViewController, GameDelegate {
+class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewControllerDelegate {
   //MARK: - Internal Variables
   private var gViewModel: GameViewModel = GameViewModel()
   
@@ -56,8 +56,8 @@ class BattleSystemViewController: UIViewController, GameDelegate {
     
     //Assign View Model and Call Initializers
     gViewModel.delegate = self
-    
-    NotificationCenter.default.addObserver(self, selector: #selector(createInPlayCardsForPlayerOne(withNotification:)), name: NSNotification.Name(rawValue: "MoveToPlayerOneTargetPosition"), object: nil)
+    playerOnePlayController.delegate = self
+    playerTwoPlayController.delegate = self
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -91,18 +91,20 @@ class BattleSystemViewController: UIViewController, GameDelegate {
   }
   
   //MARK: - Create In Hand Cards
-  func createInPlayCardsForPlayerOne(withNotification notification : NSNotification) {
+  func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController) {
     if playerOneInHandController.selectedCardIndex != 99 {
-      let success: Bool = playerOnePlayController.updateInHandData(cardView: allPlayerHandCards[playerOneInHandController.selectedCardIndex])
-      
-      if success {
-        gViewModel.playCardToGameArea(cardIndex: playerOneInHandController.selectedCardIndex, forPlayer: true)
-        allPlayerPlayCards.append(allPlayerHandCards[playerOneInHandController.selectedCardIndex])
-        allPlayerHandCards.remove(at: playerOneInHandController.selectedCardIndex)
+      let canPlay = gViewModel.playCardToGameArea(cardIndex: playerOneInHandController.selectedCardIndex, forPlayer: true)
+      if canPlay {
+        let success: Bool = playerOnePlayController.updateInHandData(cardView: allPlayerHandCards[playerOneInHandController.selectedCardIndex])
+        
+        if success {
+          allPlayerPlayCards.append(allPlayerHandCards[playerOneInHandController.selectedCardIndex])
+          allPlayerHandCards.remove(at: playerOneInHandController.selectedCardIndex)
+        }
       }
-      
       //Reset
       playerOneInHandController.selectedCardIndex = 99
+      createInHandCards()
     }
   }
   
@@ -113,7 +115,7 @@ class BattleSystemViewController: UIViewController, GameDelegate {
   }
 
   
-  //MARK: - Delegates
+  //MARK: - Delegates - Create an Extension for the Delegate Methods
   func reloadAllViews(_ gameProtocol: GameProtocol) {
     playerInDeckText.text = gViewModel.playerNumOfCardsInDeckText
     aiInDeckText.text = gViewModel.aiNumOfCardsInDeckText

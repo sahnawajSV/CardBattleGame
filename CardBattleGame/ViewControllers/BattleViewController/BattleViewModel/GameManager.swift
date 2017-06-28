@@ -50,8 +50,7 @@ class GameManager {
   func drawPlayerCards(numToDraw: Int) {
     if (playerStats.gameStats.inDeck.count) > 0 {
       playerStats.gameStats.drawCards(numToDraw: numToDraw)
-      
-    } else {
+      } else {
       //HURT PLAYER
     }
   }
@@ -102,12 +101,22 @@ class GameManager {
   }
   
   //MARK: Animations
-  func playCardToGameArea(cardIndex: Int, forPlayer: Bool) {
+  func playCardToGameArea(cardIndex: Int, forPlayer: Bool) -> Bool {
     //Remove From InHand and Add to InPlay
     if forPlayer {
-      self.playerStats.gameStats.playCard(cardIndex: cardIndex)
+      return updateBattlePoints(playerStats: self.playerStats, cardIndex: cardIndex)
     } else {
-      self.aiStats.gameStats.playCard(cardIndex: cardIndex)
+      return updateBattlePoints(playerStats: self.aiStats, cardIndex: cardIndex)
+    }
+  }
+  
+  func updateBattlePoints(playerStats: Stats, cardIndex: Int) -> Bool
+  {
+    if playerStats.gameStats.battlePoints >= Int(playerStats.gameStats.inHand[cardIndex].battlepoint) {
+      playerStats.gameStats.playCard(cardIndex: cardIndex)
+      return true
+    } else {
+      return false
     }
   }
 }
