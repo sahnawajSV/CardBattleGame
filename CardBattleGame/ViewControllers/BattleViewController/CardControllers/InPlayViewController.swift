@@ -8,16 +8,13 @@
 
 import UIKit
 
-protocol InPlayProtocol {
-  weak var delegate: InPlayViewControllerDelegate? { get set }
-}
 
 protocol InPlayViewControllerDelegate: class {
-  func createInPlayCardsForPlayerOne(_ inPlayProtocol: InPlayProtocol)
+  func createInPlayCardsForPlayerOne()
 }
 
 
-class InPlayViewController: UIViewController, InPlayProtocol {
+class InPlayViewController: UIViewController {
   
   weak var delegate: InPlayViewControllerDelegate?
 
@@ -84,6 +81,6 @@ class InPlayViewController: UIViewController, InPlayProtocol {
   
   //Delegate Notifications
   func tellDelegateToMoveCard() {
-    delegate?.createInPlayCardsForPlayerOne(self)
+    delegate?.createInPlayCardsForPlayerOne()
   }
 }
