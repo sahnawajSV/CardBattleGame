@@ -17,6 +17,7 @@ enum CardAddRemoveType {
 /// Edit Deck View Model(Follow MVVM pattern): Handle all the business logics for EditDeckViewController
 class EditDeckViewModel: NSObject {
   
+  
   /// Add or Remove Card from the storage
   ///
   /// - Parameters:

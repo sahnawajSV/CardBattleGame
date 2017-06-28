@@ -23,7 +23,6 @@ extension Date {
   func toString(withFormat format: String) -> String {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = format
-    print(dateFormatter.string(from: self))
     return dateFormatter.string(from: self)
   }
 }

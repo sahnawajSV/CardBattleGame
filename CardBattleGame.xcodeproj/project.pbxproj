@@ -28,6 +28,8 @@
 		8B561F601EF3F1DE00104486 /* CardList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B561F5F1EF3F1DE00104486 /* CardList.plist */; };
 		8B561F621EF3F54300104486 /* CardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F611EF3F54300104486 /* CardListDataSource.swift */; };
 		8B561F641EF3F57800104486 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F631EF3F57800104486 /* Card.swift */; };
+		8BABABAC1F0380A300B6BB17 /* WeatherDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABABAB1F0380A300B6BB17 /* WeatherDataParser.swift */; };
+		8BABABAE1F03920F00B6BB17 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABABAD1F03920F00B6BB17 /* WeatherData.swift */; };
 		E326D59B1EFA915B0034F35B /* CardBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59A1EFA915B0034F35B /* CardBGView.swift */; };
 		E326D59E1EFB8FC90034F35B /* InHandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59D1EFB8FC90034F35B /* InHandViewController.swift */; };
 		E326D5A21EFB90090034F35B /* InPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A11EFB90090034F35B /* InPlayViewController.swift */; };
@@ -91,6 +93,8 @@
 		8B561F5F1EF3F1DE00104486 /* CardList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CardList.plist; sourceTree = "<group>"; };
 		8B561F611EF3F54300104486 /* CardListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListDataSource.swift; sourceTree = "<group>"; };
 		8B561F631EF3F57800104486 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		8BABABAB1F0380A300B6BB17 /* WeatherDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDataParser.swift; sourceTree = "<group>"; };
+		8BABABAD1F03920F00B6BB17 /* WeatherData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		E326D59A1EFA915B0034F35B /* CardBGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBGView.swift; sourceTree = "<group>"; };
 		E326D59D1EFB8FC90034F35B /* InHandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InHandViewController.swift; sourceTree = "<group>"; };
 		E326D5A11EFB90090034F35B /* InPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InPlayViewController.swift; sourceTree = "<group>"; };
@@ -282,6 +286,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		8BABABAA1F03808E00B6BB17 /* DataParser */ = {
+			isa = PBXGroup;
+			children = (
+				8BABABAB1F0380A300B6BB17 /* WeatherDataParser.swift */,
+			);
+			path = DataParser;
+			sourceTree = "<group>";
+		};
 		E326D5991EFA914A0034F35B /* CardBGView */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +397,7 @@
 				E3D362C11EF790BC008FB5A7 /* Deck.swift */,
 				E3D362C31EF79174008FB5A7 /* Stats.swift */,
 				E3D362CB1EF79FAA008FB5A7 /* Game.swift */,
+				8BABABAD1F03920F00B6BB17 /* WeatherData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -392,6 +405,7 @@
 		E3775D4C1EF16E4900991CEC /* ServiceManager */ = {
 			isa = PBXGroup;
 			children = (
+				8BABABAA1F03808E00B6BB17 /* DataParser */,
 				8B42F4BF1EF2521D0097D28A /* DataManager */,
 			);
 			path = ServiceManager;
@@ -556,10 +570,12 @@
 				E3D362C41EF79174008FB5A7 /* Stats.swift in Sources */,
 				8B42F4C71EF265D70097D28A /* CBGErrorHandler.swift in Sources */,
 				8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */,
+				8BABABAE1F03920F00B6BB17 /* WeatherData.swift in Sources */,
 				E3D362C21EF790BC008FB5A7 /* Deck.swift in Sources */,
 				E326D5A21EFB90090034F35B /* InPlayViewController.swift in Sources */,
 				8B1ECD451EFA7B76001EE399 /* EditDeckCollectionViewCell.swift in Sources */,
 				8B42F4C11EF252520097D28A /* ConnectionManager.swift in Sources */,
+				8BABABAC1F0380A300B6BB17 /* WeatherDataParser.swift in Sources */,
 				8B42F4CA1EF292430097D28A /* Conversions.swift in Sources */,
 				8B34DF3D1EFCD77100CEF037 /* DeckCollectionViewCell.swift in Sources */,
 				E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */,

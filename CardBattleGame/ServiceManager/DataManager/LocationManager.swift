@@ -22,8 +22,6 @@ class LocationManager: NSObject {
   /// Initialise Location Manger
   private let locationManager = CLLocationManager()
 
-  private var locations = [CLLocation]()
-  
   override init() {
     super.init()
     configureLocationManager()
@@ -71,8 +69,10 @@ extension LocationManager: CLLocationManagerDelegate {
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    // post a location update notification to the observer class
-    NotificationCenter.default.post(name:Notification.Name.kLocationUpdated, object: nil, userInfo: ["locations":locations])
+    if let currentLocation = locations.last {
+      // post a location update notification to the observer class
+      NotificationCenter.default.post(name:Notification.Name.LocationUpdated, object: nil, userInfo: ["currentLocation":currentLocation])
+    }
   }
   
   func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -81,8 +81,9 @@ extension LocationManager: CLLocationManagerDelegate {
 }
 
 
+// MARK: - Notification Name
 extension Notification.Name {
-  static let kLocationUpdated = Notification.Name(rawValue: "LocationUpdated")
-  static let kAuthorizationStatusChanged = Notification.Name(rawValue: "AuthorizationStatusChanged")
-  static let kLocationManagerDidFailWithError = Notification.Name(rawValue: "LocationManagerDidFailWithError")
+  static let LocationUpdated = Notification.Name(rawValue: "LocationUpdated")
+  static let AuthorizationStatusChanged = Notification.Name(rawValue: "AuthorizationStatusChanged")
+  static let LocationManagerDidFailWithError = Notification.Name(rawValue: "LocationManagerDidFailWithError")
 }

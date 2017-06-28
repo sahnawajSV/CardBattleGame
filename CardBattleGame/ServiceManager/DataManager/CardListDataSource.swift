@@ -27,14 +27,12 @@ class CardListDataSource {
     guard let path = Bundle.main.path(forResource: "CardList", ofType: "plist"), let dictArray = NSArray(contentsOfFile: path) else {
       return
     }
-    cardList = dictArray.map({ Card(dictionary: ($0 as! [String : Any]))!})
-//    
-//    let closure: ([String: Any]) -> Card?
-//    closure = { dictionary in
-//      return Card(dictionary: dictionary)
-//    }
-//    cardList = dictArray.flatMap(closure)
-    
+    cardList = dictArray.flatMap({ dictionary in
+        guard let cardObj = dictionary as? [String : Any] else {
+          return nil
+        }
+        return Card(dictionary: cardObj)
+    })
   }
   
   /// Returns Card List Array
