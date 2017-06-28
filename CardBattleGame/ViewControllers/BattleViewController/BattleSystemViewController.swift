@@ -9,7 +9,7 @@
 import UIKit
 
 /// Handles the BattleSystemViewController implementation. Used to update the Views and Labels. Handle Card Play and Toggle Turn interactions / actions.
-class BattleSystemViewController: UIViewController, GameDelegate {
+class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewControllerDelegate {
   //MARK: - Internal Variables
   private var gViewModel: GameViewModel = GameViewModel()
   
@@ -56,8 +56,8 @@ class BattleSystemViewController: UIViewController, GameDelegate {
     
     //Assign View Model and Call Initializers
     gViewModel.delegate = self
-    
-    NotificationCenter.default.addObserver(self, selector: #selector(createInPlayCardsForPlayerOne(withNotification:)), name: NSNotification.Name(rawValue: "MoveToPlayerOneTargetPosition"), object: nil)
+    playerOnePlayController.delegate = self
+    playerTwoPlayController.delegate = self
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -91,7 +91,7 @@ class BattleSystemViewController: UIViewController, GameDelegate {
   }
   
   //MARK: - Create In Hand Cards
-  func createInPlayCardsForPlayerOne(withNotification notification : NSNotification) {
+  func createInPlayCardsForPlayerOne(_ inPlayProtocol: InPlayProtocol) {
     if playerOneInHandController.selectedCardIndex != 99 {
       let success: Bool = playerOnePlayController.updateInHandData(cardView: allPlayerHandCards[playerOneInHandController.selectedCardIndex])
       
