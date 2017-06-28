@@ -47,6 +47,8 @@ class ConnectionManager {
             let weatherData: WeatherData = try WeatherDataParser.decode(data: data)
             completion(weatherData, nil)
             
+          } catch ErrorType.failedToIntializeWeatherData {
+            completion(nil, ErrorType.failedToIntializeWeatherData)
           } catch {
             completion(nil, ErrorType.invalidResponse)
           }
