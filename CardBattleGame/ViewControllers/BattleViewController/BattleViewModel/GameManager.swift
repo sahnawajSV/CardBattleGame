@@ -102,21 +102,21 @@ class GameManager {
   
   //MARK: Animations
   func playCardToGameArea(cardIndex: Int, forPlayer: Bool) -> Bool {
-    //Remove From InHand and Add to InPlay -- TODO: Check for cardIndex exceeding the array range due to positioning issue.
+    //Remove From InHand and Add to InPlay
     if forPlayer {
-      if self.playerStats.gameStats.battlePoints >= Int(self.playerStats.gameStats.inHand[cardIndex].battlepoint) {
-        self.playerStats.gameStats.playCard(cardIndex: cardIndex)
-        return true
-      } else {
-        return false
-      }
+      return updateBattlePoints(playerStats: self.playerStats, cardIndex: cardIndex)
     } else {
-      if self.aiStats.gameStats.battlePoints >= Int(self.aiStats.gameStats.inHand[cardIndex].battlepoint) {
-        self.aiStats.gameStats.playCard(cardIndex: cardIndex)
-        return true
-      } else {
-        return false
-      }
+      return updateBattlePoints(playerStats: self.aiStats, cardIndex: cardIndex)
+    }
+  }
+  
+  func updateBattlePoints(playerStats: Stats, cardIndex: Int) -> Bool
+  {
+    if playerStats.gameStats.battlePoints >= Int(playerStats.gameStats.inHand[cardIndex].battlepoint) {
+      playerStats.gameStats.playCard(cardIndex: cardIndex)
+      return true
+    } else {
+      return false
     }
   }
 }
