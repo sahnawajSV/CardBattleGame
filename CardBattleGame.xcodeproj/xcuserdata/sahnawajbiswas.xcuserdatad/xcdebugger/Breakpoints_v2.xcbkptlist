@@ -105,13 +105,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CardBattleGame/ServiceManager/DataManager/LocationManager.swift"
-            timestampString = "519916392.198523"
+            filePath = "CardBattleGame/ViewControllers/MainMenuViewController/MainMenuViewModel/MainMenuViewModel.swift"
+            timestampString = "520335542.672482"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "locationManager(_:didUpdateLocations:)"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "handleLocationUpdate(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -121,13 +121,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CardBattleGame/ViewControllers/MainMenuViewController/MainMenuViewModel/MainMenuViewModel.swift"
-            timestampString = "519887147.316207"
+            filePath = "CardBattleGame/ServiceManager/DataParser/WeatherDataParser.swift"
+            timestampString = "520335608.134238"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
-            landmarkName = "notificationForLocationUpdate(_:)"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "decodeJSON(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

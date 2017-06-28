@@ -17,7 +17,7 @@ class Card {
   var health: Int16
   
   
-  init?(dictionary: Dictionary<String, Any>) {
+  init?(dictionary: [String: Any]) {
     
     guard let name = dictionary["name"] as? String,
       let id = dictionary["id"] as? Int16,
