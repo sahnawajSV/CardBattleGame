@@ -31,6 +31,7 @@
 		E326D59B1EFA915B0034F35B /* CardBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59A1EFA915B0034F35B /* CardBGView.swift */; };
 		E326D59E1EFB8FC90034F35B /* InHandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59D1EFB8FC90034F35B /* InHandViewController.swift */; };
 		E326D5A21EFB90090034F35B /* InPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A11EFB90090034F35B /* InPlayViewController.swift */; };
+		E326D5A61F037C400034F35B /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A51F037C400034F35B /* Common.swift */; };
 		E37605ED1EF7A11E001AEBBB /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605EC1EF7A11E001AEBBB /* GameManager.swift */; };
 		E37605F11EF7E00E001AEBBB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605F01EF7E00E001AEBBB /* CardView.swift */; };
 		E37605F31EF92C77001AEBBB /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605F21EF92C77001AEBBB /* GameViewModel.swift */; };
@@ -93,6 +94,7 @@
 		E326D59A1EFA915B0034F35B /* CardBGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBGView.swift; sourceTree = "<group>"; };
 		E326D59D1EFB8FC90034F35B /* InHandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InHandViewController.swift; sourceTree = "<group>"; };
 		E326D5A11EFB90090034F35B /* InPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InPlayViewController.swift; sourceTree = "<group>"; };
+		E326D5A51F037C400034F35B /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		E37605EC1EF7A11E001AEBBB /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameManager.swift; path = BattleViewModel/GameManager.swift; sourceTree = "<group>"; };
 		E37605F01EF7E00E001AEBBB /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E37605F21EF92C77001AEBBB /* GameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
@@ -398,6 +400,7 @@
 		E3775D4D1EF16E4900991CEC /* Utility */ = {
 			isa = PBXGroup;
 			children = (
+				E326D5A51F037C400034F35B /* Common.swift */,
 				8B42F4C61EF265D70097D28A /* CBGErrorHandler.swift */,
 			);
 			path = Utility;
@@ -576,6 +579,7 @@
 				8B3119581EF1427800DD9E78 /* CardBattleGame.xcdatamodeld in Sources */,
 				8B561F621EF3F54300104486 /* CardListDataSource.swift in Sources */,
 				E37605F11EF7E00E001AEBBB /* CardView.swift in Sources */,
+				E326D5A61F037C400034F35B /* Common.swift in Sources */,
 				8B561F641EF3F57800104486 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
