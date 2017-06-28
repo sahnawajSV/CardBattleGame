@@ -24,11 +24,7 @@ class WeatherDataParser {
       throw ErrorType.invalidResponse
     }
     let jsonDictionary: [String: Any] = decoder.decodeJSON(JSONData)
-    if let weatherData = try WeatherData(dictionary: jsonDictionary) {
-      return weatherData
-    } else {
-      throw ErrorType.failedToIntializeWeatherData
-    }
+    return try WeatherData(dictionary: jsonDictionary)
   }
   
   

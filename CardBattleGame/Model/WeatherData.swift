@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// WeatherData Model class to hold parsed weather data
 class WeatherData {
   let timeZone: String
   let time: Date
@@ -17,7 +18,7 @@ class WeatherData {
   let summary: String
   let icon: String
  
-  init?(dictionary: [String: Any]) throws {
+  init(dictionary: [String: Any]) throws {
     guard let timeZone = dictionary["timeZone"] as? String,
       let time = dictionary["time"] as? Date,
       let windSpeed = dictionary["windSpeed"]  as? Double,
