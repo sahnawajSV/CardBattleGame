@@ -5,22 +5,20 @@
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="Cards" representedClassName="Cards" syncable="YES" codeGenerationType="class">
+    <entity name="DeckCard" representedClassName="DeckCard" syncable="YES" codeGenerationType="class">
         <attribute name="attack" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="battlepoint" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="health" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="decklist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DeckList" syncable="YES"/>
     </entity>
     <entity name="DeckList" representedClassName="DeckList" syncable="YES" codeGenerationType="class">
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="avatar" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Avatar" syncable="YES"/>
     </entity>
     <elements>
         <element name="Avatar" positionX="27" positionY="-180" width="128" height="90"/>
-        <element name="Cards" positionX="43" positionY="101" width="128" height="133"/>
-        <element name="DeckList" positionX="189" positionY="-54" width="128" height="88"/>
+        <element name="DeckCard" positionX="43" positionY="101" width="128" height="120"/>
+        <element name="DeckList" positionX="189" positionY="-54" width="128" height="75"/>
     </elements>
 </model>
