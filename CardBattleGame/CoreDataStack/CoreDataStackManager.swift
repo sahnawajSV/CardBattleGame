@@ -21,7 +21,6 @@ class CoreDataStackManager: NSObject {
     let container = NSPersistentContainer(name: "CardBattleGame")
     
     // fatalError() causes the application to generate a crash log and terminate.
-    //
     container.loadPersistentStores(completionHandler: { (storeDescription, error) in
       guard let error = error as NSError? else {return}
       fatalError("Unresolved error \(error), \(error.userInfo)")
@@ -32,7 +31,6 @@ class CoreDataStackManager: NSObject {
     container.viewContext.shouldDeleteInaccessibleFaults = true
     
     // Merge the changes from other contexts automatically.
-    //
     container.viewContext.automaticallyMergesChangesFromParent = true
     
     return container
@@ -47,17 +45,104 @@ class CoreDataStackManager: NSObject {
         try persistentContainer.viewContext.save()
       } catch let error1 as NSError {
         error = error1
-        // Replace this implementation with code to handle the error appropriately.
-        // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
+        // abort() causes the application to generate a crash log and terminate.
         NSLog("Unresolved error \(String(describing: error)), \(error!.userInfo)")
         abort()
       }
     }
   }
   
-  // MARK - Core Data Managed Object Context
-  //
+  /// Core Data Managed Object Context
+  ///
+  /// - Returns: managed object context
   func managedObjContext() -> NSManagedObjectContext {
     return persistentContainer.viewContext
+  }
+  
+  /// Add Card to coredata DeckCard Entity
+  ///
+  /// - Parameter card: Card object
+  func add(card: Card) throws {
+    let fetchRequest = NSFetchRequest<DeckCard>()
+    fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
+    
+    // Create Entity Description
+    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckCard", in: managedObjContext())
+    
+    // Configure Fetch Request
+    fetchRequest.entity = entityDescription
+    
+    do {
+      let managedObjectContext = managedObjContext()
+      
+      let result = try managedObjectContext.fetch(fetchRequest)
+      
+      if result.count == 0, let newItem: DeckCard = NSEntityDescription.insertNewObject(forEntityName: "DeckCard", into: managedObjectContext) as? DeckCard{
+        newItem.attack = card.attack
+        newItem.battlepoint = card.battlepoint
+        newItem.health = card.health
+        newItem.id = card.id
+        newItem.name = card.name
+      }
+      saveContext()
+    } catch {
+      throw ErrorType.failedManagedObjectFetchRequest
+    }
+  }
+ 
+  /// Delete Card from the core data DeckCard Entity
+  ///
+  /// - Parameter card: Card object
+  func delete(card: Card) throws {
+    let fetchRequest = NSFetchRequest<DeckCard>()
+    fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
+    
+    // Create Entity Description
+    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckCard", in: managedObjContext())
+    
+    // Configure Fetch Request
+    fetchRequest.entity = entityDescription
+    
+    do {
+      let managedObjectContext = managedObjContext()
+      
+      let result = try managedObjectContext.fetch(fetchRequest)
+      
+      let resultData = result
+      for object in resultData {
+        managedObjectContext.delete(object)
+      }
+      saveContext()
+      
+    } catch {
+      throw ErrorType.failedManagedObjectFetchRequest
+    }
+  }
+  
+
+  /// Check if the card is available in the Persistance Storage
+  ///
+  /// - Parameter card: Card
+  /// - Returns: True if card is available
+  func isCardAvailableInDeckCardStorage(_ card: Card) throws -> Bool {
+    let fetchRequest = NSFetchRequest<DeckCard>()
+    fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
+    
+    // Create Entity Description
+    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckCard", in: managedObjContext())
+    
+    // Configure Fetch Request
+    fetchRequest.entity = entityDescription
+    
+    do {
+      let managedObjectContext = managedObjContext()
+      
+      let result = try managedObjectContext.fetch(fetchRequest)
+      
+      return result.count > 0
+      
+    } catch {
+      throw ErrorType.failedManagedObjectFetchRequest
+    }
   }
 }
