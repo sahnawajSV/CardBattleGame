@@ -63,28 +63,17 @@ class CoreDataStackManager: NSObject {
   ///
   /// - Parameter card: Card object
   func add(card: Card) throws {
-    let fetchRequest = NSFetchRequest<DeckCard>()
-    fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
-    
-    // Create Entity Description
-    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckCard", in: managedObjContext())
-    
-    // Configure Fetch Request
-    fetchRequest.entity = entityDescription
-    
     do {
+      let result = try fetchDeckCardResult(card)
       let managedObjectContext = managedObjContext()
-      
-      let result = try managedObjectContext.fetch(fetchRequest)
-      
       if result.count == 0, let newItem: DeckCard = NSEntityDescription.insertNewObject(forEntityName: "DeckCard", into: managedObjectContext) as? DeckCard{
         newItem.attack = card.attack
         newItem.battlepoint = card.battlepoint
         newItem.health = card.health
         newItem.id = card.id
         newItem.name = card.name
+        saveContext()
       }
-      saveContext()
     } catch {
       throw ErrorType.failedManagedObjectFetchRequest
     }
@@ -94,26 +83,13 @@ class CoreDataStackManager: NSObject {
   ///
   /// - Parameter card: Card object
   func delete(card: Card) throws {
-    let fetchRequest = NSFetchRequest<DeckCard>()
-    fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
-    
-    // Create Entity Description
-    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckCard", in: managedObjContext())
-    
-    // Configure Fetch Request
-    fetchRequest.entity = entityDescription
-    
     do {
+      let result = try fetchDeckCardResult(card)
       let managedObjectContext = managedObjContext()
-      
-      let result = try managedObjectContext.fetch(fetchRequest)
-      
-      let resultData = result
-      for object in resultData {
+      for object in result {
         managedObjectContext.delete(object)
       }
       saveContext()
-      
     } catch {
       throw ErrorType.failedManagedObjectFetchRequest
     }
@@ -125,6 +101,20 @@ class CoreDataStackManager: NSObject {
   /// - Parameter card: Card
   /// - Returns: True if card is available
   func isCardAvailableInDeckCardStorage(_ card: Card) throws -> Bool {
+    do {
+      let result = try fetchDeckCardResult(card)
+      return result.count > 0
+    } catch {
+      throw ErrorType.failedManagedObjectFetchRequest
+    }
+  }
+  
+  
+  /// Fetch DeckCard's and return
+  ///
+  /// - Parameter card: card
+  /// - Returns: Array containing Deck Card
+  func fetchDeckCardResult(_ card: Card) throws-> [DeckCard] {
     let fetchRequest = NSFetchRequest<DeckCard>()
     fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
     
@@ -136,11 +126,7 @@ class CoreDataStackManager: NSObject {
     
     do {
       let managedObjectContext = managedObjContext()
-      
-      let result = try managedObjectContext.fetch(fetchRequest)
-      
-      return result.count > 0
-      
+      return try managedObjectContext.fetch(fetchRequest)
     } catch {
       throw ErrorType.failedManagedObjectFetchRequest
     }
