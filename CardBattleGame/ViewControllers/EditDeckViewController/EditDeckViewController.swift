@@ -71,7 +71,7 @@ class EditDeckViewController: UIViewController {
     
     let cardList: [Card] = editDeckViewModel.fetchCardFromPlist()
     let card = cardList[sender.tag]
-    editDeckViewModel.addRemove(card: card, type: .add)
+    editDeckViewModel.addCardToDeckCardEntity(card)
     
     reloadCollectionView()
   }
@@ -113,7 +113,7 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
     
     for card in cardList {
       if card.id == Int16(cell.tag) {
-        editDeckViewModel.addRemove(card: card, type: .delete)
+        editDeckViewModel.deleteCardFromDeckCardEntity(card)
         break
       }
     }
@@ -173,7 +173,7 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
     cell.battlePointLbl.text = String(describing: card.battlepoint)
     cell.nameLbl.text = String(describing: card.name)
     
-    if editDeckViewModel.checkCardState(card: card) {
+    if editDeckViewModel.isCardAvailableInDeckCardStorage(card) {
       cell.addDeckButton.isHidden = true
     } else {
       cell.addDeckButton.isHidden = false
