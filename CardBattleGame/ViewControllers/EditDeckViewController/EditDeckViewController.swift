@@ -13,10 +13,6 @@ import CoreData
 /// EditDeckViewController : Create Deck, Edit or Delete Existing Deck
 class EditDeckViewController: UIViewController {
   
-  // NSFetchedResultsController to updated uitableview if there is any changes in the Coredata storage
-  var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
-  
-  
   var editDeckViewModel = EditDeckViewModel()
   
   @IBOutlet weak var selectedDeckTableView: UITableView!
@@ -34,38 +30,22 @@ class EditDeckViewController: UIViewController {
     self.deckCollectionView.delegate = self
     self.deckCollectionView.dataSource = self
     
-    initializeFetchedResultsController()
+    // Set EditDeck Model View Delegate
+    editDeckViewModel.delegate = self
+    editDeckViewModel.performDeckCardFetchRequest()
     
-    updateSelectedDeckLabel()
+    updateSelectedCardLabel()
   }
-
+  
   override func didReceiveMemoryWarning() {
     super.didReceiveMemoryWarning()
     // Dispose of any resources that can be recreated.
   }
   
-  //Creating a Fetched Results Controller
-  private func initializeFetchedResultsController() {
-    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Cards")
-    let departmentSort = NSSortDescriptor(key: "id", ascending: true)
-    request.sortDescriptors = [departmentSort]
-    let moc = CoreDataStackManager.sharedInstance.managedObjContext()
-    fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-    fetchedResultsController.delegate = self
-    
-    do {
-      
-      try fetchedResultsController.performFetch()
-      
-    } catch {
-      
-      fatalError("Failed to initialize FetchedResultsController: \(error)")
-    }
-  }
   
   //  Mark :  Helper Method
   //
-  fileprivate func updateSelectedDeckLabel() {
+  fileprivate func updateSelectedCardLabel() {
     self.selectedDeckLabel.text = String(format: "\(numberOfCardAdded()) - \(Game.maximumCardPerDeck)")
   }
   
@@ -73,11 +53,7 @@ class EditDeckViewController: UIViewController {
   ///
   /// - Returns: Total Number of cards
   fileprivate func numberOfCardAdded() -> Int {
-    guard let sections = fetchedResultsController.sections else {
-      fatalError("No sections in fetchedResultsController")
-    }
-    let sectionInfo = sections[0]
-    return sectionInfo.numberOfObjects
+    return editDeckViewModel.numberOfCardAdded()
   }
   
   /// Update Card Collection View
@@ -114,10 +90,10 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
     let cell:UITableViewCell = UITableViewCell.init(style: .default,
                                                     reuseIdentifier: nil)as UITableViewCell!
     
-    let newItem: Cards = fetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0)) as! Cards
-    cell.textLabel?.text = newItem.name
-    
-    cell.tag = Int(newItem.id)
+    if let newItem: DeckCard = editDeckViewModel.fetchDeckCard(at: indexPath) {
+      cell.textLabel?.text = newItem.name
+      cell.tag = Int(newItem.id)
+    }
     return cell
   }
   
@@ -147,27 +123,13 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 
-// MARK: - NSFetchedResultsControllerDelegate
-extension EditDeckViewController: NSFetchedResultsControllerDelegate {
-  
-  func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+// MARK: - EditDeckViewModelDelegate
+extension EditDeckViewController: EditDeckViewModelDelegate {
+  func deckCardEntityWillChangeContent() {
     selectedDeckTableView.beginUpdates()
   }
   
-  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange sectionInfo: NSFetchedResultsSectionInfo, atSectionIndex sectionIndex: Int, for type: NSFetchedResultsChangeType) {
-    switch type {
-    case .insert:
-      selectedDeckTableView.insertSections(IndexSet(integer: sectionIndex), with: .fade)
-    case .delete:
-      selectedDeckTableView.deleteSections(IndexSet(integer: sectionIndex), with: .fade)
-    case .move:
-      break
-    case .update:
-      break
-    }
-  }
-  
-  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
+  func deckCardEntity(didChangeObjectAt indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
     switch type {
     case .insert:
       if let index = newIndexPath {
@@ -182,14 +144,11 @@ extension EditDeckViewController: NSFetchedResultsControllerDelegate {
     }
   }
   
-  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
+  func deckCardEntityDidChangeContent() {
     selectedDeckTableView.endUpdates()
-    updateSelectedDeckLabel()
+    updateSelectedCardLabel()
   }
-  
 }
-
-
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
 extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
