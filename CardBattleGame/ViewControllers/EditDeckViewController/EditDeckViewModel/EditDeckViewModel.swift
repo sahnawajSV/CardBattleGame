@@ -29,28 +29,24 @@ class EditDeckViewModel: NSObject {
   weak var delegate : EditDeckViewModelDelegate?
   
   // NSFetchedResultsController to updated uitableview if there is any changes in the Coredata storage
-  var fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>!
+  private let fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
   
   override init() {
-    super.init()
-    initializeFetchedResultsController()
-  }
-  
-  //Creating a Fetched Results Controller
-  private func initializeFetchedResultsController() {
     let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DeckCard")
     let departmentSort = NSSortDescriptor(key: "id", ascending: true)
     request.sortDescriptors = [departmentSort]
     let moc = coreDataManager.managedObjContext()
     fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-    fetchedResultsController.delegate = self
     
+    super.init()
+    fetchedResultsController.delegate = self
+  }
+  
+  //Perform Fetch
+  func performDeckCardFetchRequest() {
     do {
-      
       try fetchedResultsController.performFetch()
-      
     } catch {
-      
       fatalError("Failed to initialize FetchedResultsController: \(error)")
     }
   }
@@ -59,8 +55,11 @@ class EditDeckViewModel: NSObject {
   ///
   /// - Parameter indexPath: Index path of the object
   /// - Returns: object from core data
-  func fetchObject(at indexPath: IndexPath) -> Any{
-    return fetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0))
+  func fetchDeckCard(at indexPath: IndexPath) -> DeckCard?{
+    if let deckCard: DeckCard = fetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0)) as? DeckCard {
+      return deckCard
+    }
+    return nil
   }
   
   /// Number of cards available in the storage
@@ -70,8 +69,7 @@ class EditDeckViewModel: NSObject {
     guard let sections = fetchedResultsController.sections else {
       fatalError("No sections in fetchedResultsController")
     }
-    let sectionInfo = sections[0]
-    return sectionInfo.numberOfObjects
+    return sections.first?.numberOfObjects ?? 0
   }
   
   /// Add or Remove Card from the storage

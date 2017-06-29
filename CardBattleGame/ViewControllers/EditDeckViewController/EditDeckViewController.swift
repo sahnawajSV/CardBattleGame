@@ -32,6 +32,7 @@ class EditDeckViewController: UIViewController {
     
     // Set EditDeck Model View Delegate
     editDeckViewModel.delegate = self
+    editDeckViewModel.performDeckCardFetchRequest()
     
     updateSelectedCardLabel()
   }
@@ -89,7 +90,7 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
     let cell:UITableViewCell = UITableViewCell.init(style: .default,
                                                     reuseIdentifier: nil)as UITableViewCell!
     
-    if let newItem: DeckCard = editDeckViewModel.fetchObject(at: indexPath) as? DeckCard {
+    if let newItem: DeckCard = editDeckViewModel.fetchDeckCard(at: indexPath) {
       cell.textLabel?.text = newItem.name
       cell.tag = Int(newItem.id)
     }
