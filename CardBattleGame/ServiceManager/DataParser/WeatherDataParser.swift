@@ -21,11 +21,10 @@ class WeatherDataParser {
     let decoder = WeatherDataParser()
     
     guard let JSONData = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] else {
-      throw ErrorType.faildParseWeatherData
+      throw ErrorType.invalidResponse
     }
     let jsonDictionary: [String: Any] = decoder.decodeJSON(JSONData)
-    
-    return WeatherData(dictionary: jsonDictionary)!
+    return try WeatherData(dictionary: jsonDictionary)
   }
   
   
@@ -33,34 +32,36 @@ class WeatherDataParser {
   ///
   /// - Parameter jsonDictionary: Serialized JSON Dictionary
   /// - Returns: parsed dictionary
-  private func decodeJSON(_ jsonDictionary: [String: Any]) -> [String: Any]{
+  private func decodeJSON(_ jsonDictionary: [String: Any]) -> [String: Any] {
     var parsedData = [String: Any]()
     
-    if let timeZone = jsonDictionary["timezone"] as? String{
+    if let timeZone = jsonDictionary["timezone"] as? String {
       parsedData["timeZone"] = timeZone
     }
-    if let currently: [String: Any] = jsonDictionary["currently"] as? [String : Any]{
+    if let currently: [String: Any] = jsonDictionary["currently"] as? [String : Any] {
       
       if let time = currently["time"] as? Double{
         let dtTime = Date(timeIntervalSince1970: time / 1000.0)
-        parsedData["time"] = dtTime.toString(withFormat: "dd MMM yy hh:mm")
+        parsedData["time"] = dtTime
       }
       
-      if let windSpeed = currently["windSpeed"] as? Double{
-        parsedData["windSpeed"] = String(format: "%.f KPH", windSpeed)
+      if let windSpeed = currently["windSpeed"] as? Double {
+        parsedData["windSpeed"] = windSpeed
       }
       
-      if let temperature = currently["temperature"] as? Double, let apparentTemperature = currently["apparentTemperature"] as? Double{
-        let minTemperature = temperature.toCelcius()
-        let maxTemperature = apparentTemperature.toCelcius()
-        parsedData["temperature"] = String(format: "%.0f° - %.0f°", minTemperature, maxTemperature)
+      if let temperature = currently["temperature"] as? Double {
+        parsedData["temperature"] = temperature
       }
       
-      if let summary = currently["summary"] as? String{
+      if let apparentTemperature = currently["apparentTemperature"] as? Double {
+        parsedData["apparentTemperature"] = apparentTemperature
+      }
+      
+      if let summary = currently["summary"] as? String {
         parsedData["summary"] = summary
       }
       
-      if let icon = currently["icon"] as? String{
+      if let icon = currently["icon"] as? String {
         parsedData["icon"] = icon
       }
       

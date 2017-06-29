@@ -13,6 +13,7 @@ enum ErrorType: Error {
   case faildParseWeatherData
   case invalidResponse
   case failedToIntializeTheGame
+  case failedToIntializeWeatherData
   case failedManagedObjectFetchRequest
   case unknown
 }
@@ -27,6 +28,8 @@ class CBGErrorHandler: Error {
       errorAlert(errorTitle: "Error", errorMsg: "Faild To Parse Weather Data")
     case .invalidResponse:
       errorAlert(errorTitle: "Error", errorMsg: "Invalid Response")
+    case .failedToIntializeWeatherData:
+      errorAlert(errorTitle: "Error", errorMsg: "Failed to Initialize Weather Data")
     case .failedToIntializeTheGame:
       errorAlert(errorTitle: "Error", errorMsg: "Failed to Initialize the Game")
     case .failedManagedObjectFetchRequest:

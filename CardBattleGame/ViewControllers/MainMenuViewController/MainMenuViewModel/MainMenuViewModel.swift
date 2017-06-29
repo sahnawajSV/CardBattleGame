@@ -29,7 +29,7 @@ class MainMenuViewModel {
   private var latitude = LocationManager.defaultLatitude
   private var longitude = LocationManager.defaultLongitude
   
-  private var locationManager = LocationManager.sharedInstance
+  private let locationManager = LocationManager.sharedInstance
   private let connectionManager = ConnectionManager.sharedInstance
   
   weak var delegate : MainMenuViewModelDelegate?
@@ -86,9 +86,14 @@ class MainMenuViewModel {
         CBGErrorHandler.handle(error: error)
       } else if let response = response {
         self.timeZoneText = response.timeZone
-        self.timeText = response.time
-        self.windSpeedText = response.windSpeed
-        self.temperatureText = response.temperature
+        self.timeText = response.time.toString(withFormat: "dd MMM yy hh:mm")
+        self.windSpeedText = String(format: "%.f KPH", response.windSpeed)
+
+        let minTemperature = response.temperature.toCelcius()
+        let maxTemperature = response.apparentTemperature.toCelcius()
+        self.temperatureText = String(format: "%.0f° - %.0f°", minTemperature, maxTemperature)
+        
+        self.summaryText = response.summary
         self.iconImage = self.imageForWeatherIcon(withName: response.icon)
         self.delegate?.updateWeatherData()
       }
