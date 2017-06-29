@@ -11,6 +11,12 @@ import CoreData
 
 class CoreDataStackManager: NSObject {
   
+  var managedObjectContext: NSManagedObjectContext {
+    get {
+      return persistentContainer.viewContext
+    }
+  }
+  
   static let sharedInstance: CoreDataStackManager = {
     let cdstore = CoreDataStackManager()
     return cdstore
@@ -52,21 +58,14 @@ class CoreDataStackManager: NSObject {
     }
   }
   
-  /// Core Data Managed Object Context
-  ///
-  /// - Returns: managed object context
-  func managedObjContext() -> NSManagedObjectContext {
-    return persistentContainer.viewContext
-  }
-  
   /// Add Card to coredata DeckCard Entity
   ///
   /// - Parameter card: Card object
   func add(card: Card) throws {
     do {
       let result = try fetchDeckCardResult(card)
-      let managedObjectContext = managedObjContext()
-      if result.count == 0, let newItem: DeckCard = NSEntityDescription.insertNewObject(forEntityName: "DeckCard", into: managedObjectContext) as? DeckCard{
+    
+      if result.count == 0, let newItem: DeckCard = NSEntityDescription.insertNewObject(forEntityName: "DeckCard", into: managedObjectContext) as? DeckCard {
         newItem.attack = card.attack
         newItem.battlepoint = card.battlepoint
         newItem.health = card.health
@@ -85,7 +84,6 @@ class CoreDataStackManager: NSObject {
   func delete(card: Card) throws {
     do {
       let result = try fetchDeckCardResult(card)
-      let managedObjectContext = managedObjContext()
       for object in result {
         managedObjectContext.delete(object)
       }
@@ -114,18 +112,17 @@ class CoreDataStackManager: NSObject {
   ///
   /// - Parameter card: card
   /// - Returns: Array containing Deck Card
-  func fetchDeckCardResult(_ card: Card) throws-> [DeckCard] {
+  func fetchDeckCardResult(_ card: Card) throws -> [DeckCard] {
     let fetchRequest = NSFetchRequest<DeckCard>()
     fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
     
     // Create Entity Description
-    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckCard", in: managedObjContext())
+    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckCard", in: managedObjectContext)
     
     // Configure Fetch Request
     fetchRequest.entity = entityDescription
     
     do {
-      let managedObjectContext = managedObjContext()
       return try managedObjectContext.fetch(fetchRequest)
     } catch {
       throw ErrorType.failedManagedObjectFetchRequest

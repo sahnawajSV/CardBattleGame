@@ -30,7 +30,7 @@ class EditDeckViewModel: NSObject {
     let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DeckCard")
     let departmentSort = NSSortDescriptor(key: "id", ascending: true)
     request.sortDescriptors = [departmentSort]
-    let moc = coreDataManager.managedObjContext()
+    let moc = coreDataManager.managedObjectContext
     fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
     
     super.init()
