@@ -25,13 +25,13 @@ class GameManager {
     let globalCardData = CardListDataSource()
     let cardList = globalCardData.fetchCardList()
     
-    var pl_CardArray: [Card] = []
-    var ai_CardArray: [Card]  = []
+    let pl_CardArray: [Card] = randomCards(cardArray: cardList)
+    let ai_CardArray: [Card]  = randomCards(cardArray: cardList)
     
-    //Adding Player Cards
-    pl_CardArray.append(contentsOf: cardList)
-    //TODO: Add AI cards based on player strength
-    ai_CardArray.append(contentsOf: cardList)
+//    //Adding Player Cards
+//    pl_CardArray.append(contentsOf: cardList)
+//    //TODO: Add AI cards based on player strength
+//    ai_CardArray.append(contentsOf: cardList)
     
     let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: pl_CardArray)
     let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: ai_CardArray)
@@ -62,6 +62,14 @@ class GameManager {
       aiStats.gameStats.drawCards(numToDraw: numToDraw)
     } else {
       //HURT AI
+    }
+  }
+  
+  func removeInPlayCards(forPlayer: Bool, cardIndex: Int) {
+    if forPlayer {
+      playerStats.gameStats.inPlay.remove(at: cardIndex)
+    } else {
+      aiStats.gameStats.inPlay.remove(at: cardIndex)
     }
   }
   

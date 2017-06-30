@@ -57,7 +57,6 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     
     //Assign View Model and Call Initializers
     gViewModel.delegate = self
-    gViewModel.gManager.playerTwoLogic.delegate = self
     playerOnePlayController.delegate = self
     playerTwoPlayController.delegate = self
     playerOneInHandController.delegate = playerOnePlayController
@@ -67,6 +66,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     gViewModel.initializeTheGame()
+    gViewModel.AILogicReference.delegate = self
   }
   
   override func viewDidLayoutSubviews() {
@@ -211,8 +211,8 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     let cardView: CardView = allAIHandCards[cardIndex]
     allAIHandCards.remove(at: cardIndex)
     gViewModel.updateData()
-    cardView.cardIndex = gViewModel.gManager.aiStats.gameStats.inPlay.count
-    playerTwoPlayController.selectedTargetPosition = gViewModel.gManager.aiStats.gameStats.inPlay.count - 1
+    cardView.cardIndex = gViewModel.aiInPlayCards.count
+    playerTwoPlayController.selectedTargetPosition = gViewModel.aiInPlayCards.count - 1
     let _ = playerTwoPlayController.updateInHandData(cardView: cardView)
     allAIPlayCards.append(cardView)
   }
@@ -279,8 +279,9 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
       let playerTwoCardPosition: Int = playerTwoPlayController.selectedTargetPosition
       if playerTwoCardPosition != 99 {
          gViewModel.attackCard(atkCardIndex: playerOneCardPosition, defCardIndex: playerTwoCardPosition)
-        let attackerHealth: Int = Int(gViewModel.gManager.playerStats.gameStats.inPlay[playerOneCardPosition].health)
-        let defenderHealth: Int = Int(gViewModel.gManager.aiStats.gameStats.inPlay[playerTwoCardPosition].health)
+        gViewModel.updateData()
+        let attackerHealth: Int = Int(gViewModel.playerInPlayCards[playerOneCardPosition].health)
+        let defenderHealth: Int = Int(gViewModel.aiInPlayCards[playerTwoCardPosition].health)
         
         let atkCardView: CardView = allPlayerPlayCards[playerOneCardPosition]
         let defCardView: CardView = allAIPlayCards[playerTwoCardPosition]
@@ -288,7 +289,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
         if attackerHealth <= 0 {
           atkCardView.removeFromSuperview()
           allPlayerPlayCards.remove(at: playerOneCardPosition)
-          gViewModel.gManager.playerStats.gameStats.inPlay.remove(at: playerOneCardPosition)
+          gViewModel.removeInPlayCards(forPlayer: true, cardIndex: playerOneCardPosition)
         } else {
           atkCardView.healthText.text = String(attackerHealth)
         }
@@ -296,7 +297,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
         if defenderHealth <= 0 {
           defCardView.removeFromSuperview()
           allAIPlayCards.remove(at: playerTwoCardPosition)
-          gViewModel.gManager.aiStats.gameStats.inPlay.remove(at: playerTwoCardPosition)
+          gViewModel.removeInPlayCards(forPlayer: false, cardIndex: playerTwoCardPosition)
         } else {
           defCardView.healthText.text = String(defenderHealth)
         }

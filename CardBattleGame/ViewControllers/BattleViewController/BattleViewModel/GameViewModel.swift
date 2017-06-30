@@ -22,7 +22,7 @@ class GameViewModel: GameProtocol {
   
   weak var delegate: GameDelegate?
   
-  var gManager: GameManager = GameManager()
+  private var gManager: GameManager = GameManager()
   
   //MARK: - Used by View
   //Player
@@ -46,6 +46,7 @@ class GameViewModel: GameProtocol {
   var aiInHandCards: [Card] = []
   var aiInDeckCards: [Card] = []
   var aiInPlayCards: [Card] = []
+  var AILogicReference: AIBehaviourManager!
   
   var isPlayerTurn = false
   
@@ -100,6 +101,10 @@ class GameViewModel: GameProtocol {
     gManager.attackCard(atkCardIndex: atkCardIndex, defCardIndex: defCardIndex)
   }
   
+  func removeInPlayCards(forPlayer: Bool, cardIndex: Int) {
+    gManager.removeInPlayCards(forPlayer: forPlayer, cardIndex: cardIndex)
+  }
+  
   //MARK: - Model Updates Received
   func updateData() {
     playerName = gManager.playerStats.name
@@ -123,6 +128,8 @@ class GameViewModel: GameProtocol {
     aiInHandCards = gManager.aiStats.gameStats.inHand
     aiInDeckCards = gManager.aiStats.gameStats.inDeck
     aiInPlayCards = gManager.aiStats.gameStats.inPlay
+    
+    AILogicReference = gManager.playerTwoLogic
   }
   
   

@@ -8,7 +8,20 @@
 
 import UIKit
 
-  func getRandomNumber(maxNumber: Int) -> Int {
-    let randomNumber = arc4random_uniform(UInt32(maxNumber))
-    return Int(randomNumber)
+func getRandomNumber(maxNumber: Int) -> Int {
+  let randomNumber = arc4random_uniform(UInt32(maxNumber))
+  return Int(randomNumber)
+}
+
+func generateRandomNumber(min: Int, max: Int) -> Int {
+  let randomNum = Int(arc4random_uniform(UInt32(max) - UInt32(min)) + UInt32(min))
+  return randomNum
+}
+
+func randomCards(cardArray: [Card]) -> [Card]  {
+  var returnArray: [Card] = []
+  for _ in 0...19 {
+      returnArray.append(cardArray[Int(arc4random_uniform(UInt32(cardArray.count)))])
   }
+  return returnArray
+}
