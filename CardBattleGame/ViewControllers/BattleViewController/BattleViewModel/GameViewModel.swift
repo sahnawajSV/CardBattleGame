@@ -47,30 +47,42 @@ class GameViewModel: GameProtocol {
   var aiInDeckCards: [Card] = []
   var aiInPlayCards: [Card] = []
   
+  var isPlayerTurn = false
+  
   //MARK: - Initalizers
   func initializeTheGame() {
-  
-      //Draw inital Cards from deck
-      gManager.drawCardsFromDeck()
-      
-      //Update the Local Data
-      updateData()
-      
-      //Reload the UI
-      tellDelegateToReloadViewData()
+    
+    //Draw inital Cards from deck
+    gManager.drawCardsFromDeck()
+    
+    //Update the Local Data
+    updateData()
+    
+    //Reload the UI
+    tellDelegateToReloadViewData()
+    
+    //Create InHandCards
+    tellDelegateToRecreateInHandCards()
+    
+    //Set Turn Status
+    isPlayerTurn = gManager.isPlayerTurn
   }
   
   func toggleTurn() {
     let turnFinished: Bool = gManager.endTurn()
     
     if turnFinished {
+      //Set Turn Status
+      isPlayerTurn = gManager.isPlayerTurn
+      //Update Data and call delegates
       updateData()
       tellDelegateToReloadViewData()
+      tellDelegateToRecreateInHandCards()
     }
   }
   
-  func playCardToGameArea(cardIndex: Int, forPlayer: Bool) -> Bool {
-    let success = gManager.playCardToGameArea(cardIndex: cardIndex, forPlayer: forPlayer)
+  func playCardToGameArea(cardIndex: Int) -> Bool {
+    let success = gManager.playCardToGameArea(cardIndex: cardIndex)
     if success {
       updateData()
       tellDelegateToReloadViewData()
@@ -78,6 +90,14 @@ class GameViewModel: GameProtocol {
     } else {
       return false
     }
+  }
+  
+  func attackAvatar(cardIndex: Int) {
+    gManager.attackAvatar(cardIndex: cardIndex)
+  }
+  
+  func attackCard(atkCardIndex: Int, defCardIndex: Int) {
+    gManager.attackCard(atkCardIndex: atkCardIndex, defCardIndex: defCardIndex)
   }
   
   //MARK: - Model Updates Received
@@ -110,7 +130,9 @@ class GameViewModel: GameProtocol {
   func tellDelegateToReloadViewData() {
     //Pass the message to ViewController to display required Data
     delegate?.reloadAllViews(self)
+  }
+  
+  func tellDelegateToRecreateInHandCards() {
     delegate?.createInHandViews(self)
   }
-
 }

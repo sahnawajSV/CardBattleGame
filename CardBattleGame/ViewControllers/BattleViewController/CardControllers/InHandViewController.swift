@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol InHandViewControllerDelegate: class {
+  func inHandViewControllerDidSelectCardToPlay(_ inHandViewController: InHandViewController)
+}
+
 class InHandViewController: UIViewController {
+  
+  weak var delegate: InHandViewControllerDelegate?
   
   @IBOutlet private weak var cardOne: UIView!
   @IBOutlet private weak var cardTwo: UIView!
@@ -16,10 +22,9 @@ class InHandViewController: UIViewController {
   @IBOutlet private weak var cardFour: UIView!
   @IBOutlet private weak var cardFive: UIView!
   
-  var createdCards: [CardView] = []
-  
   //Default value when no card is selected
   var selectedCardIndex: Int = 99
+  var isPlayer: Bool!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -50,18 +55,21 @@ class InHandViewController: UIViewController {
       cardView.healthText.text = String(card.health)
       cardView.nameText.text = card.name
       cardView.cardButton.tag = index
-      cardView.cardButton.addTarget(self, action: #selector(selectInHandCard(button:)), for: .touchUpInside)
+      if isPlayer {
+        cardView.cardButton.addTarget(self, action: #selector(selectInHandCard(button:)), for: .touchUpInside)
+      }
       self.view.addSubview(cardView)
       self.view.layoutIfNeeded()
       
       cardsAdded.append(cardView)
     }
-    createdCards = cardsAdded
+
     return cardsAdded
   }
   
   //Action Methods
   func selectInHandCard(button: UIButton) {
     selectedCardIndex = button.tag
+    delegate?.inHandViewControllerDidSelectCardToPlay(self)
   }
 }

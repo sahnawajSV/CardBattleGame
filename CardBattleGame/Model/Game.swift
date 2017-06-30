@@ -53,10 +53,22 @@ class Game {
   /// Used to play a card from InHand to InPlay
   func playCard(cardIndex: Int) {
       let card: Card = inHand[cardIndex]
+      card.canAttack = false
       let updatedBattlePoints = battlePoints - Int(card.battlepoint)
       battlePoints = updatedBattlePoints
       inPlay.append(card)
       inHand.remove(at: cardIndex)
+  }
+  
+  func playCard(card: Card) {
+    let updatedBattlePoints = battlePoints - Int(card.battlepoint)
+    battlePoints = updatedBattlePoints
+    inPlay.append(card)
+    if let index = inHand.index(where: { (card) -> Bool in
+      return true
+    }) {
+      inHand.remove(at: index)
+    }
   }
   
   func incrementTurn() {
@@ -70,5 +82,9 @@ class Game {
     } else {
       battlePoints = turnNumber
     }
+  }
+  
+  func getHurt(attackValue: Int) {
+    health = health - attackValue
   }
 }

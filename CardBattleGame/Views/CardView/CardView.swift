@@ -17,6 +17,9 @@ class CardView: UIView {
   var nameText: cardLabel = cardLabel(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
   var cardButton: UIButton = UIButton(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
   
+  //Required for Player To AI Attack
+  var cardIndex: Int = 0
+  
   //MARK: - Class Initializers
   override init(frame: CGRect) {
     super.init(frame: frame)

@@ -14,6 +14,9 @@ class GameManager {
   var playerStats: Stats
   var aiStats: Stats
   
+  //MARK: - AI Behaviour Logic
+  var playerTwoLogic: AIBehaviourManager
+  
   //Mark: - Game Handlers
   var isPlayerTurn: Bool = true
   
@@ -33,12 +36,11 @@ class GameManager {
     let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: pl_CardArray)
     let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: ai_CardArray)
     
-    //EMPTY - for Card Drawn or Played
-    let emptyArray: [Card] = []
-    
     //TODO: Change it based on deck selected for play before the game starts
-    playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: Game.startingBattlePoints, health: Game.health))
-    aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: Game.startingBattlePoints, health: Game.health))
+    playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: [], inPlay: [], battlePoints: Game.startingBattlePoints, health: Game.health))
+    aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: [], inPlay: [], battlePoints: Game.startingBattlePoints, health: Game.health))
+    
+    playerTwoLogic = AIBehaviourManager(playerOneStats: playerStats, playerTwoStats: aiStats)
   }
   
   //Draw initial cards from deck
@@ -75,6 +77,7 @@ class GameManager {
   
   //Mark: Turn Logic
   func aiTurnStart() -> Bool {
+    
     //Increment Turn Number
     aiStats.gameStats.incrementTurn()
     
@@ -84,10 +87,16 @@ class GameManager {
     //Draw a Card
     drawAICards(numToDraw: Game.numOfCardsToDrawEachTurn)
     
+    //Perform AI Behaviour
+    playerTwoLogic.performInitialChecks()
+    
     return true
   }
   
   func playerTurnStart() -> Bool {
+    //Allow all inPlayCards to Attack
+    allowAllPlayCardsToAttack()
+    
     //Increment Turn Number
     playerStats.gameStats.incrementTurn()
     
@@ -100,10 +109,38 @@ class GameManager {
     return true
   }
   
-  //MARK: Animations
-  func playCardToGameArea(cardIndex: Int, forPlayer: Bool) -> Bool {
+  func allowAllPlayCardsToAttack() {
+    for (_,element) in playerStats.gameStats.inPlay.enumerated() {
+      let card: Card = element
+      card.canAttack = true
+    }
+  }
+
+  
+  func attackAvatar(cardIndex: Int) {
+    let card: Card = playerStats.gameStats.inPlay[cardIndex]
+    if card.canAttack {
+      let attackValue = card.attack
+      card.canAttack = false
+      playerStats.gameStats.inPlay[cardIndex] = card
+      aiStats.gameStats.getHurt(attackValue: Int(attackValue))
+    }
+  }
+  
+  func attackCard(atkCardIndex: Int, defCardIndex: Int) {
+    let atkCard: Card = playerStats.gameStats.inPlay[atkCardIndex]
+    let defCard: Card = aiStats.gameStats.inPlay[defCardIndex]
+    if atkCard.canAttack {
+      atkCard.canAttack = false
+      defCard.health = defCard.health - atkCard.attack
+      atkCard.health = atkCard.health - defCard.attack
+    }
+  }
+  
+  //MARK: Update Battle Points based on card played
+  func playCardToGameArea(cardIndex: Int) -> Bool {
     //Remove From InHand and Add to InPlay
-    if forPlayer {
+    if isPlayerTurn {
       return updateBattlePoints(playerStats: self.playerStats, cardIndex: cardIndex)
     } else {
       return updateBattlePoints(playerStats: self.aiStats, cardIndex: cardIndex)

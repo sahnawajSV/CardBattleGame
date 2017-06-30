@@ -10,23 +10,24 @@ import UIKit
 
 
 protocol InPlayViewControllerDelegate: class {
-  func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController)
+  func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController, inHandViewController: InHandViewController)
+  func inPlayViewControllerDidSelectCardForAttack(_ inPlayViewController: InPlayViewController)
 }
 
 
-class InPlayViewController: UIViewController {
+class InPlayViewController: UIViewController, InHandViewControllerDelegate {
   
   weak var delegate: InPlayViewControllerDelegate?
 
-  @IBOutlet private weak var cardOne: UIView!
-  @IBOutlet private weak var cardTwo: UIView!
-  @IBOutlet private weak var cardThree: UIView!
-  @IBOutlet private weak var cardFour: UIView!
-  @IBOutlet private weak var cardFive: UIView!
+  @IBOutlet weak var cardOne: UIView!
+  @IBOutlet weak var cardTwo: UIView!
+  @IBOutlet weak var cardThree: UIView!
+  @IBOutlet weak var cardFour: UIView!
+  @IBOutlet weak var cardFive: UIView!
   
   private var cardToPlay: CardView?
-  private var inHandController: InHandViewController?
-  private var selectedTargetPosition: Int = 99
+  var inHandController: InHandViewController!
+  var selectedTargetPosition: Int = 99
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +42,6 @@ class InPlayViewController: UIViewController {
     guard let cardView = cardToPlay else {
       return false
     }
-    var cardsAdded: [CardView] = []
     var frame = CGRect.zero
     switch selectedTargetPosition {
     case 0:
@@ -57,13 +57,14 @@ class InPlayViewController: UIViewController {
     default:
       break
     }
-    cardView.frame = frame
-    cardView.cardButton.tag = selectedTargetPosition
-    cardView.cardButton.removeTarget(nil, action: nil, for: .touchUpInside)
-    cardView.cardButton.addTarget(self, action: #selector(selectInPlayCard(button:)), for: .touchUpInside)
-    self.view.addSubview(cardView)
 
-    cardsAdded.append(cardView)
+    cardView.frame = frame
+    cardView.cardButton.tag = cardView.cardIndex
+    cardView.cardButton.removeTarget(nil, action: nil, for: .touchUpInside)
+    cardView.cardButton.addTarget(self, action: #selector(selectInPlayCard(sender:)), for: .touchUpInside)
+    self.view.addSubview(cardView)
+    self.view.bringSubview(toFront: cardView)
+    self.view.layoutIfNeeded()
     selectedTargetPosition = 99
     
     return true
@@ -75,12 +76,26 @@ class InPlayViewController: UIViewController {
     tellDelegateToMoveCard()
   }
   
-  func selectInPlayCard(button: UIButton) {
-    
+  func selectInPlayCard(sender: UIButton) {
+    selectedTargetPosition = sender.tag
+    didSelectCardForAttack()
   }
   
   //Delegate Notifications
   func tellDelegateToMoveCard() {
-    delegate?.inPlayViewControllerDidChangeSelectedTargetPosition(self)
+    guard let handController = inHandController else {
+      return
+    }
+    delegate?.inPlayViewControllerDidChangeSelectedTargetPosition(self, inHandViewController: handController)
+  }
+  
+  func didSelectCardForAttack() {
+    delegate?.inPlayViewControllerDidSelectCardForAttack(self)
+  }
+  
+  //Delegate Methods
+  func inHandViewControllerDidSelectCardToPlay(_ inHandViewController: InHandViewController)
+  {
+    inHandController = inHandViewController
   }
 }

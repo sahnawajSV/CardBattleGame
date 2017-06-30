@@ -339,16 +339,26 @@
                                             <constraint firstItem="UL5-vo-1uQ" firstAttribute="centerY" secondItem="puR-kp-Fkz" secondAttribute="centerY" id="sd2-fw-F8R"/>
                                         </constraints>
                                     </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cAd-br-2b3" userLabel="AIViewButton">
+                                        <rect key="frame" x="0.0" y="0.0" width="240" height="93"/>
+                                        <connections>
+                                            <action selector="aiViewButtonPressedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="qK1-Bd-iKH"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1188665132" green="1" blue="0.46979806280000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="cAd-br-2b3" firstAttribute="width" secondItem="U2E-ef-aeJ" secondAttribute="width" id="2hR-3O-0bg"/>
                                     <constraint firstItem="SIY-qA-8fi" firstAttribute="width" secondItem="U2E-ef-aeJ" secondAttribute="height" multiplier="80:31" id="4fI-Yc-Vfi"/>
+                                    <constraint firstItem="cAd-br-2b3" firstAttribute="centerX" secondItem="U2E-ef-aeJ" secondAttribute="centerX" id="647-uF-3FU"/>
                                     <constraint firstAttribute="height" constant="93" id="8Cf-YQ-ykY"/>
                                     <constraint firstItem="SIY-qA-8fi" firstAttribute="centerX" secondItem="U2E-ef-aeJ" secondAttribute="centerX" id="JNb-L4-Ww2"/>
                                     <constraint firstAttribute="bottom" secondItem="SIY-qA-8fi" secondAttribute="bottom" constant="7" id="MiN-Pu-myb"/>
                                     <constraint firstItem="puR-kp-Fkz" firstAttribute="top" secondItem="U2E-ef-aeJ" secondAttribute="top" id="P4k-U7-9qu"/>
                                     <constraint firstItem="SIY-qA-8fi" firstAttribute="width" secondItem="U2E-ef-aeJ" secondAttribute="width" id="PQG-Y4-kgd"/>
                                     <constraint firstItem="puR-kp-Fkz" firstAttribute="centerX" secondItem="U2E-ef-aeJ" secondAttribute="centerX" id="dBd-Ui-BRF"/>
+                                    <constraint firstItem="cAd-br-2b3" firstAttribute="height" secondItem="U2E-ef-aeJ" secondAttribute="height" id="eDx-2p-k94"/>
+                                    <constraint firstItem="cAd-br-2b3" firstAttribute="centerY" secondItem="U2E-ef-aeJ" secondAttribute="centerY" id="kOd-1c-NtX"/>
                                     <constraint firstItem="puR-kp-Fkz" firstAttribute="width" secondItem="U2E-ef-aeJ" secondAttribute="width" id="pkr-ww-AaP"/>
                                 </constraints>
                             </view>
@@ -451,6 +461,7 @@
                         <outlet property="aiInDeckText" destination="znn-71-2WD" id="MfU-IW-2Vr"/>
                         <outlet property="aiNameText" destination="SIY-qA-8fi" id="FOn-9V-bCR"/>
                         <outlet property="aiView" destination="U2E-ef-aeJ" id="lcy-kh-kjW"/>
+                        <outlet property="endTurnButton" destination="d4Z-dk-sZI" id="yKK-4M-sxg"/>
                         <outlet property="playerBattlePointText" destination="XMa-xw-XgU" id="f5k-1L-Xmz"/>
                         <outlet property="playerDeckView" destination="fn3-vn-CmY" id="tQf-Fe-3n8"/>
                         <outlet property="playerHealthText" destination="GDJ-Aq-QGl" id="3ZP-6f-Ydk"/>

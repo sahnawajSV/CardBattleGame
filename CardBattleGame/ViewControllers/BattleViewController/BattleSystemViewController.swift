@@ -9,14 +9,13 @@
 import UIKit
 
 /// Handles the BattleSystemViewController implementation. Used to update the Views and Labels. Handle Card Play and Toggle Turn interactions / actions.
-class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewControllerDelegate {
+class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewControllerDelegate, AIBehaviourManagerDelegate {
   //MARK: - Internal Variables
   private var gViewModel: GameViewModel = GameViewModel()
   
   //MARK: - View Collection
   var allPlayerHandCards: [CardView] = []
   var allAIHandCards: [CardView] = []
-  
   var allPlayerPlayCards: [CardView] = []
   var allAIPlayCards: [CardView] = []
   
@@ -37,6 +36,8 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   @IBOutlet private weak var aiView: UIView!
   @IBOutlet private weak var aiDeckView: UIView!
   
+  @IBOutlet private weak var endTurnButton: UIButton!
+  
   var playerOneInHandController : InHandViewController!
   var playerOnePlayController : InPlayViewController!
   var playerTwoInHandController : InHandViewController!
@@ -56,8 +57,11 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     
     //Assign View Model and Call Initializers
     gViewModel.delegate = self
+    gViewModel.gManager.playerTwoLogic.delegate = self
     playerOnePlayController.delegate = self
     playerTwoPlayController.delegate = self
+    playerOneInHandController.delegate = playerOnePlayController
+    playerTwoInHandController.delegate = playerTwoPlayController
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -69,7 +73,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     self.view.translatesAutoresizingMaskIntoConstraints = true
   }
   
-  //MARK: - Create In Hand Cards
+  //MARK: - Creation and Reload
   func createInHandCards() {
     if (allPlayerHandCards.count) > 0 {
       for (_,element) in (allPlayerHandCards.enumerated()) {
@@ -90,33 +94,29 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     allAIHandCards = playerTwoInHandController.createCard(playerInHandCards: gViewModel.aiInHandCards)
   }
   
-  //MARK: - Create In Hand Cards
-  func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController) {
-    if playerOneInHandController.selectedCardIndex != 99 {
-      let canPlay = gViewModel.playCardToGameArea(cardIndex: playerOneInHandController.selectedCardIndex, forPlayer: true)
-      if canPlay {
-        let success: Bool = playerOnePlayController.updateInHandData(cardView: allPlayerHandCards[playerOneInHandController.selectedCardIndex])
-        
-        if success {
-          allPlayerPlayCards.append(allPlayerHandCards[playerOneInHandController.selectedCardIndex])
-          allPlayerHandCards.remove(at: playerOneInHandController.selectedCardIndex)
-        }
+  func createInPlayerCardsForPlayerTwo() {
+    if (allAIPlayCards.count) > 0 {
+      for (_,element) in (allAIPlayCards.enumerated()) {
+        element.removeFromSuperview()
       }
-      //Reset
-      playerOneInHandController.selectedCardIndex = 99
-      createInHandCards()
+      allAIPlayCards.removeAll()
+      for (index,element) in gViewModel.aiInPlayCards.enumerated() {
+        let cardView: CardView = CardView(frame: playerTwoPlayController.cardOne.frame)
+        let card: Card = element
+        cardView.bpText.text = String(card.battlepoint)
+        cardView.attackText.text = String(card.attack)
+        cardView.healthText.text = String(card.health)
+        cardView.nameText.text = card.name
+        cardView.cardIndex = index
+        playerTwoPlayController.selectedTargetPosition = index
+        let _ = playerTwoPlayController.updateInHandData(cardView: cardView)
+        allAIPlayCards.append(cardView)
+        reloadAllViews()
+      }
     }
   }
   
-  
-  //MARK: - Action Methods
-  @IBAction private func endTurnPressed(sender: UIButton) {
-    gViewModel.toggleTurn()
-  }
-
-  
-  //MARK: - Delegates - Create an Extension for the Delegate Methods
-  func reloadAllViews(_ gameProtocol: GameProtocol) {
+  func reloadAllViews() {
     playerInDeckText.text = gViewModel.playerNumOfCardsInDeckText
     aiInDeckText.text = gViewModel.aiNumOfCardsInDeckText
     
@@ -128,12 +128,14 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     
     playerHealthText.text = gViewModel.playerHealth
     aiHealthText.text = gViewModel.aiHealth
+    
+    if gViewModel.isPlayerTurn {
+      //Enable EndTurn Button if it is Player One Turn
+      endTurnButton.isEnabled = true
+    }
   }
   
-  func createInHandViews(_ gameProtocol: GameProtocol) {
-    createInHandCards()
-  }
-  
+  //MARK: Container View Preparation Segue
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     guard let identifier = segue.identifier else {
       return
@@ -143,6 +145,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     case "PlayerOneInHand":
       if let handController = segue.destination as? InHandViewController {
         self.playerOneInHandController = handController
+        self.playerOneInHandController.isPlayer = true
       }
       break
     case "PlayerOneInPlay":
@@ -153,6 +156,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     case "PlayerTwoInHand":
       if let handController = segue.destination as? InHandViewController {
         self.playerTwoInHandController = handController
+        self.playerTwoInHandController.isPlayer = false
       }
       break
     case "PlayerTwoInPlay":
@@ -162,6 +166,184 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
       break
     default:
       break
+    }
+  }
+  
+  
+  //MARK: - Action Methods
+  @IBAction private func endTurnPressed(sender: UIButton) {
+    if gViewModel.isPlayerTurn {
+      //Disable EndTurn Button if it is Player Two / AI Turn
+      endTurnButton.isEnabled = false
+    }
+    gViewModel.toggleTurn()
+  }
+  
+  @IBAction private func aiViewButtonPressed(sender: UIButton) {
+    let selectedCardPosition: Int = playerOnePlayController.selectedTargetPosition
+    if selectedCardPosition != 99 {
+      gViewModel.attackAvatar(cardIndex: selectedCardPosition)
+      playerOnePlayController.selectedTargetPosition = 99
+      gViewModel.updateData()
+      reloadAllViews()
+//        Use for Animations
+//      let cardView: CardView = allPlayerPlayCards[selectedCardPosition]
+    }
+  }
+  
+  
+  //MARK: - Delegates - Create an Extension for the Delegate Methods
+  func reloadAllViews(_ gameProtocol: GameProtocol) {
+    reloadAllViews()
+  }
+  
+  func createInHandViews(_ gameProtocol: GameProtocol) {
+    createInHandCards()
+  }
+  
+  func createInPlayViewForPlayerTwo(_ gameProtocol: GameProtocol) {
+    createInPlayerCardsForPlayerTwo()
+  }
+  
+  //MARK: AIBehaviourManager Delegates
+  func AIBehaviourManagerDidSelectCardToPlay(_ aiBehaviourManager: AIBehaviourManager, cardInfo: [String : AnyObject]) {
+    let cardIndex: Int = cardInfo["cardIndex"] as! Int
+    let cardView: CardView = allAIHandCards[cardIndex]
+    allAIHandCards.remove(at: cardIndex)
+    gViewModel.updateData()
+    cardView.cardIndex = gViewModel.gManager.aiStats.gameStats.inPlay.count
+    playerTwoPlayController.selectedTargetPosition = gViewModel.gManager.aiStats.gameStats.inPlay.count - 1
+    let _ = playerTwoPlayController.updateInHandData(cardView: cardView)
+    allAIPlayCards.append(cardView)
+  }
+  
+  func AIBehaviourManagerDidEndTurn(_ aiBehaviourManager: AIBehaviourManager) {
+    gViewModel.updateData()
+    createInPlayerCardsForPlayerTwo()
+    gViewModel.toggleTurn()
+  }
+  
+  func AIBehaviourManagerDidAttackCard(atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int) {
+    if atkUpdatedHealth <= 0 {
+      //DESTROY ATTACKER
+      let cardView: CardView = allAIPlayCards[atkIndex]
+      cardView.removeFromSuperview()
+      allAIPlayCards.remove(at: atkIndex)
+    } else {
+      let cardView: CardView = allAIPlayCards[atkIndex]
+      cardView.healthText.text = String(atkUpdatedHealth)
+      allAIPlayCards[atkIndex] = cardView
+    }
+    
+    if defUpdatedHealth <= 0 {
+      //DESTROY DEFENDER
+      let cardView: CardView = allPlayerPlayCards[defIndex]
+      cardView.removeFromSuperview()
+      allPlayerPlayCards.remove(at: defIndex)
+    } else {
+      let cardView: CardView = allPlayerPlayCards[defIndex]
+      cardView.healthText.text = String(defUpdatedHealth)
+      allPlayerPlayCards[defIndex] = cardView
+    }
+  }
+  
+  func AIBehaviourManagerDidAttackAvatar(attacker: Card, atkIndex: Int) {
+    gViewModel.updateData()
+    reloadAllViews()
+  }
+  
+  //MARK: - PlayerViewController Delegates
+  func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController, inHandViewController: InHandViewController) {
+    if gViewModel.isPlayerTurn {
+      if inHandViewController.selectedCardIndex != 99 {
+        let canPlay = gViewModel.playCardToGameArea(cardIndex: inHandViewController.selectedCardIndex)
+        if canPlay {
+          let success: Bool = updateDataForInHandCards(inHandViewController: inHandViewController, inPlayViewController: inPlayViewController)
+          if success {
+            updateAllPlayerCardData(cardIndex: inHandViewController.selectedCardIndex)
+          }
+        }
+        //Reset
+        inHandViewController.selectedCardIndex = 99
+        createInHandCards()
+      }
+    } else {
+      //Reset
+      inHandViewController.selectedCardIndex = 99
+    }
+  }
+  
+  func inPlayViewControllerDidSelectCardForAttack(_ inPlayViewController: InPlayViewController) {
+    let playerOneCardPosition: Int = playerOnePlayController.selectedTargetPosition
+    if playerOneCardPosition != 99 {
+      let playerTwoCardPosition: Int = playerTwoPlayController.selectedTargetPosition
+      if playerTwoCardPosition != 99 {
+         gViewModel.attackCard(atkCardIndex: playerOneCardPosition, defCardIndex: playerTwoCardPosition)
+        let attackerHealth: Int = Int(gViewModel.gManager.playerStats.gameStats.inPlay[playerOneCardPosition].health)
+        let defenderHealth: Int = Int(gViewModel.gManager.aiStats.gameStats.inPlay[playerTwoCardPosition].health)
+        
+        let atkCardView: CardView = allPlayerPlayCards[playerOneCardPosition]
+        let defCardView: CardView = allAIPlayCards[playerTwoCardPosition]
+        
+        if attackerHealth <= 0 {
+          atkCardView.removeFromSuperview()
+          allPlayerPlayCards.remove(at: playerOneCardPosition)
+          gViewModel.gManager.playerStats.gameStats.inPlay.remove(at: playerOneCardPosition)
+        } else {
+          atkCardView.healthText.text = String(attackerHealth)
+        }
+        
+        if defenderHealth <= 0 {
+          defCardView.removeFromSuperview()
+          allAIPlayCards.remove(at: playerTwoCardPosition)
+          gViewModel.gManager.aiStats.gameStats.inPlay.remove(at: playerTwoCardPosition)
+        } else {
+          defCardView.healthText.text = String(defenderHealth)
+        }
+        
+        for i in 0..<allPlayerPlayCards.count {
+          let cardView: CardView = allPlayerPlayCards[i]
+          cardView.cardButton.tag = i
+          cardView.cardIndex = i
+        }
+        
+        for i in 0..<allAIPlayCards.count {
+          let cardView: CardView = allAIPlayCards[i]
+          cardView.cardButton.tag = i
+          cardView.cardIndex = i
+        }
+        
+        playerOnePlayController.selectedTargetPosition = 99
+        playerTwoPlayController.selectedTargetPosition = 99
+        gViewModel.updateData()
+        reloadAllViews()
+      }
+    }
+  }
+  
+  
+  //MARK: - PlayViewController Delegate Helpers
+  func updateDataForInHandCards(inHandViewController: InHandViewController, inPlayViewController: InPlayViewController) -> Bool
+  {
+    if gViewModel.isPlayerTurn {
+      let cardView: CardView = allPlayerHandCards[inHandViewController.selectedCardIndex]
+      cardView.cardIndex = gViewModel.playerInPlayCards.count-1
+      return inPlayViewController.updateInHandData(cardView: cardView)
+    } else {
+      let cardView: CardView = allAIHandCards[inHandViewController.selectedCardIndex]
+      cardView.cardIndex = gViewModel.aiInPlayCards.count-1
+      return inPlayViewController.updateInHandData(cardView: allAIHandCards[inHandViewController.selectedCardIndex])
+    }
+  }
+  
+  func updateAllPlayerCardData(cardIndex: Int)
+  {
+    if gViewModel.isPlayerTurn {
+      allPlayerPlayCards.append(allPlayerHandCards[cardIndex])
+      allPlayerHandCards.remove(at: cardIndex)
+    } else {
+      allAIPlayCards.append(allAIHandCards[cardIndex])
+      allAIHandCards.remove(at: cardIndex)
     }
   }
 }
