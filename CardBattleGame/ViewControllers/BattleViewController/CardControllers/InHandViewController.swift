@@ -23,7 +23,7 @@ class InHandViewController: UIViewController {
   @IBOutlet private weak var cardFive: UIView!
   
   //Default value when no card is selected
-  var selectedCardIndex: Int = 99
+  var selectedCardIndex: Int = Game.invalidCardIndex
   var isPlayer: Bool!
   
   override func viewDidLoad() {
@@ -32,7 +32,7 @@ class InHandViewController: UIViewController {
   
   func createCard(playerInHandCards: [Card]) -> [CardView] {
     var cardsAdded: [CardView] = []
-    for (index,element) in playerInHandCards.enumerated() {
+    for (index,card) in playerInHandCards.enumerated() {
       var frame = CGRect.zero
       switch index {
       case 0:
@@ -49,7 +49,6 @@ class InHandViewController: UIViewController {
         break
       }
       let cardView: CardView = CardView(frame: frame)
-      let card: Card = element
       cardView.bpText.text = String(card.battlepoint)
       cardView.attackText.text = String(card.attack)
       cardView.healthText.text = String(card.health)

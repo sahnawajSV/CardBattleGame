@@ -307,6 +307,20 @@
                                     <segue destination="gnC-mP-iYT" kind="embed" identifier="PlayerTwoInHand" id="Obe-jt-5OX"/>
                                 </connections>
                             </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4Z-dk-sZI">
+                                <rect key="frame" x="1179" y="474" width="160" height="76"/>
+                                <color key="backgroundColor" red="1" green="0.61827965122801609" blue="0.054927028705691772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="d4Z-dk-sZI" secondAttribute="height" multiplier="40:19" id="BoD-n8-hkY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <state key="normal" title="END TURN">
+                                    <color key="titleColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="endTurnPressedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="0Wy-Nj-egY"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2E-ef-aeJ" userLabel="AIView">
                                 <rect key="frame" x="466" y="0.0" width="240" height="93"/>
                                 <subviews>
@@ -329,7 +343,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="0.019934921729999999" blue="0.0038865550540000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="UL5-vo-1uQ" firstAttribute="centerX" secondItem="puR-kp-Fkz" secondAttribute="centerX" id="8mA-iV-HBA"/>
                                             <constraint firstAttribute="height" constant="44" id="BFc-59-gqt"/>
@@ -405,20 +419,6 @@
                                     <constraint firstItem="BM9-uq-YcI" firstAttribute="top" secondItem="bhu-Re-wVF" secondAttribute="top" id="o02-ZD-Pfi"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4Z-dk-sZI">
-                                <rect key="frame" x="1179" y="474" width="160" height="76"/>
-                                <color key="backgroundColor" red="1" green="0.61827965122801609" blue="0.054927028705691772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="d4Z-dk-sZI" secondAttribute="height" multiplier="40:19" id="BoD-n8-hkY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
-                                <state key="normal" title="END TURN">
-                                    <color key="titleColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="endTurnPressedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="0Wy-Nj-egY"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>

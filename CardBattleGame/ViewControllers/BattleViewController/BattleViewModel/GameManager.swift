@@ -25,16 +25,16 @@ class GameManager {
     let globalCardData = CardListDataSource()
     let cardList = globalCardData.fetchCardList()
     
-    let pl_CardArray: [Card] = randomCards(cardArray: cardList)
-    let ai_CardArray: [Card]  = randomCards(cardArray: cardList)
+    let plCardArray: [Card] = randomCards(cardArray: cardList)
+    let aiCardArray: [Card]  = randomCards(cardArray: cardList)
     
 //    //Adding Player Cards
 //    pl_CardArray.append(contentsOf: cardList)
 //    //TODO: Add AI cards based on player strength
 //    ai_CardArray.append(contentsOf: cardList)
     
-    let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: pl_CardArray)
-    let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: ai_CardArray)
+    let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: plCardArray)
+    let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: aiCardArray)
     
     //TODO: Change it based on deck selected for play before the game starts
     playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: [], inPlay: [], battlePoints: Game.startingBattlePoints, health: Game.health))
@@ -118,15 +118,16 @@ class GameManager {
   }
   
   func allowAllPlayCardsToAttack() {
-    for (_,element) in playerStats.gameStats.inPlay.enumerated() {
-      let card: Card = element
+    for (index,element) in playerStats.gameStats.inPlay.enumerated() {
+      var card: Card = element
       card.canAttack = true
+      playerStats.gameStats.inPlay[index] = card
     }
   }
 
   
   func attackAvatar(cardIndex: Int) {
-    let card: Card = playerStats.gameStats.inPlay[cardIndex]
+    var card: Card = playerStats.gameStats.inPlay[cardIndex]
     if card.canAttack {
       let attackValue = card.attack
       card.canAttack = false
@@ -136,12 +137,15 @@ class GameManager {
   }
   
   func attackCard(atkCardIndex: Int, defCardIndex: Int) {
-    let atkCard: Card = playerStats.gameStats.inPlay[atkCardIndex]
-    let defCard: Card = aiStats.gameStats.inPlay[defCardIndex]
+    var atkCard: Card = playerStats.gameStats.inPlay[atkCardIndex]
+    var defCard: Card = aiStats.gameStats.inPlay[defCardIndex]
     if atkCard.canAttack {
       atkCard.canAttack = false
       defCard.health = defCard.health - atkCard.attack
       atkCard.health = atkCard.health - defCard.attack
+      
+      playerStats.gameStats.inPlay[atkCardIndex] = atkCard
+      aiStats.gameStats.inPlay[defCardIndex] = defCard
     }
   }
   

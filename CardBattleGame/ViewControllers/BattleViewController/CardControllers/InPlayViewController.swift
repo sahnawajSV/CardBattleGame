@@ -27,7 +27,7 @@ class InPlayViewController: UIViewController, InHandViewControllerDelegate {
   
   private var cardToPlay: CardView?
   var inHandController: InHandViewController!
-  var selectedTargetPosition: Int = 99
+  var selectedTargetPosition: Int = Game.invalidCardIndex
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,12 +60,13 @@ class InPlayViewController: UIViewController, InHandViewControllerDelegate {
 
     cardView.frame = frame
     cardView.cardButton.tag = cardView.cardIndex
+    NSLog("CARD INDEX: \(cardView.cardIndex)")
     cardView.cardButton.removeTarget(nil, action: nil, for: .touchUpInside)
     cardView.cardButton.addTarget(self, action: #selector(selectInPlayCard(sender:)), for: .touchUpInside)
     self.view.addSubview(cardView)
     self.view.bringSubview(toFront: cardView)
     self.view.layoutIfNeeded()
-    selectedTargetPosition = 99
+    selectedTargetPosition = Game.invalidCardIndex
     
     return true
   }

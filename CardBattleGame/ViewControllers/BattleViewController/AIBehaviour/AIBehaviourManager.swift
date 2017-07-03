@@ -11,8 +11,8 @@ import UIKit
 protocol AIBehaviourManagerDelegate: class {
   func AIBehaviourManagerDidSelectCardToPlay(_ aiBehaviourManager: AIBehaviourManager, cardInfo: [String : AnyObject])
   func AIBehaviourManagerDidEndTurn(_ aiBehaviourManager: AIBehaviourManager)
-  func AIBehaviourManagerDidAttackCard(atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int)
-  func AIBehaviourManagerDidAttackAvatar(attacker: Card, atkIndex: Int)
+  func AIBehaviourManagerDidAttackCard(_ aiBehaviourManager: AIBehaviourManager, atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int)
+  func AIBehaviourManagerDidAttackAvatar(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, atkIndex: Int)
 }
 
 class AIBehaviourManager {
@@ -47,10 +47,9 @@ class AIBehaviourManager {
       //Check if player has cards in Hand and can play a card based on available BattlePoints
       if playerTwoStats.gameStats.inHand.count > 0 {
         let availableBattlePoints: Int = playerTwoStats.gameStats.battlePoints
-        var cardToPlay: Card?
-        var cardIndex: Int?
-        for (index,element) in self.playerTwoStats.gameStats.inHand.enumerated() {
-          let card: Card = element
+        var cardToPlay: Card!
+        var cardIndex: Int = Game.invalidCardIndex
+        for (index,card) in self.playerTwoStats.gameStats.inHand.enumerated() {
           //Check if card is playable
           if Int(card.battlepoint) <= availableBattlePoints {
             cardToPlay = card
@@ -59,12 +58,12 @@ class AIBehaviourManager {
           }
         }
         //Play Card
-        if cardToPlay != nil {
+        if cardIndex != Game.invalidCardIndex {
             delay(1, closure: {
-              self.playerTwoStats.gameStats.playCard(card: cardToPlay!)
+              self.playerTwoStats.gameStats.playCard(card: cardToPlay)
               var cardInfo = [String : AnyObject]()
               cardInfo["cardIndex"] = cardIndex as AnyObject
-              cardInfo["card"] = cardToPlay
+              cardInfo["card"] = cardToPlay as AnyObject
               self.delegate?.AIBehaviourManagerDidSelectCardToPlay(self, cardInfo: cardInfo)
               self.playCard()
             })
@@ -81,17 +80,11 @@ class AIBehaviourManager {
   
   func attackWithCards()
   {
-    var canAttackCards: [Card] = []
-    for (_,element) in playerTwoStats.gameStats.inPlay.enumerated() {
-      let card: Card = element
-      if card.canAttack {
-        canAttackCards.append(element)
-      }
-    }
+    let canAttackCards = playerTwoStats.gameStats.inPlay.filter { $0.canAttack }
     if canAttackCards.count == 0 {
       playCard()
     } else {
-      let totalAttackPower: Int = getTotalAttackPower(allCards: canAttackCards)
+      let totalAttackPower = getTotalAttackPower(allCards: canAttackCards)
       let lowHealthThresholdOfPlayer: Int = Int(15 * playerOneStats.gameStats.health / 100)
       
       if playerOneStats.gameStats.health - totalAttackPower <= lowHealthThresholdOfPlayer {
@@ -115,66 +108,58 @@ class AIBehaviourManager {
   
   func delay(_ delay:Double, closure:@escaping ()->()) {
     DispatchQueue.main.asyncAfter(
-      deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
+      deadline: .now() + delay, execute: closure)
   }
   
   func attackCardToCard(attacker: Card, defender: Card, atkIndex: Int, defIndex: Int) {
-    let atkCard = attacker
+    var atkCard = attacker
     let defCard = defender
     let updateAtkHealth: Int16 = atkCard.health - defCard.attack
     let updateDefHealth: Int16 = defCard.health - atkCard.attack
     
     atkCard.canAttack = false
+    performCardHealthCheck(forPlayer: playerTwoStats, cardIndex: atkIndex, card: atkCard, updatedHealth: updateAtkHealth)
+    performCardHealthCheck(forPlayer: playerOneStats, cardIndex: defIndex, card: defCard, updatedHealth: updateDefHealth)
     
-    if updateAtkHealth <= 0 {
-      //DESTROY ATTACKER
-      playerTwoStats.gameStats.inPlay.remove(at: atkIndex)
-    } else {
-      playerTwoStats.gameStats.inPlay[atkIndex] = atkCard
-    }
-    
-    if updateDefHealth <= 0 {
-      //DESTROY DEFENDER
-      playerOneStats.gameStats.inPlay.remove(at: defIndex)
-    } else {
-      playerOneStats.gameStats.inPlay[defIndex] = defCard
-    }
-    
-    delegate?.AIBehaviourManagerDidAttackCard(atkUpdatedHealth: Int(updateAtkHealth), defUpdatedHealth: Int(updateDefHealth), atkIndex: atkIndex, defIndex: defIndex)
+    delegate?.AIBehaviourManagerDidAttackCard(self, atkUpdatedHealth: Int(updateAtkHealth), defUpdatedHealth: Int(updateDefHealth), atkIndex: atkIndex, defIndex: defIndex)
   }
   
-  func attackCardToAvatar(attacker: Card, atkIndex: Int) {
+  func attackCardToAvatar(attacker: inout Card, atkIndex: Int) {
     playerOneStats.gameStats.getHurt(attackValue: Int(attacker.attack))
-    let atkCard = attacker
-    atkCard.canAttack = false
-    playerTwoStats.gameStats.inPlay[atkIndex] = atkCard
-    delegate?.AIBehaviourManagerDidAttackAvatar(attacker: attacker, atkIndex: atkIndex)
+    attacker.canAttack = false
+    playerTwoStats.gameStats.inPlay[atkIndex] = attacker
+    delegate?.AIBehaviourManagerDidAttackAvatar(self, attacker: attacker, atkIndex: atkIndex)
   }
   
   //MARK: - HELPERS
   func allowAllPlayCardsToAttack() {
-    for (_,element) in playerTwoStats.gameStats.inPlay.enumerated() {
-      let card: Card = element
-      card.canAttack = true
+    for (index, _) in playerTwoStats.gameStats.inPlay.enumerated() {
+      playerTwoStats.gameStats.inPlay[index].canAttack = true
     }
   }
   
   func getTotalAttackPower(allCards: [Card]) -> Int {
-    var totalAttackPower: Int = 0
-    for i in 0..<allCards.count {
-      let card = allCards[i]
-      totalAttackPower = totalAttackPower + Int(card.attack)
-    }
+    let attackPower: [Int16] = allCards.map { return $0.attack }
+    let totalAttackPower = attackPower.reduce(0) { (totalAttackPower, attackPower) in totalAttackPower + Int(attackPower) }
     
     return totalAttackPower
   }
   
   func attackAvatar() {
     for (atkIndex,element) in playerTwoStats.gameStats.inPlay.enumerated() {
-      let attackingCard: Card = element
+      var attackingCard: Card = element
       if attackingCard.canAttack {
-        attackCardToAvatar(attacker: attackingCard, atkIndex: atkIndex)
+        attackCardToAvatar(attacker: &attackingCard, atkIndex: atkIndex)
       }
+    }
+  }
+  
+  func performCardHealthCheck(forPlayer: Stats, cardIndex: Int, card: Card, updatedHealth: Int16) {
+    if updatedHealth <= 0 {
+      //DESTROY DEFENDER
+      forPlayer.gameStats.inPlay.remove(at: cardIndex)
+    } else {
+      forPlayer.gameStats.inPlay[cardIndex] = card
     }
   }
   
