@@ -60,6 +60,10 @@ class GameViewModel: GameProtocol, AIBehaviourManagerDelegate {
     //Draw inital Cards from deck
     gManager.drawCardsFromDeck()
     
+    //Set AI Behaviur Manager Reference
+    AILogicReference = gManager.playerTwoLogic
+    AILogicReference.delegate = self
+    
     //Update the Local Data
     updateData()
     
@@ -71,10 +75,6 @@ class GameViewModel: GameProtocol, AIBehaviourManagerDelegate {
     
     //Set Turn Status
     isPlayerTurn = gManager.isPlayerTurn
-    
-    //Set AI Behaviur Manager Reference
-    AILogicReference = gManager.playerTwoLogic
-    AILogicReference.delegate = self
   }
   
   func toggleTurn() {
@@ -136,8 +136,6 @@ class GameViewModel: GameProtocol, AIBehaviourManagerDelegate {
     aiInHandCards = gManager.aiStats.gameStats.inHand
     aiInDeckCards = gManager.aiStats.gameStats.inDeck
     aiInPlayCards = gManager.aiStats.gameStats.inPlay
-    
-    AILogicReference = gManager.playerTwoLogic
   }
   
   

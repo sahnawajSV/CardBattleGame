@@ -8,7 +8,7 @@
 
 
 /// Card Model class to hold data for every individual class
-struct Card {
+struct Card: Equatable {
   
   var name: String
   var id: Int16
@@ -36,9 +36,7 @@ struct Card {
     self.canAttack = canAttack
   }
   
-//  func updateCardData(name: String, id: Int16, attack: Int16, battlepoint: Int16, health: Int16, canAttack: Bool) -> Card {
-//    let card = Card(name: name, id: id, attack: attack, battlepoint: battlepoint, health: health, canAttack: canAttack)
-//    return card
-//  }
-  
+  public static func ==(lhs: Card, rhs: Card) -> Bool {
+    return true
+  }
 }

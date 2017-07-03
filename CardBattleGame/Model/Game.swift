@@ -65,10 +65,9 @@ class Game {
     let updatedBattlePoints = battlePoints - Int(card.battlepoint)
     battlePoints = updatedBattlePoints
     inPlay.append(card)
-    if let index = inHand.index(where: { (card) -> Bool in
-      return true
-    }) {
-      inHand.remove(at: index)
+    let index = inHand.indexOf(x: card)
+    if index != nil {
+      inHand.remove(at: index!)
     }
   }
   

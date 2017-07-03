@@ -99,6 +99,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
         element.removeFromSuperview()
       }
       allAIPlayCards.removeAll()
+      gViewModel.updateData()
       for (index,card) in gViewModel.aiInPlayCards.enumerated() {
         let cardView: CardView = CardView(frame: playerTwoPlayController.cardOne.frame)
         cardView.bpText.text = String(card.battlepoint)

@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum AttackLogic: String {
+  case cardCanSurvive
+  case canWillNotSurvive
+}
+
 ///Passes the message to BattleSystemViewController in order to manage UI Updates
 protocol AIBehaviourManagerDelegate: class {
   func AIBehaviourManagerDidSelectCardToPlay(_ aiBehaviourManager: AIBehaviourManager, cardInfo: [String : AnyObject])
@@ -94,8 +99,8 @@ class AIBehaviourManager {
         playCard()
       } else {
         if playerOneStats.gameStats.inPlay.count > 0 {
-          if !checkForAttackLogic(logicType: 0) {
-            if !checkForAttackLogic(logicType: 1) {
+          if !checkForAttackLogic(logicType: AttackLogic.cardCanSurvive) {
+            if !checkForAttackLogic(logicType: AttackLogic.canWillNotSurvive) {
               attackAvatar()
               playCard()
             }
@@ -165,7 +170,7 @@ class AIBehaviourManager {
     }
   }
   
-  func checkForAttackLogic(logicType: Int) -> Bool {
+  func checkForAttackLogic(logicType: AttackLogic) -> Bool {
     var attacker: Card?
     var attackerIndex: Int?
     var defender: Card?
@@ -175,7 +180,7 @@ class AIBehaviourManager {
       if attackingCard.canAttack {
         for (defIndex,element) in playerOneStats.gameStats.inPlay.enumerated() {
           let defendingCard: Card = element
-          if logicType == 0 {
+          if logicType == AttackLogic.cardCanSurvive {
             if attackingCard.attack >= defendingCard.health && attackingCard.health > defendingCard.attack {
               attacker = attackingCard
               attackerIndex = atkIndex
@@ -183,7 +188,7 @@ class AIBehaviourManager {
               defenderIndex = defIndex
               break
             }
-          } else {
+          } else if logicType == AttackLogic.canWillNotSurvive {
             if attackingCard.attack >= defendingCard.health {
               attacker = attackingCard
               attackerIndex = atkIndex
