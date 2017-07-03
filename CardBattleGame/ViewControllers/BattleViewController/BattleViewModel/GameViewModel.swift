@@ -15,10 +15,14 @@ protocol GameProtocol {
 protocol GameDelegate: class {
   func reloadAllViews(_ gameProtocol: GameProtocol)
   func createInHandViews(_ gameProtocol: GameProtocol)
+  func GameViewModelDidSelectCardToPlay(_ gameProtocol: GameProtocol, cardInfo: [String : AnyObject])
+  func GameViewModelDidEndTurn(_ gameProtocol: GameProtocol)
+  func GameViewModelDidAttackCard(_ gameProtocol: GameProtocol, atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int)
+  func GameViewModelDidAttackAvatar(_ gameProtocol: GameProtocol, attacker: Card, atkIndex: Int)
 }
 
 /// This is a viewModel and a Formatting class. Fetches the required information from the GameManager class to provide easy to use variables to the ViewController to update the UI. Also handles all Delegate calls for the ViewController
-class GameViewModel: GameProtocol {
+class GameViewModel: GameProtocol, AIBehaviourManagerDelegate {
   
   weak var delegate: GameDelegate?
   
@@ -46,7 +50,7 @@ class GameViewModel: GameProtocol {
   var aiInHandCards: [Card] = []
   var aiInDeckCards: [Card] = []
   var aiInPlayCards: [Card] = []
-  var AILogicReference: AIBehaviourManager!
+  private var AILogicReference: AIBehaviourManager!
   
   var isPlayerTurn = false
   
@@ -67,6 +71,10 @@ class GameViewModel: GameProtocol {
     
     //Set Turn Status
     isPlayerTurn = gManager.isPlayerTurn
+    
+    //Set AI Behaviur Manager Reference
+    AILogicReference = gManager.playerTwoLogic
+    AILogicReference.delegate = self
   }
   
   func toggleTurn() {
@@ -142,4 +150,22 @@ class GameViewModel: GameProtocol {
   func tellDelegateToRecreateInHandCards() {
     delegate?.createInHandViews(self)
   }
+  
+  //MARK: AIBehaviourManager Delegates
+  func AIBehaviourManagerDidSelectCardToPlay(_ aiBehaviourManager: AIBehaviourManager, cardInfo: [String : AnyObject]) {
+    delegate?.GameViewModelDidSelectCardToPlay(self, cardInfo: cardInfo)
+  }
+  
+  func AIBehaviourManagerDidEndTurn(_ aiBehaviourManager: AIBehaviourManager) {
+    delegate?.GameViewModelDidEndTurn(self)
+  }
+  
+  func AIBehaviourManagerDidAttackCard(_ aiBehaviourManager: AIBehaviourManager, atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int) {
+    delegate?.GameViewModelDidAttackCard(self, atkUpdatedHealth: atkUpdatedHealth, defUpdatedHealth: defUpdatedHealth, atkIndex: atkIndex, defIndex: defIndex)
+  }
+  
+  func AIBehaviourManagerDidAttackAvatar(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, atkIndex: Int) {
+    delegate?.GameViewModelDidAttackAvatar(self, attacker: attacker, atkIndex: atkIndex)
+  }
+
 }

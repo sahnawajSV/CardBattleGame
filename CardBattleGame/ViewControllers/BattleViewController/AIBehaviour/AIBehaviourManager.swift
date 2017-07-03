@@ -8,6 +8,7 @@
 
 import UIKit
 
+///Passes the message to BattleSystemViewController in order to manage UI Updates
 protocol AIBehaviourManagerDelegate: class {
   func AIBehaviourManagerDidSelectCardToPlay(_ aiBehaviourManager: AIBehaviourManager, cardInfo: [String : AnyObject])
   func AIBehaviourManagerDidEndTurn(_ aiBehaviourManager: AIBehaviourManager)
@@ -15,6 +16,7 @@ protocol AIBehaviourManagerDelegate: class {
   func AIBehaviourManagerDidAttackAvatar(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, atkIndex: Int)
 }
 
+///Handles all gameplay logic related to Player Two.
 class AIBehaviourManager {
   
   weak var delegate: AIBehaviourManagerDelegate?

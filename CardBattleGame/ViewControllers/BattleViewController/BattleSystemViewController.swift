@@ -9,7 +9,7 @@
 import UIKit
 
 /// Handles the BattleSystemViewController implementation. Used to update the Views and Labels. Handle Card Play and Toggle Turn interactions / actions.
-class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewControllerDelegate, AIBehaviourManagerDelegate {
+class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewControllerDelegate {
   //MARK: - Internal Variables
   private var gViewModel: GameViewModel = GameViewModel()
   
@@ -66,7 +66,6 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     gViewModel.initializeTheGame()
-    gViewModel.AILogicReference.delegate = self
   }
   
   override func viewDidLayoutSubviews() {
@@ -100,9 +99,8 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
         element.removeFromSuperview()
       }
       allAIPlayCards.removeAll()
-      for (index,element) in gViewModel.aiInPlayCards.enumerated() {
+      for (index,card) in gViewModel.aiInPlayCards.enumerated() {
         let cardView: CardView = CardView(frame: playerTwoPlayController.cardOne.frame)
-        let card: Card = element
         cardView.bpText.text = String(card.battlepoint)
         cardView.attackText.text = String(card.attack)
         cardView.healthText.text = String(card.health)
@@ -207,8 +205,8 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     createInPlayerCardsForPlayerTwo()
   }
   
-  //MARK: AIBehaviourManager Delegates
-  func AIBehaviourManagerDidSelectCardToPlay(_ aiBehaviourManager: AIBehaviourManager, cardInfo: [String : AnyObject]) {
+  //MARK: GamePlay Delegates
+  func GameViewModelDidSelectCardToPlay(_ gameProtocol: GameProtocol, cardInfo: [String : AnyObject]) {
     let cardIndex: Int = cardInfo["cardIndex"] as! Int
     let cardView: CardView = allAIHandCards[cardIndex]
     allAIHandCards.remove(at: cardIndex)
@@ -219,7 +217,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     allAIPlayCards.append(cardView)
   }
   
-  func AIBehaviourManagerDidEndTurn(_ aiBehaviourManager: AIBehaviourManager) {
+  func GameViewModelDidEndTurn(_ gameProtocol: GameProtocol) {
     gViewModel.updateData()
     createInPlayerCardsForPlayerTwo()
     resetInPlayIndex(allCardViews: &allPlayerPlayCards)
@@ -227,12 +225,12 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     gViewModel.toggleTurn()
   }
   
-  func AIBehaviourManagerDidAttackCard(_ aiBehaviourManager: AIBehaviourManager, atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int) {
+  func GameViewModelDidAttackCard(_ gameProtocol: GameProtocol, atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int) {
     performCardHealthCheck(forPlayer: &allAIPlayCards, cardIndex: atkIndex, updatedHealth: atkUpdatedHealth)
     performCardHealthCheck(forPlayer: &allPlayerPlayCards, cardIndex: defIndex, updatedHealth: defUpdatedHealth)
   }
   
-  func AIBehaviourManagerDidAttackAvatar(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, atkIndex: Int) {
+  func GameViewModelDidAttackAvatar(_ gameProtocol: GameProtocol, attacker: Card, atkIndex: Int) {
     gViewModel.updateData()
     reloadAllViews()
   }
@@ -306,6 +304,8 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
         gViewModel.updateData()
         reloadAllViews()
       }
+    } else {
+      inPlayViewController.selectedTargetPosition = Game.invalidCardIndex
     }
   }
   

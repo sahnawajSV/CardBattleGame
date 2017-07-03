@@ -8,10 +8,12 @@
 
 import UIKit
 
+///Passes the required message to InPlayViewController once card is selected from Hand. This is required to pass the selected Index and later reset the same on card play completion
 protocol InHandViewControllerDelegate: class {
   func inHandViewControllerDidSelectCardToPlay(_ inHandViewController: InHandViewController)
 }
 
+//Common class to handle all Cards in either PlayerOne or PlayerTwo Hand area
 class InHandViewController: UIViewController {
   
   weak var delegate: InHandViewControllerDelegate?

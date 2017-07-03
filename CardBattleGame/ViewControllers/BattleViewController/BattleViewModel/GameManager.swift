@@ -28,11 +28,6 @@ class GameManager {
     let plCardArray: [Card] = randomCards(cardArray: cardList)
     let aiCardArray: [Card]  = randomCards(cardArray: cardList)
     
-//    //Adding Player Cards
-//    pl_CardArray.append(contentsOf: cardList)
-//    //TODO: Add AI cards based on player strength
-//    ai_CardArray.append(contentsOf: cardList)
-    
     let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: plCardArray)
     let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: aiCardArray)
     

@@ -8,13 +8,13 @@
 
 import UIKit
 
-
+///Passes the required message to BattleSystemViewController once card is selected either from the HAND to Play area or from Play area to perform an attack
 protocol InPlayViewControllerDelegate: class {
   func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController, inHandViewController: InHandViewController)
   func inPlayViewControllerDidSelectCardForAttack(_ inPlayViewController: InPlayViewController)
 }
 
-
+//Common class to handle all Cards in either PlayerOne or PlayerTwo Play area
 class InPlayViewController: UIViewController, InHandViewControllerDelegate {
   
   weak var delegate: InPlayViewControllerDelegate?
@@ -60,7 +60,6 @@ class InPlayViewController: UIViewController, InHandViewControllerDelegate {
 
     cardView.frame = frame
     cardView.cardButton.tag = cardView.cardIndex
-    NSLog("CARD INDEX: \(cardView.cardIndex)")
     cardView.cardButton.removeTarget(nil, action: nil, for: .touchUpInside)
     cardView.cardButton.addTarget(self, action: #selector(selectInPlayCard(sender:)), for: .touchUpInside)
     self.view.addSubview(cardView)
