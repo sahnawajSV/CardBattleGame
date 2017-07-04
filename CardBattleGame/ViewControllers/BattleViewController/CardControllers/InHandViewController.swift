@@ -8,7 +8,15 @@
 
 import UIKit
 
+///Passes the required message to InPlayViewController once card is selected from Hand. This is required to pass the selected Index and later reset the same on card play completion
+protocol InHandViewControllerDelegate: class {
+  func inHandViewControllerDidSelectCardToPlay(_ inHandViewController: InHandViewController)
+}
+
+//Common class to handle all Cards in either PlayerOne or PlayerTwo Hand area
 class InHandViewController: UIViewController {
+  
+  weak var delegate: InHandViewControllerDelegate?
   
   @IBOutlet private weak var cardOne: UIView!
   @IBOutlet private weak var cardTwo: UIView!
@@ -16,10 +24,9 @@ class InHandViewController: UIViewController {
   @IBOutlet private weak var cardFour: UIView!
   @IBOutlet private weak var cardFive: UIView!
   
-  var createdCards: [CardView] = []
-  
   //Default value when no card is selected
-  var selectedCardIndex: Int = 99
+  var selectedCardIndex: Int?
+  var isPlayer: Bool!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,7 +34,7 @@ class InHandViewController: UIViewController {
   
   func createCard(playerInHandCards: [Card]) -> [CardView] {
     var cardsAdded: [CardView] = []
-    for (index,element) in playerInHandCards.enumerated() {
+    for (index,card) in playerInHandCards.enumerated() {
       var frame = CGRect.zero
       switch index {
       case 0:
@@ -44,24 +51,26 @@ class InHandViewController: UIViewController {
         break
       }
       let cardView: CardView = CardView(frame: frame)
-      let card: Card = element
       cardView.bpText.text = String(card.battlepoint)
       cardView.attackText.text = String(card.attack)
       cardView.healthText.text = String(card.health)
       cardView.nameText.text = card.name
       cardView.cardButton.tag = index
-      cardView.cardButton.addTarget(self, action: #selector(selectInHandCard(button:)), for: .touchUpInside)
+      if isPlayer {
+        cardView.cardButton.addTarget(self, action: #selector(selectInHandCard(button:)), for: .touchUpInside)
+      }
       self.view.addSubview(cardView)
       self.view.layoutIfNeeded()
       
       cardsAdded.append(cardView)
     }
-    createdCards = cardsAdded
+
     return cardsAdded
   }
   
   //Action Methods
   func selectInHandCard(button: UIButton) {
     selectedCardIndex = button.tag
+    delegate?.inHandViewControllerDidSelectCardToPlay(self)
   }
 }

@@ -26,7 +26,7 @@ class cardLabel: UILabel {
     self.clipsToBounds = true
     self.textColor = UIColor.white
     self.textAlignment = .center
-    self.font = font.withSize(15)
+    self.font = font.withSize(20)
     self.setProperties(borderWidth: 1.0, borderColor:UIColor.black)
   }
   

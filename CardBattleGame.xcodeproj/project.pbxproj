@@ -34,6 +34,7 @@
 		E326D59E1EFB8FC90034F35B /* InHandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59D1EFB8FC90034F35B /* InHandViewController.swift */; };
 		E326D5A21EFB90090034F35B /* InPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A11EFB90090034F35B /* InPlayViewController.swift */; };
 		E326D5A61F037C400034F35B /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A51F037C400034F35B /* Common.swift */; };
+		E326D5A91F03AFF90034F35B /* AIBehaviourManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A81F03AFF90034F35B /* AIBehaviourManager.swift */; };
 		E37605ED1EF7A11E001AEBBB /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605EC1EF7A11E001AEBBB /* GameManager.swift */; };
 		E37605F11EF7E00E001AEBBB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605F01EF7E00E001AEBBB /* CardView.swift */; };
 		E37605F31EF92C77001AEBBB /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605F21EF92C77001AEBBB /* GameViewModel.swift */; };
@@ -99,6 +100,7 @@
 		E326D59D1EFB8FC90034F35B /* InHandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InHandViewController.swift; sourceTree = "<group>"; };
 		E326D5A11EFB90090034F35B /* InPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InPlayViewController.swift; sourceTree = "<group>"; };
 		E326D5A51F037C400034F35B /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
+		E326D5A81F03AFF90034F35B /* AIBehaviourManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIBehaviourManager.swift; sourceTree = "<group>"; };
 		E37605EC1EF7A11E001AEBBB /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameManager.swift; path = BattleViewModel/GameManager.swift; sourceTree = "<group>"; };
 		E37605F01EF7E00E001AEBBB /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		E37605F21EF92C77001AEBBB /* GameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
@@ -311,6 +313,14 @@
 			path = CardControllers;
 			sourceTree = "<group>";
 		};
+		E326D5A71F03AFE50034F35B /* AIBehaviour */ = {
+			isa = PBXGroup;
+			children = (
+				E326D5A81F03AFF90034F35B /* AIBehaviourManager.swift */,
+			);
+			path = AIBehaviour;
+			sourceTree = "<group>";
+		};
 		E37605EF1EF7E004001AEBBB /* CardView */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,6 +348,7 @@
 		E3775D451EF16E0200991CEC /* BattleViewController */ = {
 			isa = PBXGroup;
 			children = (
+				E326D5A71F03AFE50034F35B /* AIBehaviour */,
 				E326D59C1EFB8F290034F35B /* CardControllers */,
 				E37605F41EF93C81001AEBBB /* GameManager */,
 				E3775D461EF16E0200991CEC /* BattleViewModel */,
@@ -576,6 +587,7 @@
 				8B1ECD451EFA7B76001EE399 /* EditDeckCollectionViewCell.swift in Sources */,
 				8B42F4C11EF252520097D28A /* ConnectionManager.swift in Sources */,
 				8BABABAC1F0380A300B6BB17 /* WeatherDataParser.swift in Sources */,
+				E326D5A91F03AFF90034F35B /* AIBehaviourManager.swift in Sources */,
 				8B42F4CA1EF292430097D28A /* Conversions.swift in Sources */,
 				8B34DF3D1EFCD77100CEF037 /* DeckCollectionViewCell.swift in Sources */,
 				E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */,

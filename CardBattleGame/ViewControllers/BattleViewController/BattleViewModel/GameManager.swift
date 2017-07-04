@@ -14,6 +14,9 @@ class GameManager {
   var playerStats: Stats
   var aiStats: Stats
   
+  //MARK: - AI Behaviour Logic
+  let playerTwoLogic: AIBehaviourManager
+  
   //Mark: - Game Handlers
   var isPlayerTurn: Bool = true
   
@@ -22,23 +25,17 @@ class GameManager {
     let globalCardData = CardListDataSource()
     let cardList = globalCardData.fetchCardList()
     
-    var pl_CardArray: [Card] = []
-    var ai_CardArray: [Card]  = []
+    let plCardArray: [Card] = randomCards(cardArray: cardList)
+    let aiCardArray: [Card]  = randomCards(cardArray: cardList)
     
-    //Adding Player Cards
-    pl_CardArray.append(contentsOf: cardList)
-    //TODO: Add AI cards based on player strength
-    ai_CardArray.append(contentsOf: cardList)
-    
-    let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: pl_CardArray)
-    let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: ai_CardArray)
-    
-    //EMPTY - for Card Drawn or Played
-    let emptyArray: [Card] = []
+    let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: plCardArray)
+    let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: aiCardArray)
     
     //TODO: Change it based on deck selected for play before the game starts
-    playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: Game.startingBattlePoints, health: Game.health))
-    aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: emptyArray, inPlay: emptyArray, battlePoints: Game.startingBattlePoints, health: Game.health))
+    playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: [], inPlay: [], battlePoints: Game.startingBattlePoints, health: Game.health))
+    aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: [], inPlay: [], battlePoints: Game.startingBattlePoints, health: Game.health))
+    
+    playerTwoLogic = AIBehaviourManager(playerOneStats: playerStats, playerTwoStats: aiStats)
   }
   
   //Draw initial cards from deck
@@ -63,6 +60,14 @@ class GameManager {
     }
   }
   
+  func removeInPlayCards(forPlayer: Bool, cardIndex: Int) {
+    if forPlayer {
+      playerStats.gameStats.inPlay.remove(at: cardIndex)
+    } else {
+      aiStats.gameStats.inPlay.remove(at: cardIndex)
+    }
+  }
+  
   func endTurn() -> Bool {
     if isPlayerTurn {
       isPlayerTurn = false
@@ -75,6 +80,7 @@ class GameManager {
   
   //Mark: Turn Logic
   func aiTurnStart() -> Bool {
+    
     //Increment Turn Number
     aiStats.gameStats.incrementTurn()
     
@@ -84,10 +90,16 @@ class GameManager {
     //Draw a Card
     drawAICards(numToDraw: Game.numOfCardsToDrawEachTurn)
     
+    //Perform AI Behaviour
+    playerTwoLogic.performInitialChecks()
+    
     return true
   }
   
   func playerTurnStart() -> Bool {
+    //Allow all inPlayCards to Attack
+    allowAllPlayCardsToAttack()
+    
     //Increment Turn Number
     playerStats.gameStats.incrementTurn()
     
@@ -100,10 +112,42 @@ class GameManager {
     return true
   }
   
-  //MARK: Animations
-  func playCardToGameArea(cardIndex: Int, forPlayer: Bool) -> Bool {
+  func allowAllPlayCardsToAttack() {
+    for (index,element) in playerStats.gameStats.inPlay.enumerated() {
+      var card: Card = element
+      card.canAttack = true
+      playerStats.gameStats.inPlay[index] = card
+    }
+  }
+
+  
+  func attackAvatar(cardIndex: Int) {
+    var card: Card = playerStats.gameStats.inPlay[cardIndex]
+    if card.canAttack {
+      let attackValue = card.attack
+      card.canAttack = false
+      playerStats.gameStats.inPlay[cardIndex] = card
+      aiStats.gameStats.getHurt(attackValue: Int(attackValue))
+    }
+  }
+  
+  func attackCard(atkCardIndex: Int, defCardIndex: Int) {
+    var atkCard: Card = playerStats.gameStats.inPlay[atkCardIndex]
+    var defCard: Card = aiStats.gameStats.inPlay[defCardIndex]
+    if atkCard.canAttack {
+      atkCard.canAttack = false
+      defCard.health = defCard.health - atkCard.attack
+      atkCard.health = atkCard.health - defCard.attack
+      
+      playerStats.gameStats.inPlay[atkCardIndex] = atkCard
+      aiStats.gameStats.inPlay[defCardIndex] = defCard
+    }
+  }
+  
+  //MARK: Update Battle Points based on card played
+  func playCardToGameArea(cardIndex: Int) -> Bool {
     //Remove From InHand and Add to InPlay
-    if forPlayer {
+    if isPlayerTurn {
       return updateBattlePoints(playerStats: self.playerStats, cardIndex: cardIndex)
     } else {
       return updateBattlePoints(playerStats: self.aiStats, cardIndex: cardIndex)

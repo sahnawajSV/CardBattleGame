@@ -17,6 +17,7 @@ extension Game {
   static let numOfCardstoDrawInitially = 3
   static let numOfCardsToDrawEachTurn = 1
   static let maximumInHandCards = 5
+//  static let invalidCardIndex = 99
 }
 
 
@@ -52,11 +53,21 @@ class Game {
   
   /// Used to play a card from InHand to InPlay
   func playCard(cardIndex: Int) {
-      let card: Card = inHand[cardIndex]
+      var card: Card = inHand[cardIndex]
+      card.canAttack = false
       let updatedBattlePoints = battlePoints - Int(card.battlepoint)
       battlePoints = updatedBattlePoints
       inPlay.append(card)
       inHand.remove(at: cardIndex)
+  }
+  
+  func playCard(card: Card) {
+    let updatedBattlePoints = battlePoints - Int(card.battlepoint)
+    battlePoints = updatedBattlePoints
+    inPlay.append(card)
+    if let index = inHand.index(of: card) {
+      inHand.remove(at: index)
+    }
   }
   
   func incrementTurn() {
@@ -70,5 +81,9 @@ class Game {
     } else {
       battlePoints = turnNumber
     }
+  }
+  
+  func getHurt(attackValue: Int) {
+    health = health - attackValue
   }
 }
