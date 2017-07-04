@@ -25,7 +25,7 @@ class InHandViewController: UIViewController {
   @IBOutlet private weak var cardFive: UIView!
   
   //Default value when no card is selected
-  var selectedCardIndex: Int = Game.invalidCardIndex
+  var selectedCardIndex: Int?
   var isPlayer: Bool!
   
   override func viewDidLoad() {

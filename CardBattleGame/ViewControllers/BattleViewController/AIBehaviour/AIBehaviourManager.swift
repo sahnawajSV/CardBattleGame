@@ -15,10 +15,10 @@ enum AttackLogic: String {
 
 ///Passes the message to BattleSystemViewController in order to manage UI Updates
 protocol AIBehaviourManagerDelegate: class {
-  func AIBehaviourManagerDidSelectCardToPlay(_ aiBehaviourManager: AIBehaviourManager, cardInfo: [String : AnyObject])
-  func AIBehaviourManagerDidEndTurn(_ aiBehaviourManager: AIBehaviourManager)
-  func AIBehaviourManagerDidAttackCard(_ aiBehaviourManager: AIBehaviourManager, atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int)
-  func AIBehaviourManagerDidAttackAvatar(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, atkIndex: Int)
+  func aiBehaviourManagerDidSelectCardToPlay(_ aiBehaviourManager: AIBehaviourManager, cardIndex: Int)
+  func aiBehaviourManagerDidEndTurn(_ aiBehaviourManager: AIBehaviourManager)
+  func aiBehaviourManagerDidAttackCard(_ aiBehaviourManager: AIBehaviourManager, atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int)
+  func aiBehaviourManagerDidAttackAvatar(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, atkIndex: Int)
 }
 
 ///Handles all gameplay logic related to Player Two.
@@ -54,8 +54,8 @@ class AIBehaviourManager {
       //Check if player has cards in Hand and can play a card based on available BattlePoints
       if playerTwoStats.gameStats.inHand.count > 0 {
         let availableBattlePoints: Int = playerTwoStats.gameStats.battlePoints
-        var cardToPlay: Card!
-        var cardIndex: Int = Game.invalidCardIndex
+        var cardToPlay: Card?
+        var cardIndex: Int?
         for (index,card) in self.playerTwoStats.gameStats.inHand.enumerated() {
           //Check if card is playable
           if Int(card.battlepoint) <= availableBattlePoints {
@@ -65,23 +65,20 @@ class AIBehaviourManager {
           }
         }
         //Play Card
-        if cardIndex != Game.invalidCardIndex {
+        if let index = cardIndex, let card = cardToPlay {
             delay(1, closure: {
-              self.playerTwoStats.gameStats.playCard(card: cardToPlay)
-              var cardInfo = [String : AnyObject]()
-              cardInfo["cardIndex"] = cardIndex as AnyObject
-              cardInfo["card"] = cardToPlay as AnyObject
-              self.delegate?.AIBehaviourManagerDidSelectCardToPlay(self, cardInfo: cardInfo)
+              self.playerTwoStats.gameStats.playCard(card: card)
+              self.delegate?.aiBehaviourManagerDidSelectCardToPlay(self, cardIndex: index)
               self.playCard()
             })
         } else {
-          delegate?.AIBehaviourManagerDidEndTurn(self)
+          delegate?.aiBehaviourManagerDidEndTurn(self)
         }
       } else {
-        delegate?.AIBehaviourManagerDidEndTurn(self)
+        delegate?.aiBehaviourManagerDidEndTurn(self)
       }
     } else {
-      delegate?.AIBehaviourManagerDidEndTurn(self)
+      delegate?.aiBehaviourManagerDidEndTurn(self)
     }
   }
   
@@ -128,14 +125,14 @@ class AIBehaviourManager {
     performCardHealthCheck(forPlayer: playerTwoStats, cardIndex: atkIndex, card: atkCard, updatedHealth: updateAtkHealth)
     performCardHealthCheck(forPlayer: playerOneStats, cardIndex: defIndex, card: defCard, updatedHealth: updateDefHealth)
     
-    delegate?.AIBehaviourManagerDidAttackCard(self, atkUpdatedHealth: Int(updateAtkHealth), defUpdatedHealth: Int(updateDefHealth), atkIndex: atkIndex, defIndex: defIndex)
+    delegate?.aiBehaviourManagerDidAttackCard(self, atkUpdatedHealth: Int(updateAtkHealth), defUpdatedHealth: Int(updateDefHealth), atkIndex: atkIndex, defIndex: defIndex)
   }
   
   func attackCardToAvatar(attacker: inout Card, atkIndex: Int) {
     playerOneStats.gameStats.getHurt(attackValue: Int(attacker.attack))
     attacker.canAttack = false
     playerTwoStats.gameStats.inPlay[atkIndex] = attacker
-    delegate?.AIBehaviourManagerDidAttackAvatar(self, attacker: attacker, atkIndex: atkIndex)
+    delegate?.aiBehaviourManagerDidAttackAvatar(self, attacker: attacker, atkIndex: atkIndex)
   }
   
   //MARK: - HELPERS
@@ -203,9 +200,9 @@ class AIBehaviourManager {
         break
       }
     }
-    if attacker != nil {
-      //ATTACK THE DEFENDING CARD - CARD TO CARD
-      attackCardToCard(attacker: attacker!, defender: defender!, atkIndex: attackerIndex!, defIndex: defenderIndex!)
+    
+    if let atkcard = attacker, let defCard = defender, let atkIndex = attackerIndex, let defIndex = defenderIndex {
+      attackCardToCard(attacker: atkcard, defender: defCard, atkIndex: atkIndex, defIndex: defIndex)
       attackWithCards()
       return true
     } else {

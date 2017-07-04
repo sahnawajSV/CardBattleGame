@@ -37,6 +37,9 @@ struct Card: Equatable {
   }
   
   public static func ==(lhs: Card, rhs: Card) -> Bool {
-    return true
+    if lhs.id == rhs.id {
+      return true
+    }
+    return false
   }
 }

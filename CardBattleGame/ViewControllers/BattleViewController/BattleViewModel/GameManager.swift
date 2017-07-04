@@ -15,7 +15,7 @@ class GameManager {
   var aiStats: Stats
   
   //MARK: - AI Behaviour Logic
-  var playerTwoLogic: AIBehaviourManager
+  let playerTwoLogic: AIBehaviourManager
   
   //Mark: - Game Handlers
   var isPlayerTurn: Bool = true

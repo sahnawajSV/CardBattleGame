@@ -17,7 +17,7 @@ extension Game {
   static let numOfCardstoDrawInitially = 3
   static let numOfCardsToDrawEachTurn = 1
   static let maximumInHandCards = 5
-  static let invalidCardIndex = 99
+//  static let invalidCardIndex = 99
 }
 
 
@@ -65,9 +65,8 @@ class Game {
     let updatedBattlePoints = battlePoints - Int(card.battlepoint)
     battlePoints = updatedBattlePoints
     inPlay.append(card)
-    let index = inHand.indexOf(x: card)
-    if index != nil {
-      inHand.remove(at: index!)
+    if let index = inHand.index(of: card) {
+      inHand.remove(at: index)
     }
   }
   

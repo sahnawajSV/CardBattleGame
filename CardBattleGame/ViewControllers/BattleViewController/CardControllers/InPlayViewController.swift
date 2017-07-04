@@ -10,7 +10,7 @@ import UIKit
 
 ///Passes the required message to BattleSystemViewController once card is selected either from the HAND to Play area or from Play area to perform an attack
 protocol InPlayViewControllerDelegate: class {
-  func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController, inHandViewController: InHandViewController)
+  func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController, cardIndex: Int)
   func inPlayViewControllerDidSelectCardForAttack(_ inPlayViewController: InPlayViewController)
 }
 
@@ -26,8 +26,8 @@ class InPlayViewController: UIViewController, InHandViewControllerDelegate {
   @IBOutlet weak var cardFive: UIView!
   
   private var cardToPlay: CardView?
-  var inHandController: InHandViewController!
-  var selectedTargetPosition: Int = Game.invalidCardIndex
+  var selectedInHandCardIndex: Int?
+  var selectedTargetPosition: Int?
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,11 +39,11 @@ class InPlayViewController: UIViewController, InHandViewControllerDelegate {
   }
   
   func createCard() -> Bool {
-    guard let cardView = cardToPlay else {
+    guard let cardView = cardToPlay, let targetPosition = selectedTargetPosition else {
       return false
     }
     var frame = CGRect.zero
-    switch selectedTargetPosition {
+    switch targetPosition {
     case 0:
       frame = cardOne.frame
     case 1:
@@ -65,7 +65,7 @@ class InPlayViewController: UIViewController, InHandViewControllerDelegate {
     self.view.addSubview(cardView)
     self.view.bringSubview(toFront: cardView)
     self.view.layoutIfNeeded()
-    selectedTargetPosition = Game.invalidCardIndex
+    selectedTargetPosition = nil
     
     return true
   }
@@ -83,10 +83,10 @@ class InPlayViewController: UIViewController, InHandViewControllerDelegate {
   
   //Delegate Notifications
   func tellDelegateToMoveCard() {
-    guard let handController = inHandController else {
+    guard let targetPosition = selectedInHandCardIndex else {
       return
     }
-    delegate?.inPlayViewControllerDidChangeSelectedTargetPosition(self, inHandViewController: handController)
+    delegate?.inPlayViewControllerDidChangeSelectedTargetPosition(self, cardIndex: targetPosition)
   }
   
   func didSelectCardForAttack() {
@@ -96,6 +96,6 @@ class InPlayViewController: UIViewController, InHandViewControllerDelegate {
   //Delegate Methods
   func inHandViewControllerDidSelectCardToPlay(_ inHandViewController: InHandViewController)
   {
-    inHandController = inHandViewController
+    selectedInHandCardIndex = inHandViewController.selectedCardIndex
   }
 }
