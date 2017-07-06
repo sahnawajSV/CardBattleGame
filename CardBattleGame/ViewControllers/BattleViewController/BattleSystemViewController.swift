@@ -13,6 +13,8 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   //MARK: - Internal Variables
   private var gViewModel: GameViewModel = GameViewModel()
   
+  var deck: Deck!
+  
   //MARK: - View Collection
   var allPlayerHandCards: [CardView] = []
   var allAIHandCards: [CardView] = []
@@ -52,7 +54,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   //MARK: - View Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+
     //Assign View Model and Call Initializers
     gViewModel.delegate = self
     playerOnePlayController.delegate = self
@@ -63,7 +65,8 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    gViewModel.initializeTheGame()
+    
+    gViewModel.initializeTheGame(deck: deck)
   }
   
   override func viewDidLayoutSubviews() {

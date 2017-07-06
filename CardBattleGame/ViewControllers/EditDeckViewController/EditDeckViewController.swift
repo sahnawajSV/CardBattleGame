@@ -15,6 +15,7 @@ class EditDeckViewController: UIViewController {
   
   var editDeckViewModel = EditDeckViewModel()
   
+  @IBOutlet weak var deckNameTextField: UITextField!
   @IBOutlet weak var selectedDeckTableView: UITableView!
   @IBOutlet weak var deckCollectionView: UICollectionView!
   
@@ -25,14 +26,9 @@ class EditDeckViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    // Do any additional setup after loading the view.
-    self.deckCollectionView.delegate = self
-    self.deckCollectionView.dataSource = self
-    
     // Set EditDeck Model View Delegate
-    editDeckViewModel.delegate = self
-    editDeckViewModel.performDeckCardFetchRequest()
+    deckCollectionView.delegate = self
+    deckCollectionView.dataSource = self
     
     updateSelectedCardLabel()
   }
@@ -42,38 +38,58 @@ class EditDeckViewController: UIViewController {
     // Dispose of any resources that can be recreated.
   }
   
-  
   //  Mark :  Helper Method
   //
   fileprivate func updateSelectedCardLabel() {
     self.selectedDeckLabel.text = String(format: "\(numberOfCardAdded()) - \(Game.maximumCardPerDeck)")
   }
   
-  /// Number of cards available in the storage
+  
+  /// Fetch the cad count selected for a deck
   ///
   /// - Returns: Total Number of cards
   fileprivate func numberOfCardAdded() -> Int {
-    return editDeckViewModel.numberOfCardAdded()
+    return editDeckViewModel.numberOfCardAddedToDeck()
   }
   
   /// Update Card Collection View
-  fileprivate func reloadCollectionView() {
+  fileprivate func updateView() {
     deckCollectionView.reloadData()
+    selectedDeckTableView.reloadData()
+    updateSelectedCardLabel()
   }
   
   // MARK : Action
   //
   @IBAction func saveDeckAction(_ sender: Any) {
-    self.dismiss(animated: true, completion: nil)
+    if let name = self.deckNameTextField.text ,(self.deckNameTextField.text?.characters.count)! > 0 {
+      //create deck with name
+      editDeckViewModel.saveCardstoDeck(with: name)
+      self.navigationController?.popViewController(animated: true)
+    } else {
+      errorAlert(errorTitle: "Error", errorMsg: "Please Enter the Deck Name.")
+    }
   }
   
   @IBAction func addButtonTapped(_ sender: UIButton) {
-    
     let cardList: [Card] = editDeckViewModel.fetchCardFromPlist()
     let card = cardList[sender.tag]
-    editDeckViewModel.addCardToDeckCardEntity(card)
-    
-    reloadCollectionView()
+    editDeckViewModel.addCardToDeckList(card)
+    updateView()
+  }
+  
+  
+  /// Show Alert
+  ///
+  /// - Parameters:
+  ///   - errorTitle: errorTitle description
+  ///   - errorMsg: errorMsg description
+  private func errorAlert(errorTitle: String, errorMsg: String){
+    let alertController =  UIAlertController(title: errorTitle, message: errorMsg, preferredStyle: UIAlertControllerStyle.alert)
+    let okAction  = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action) in
+    }
+    alertController.addAction(okAction)
+    self.navigationController?.present(alertController, animated: true, completion: nil)
   }
 }
 
@@ -89,8 +105,7 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell:UITableViewCell = UITableViewCell.init(style: .default,
                                                     reuseIdentifier: nil)as UITableViewCell!
-    
-    if let newItem: DeckCard = editDeckViewModel.fetchDeckCard(at: indexPath) {
+    if let newItem: Card = editDeckViewModel.getCard(from: indexPath.row) {
       cell.textLabel?.text = newItem.name
       cell.tag = Int(newItem.id)
     }
@@ -113,41 +128,13 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
     
     for card in cardList {
       if card.id == Int16(cell.tag) {
-        editDeckViewModel.deleteCardFromDeckCardEntity(card)
+        editDeckViewModel.removeCardFromDeckList(at: indexPath)
         break
       }
     }
-    reloadCollectionView()
+    updateView()
   }
   
-}
-
-
-// MARK: - EditDeckViewModelDelegate
-extension EditDeckViewController: EditDeckViewModelDelegate {
-  func deckCardEntityWillChangeContent() {
-    selectedDeckTableView.beginUpdates()
-  }
-  
-  func deckCardEntity(didChangeObjectAt indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-    switch type {
-    case .insert:
-      if let index = newIndexPath {
-        selectedDeckTableView.insertRows(at: [IndexPath(row: index.row, section: 0)], with: .fade)
-      }
-    case .delete:
-      if let index = indexPath {
-        selectedDeckTableView.deleteRows(at: [IndexPath(row: index.row, section: 0)], with: .fade)
-      }
-    default:
-      break
-    }
-  }
-  
-  func deckCardEntityDidChangeContent() {
-    selectedDeckTableView.endUpdates()
-    updateSelectedCardLabel()
-  }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource,UICollectionViewDelegateFlowLayout
@@ -173,7 +160,7 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
     cell.battlePointLbl.text = String(describing: card.battlepoint)
     cell.nameLbl.text = String(describing: card.name)
     
-    if editDeckViewModel.isCardAvailableInDeckCardStorage(card) {
+    if editDeckViewModel.isCardSelected(card) {
       cell.addDeckButton.isHidden = true
     } else {
       cell.addDeckButton.isHidden = false
@@ -185,8 +172,6 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
     
     return cell
   }
-  
-  // MARK:- UICollectionViewDelegate Methods
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     return CGSize(width: CGFloat((collectionView.frame.size.width / 3) - 15), height: CGFloat(328))

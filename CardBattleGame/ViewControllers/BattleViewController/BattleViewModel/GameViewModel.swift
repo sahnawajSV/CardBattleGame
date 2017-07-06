@@ -26,7 +26,7 @@ class GameViewModel: GameProtocol, AIBehaviourManagerDelegate {
   
   weak var delegate: GameDelegate?
   
-  private var gManager: GameManager = GameManager()
+  private var gManager: GameManager!
   
   //MARK: - Used by View
   //Player
@@ -56,8 +56,12 @@ class GameViewModel: GameProtocol, AIBehaviourManagerDelegate {
   
   var isPlayerTurn = false
   
+  
   //MARK: - Initalizers
-  func initializeTheGame() {
+  func initializeTheGame(deck: Deck) {
+    
+    //Initalize GameManager
+     gManager = GameManager(plDeck: deck)
     
     //Draw inital Cards from deck
     gManager.drawCardsFromDeck()

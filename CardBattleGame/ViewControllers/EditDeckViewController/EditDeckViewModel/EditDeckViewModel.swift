@@ -9,100 +9,20 @@
 import UIKit
 import CoreData
 
-protocol EditDeckViewModelDelegate: class {
-  func deckCardEntityWillChangeContent()
-  func deckCardEntity(didChangeObjectAt indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?)
-  func deckCardEntityDidChangeContent()
-}
 
 /// Edit Deck View Model(Follow MVVM pattern): Handle all the business logics for EditDeckViewController
 class EditDeckViewModel: NSObject {
+  fileprivate var deckCards: [Card] = []
+  
+  var selectedDeckName: String = ""
   
   private let coreDataManager = CoreDataStackManager.sharedInstance
   private let cardListDataSource = CardListDataSource.sharedInstance
   
-  weak var delegate : EditDeckViewModelDelegate?
-  
-  // NSFetchedResultsController to updated uitableview if there is any changes in the Coredata storage
-  private let fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
   
   override init() {
-    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DeckCard")
-    let departmentSort = NSSortDescriptor(key: "id", ascending: true)
-    request.sortDescriptors = [departmentSort]
-    let moc = coreDataManager.managedObjectContext
-    fetchedResultsController = NSFetchedResultsController(fetchRequest: request, managedObjectContext: moc, sectionNameKeyPath: nil, cacheName: nil)
-    
     super.init()
-    fetchedResultsController.delegate = self
   }
-  
-  //Perform Fetch
-  func performDeckCardFetchRequest() {
-    do {
-      try fetchedResultsController.performFetch()
-    } catch {
-      fatalError("Failed to initialize FetchedResultsController: \(error)")
-    }
-  }
-  
-  /// Fetch Object at indexpath from Core Data Storage
-  ///
-  /// - Parameter indexPath: Index path of the object
-  /// - Returns: object from core data
-  func fetchDeckCard(at indexPath: IndexPath) -> DeckCard?{
-    if let deckCard: DeckCard = fetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0)) as? DeckCard {
-      return deckCard
-    }
-    return nil
-  }
-  
-  /// Number of cards available in the storage
-  ///
-  /// - Returns: Total Number of cards
-  func numberOfCardAdded() -> Int {
-    guard let sections = fetchedResultsController.sections else {
-      fatalError("No sections in fetchedResultsController")
-    }
-    return sections.first?.numberOfObjects ?? 0
-  }
-  
-  /// Add or Remove Card from the storage
-  ///
-  /// - Parameters:Card object
-  func addCardToDeckCardEntity(_ card: Card) {
-    do {
-      try coreDataManager.add(card: card)
-    } catch {
-      CBGErrorHandler.handle(error: .failedManagedObjectFetchRequest)
-    }
-  }
-  
-  
-  /// Delete Card from the storage
-  ///
-  /// - Parameter card: Card object
-  func deleteCardFromDeckCardEntity(_ card: Card) {
-    do {
-      try coreDataManager.delete(card: card)
-    } catch {
-      CBGErrorHandler.handle(error: .failedManagedObjectFetchRequest)
-    }
-  }
-  
-  /// Check if the card is available in the Deck Card Entity
-  ///
-  /// - Parameter card: Card
-  /// - Returns: True if card is available
-  func isCardAvailableInDeckCardStorage (_ card: Card) -> Bool {
-    do {
-        return try coreDataManager.isCardAvailableInDeckCardStorage(card)
-    } catch {
-      CBGErrorHandler.handle(error: .failedManagedObjectFetchRequest)
-      return false
-    }
-  }
-  
   
   /// Fetch Cards from plist
   ///
@@ -119,22 +39,64 @@ class EditDeckViewModel: NSObject {
     return cardListDataSource.numbeOfCards()
   }
   
-}
-
-
-// MARK: - NSFetchedResultsControllerDelegate
-extension EditDeckViewModel: NSFetchedResultsControllerDelegate {
   
-  func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-    self.delegate?.deckCardEntityWillChangeContent()
+  /// Add User Selected Card to Deck
+  ///
+  /// - Parameters:
+  ///   - name: deck name
+  ///   - card: Selected Card
+  func addCardToDeck(name: String, card: Card) {
+    coreDataManager.addCardToDeck(name: name, card)
   }
   
-  func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
-    self.delegate?.deckCardEntity(didChangeObjectAt: indexPath, for: type, newIndexPath: newIndexPath)
+  
+  /// Create Deck with name
+  ///
+  /// - Parameters:
+  ///   - name: name description
+  ///   - id: id of the deck
+  /// - Throws: throw error if deck creation failed
+  func createDeck(with name: String, id: Int) throws {
+    try coreDataManager.createDeck(with: name, id: id)
   }
   
-  func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-    self.delegate?.deckCardEntityDidChangeContent()
+  /// Create Deck with name and store the cards in the deck
+  ///
+  /// - Parameter name: deck name
+  func saveCardstoDeck(with name: String) {
+    do {
+      try createDeck(with: name, id: numberOfCardAddedToDeck()+1)
+      deckCards.forEach{ card in
+          addCardToDeck(name: name, card: card)
+      }
+    } catch {
+      CBGErrorHandler.handle(error: ErrorType.failedToCreateDeck)
+    }
   }
   
+  func numberOfCardAddedToDeck() -> Int {
+    return deckCards.count
+  }
+  
+  func addCardToDeckList(_ card: Card) {
+    deckCards.append(card)
+  }
+  
+  func removeCardFromDeckList(at indexPath: IndexPath) {
+    guard indexPath.row < deckCards.count else {
+      return
+    }
+    deckCards.remove(at: indexPath.row)
+  }
+  
+  func getCard(from index: Int) -> Card? {
+    guard index < deckCards.count else {
+      return nil
+    }
+    return deckCards[index]
+  }
+  
+  func isCardSelected(_ card: Card) -> Bool {
+    return deckCards.contains(card)
+  }
 }

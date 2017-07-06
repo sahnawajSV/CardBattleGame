@@ -21,21 +21,25 @@ class GameManager {
   var isPlayerTurn: Bool = true
   
   //MARK: - Game Initialization
-  init() {
+  init(plDeck: Deck) {
     let globalCardData = CardListDataSource()
     let cardList = globalCardData.fetchCardList()
     
-    let plCardArray: [Card] = randomCards(cardArray: cardList)
+//    let plCardArray: [Card] = randomCards(cardArray: plDeck.cardList)
     let aiCardArray: [Card]  = randomCards(cardArray: cardList)
     
-    let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: plCardArray)
-    let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: aiCardArray)
+    let playerDeckList = plDeck //Deck(name: plDeck.name, id: plDeck.id, cardList: plCardArray)
+    let aiDeckList = Deck(name: "Deck_1", id: 0, cardList: aiCardArray)
     
     //TODO: Change it based on deck selected for play before the game starts
     playerStats = Stats(name: "Player", id: "1", deckList: [playerDeckList], gameStats: Game(inDeck: playerDeckList.cardList, inHand: [], inPlay: [], battlePoints: Game.startingBattlePoints, health: Game.health))
     aiStats = Stats(name: "AI", id: "2", deckList: [aiDeckList], gameStats: Game(inDeck: aiDeckList.cardList, inHand: [], inPlay: [], battlePoints: Game.startingBattlePoints, health: Game.health))
     
     playerTwoLogic = AIBehaviourManager(playerOneStats: playerStats, playerTwoStats: aiStats)
+  }
+  
+  func initializeGame(plDeck: Deck) {
+    
   }
   
   //Draw initial cards from deck

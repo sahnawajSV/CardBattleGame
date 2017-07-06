@@ -58,74 +58,118 @@ class CoreDataStackManager: NSObject {
     }
   }
   
-  /// Add Card to coredata DeckCard Entity
-  ///
-  /// - Parameter card: Card object
-  func add(card: Card) throws {
-    do {
-      let result = try fetchDeckCardResult(card)
-    
-      if result.count == 0, let newItem: DeckCard = NSEntityDescription.insertNewObject(forEntityName: "DeckCard", into: managedObjectContext) as? DeckCard {
-        newItem.attack = card.attack
-        newItem.battlepoint = card.battlepoint
-        newItem.health = card.health
-        newItem.id = card.id
-        newItem.name = card.name
-        saveContext()
-      }
-    } catch {
-      throw ErrorType.failedManagedObjectFetchRequest
-    }
-  }
- 
-  /// Delete Card from the core data DeckCard Entity
-  ///
-  /// - Parameter card: Card object
-  func delete(card: Card) throws {
-    do {
-      let result = try fetchDeckCardResult(card)
-      for object in result {
-        managedObjectContext.delete(object)
-      }
-      saveContext()
-    } catch {
-      throw ErrorType.failedManagedObjectFetchRequest
-    }
-  }
-  
-
-  /// Check if the card is available in the Persistance Storage
-  ///
-  /// - Parameter card: Card
-  /// - Returns: True if card is available
-  func isCardAvailableInDeckCardStorage(_ card: Card) throws -> Bool {
-    do {
-      let result = try fetchDeckCardResult(card)
-      return result.count > 0
-    } catch {
-      throw ErrorType.failedManagedObjectFetchRequest
-    }
-  }
   
   
-  /// Fetch DeckCard's and return
+  /// Fetch Deck List for name
   ///
-  /// - Parameter card: card
-  /// - Returns: Array containing Deck Card
-  func fetchDeckCardResult(_ card: Card) throws -> [DeckCard] {
-    let fetchRequest = NSFetchRequest<DeckCard>()
-    fetchRequest.predicate = NSPredicate(format: "id == %d", card.id)
+  /// - Parameter name: deck name
+  /// - Returns:
+  func fetchDeckResult(for name: String) -> [DeckList]? {
+    let fetchRequest = NSFetchRequest<DeckList>()
+    fetchRequest.predicate = NSPredicate(format: "name == %@", name)
     
     // Create Entity Description
-    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckCard", in: managedObjectContext)
+    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckList", in: managedObjectContext)
     
     // Configure Fetch Request
     fetchRequest.entity = entityDescription
-    
     do {
-      return try managedObjectContext.fetch(fetchRequest)
+      let result = try managedObjectContext.fetch(fetchRequest)
+      return result
     } catch {
-      throw ErrorType.failedManagedObjectFetchRequest
+      CBGErrorHandler.handle(error: ErrorType.failedManagedObjectFetchRequest)
     }
+    return nil
+  }
+  
+  
+  /// Fetch Card Objects from deck with name
+  ///
+  /// - Parameter name: deck name
+  /// - Returns: card objects
+  func fetchFromDeck(with name: String) -> [DeckCard]? {
+    guard let deckItem = fetchDeck(with: name) else {
+      return nil
+    }
+    let deckCards = deckItem.mutableSetValue(forKey: "deckCard")
+    guard let cards: [DeckCard] = Array(deckCards) as? [DeckCard] else {
+      return nil
+    }
+    return cards
+  }
+  
+  
+  /// Add Card to Deck
+  ///
+  /// - Parameters:
+  ///   - name: deck name
+  ///   - card: card managed object
+  func addCardToDeck(name: String, _ card: Card) {
+    guard let newItem: DeckCard = NSEntityDescription.insertNewObject(forEntityName: "DeckCard", into: managedObjectContext) as? DeckCard else {
+      return
+    }
+    newItem.attack = card.attack
+    newItem.battlepoint = card.battlepoint
+    newItem.health = card.health
+    newItem.id = card.id
+    newItem.name = card.name
+    newItem.canAttack = card.canAttack
+    guard let deckItem = fetchDeck(with: name) else {
+      return
+    }
+    deckItem.addToDeckCard(newItem)
+    saveContext()
+  }
+  
+  
+  
+  /// Fetch Deck Object with name
+  ///
+  /// - Parameter name: name of the deck
+  /// - Returns: deck managed object
+  private func fetchDeck(with name: String) -> DeckList? {
+    guard let result = fetchDeckResult(for: name), result.count > 0, let deck = result.first else {
+      return nil
+    }
+    return deck
+  }
+  
+  
+  /// Create Deck with name and Id
+  ///
+  /// - Parameters:
+  ///   - name: deck name
+  ///   - id: deck id
+  /// - Throws: error if deck creation failed
+  func createDeck(with name: String, id: Int) throws {
+    guard let result = fetchDeckResult(for: name) else {
+      throw ErrorType.failedToCreateDeck
+    }
+    if result.count == 0, let newItem: DeckList = NSEntityDescription.insertNewObject(forEntityName: "DeckList", into: managedObjectContext) as? DeckList {
+      newItem.name = name
+      saveContext()
+    } else {
+      throw ErrorType.failedToCreateDeck
+    }
+  }
+  
+  
+  /// Fetch Deck list from the storage
+  ///
+  /// - Returns: deck lest array
+  func fetchDeckList() -> [DeckList]? {
+    let fetchRequest = NSFetchRequest<DeckList>()
+    // Create Entity Description
+    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckList", in: managedObjectContext)
+    
+    // Configure Fetch Request
+    fetchRequest.entity = entityDescription
+    do {
+      let result = try managedObjectContext.fetch(fetchRequest)
+      return result
+    } catch {
+      CBGErrorHandler.handle(error: ErrorType.failedManagedObjectFetchRequest)
+    }
+    return nil
   }
 }

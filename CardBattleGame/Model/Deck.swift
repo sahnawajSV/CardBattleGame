@@ -12,10 +12,10 @@ import UIKit
 class Deck {
   
   var name: String
-  var id: String
+  var id: Int16
   var cardList: [Card]
   
-  init(name: String, id: String, cardList: [Card]) {
+  init(name: String, id: Int16, cardList: [Card]) {
     self.name = name
     self.id = id
     self.cardList = cardList
