@@ -16,6 +16,10 @@ class CardView: UIView {
   var healthText: cardLabel = cardLabel(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
   var nameText: cardLabel = cardLabel(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
   var cardButton: UIButton = UIButton(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
+  var bpView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+  var attackView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+  var healthView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+  var nameView = UIView(frame: CGRect(x: 0 , y: 0, width: 50, height: 50))
   
   //Required for Player To AI Attack
   var cardIndex: Int = 0
@@ -39,7 +43,7 @@ class CardView: UIView {
     cardView.backgroundColor = UIColor.black
     
     //BATTLE POINT
-    let bpView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+    bpView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     bpView.backgroundColor = UIColor.blue
     
     bpView.addSubview(bpText)
@@ -47,14 +51,14 @@ class CardView: UIView {
     cardView.addSubview(bpView)
     
     //ATTACK
-    let attackView = UIView(frame: CGRect(x: 0, y: 0 + (cardView.frame.size.height) - 50, width: 50, height: 50))
+    attackView = UIView(frame: CGRect(x: 0, y: 0 + (cardView.frame.size.height) - 50, width: 50, height: 50))
     attackView.backgroundColor = UIColor.init(colorLiteralRed: 0.75, green: 0.12, blue: 0.0078, alpha: 1)
     
     attackView.addSubview(attackText)
     cardView.addSubview(attackView)
     
     //HEALTH
-    let healthView = UIView(frame: CGRect(x: 0 + (cardView.frame.size.width) - 50, y: 0 + (cardView.frame.size.height) - 50, width: 50, height: 50))
+    healthView = UIView(frame: CGRect(x: 0 + (cardView.frame.size.width) - 50, y: 0 + (cardView.frame.size.height) - 50, width: 50, height: 50))
     healthView.backgroundColor = UIColor.init(colorLiteralRed: 0.12, green: 0.75, blue: 0.0078, alpha: 1)
     
     healthView.addSubview(healthText)
@@ -62,7 +66,7 @@ class CardView: UIView {
     cardView.addSubview(healthView)
     
     //CARD NAME
-    let nameView = UIView(frame: CGRect(x: 0 , y: 0, width: (cardView.frame.size.width), height: (cardView.frame.size.height)))
+    nameView = UIView(frame: CGRect(x: 0 , y: 0, width: (cardView.frame.size.width), height: (cardView.frame.size.height)))
     nameView.backgroundColor = UIColor.clear
     
     nameText = cardLabel(frame: CGRect(x: 0 , y: 0, width: (nameView.frame.size.width), height: (nameView.frame.size.height)))
@@ -72,6 +76,10 @@ class CardView: UIView {
     
     //CARD BUTTON
     cardView.addSubview(cardButton)
+    
+    //BG Color based on canAttack value
+    cardView.layer.borderColor = UIColor.red.cgColor
+    cardView.layer.borderWidth = 5.0
     
     
     self.addSubview(cardView)

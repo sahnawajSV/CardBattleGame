@@ -13,12 +13,20 @@ enum AttackLogic: String {
   case canWillNotSurvive
 }
 
+enum ActionList: String {
+  case attackCard
+  case attackAvatar
+  case playACard
+  case endTurn
+}
+
 ///Passes the message to BattleSystemViewController in order to manage UI Updates
 protocol AIBehaviourManagerDelegate: class {
   func aiBehaviourManagerDidSelectCardToPlay(_ aiBehaviourManager: AIBehaviourManager, cardIndex: Int)
   func aiBehaviourManagerDidEndTurn(_ aiBehaviourManager: AIBehaviourManager)
   func aiBehaviourManagerDidAttackCard(_ aiBehaviourManager: AIBehaviourManager, atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int)
   func aiBehaviourManagerDidAttackAvatar(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, atkIndex: Int)
+  func aiBehaviourManagerReloadPlayView(_ aiBehaviourManager: AIBehaviourManager)
 }
 
 ///Handles all gameplay logic related to Player Two.
@@ -28,6 +36,8 @@ class AIBehaviourManager {
   
   var playerOneStats: Stats
   var playerTwoStats: Stats
+  
+  var allAITasks: [ActionList] = []
   
   init(playerOneStats: Stats, playerTwoStats: Stats) {
     self.playerOneStats = playerOneStats
@@ -40,10 +50,13 @@ class AIBehaviourManager {
       //Use Play Card Logic
       playCard()
     } else {
+      //Reload Play Area Cards Position
+      delegate?.aiBehaviourManagerReloadPlayView(self)
+      
       //ALL InPlay cards should be able to attack
       allowAllPlayCardsToAttack()
-        //Use Attack Logic
-        attackWithCards()
+      //Use Attack Logic
+      attackWithCards()
     }
   }
   
@@ -66,11 +79,11 @@ class AIBehaviourManager {
         }
         //Play Card
         if let index = cardIndex, let card = cardToPlay {
-            delay(1, closure: {
-              self.playerTwoStats.gameStats.playCard(card: card)
-              self.delegate?.aiBehaviourManagerDidSelectCardToPlay(self, cardIndex: index)
-              self.playCard()
-            })
+          delay(1, closure: {
+            self.playerTwoStats.gameStats.playCard(card: card)
+            self.delegate?.aiBehaviourManagerDidSelectCardToPlay(self, cardIndex: index)
+            //              self.playCard()
+          })
         } else {
           delegate?.aiBehaviourManagerDidEndTurn(self)
         }
@@ -151,9 +164,12 @@ class AIBehaviourManager {
   
   func attackAvatar() {
     for (atkIndex,element) in playerTwoStats.gameStats.inPlay.enumerated() {
-      var attackingCard: Card = element
-      if attackingCard.canAttack {
-        attackCardToAvatar(attacker: &attackingCard, atkIndex: atkIndex)
+      let when = DispatchTime.now() + .seconds(atkIndex) // change 2 to desired number of seconds
+      DispatchQueue.main.asyncAfter(deadline: when) {
+        var attackingCard: Card = element
+        if attackingCard.canAttack {
+          self.attackCardToAvatar(attacker: &attackingCard, atkIndex: atkIndex)
+        }
       }
     }
   }
@@ -203,7 +219,10 @@ class AIBehaviourManager {
     
     if let atkcard = attacker, let defCard = defender, let atkIndex = attackerIndex, let defIndex = defenderIndex {
       attackCardToCard(attacker: atkcard, defender: defCard, atkIndex: atkIndex, defIndex: defIndex)
-      attackWithCards()
+      delay(1.5, closure: {
+        self.attackWithCards()
+      })
+      
       return true
     } else {
       return false

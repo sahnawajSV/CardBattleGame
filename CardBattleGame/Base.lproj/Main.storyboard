@@ -271,15 +271,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="43l-f1-LpM" userLabel="BottomPlay">
-                                <rect key="frame" x="78" y="536" width="1015" height="266"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="43l-f1-LpM" secondAttribute="height" multiplier="145:38" id="AS7-QZ-cqR"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="SO1-pN-hh0" kind="embed" identifier="PlayerOneInPlay" id="756-Gt-vSr"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4n-RG-pdb" userLabel="BottomHand">
                                 <rect key="frame" x="78" y="838" width="1015" height="266"/>
                                 <constraints>
@@ -287,15 +278,6 @@
                                 </constraints>
                                 <connections>
                                     <segue destination="Tpm-nG-faD" kind="embed" identifier="PlayerOneInHand" id="IZI-K0-eT0"/>
-                                </connections>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lYD-3C-4Db" userLabel="TopPlay">
-                                <rect key="frame" x="78" y="216" width="1015" height="266"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="lYD-3C-4Db" secondAttribute="height" multiplier="145:38" id="ucq-2m-3Fu"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="Meg-Bm-Gtl" kind="embed" identifier="PlayerTwoInPlay" id="lSw-Am-Zle"/>
                                 </connections>
                             </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-XC-g1P" userLabel="TopHand">
@@ -307,20 +289,6 @@
                                     <segue destination="gnC-mP-iYT" kind="embed" identifier="PlayerTwoInHand" id="Obe-jt-5OX"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4Z-dk-sZI">
-                                <rect key="frame" x="1179" y="474" width="160" height="76"/>
-                                <color key="backgroundColor" red="1" green="0.61827965122801609" blue="0.054927028705691772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="d4Z-dk-sZI" secondAttribute="height" multiplier="40:19" id="BoD-n8-hkY"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
-                                <state key="normal" title="END TURN">
-                                    <color key="titleColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="endTurnPressedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="0Wy-Nj-egY"/>
-                                </connections>
-                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2E-ef-aeJ" userLabel="AIView">
                                 <rect key="frame" x="466" y="0.0" width="240" height="93"/>
                                 <subviews>
@@ -376,6 +344,38 @@
                                     <constraint firstItem="puR-kp-Fkz" firstAttribute="width" secondItem="U2E-ef-aeJ" secondAttribute="width" id="pkr-ww-AaP"/>
                                 </constraints>
                             </view>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lYD-3C-4Db" userLabel="TopPlay">
+                                <rect key="frame" x="78" y="216" width="1015" height="266"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="lYD-3C-4Db" secondAttribute="height" multiplier="145:38" id="ucq-2m-3Fu"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="Meg-Bm-Gtl" kind="embed" identifier="PlayerTwoInPlay" id="lSw-Am-Zle"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="43l-f1-LpM" userLabel="BottomPlay">
+                                <rect key="frame" x="78" y="536" width="1015" height="266"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="43l-f1-LpM" secondAttribute="height" multiplier="145:38" id="AS7-QZ-cqR"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="SO1-pN-hh0" kind="embed" identifier="PlayerOneInPlay" id="756-Gt-vSr"/>
+                                </connections>
+                            </containerView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4Z-dk-sZI">
+                                <rect key="frame" x="1179" y="474" width="160" height="76"/>
+                                <color key="backgroundColor" red="1" green="0.61827965122801609" blue="0.054927028705691772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="d4Z-dk-sZI" secondAttribute="height" multiplier="40:19" id="BoD-n8-hkY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <state key="normal" title="END TURN">
+                                    <color key="titleColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="endTurnPressedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="0Wy-Nj-egY"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhu-Re-wVF" userLabel="PlayerView">
                                 <rect key="frame" x="465" y="930" width="242" height="94"/>
                                 <subviews>

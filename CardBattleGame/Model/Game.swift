@@ -17,7 +17,9 @@ extension Game {
   static let numOfCardstoDrawInitially = 3
   static let numOfCardsToDrawEachTurn = 1
   static let maximumInHandCards = 5
-//  static let invalidCardIndex = 99
+  static let cardMoveAnimationSpeed = 0.50
+  static let cardMoveToAttackPosAnimationSpeed = 0.50
+  static let cardAttackAnimationSpeed = 0.25
 }
 
 

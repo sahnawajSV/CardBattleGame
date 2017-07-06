@@ -19,6 +19,7 @@ protocol GameDelegate: class {
   func gameViewModelDidEndTurn(_ gameProtocol: GameProtocol)
   func gameViewModelDidAttackCard(_ gameProtocol: GameProtocol, atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int)
   func gameViewModelDidAttackAvatar(_ gameProtocol: GameProtocol, attacker: Card, atkIndex: Int)
+  func gameViewModelReloadPlayView(_ gameProtocol: GameProtocol)
 }
 
 /// This is a viewModel and a Formatting class. Fetches the required information from the GameManager class to provide easy to use variables to the ViewController to update the UI. Also handles all Delegate calls for the ViewController
@@ -51,7 +52,7 @@ class GameViewModel: GameProtocol, AIBehaviourManagerDelegate {
   var aiInDeckCards: [Card] = []
   var aiInPlayCards: [Card] = []
   private var AILogicReference: AIBehaviourManager {
-      return gManager.playerTwoLogic
+    return gManager.playerTwoLogic
   }
   
   var isPlayerTurn = false
@@ -106,12 +107,16 @@ class GameViewModel: GameProtocol, AIBehaviourManagerDelegate {
     gManager.attackAvatar(cardIndex: cardIndex)
   }
   
-  func attackCard(atkCardIndex: Int, defCardIndex: Int) {
-    gManager.attackCard(atkCardIndex: atkCardIndex, defCardIndex: defCardIndex)
+  func attackCard(atkCardIndex: Int, defCardIndex: Int) -> Bool {
+    return gManager.attackCard(atkCardIndex: atkCardIndex, defCardIndex: defCardIndex)
   }
   
   func removeInPlayCards(forPlayer: Bool, cardIndex: Int) {
     gManager.removeInPlayCards(forPlayer: forPlayer, cardIndex: cardIndex)
+  }
+  
+  func tellAIToContinue() {
+    AILogicReference.playCard()
   }
   
   //MARK: - Model Updates Received
@@ -166,5 +171,8 @@ class GameViewModel: GameProtocol, AIBehaviourManagerDelegate {
   func aiBehaviourManagerDidAttackAvatar(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, atkIndex: Int) {
     delegate?.gameViewModelDidAttackAvatar(self, attacker: attacker, atkIndex: atkIndex)
   }
-
+  
+  func aiBehaviourManagerReloadPlayView(_ aiBehaviourManager: AIBehaviourManager) {
+    delegate?.gameViewModelReloadPlayView(self)
+  }
 }

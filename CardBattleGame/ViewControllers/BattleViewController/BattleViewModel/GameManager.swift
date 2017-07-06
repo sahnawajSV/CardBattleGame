@@ -47,7 +47,7 @@ class GameManager {
   func drawPlayerCards(numToDraw: Int) {
     if (playerStats.gameStats.inDeck.count) > 0 {
       playerStats.gameStats.drawCards(numToDraw: numToDraw)
-      } else {
+    } else {
       //HURT PLAYER
     }
   }
@@ -119,7 +119,7 @@ class GameManager {
       playerStats.gameStats.inPlay[index] = card
     }
   }
-
+  
   
   func attackAvatar(cardIndex: Int) {
     var card: Card = playerStats.gameStats.inPlay[cardIndex]
@@ -131,7 +131,7 @@ class GameManager {
     }
   }
   
-  func attackCard(atkCardIndex: Int, defCardIndex: Int) {
+  func attackCard(atkCardIndex: Int, defCardIndex: Int) -> Bool {
     var atkCard: Card = playerStats.gameStats.inPlay[atkCardIndex]
     var defCard: Card = aiStats.gameStats.inPlay[defCardIndex]
     if atkCard.canAttack {
@@ -141,7 +141,11 @@ class GameManager {
       
       playerStats.gameStats.inPlay[atkCardIndex] = atkCard
       aiStats.gameStats.inPlay[defCardIndex] = defCard
+      
+      return true
     }
+    
+    return false
   }
   
   //MARK: Update Battle Points based on card played
