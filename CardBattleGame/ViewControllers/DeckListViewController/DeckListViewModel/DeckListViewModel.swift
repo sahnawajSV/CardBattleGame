@@ -103,7 +103,7 @@ class DeckListViewModel: NSObject {
     return cards[indexPath.row]
   }
   
-  func getSelectedDeck() -> [DeckCard] {
+  func selectedDeck() -> [DeckCard] {
     return cards
   }
 }

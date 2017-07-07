@@ -103,7 +103,7 @@ class CoreDataStackManager: NSObject {
   
   func add(card: Card, toDeck name: String) throws {
     guard let newItem: DeckCard = NSEntityDescription.insertNewObject(forEntityName: "DeckCard", into: managedObjectContext) as? DeckCard else {
-      return
+      throw ErrorType.faildToCreateDeck
     }
     newItem.attack = card.attack
     newItem.battlepoint = card.battlepoint
@@ -112,7 +112,7 @@ class CoreDataStackManager: NSObject {
     newItem.name = card.name
     newItem.canAttack = card.canAttack
     guard let deckItem = try fetchDeck(with: name) else {
-      return
+      throw ErrorType.failedManagedObjectFetchRequest
     }
     deckItem.addToDeckCard(newItem)
     saveContext()
@@ -126,7 +126,7 @@ class CoreDataStackManager: NSObject {
   /// - Returns: deck managed object
   private func fetchDeck(with name: String) throws -> DeckList? {
     guard let result = try fetchDeckResult(for: name), let deck = result.first else {
-      return nil
+      throw ErrorType.failedManagedObjectFetchRequest
     }
     return deck
   }

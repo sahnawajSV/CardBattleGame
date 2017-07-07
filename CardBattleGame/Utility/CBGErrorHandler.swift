@@ -15,6 +15,7 @@ enum ErrorType: Error {
   case failedToIntializeTheGame
   case failedToIntializeWeatherData
   case failedManagedObjectFetchRequest
+  case faildToCreateDeck
   case deckAlreadyExists
   case unknown
 }
@@ -37,6 +38,8 @@ class CBGErrorHandler: Error {
       errorAlert(errorTitle: "Error", errorMsg: "Failed To Perform Managed Object Fetch Request")
     case .deckAlreadyExists:
       errorAlert(errorTitle: "Error", errorMsg: "Deck Already Exists")
+    case .faildToCreateDeck:
+      errorAlert(errorTitle: "Error", errorMsg: "Deck Creation Failed")
     default:
       errorAlert(errorTitle: "Error", errorMsg: "Unknown")
     }

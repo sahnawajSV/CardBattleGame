@@ -49,7 +49,9 @@ class EditDeckViewModel: NSObject {
     do {
       try coreDataManager.add(card: card, toDeck: name)
     } catch ErrorType.deckAlreadyExists {
-      CBGErrorHandler.handle(error: ErrorType.failedManagedObjectFetchRequest)
+      CBGErrorHandler.handle(error: ErrorType.deckAlreadyExists)
+    } catch ErrorType.faildToCreateDeck {
+      CBGErrorHandler.handle(error: ErrorType.faildToCreateDeck)
     } catch {
       CBGErrorHandler.handle(error: ErrorType.failedManagedObjectFetchRequest)
     }
