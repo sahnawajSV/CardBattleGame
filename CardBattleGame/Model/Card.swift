@@ -36,6 +36,15 @@ struct Card: Equatable {
     self.canAttack = canAttack
   }
   
+  init(name: String, id: Int16, attack: Int16, battlepoint: Int16, health: Int16, canAttack: Bool) {
+    self.name = name
+    self.id = id
+    self.attack = attack
+    self.battlepoint = battlepoint
+    self.health = health
+    self.canAttack = canAttack
+  }
+  
   public static func ==(lhs: Card, rhs: Card) -> Bool {
     if lhs.id == rhs.id {
       return true

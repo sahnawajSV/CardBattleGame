@@ -12,7 +12,7 @@ import CoreData
 
 /// Edit Deck View Model(Follow MVVM pattern): Handle all the business logics for EditDeckViewController
 class EditDeckViewModel: NSObject {
-  fileprivate var deckCards: [Card] = []
+  fileprivate var deckCard: [Card] = []
   
   var selectedDeckName: String = ""
   
@@ -27,7 +27,7 @@ class EditDeckViewModel: NSObject {
   /// Fetch Cards from plist
   ///
   /// - Returns: array of card
-  func fetchCardFromPlist() -> [Card] {
+  func fetchCards() -> [Card] {
     return cardListDataSource.fetchCardList()
   }
   
@@ -35,7 +35,7 @@ class EditDeckViewModel: NSObject {
   /// number of cards fetched from plist
   ///
   /// - Returns: card count
-  func numberOfCardInPlist() -> Int {
+  func numberOfCards() -> Int {
     return cardListDataSource.numbeOfCards()
   }
   
@@ -45,8 +45,14 @@ class EditDeckViewModel: NSObject {
   /// - Parameters:
   ///   - name: deck name
   ///   - card: Selected Card
-  func addCardToDeck(name: String, card: Card) {
-    coreDataManager.addCardToDeck(name: name, card)
+  func add(card: Card, toDeck name: String) {
+    do {
+      try coreDataManager.add(card: card, toDeck: name)
+    } catch ErrorType.deckAlreadyExists {
+      CBGErrorHandler.handle(error: ErrorType.failedManagedObjectFetchRequest)
+    } catch {
+      CBGErrorHandler.handle(error: ErrorType.failedManagedObjectFetchRequest)
+    }
   }
   
   
@@ -63,40 +69,40 @@ class EditDeckViewModel: NSObject {
   /// Create Deck with name and store the cards in the deck
   ///
   /// - Parameter name: deck name
-  func saveCardstoDeck(with name: String) {
+  func saveCardsToDeck(with name: String) {
     do {
-      try createDeck(with: name, id: numberOfCardAddedToDeck()+1)
-      deckCards.forEach{ card in
-          addCardToDeck(name: name, card: card)
+      try createDeck(with: name, id: numberOfAddedCards()+1)
+      deckCard.forEach { card in
+          add(card: card, toDeck: name)
       }
     } catch {
-      CBGErrorHandler.handle(error: ErrorType.failedToCreateDeck)
+      CBGErrorHandler.handle(error: ErrorType.deckAlreadyExists)
     }
   }
   
-  func numberOfCardAddedToDeck() -> Int {
-    return deckCards.count
+  func numberOfAddedCards() -> Int {
+    return deckCard.count
   }
   
   func addCardToDeckList(_ card: Card) {
-    deckCards.append(card)
+    deckCard.append(card)
   }
   
-  func removeCardFromDeckList(at indexPath: IndexPath) {
-    guard indexPath.row < deckCards.count else {
+  func removeCardFromDeckList(at index: Int) {
+    guard index < deckCard.count else {
       return
     }
-    deckCards.remove(at: indexPath.row)
+    deckCard.remove(at: index)
   }
   
-  func getCard(from index: Int) -> Card? {
-    guard index < deckCards.count else {
+  func card(at index: Int) -> Card? {
+    guard index < deckCard.count else {
       return nil
     }
-    return deckCards[index]
+    return deckCard[index]
   }
   
   func isCardSelected(_ card: Card) -> Bool {
-    return deckCards.contains(card)
+    return deckCard.contains(card)
   }
 }

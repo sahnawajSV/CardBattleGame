@@ -28,6 +28,8 @@
 		8B561F601EF3F1DE00104486 /* CardList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8B561F5F1EF3F1DE00104486 /* CardList.plist */; };
 		8B561F621EF3F54300104486 /* CardListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F611EF3F54300104486 /* CardListDataSource.swift */; };
 		8B561F641EF3F57800104486 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B561F631EF3F57800104486 /* Card.swift */; };
+		8B8A29B21F0F6A790087CF73 /* DeckCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A29B11F0F6A790087CF73 /* DeckCardTableViewCell.swift */; };
+		8B8A29B41F0F6C5F0087CF73 /* EditDeckCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8A29B31F0F6C5F0087CF73 /* EditDeckCardTableViewCell.swift */; };
 		8BABABAC1F0380A300B6BB17 /* WeatherDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABABAB1F0380A300B6BB17 /* WeatherDataParser.swift */; };
 		8BABABAE1F03920F00B6BB17 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABABAD1F03920F00B6BB17 /* WeatherData.swift */; };
 		E326D59B1EFA915B0034F35B /* CardBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59A1EFA915B0034F35B /* CardBGView.swift */; };
@@ -94,6 +96,8 @@
 		8B561F5F1EF3F1DE00104486 /* CardList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = CardList.plist; sourceTree = "<group>"; };
 		8B561F611EF3F54300104486 /* CardListDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardListDataSource.swift; sourceTree = "<group>"; };
 		8B561F631EF3F57800104486 /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		8B8A29B11F0F6A790087CF73 /* DeckCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckCardTableViewCell.swift; sourceTree = "<group>"; };
+		8B8A29B31F0F6C5F0087CF73 /* EditDeckCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckCardTableViewCell.swift; sourceTree = "<group>"; };
 		8BABABAB1F0380A300B6BB17 /* WeatherDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDataParser.swift; sourceTree = "<group>"; };
 		8BABABAD1F03920F00B6BB17 /* WeatherData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		E326D59A1EFA915B0034F35B /* CardBGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBGView.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				8B1ECD441EFA7B76001EE399 /* EditDeckCollectionViewCell.swift */,
+				8B8A29B31F0F6C5F0087CF73 /* EditDeckCardTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				8B34DF3C1EFCD77100CEF037 /* DeckCollectionViewCell.swift */,
+				8B8A29B11F0F6A790087CF73 /* DeckCardTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -579,6 +585,7 @@
 				E3D362CC1EF79FAA008FB5A7 /* Game.swift in Sources */,
 				E326D59E1EFB8FC90034F35B /* InHandViewController.swift in Sources */,
 				E3D362C41EF79174008FB5A7 /* Stats.swift in Sources */,
+				8B8A29B41F0F6C5F0087CF73 /* EditDeckCardTableViewCell.swift in Sources */,
 				8B42F4C71EF265D70097D28A /* CBGErrorHandler.swift in Sources */,
 				8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */,
 				8BABABAE1F03920F00B6BB17 /* WeatherData.swift in Sources */,
@@ -608,6 +615,7 @@
 				8B561F621EF3F54300104486 /* CardListDataSource.swift in Sources */,
 				E37605F11EF7E00E001AEBBB /* CardView.swift in Sources */,
 				E326D5A61F037C400034F35B /* Common.swift in Sources */,
+				8B8A29B21F0F6A790087CF73 /* DeckCardTableViewCell.swift in Sources */,
 				8B561F641EF3F57800104486 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

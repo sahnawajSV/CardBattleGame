@@ -17,5 +17,4 @@ class EditDeckCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var attackLbl: UILabel!
     @IBOutlet weak var battlePointLbl: UILabel!
     @IBOutlet weak var addDeckButton: UIButton!
-
 }

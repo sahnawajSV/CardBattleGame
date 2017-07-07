@@ -9,16 +9,10 @@
 import UIKit
 import CoreData
 
-protocol DeckListViewModelDelegate: class {
-  func reloadSelectedDeckTableView(with cards: [DeckCard])
-}
-
 class DeckListViewModel: NSObject {
   
   var deckNameText = ""
   private var cards: [DeckCard] = []
-  
-  weak var delegate: DeckListViewModelDelegate?
   
   var selectedDeckIndex: IndexPath?
   
@@ -56,30 +50,18 @@ class DeckListViewModel: NSObject {
     return sections.first?.numberOfObjects ?? 0
   }
   
-  
-  /// Fetch the deck list from core data storage
-  ///
-  /// - Returns: Deck List
-  func fetchDeckList() -> [DeckList]?{
-    guard let decks = coreDataManager.fetchDeckList() else {
-      return nil
-    }
-    return decks
-  }
-  
-  
   /// Fetch Deck from Managed Object Deck List and create Deck Model Object
   ///
   /// - Parameter indexPath: indexpath of the deck
   /// - Returns: Deck Model Object
-  func fetchDeck(at indexPath: IndexPath) -> Deck?{
-    guard let deckList: DeckList = fetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0)) as? DeckList else {
+  func fetchDeck(at indexPath: IndexPath) -> Deck? {
+    guard let deckList: DeckList = fetchedResultsController.object(at: indexPath) as? DeckList else {
       return nil
     }
     guard let name = deckList.name, let deckCards: [DeckCard] = deckList.deckCard?.allObjects as? [DeckCard] else {
       return nil
     }
-    let deck = Deck(name: name, id: deckList.id, cardList: convertCoreDataDeckCardToCard(deckCard: deckCards))
+    let deck = Deck(name: name, id: deckList.id, cardList: convertCoreDataDeckCardToCard(deckCards: deckCards))
     return deck
 }
   
@@ -88,20 +70,13 @@ class DeckListViewModel: NSObject {
   ///
   /// - Parameter deckCard: Managed Object Card
   /// - Returns: Card Model Object
-  private func convertCoreDataDeckCardToCard(deckCard: [DeckCard]) -> [Card] {
-    var cardsInDeck:[Card] = []
-    deckCard.forEach { card in
-      var cardDict  = [String: Any]()
-      cardDict["name"] = card.name
-      cardDict["id"] = card.id
-      cardDict["attack"] = card.attack
-      cardDict["battlepoint"] = card.battlepoint
-      cardDict["health"] = card.health
-      cardDict["canAttack"] = card.canAttack
-      if let card = Card(dictionary: cardDict) {
-        cardsInDeck.append(card)
+  private func convertCoreDataDeckCardToCard(deckCards: [DeckCard]) -> [Card] {
+    let cardsInDeck:[Card] = deckCards.flatMap({ card in
+      guard let name = card.name else {
+        return nil
       }
-    }
+      return Card(name: name, id: card.id, attack: card.attack, battlepoint: card.battlepoint, health: card.health, canAttack: card.canAttack)
+    })
     return cardsInDeck
   }
   
@@ -109,8 +84,8 @@ class DeckListViewModel: NSObject {
     return cards.count
   }
   
-  func selectedDeck(at indexPath: IndexPath) {
-    guard let deck: DeckList = fetchedResultsController.object(at: IndexPath(row: indexPath.row, section: 0)) as? DeckList else {
+  func selectDeck(at indexPath: IndexPath) {
+    guard let deck: DeckList = fetchedResultsController.object(at: indexPath) as? DeckList else {
       return
     }
     selectedDeckIndex = indexPath

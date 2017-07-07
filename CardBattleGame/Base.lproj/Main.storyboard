@@ -115,6 +115,33 @@
                                         <rect key="frame" x="7" y="69" width="375" height="697"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCellReuseIdentifier" id="TTL-up-6hW" customClass="DeckCardTableViewCell" customModule="CardBattleGame" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="TTL-up-6hW" id="ayF-iB-xnw">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wgx-t2-V0c">
+                                                            <rect key="frame" x="8" y="0.0" width="359" height="43.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="wgx-t2-V0c" firstAttribute="leading" secondItem="ayF-iB-xnw" secondAttribute="leading" constant="8" id="89y-PF-0c6"/>
+                                                        <constraint firstAttribute="bottom" secondItem="wgx-t2-V0c" secondAttribute="bottom" id="REQ-iv-aj7"/>
+                                                        <constraint firstItem="wgx-t2-V0c" firstAttribute="top" secondItem="ayF-iB-xnw" secondAttribute="top" id="UbO-Mf-D4d"/>
+                                                        <constraint firstAttribute="trailing" secondItem="wgx-t2-V0c" secondAttribute="trailing" constant="8" id="xNf-zU-2Za"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="cardNameLabel" destination="wgx-t2-V0c" id="e3O-eb-exI"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -619,6 +646,33 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="45p-U6-zBs">
                                         <rect key="frame" x="0.0" y="71" width="391" height="694"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tableViewCellReuseIdentifier" id="U3r-GK-t9W" customClass="EditDeckCardTableViewCell" customModule="CardBattleGame" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="28" width="391" height="44"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U3r-GK-t9W" id="a8a-mn-BM9">
+                                                    <rect key="frame" x="0.0" y="0.0" width="391" height="44"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W46-4k-wEo">
+                                                            <rect key="frame" x="8" y="0.0" width="375" height="43.5"/>
+                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="19"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="W46-4k-wEo" firstAttribute="leading" secondItem="a8a-mn-BM9" secondAttribute="leading" constant="8" id="4gs-P2-fOl"/>
+                                                        <constraint firstAttribute="trailing" secondItem="W46-4k-wEo" secondAttribute="trailing" constant="8" id="5SO-Vg-9ca"/>
+                                                        <constraint firstItem="W46-4k-wEo" firstAttribute="top" secondItem="a8a-mn-BM9" secondAttribute="top" id="6Ur-cU-bxV"/>
+                                                        <constraint firstAttribute="bottom" secondItem="W46-4k-wEo" secondAttribute="bottom" id="X9a-ex-d0v"/>
+                                                    </constraints>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="cardNameLabel" destination="W46-4k-wEo" id="KFl-mj-dlY"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
                                         <connections>
                                             <outlet property="dataSource" destination="fC0-RA-SnB" id="JGr-5F-df3"/>
                                             <outlet property="delegate" destination="fC0-RA-SnB" id="fod-Jq-5rF"/>

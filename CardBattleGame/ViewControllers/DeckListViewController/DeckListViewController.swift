@@ -11,10 +11,14 @@ import CoreData
 
 /// Deck List View Controller : Display list of Decks created by the user.
 class DeckListViewController: UIViewController {
+  fileprivate let height: CGFloat = 328
+  fileprivate let margin: CGFloat = 15
   
   var deckListViewModel = DeckListViewModel()
   
-  fileprivate let identifier = "CellIdentifier"
+  fileprivate let tableViewCellReuseIdentifier = "tableViewCellReuseIdentifier"
+  fileprivate let cellReuseIdentifier = "CellIdentifier"
+  private let battleSegueIdentifier = "battleIndentifier"
   
   @IBOutlet weak var deckCollectionView: UICollectionView!
   @IBOutlet weak var deckCardsTableView: UITableView!
@@ -23,11 +27,11 @@ class DeckListViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    self.deckCollectionView.delegate = self
-    self.deckCollectionView.dataSource = self
+    deckCollectionView.delegate = self
+    deckCollectionView.dataSource = self
     
-    self.deckCardsTableView.delegate = self
-    self.deckCardsTableView.dataSource = self
+    deckCardsTableView.delegate = self
+    deckCardsTableView.dataSource = self
     
     deckListViewModel.performDeckCardFetchRequest()
   }
@@ -42,42 +46,27 @@ class DeckListViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     // Get the new view controller using segue.destinationViewController.
     // Pass the selected object to the new view controller.
-    if segue.identifier == "battleIndentifier", let battleSystemVC = segue.destination as? BattleSystemViewController {
-      if let indexpath = sender as? IndexPath {
+    if segue.identifier == battleSegueIdentifier, let battleSystemVC = segue.destination as? BattleSystemViewController, let indexpath = sender as? IndexPath {
         battleSystemVC.deck = deckListViewModel.fetchDeck(at: indexpath)
-      }
     }
   }
   
   func updateView() {
-    self.deckCardsTableView .reloadData()
+    deckCardsTableView.reloadData()
     deckNameLabel.text = deckListViewModel.deckNameText
   }
   
   /// Back Action
   @IBAction func backAction(_ sender: Any) {
-    self.navigationController?.popViewController(animated: true)
+    navigationController?.popViewController(animated: true)
   }
   /// Battle Action
   @IBAction func battleAction(_ sender: Any) {
     if let index = deckListViewModel.selectedDeckIndex {
-      performSegue(withIdentifier: "battleIndentifier", sender: index)
+      performSegue(withIdentifier: battleSegueIdentifier, sender: index)
     } else {
-      errorAlert(errorTitle: "Error", errorMsg: "Please select the Deck.")
+      cbg_presentErrorAlert(withTitle: "Error", message: "Please select the Deck.")
     }
-  }
-  
-  /// Show Alert
-  ///
-  /// - Parameters:
-  ///   - errorTitle: errorTitle description
-  ///   - errorMsg: errorMsg description
-  private func errorAlert(errorTitle: String, errorMsg: String){
-    let alertController =  UIAlertController(title: errorTitle, message: errorMsg, preferredStyle: UIAlertControllerStyle.alert)
-    let okAction  = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action) in
-    }
-    alertController.addAction(okAction)
-    self.navigationController?.present(alertController, animated: true, completion: nil)
   }
 }
 
@@ -93,8 +82,7 @@ extension DeckListViewController: UICollectionViewDelegate, UICollectionViewData
   // Collection View - Cell For Row At Index Path
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) as! DeckCollectionViewCell
-    
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! DeckCollectionViewCell
     
     if let newItem: Deck = deckListViewModel.fetchDeck(at: indexPath) {
       cell.nameLbl.text = newItem.name
@@ -106,32 +94,14 @@ extension DeckListViewController: UICollectionViewDelegate, UICollectionViewData
   
   // MARK:- UICollectionViewDelegate Methods
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: CGFloat((collectionView.frame.size.width / 3) - 15), height: CGFloat(328))
+    return CGSize(width: CGFloat((collectionView.frame.size.width / 3) - margin), height: CGFloat(328))
   }
   
   // MARK:- UICollectionViewDelegate Methods
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    deckListViewModel.selectedDeck(at: indexPath)
-    highlightCell(indexPath, flag: true)
+    deckListViewModel.selectDeck(at: indexPath)
     updateView()
   }
-  
-  func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
-    highlightCell(indexPath, flag: false)
-  }
-  
-  // MARK:- Highlight
-  func highlightCell(_ indexPath : IndexPath, flag: Bool) {
-    
-    let cell = deckCollectionView.cellForItem(at: indexPath)
-    
-    if flag {
-      cell?.contentView.backgroundColor = UIColor.orange
-    } else {
-      cell?.contentView.backgroundColor = nil
-    }
-  }
-  
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -141,14 +111,13 @@ extension DeckListViewController: UITableViewDelegate, UITableViewDataSource {
     return deckListViewModel.numberOfCards()
   }
   
-  
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell:UITableViewCell = UITableViewCell.init(style: .default,
-                                                    reuseIdentifier: nil)as UITableViewCell!
+    let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellReuseIdentifier, for: indexPath) as! DeckCardTableViewCell
     let newItem: DeckCard = deckListViewModel.fetchCardFromSelectedDeck(at: indexPath)
-    cell.textLabel?.text = newItem.name
+    cell.cardNameLabel?.text = newItem.name
     return cell
   }
   
 }
+
 

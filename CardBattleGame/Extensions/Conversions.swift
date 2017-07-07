@@ -40,3 +40,13 @@ extension UIView {
   }
 }
 
+extension UIViewController {
+  
+  func cbg_presentErrorAlert(withTitle title: String, message: String) {
+    let alertController =  UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.alert)
+    let okAction  = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action) in
+    }
+    alertController.addAction(okAction)
+    navigationController?.present(alertController, animated: true, completion: nil)
+  }
+}

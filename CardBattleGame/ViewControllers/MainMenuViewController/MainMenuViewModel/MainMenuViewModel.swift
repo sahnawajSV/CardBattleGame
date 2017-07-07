@@ -66,15 +66,15 @@ class MainMenuViewModel {
     guard let location: CLLocation = notification.userInfo?["currentLocation"] as? CLLocation else {
       return
     }
-    self.latitude = location.coordinate.latitude
-    self.longitude = location.coordinate.longitude
-      
+    latitude = location.coordinate.latitude
+    longitude = location.coordinate.longitude
+    
     fetchWeatherReport()
   }
   
   // MARK : Featch Weather Report
   //
-   func fetchWeatherReport() -> Void {
+  func fetchWeatherReport() -> Void {
     
     let appendUrl = "/\(latitude),\(longitude)"
     
@@ -88,7 +88,7 @@ class MainMenuViewModel {
         self.timeZoneText = response.timeZone
         self.timeText = response.time.toString(withFormat: "dd MMM yy hh:mm")
         self.windSpeedText = String(format: "%.f KPH", response.windSpeed)
-
+        
         let minTemperature = response.temperature.toCelcius()
         let maxTemperature = response.apparentTemperature.toCelcius()
         self.temperatureText = String(format: "%.0f° - %.0f°", minTemperature, maxTemperature)

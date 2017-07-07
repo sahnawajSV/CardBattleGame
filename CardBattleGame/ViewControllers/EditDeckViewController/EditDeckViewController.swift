@@ -12,8 +12,10 @@ import CoreData
 
 /// EditDeckViewController : Create Deck, Edit or Delete Existing Deck
 class EditDeckViewController: UIViewController {
+  fileprivate let height: CGFloat = 328
+  fileprivate let margin: CGFloat = 15
   
-  var editDeckViewModel = EditDeckViewModel()
+  fileprivate var editDeckViewModel = EditDeckViewModel()
   
   @IBOutlet weak var deckNameTextField: UITextField!
   @IBOutlet weak var selectedDeckTableView: UITableView!
@@ -21,8 +23,8 @@ class EditDeckViewController: UIViewController {
   
   @IBOutlet weak var selectedDeckLabel: UILabel!
   
-  
-  fileprivate let identifier = "CellIdentifier"
+  fileprivate let tableViewCellReuseIdentifier = "tableViewCellReuseIdentifier"
+  fileprivate let cellReuseIdentifier = "CellIdentifier"
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -41,15 +43,15 @@ class EditDeckViewController: UIViewController {
   //  Mark :  Helper Method
   //
   fileprivate func updateSelectedCardLabel() {
-    self.selectedDeckLabel.text = String(format: "\(numberOfCardAdded()) - \(Game.maximumCardPerDeck)")
+    selectedDeckLabel.text = String(format: "\(numberOfAddedCards()) - \(Game.maximumCardPerDeck)")
   }
   
   
   /// Fetch the cad count selected for a deck
   ///
   /// - Returns: Total Number of cards
-  fileprivate func numberOfCardAdded() -> Int {
-    return editDeckViewModel.numberOfCardAddedToDeck()
+  fileprivate func numberOfAddedCards() -> Int {
+    return editDeckViewModel.numberOfAddedCards()
   }
   
   /// Update Card Collection View
@@ -62,34 +64,20 @@ class EditDeckViewController: UIViewController {
   // MARK : Action
   //
   @IBAction func saveDeckAction(_ sender: Any) {
-    if let name = self.deckNameTextField.text ,(self.deckNameTextField.text?.characters.count)! > 0 {
+    if let name = deckNameTextField.text, !name.isEmpty {
       //create deck with name
-      editDeckViewModel.saveCardstoDeck(with: name)
-      self.navigationController?.popViewController(animated: true)
+      editDeckViewModel.saveCardsToDeck(with: name)
+      navigationController?.popViewController(animated: true)
     } else {
-      errorAlert(errorTitle: "Error", errorMsg: "Please Enter the Deck Name.")
+      cbg_presentErrorAlert(withTitle: "Error", message: "Please Enter the Deck Name.")
     }
   }
   
   @IBAction func addButtonTapped(_ sender: UIButton) {
-    let cardList: [Card] = editDeckViewModel.fetchCardFromPlist()
+    let cardList: [Card] = editDeckViewModel.fetchCards()
     let card = cardList[sender.tag]
     editDeckViewModel.addCardToDeckList(card)
     updateView()
-  }
-  
-  
-  /// Show Alert
-  ///
-  /// - Parameters:
-  ///   - errorTitle: errorTitle description
-  ///   - errorMsg: errorMsg description
-  private func errorAlert(errorTitle: String, errorMsg: String){
-    let alertController =  UIAlertController(title: errorTitle, message: errorMsg, preferredStyle: UIAlertControllerStyle.alert)
-    let okAction  = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action) in
-    }
-    alertController.addAction(okAction)
-    self.navigationController?.present(alertController, animated: true, completion: nil)
   }
 }
 
@@ -98,15 +86,14 @@ class EditDeckViewController: UIViewController {
 extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return numberOfCardAdded()
+    return numberOfAddedCards()
   }
   
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell:UITableViewCell = UITableViewCell.init(style: .default,
-                                                    reuseIdentifier: nil)as UITableViewCell!
-    if let newItem: Card = editDeckViewModel.getCard(from: indexPath.row) {
-      cell.textLabel?.text = newItem.name
+    let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellReuseIdentifier, for: indexPath) as! EditDeckCardTableViewCell
+    if let newItem: Card = editDeckViewModel.card(at: indexPath.row) {
+      cell.cardNameLabel?.text = newItem.name
       cell.tag = Int(newItem.id)
     }
     return cell
@@ -123,16 +110,16 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
       return
     }
     
-    let cell : UITableViewCell = tableView.cellForRow(at: indexPath)!
-    let cardList: [Card] = editDeckViewModel.fetchCardFromPlist()
-    
-    for card in cardList {
-      if card.id == Int16(cell.tag) {
-        editDeckViewModel.removeCardFromDeckList(at: indexPath)
-        break
+    if let cell : EditDeckCardTableViewCell = tableView.cellForRow(at: indexPath) as? EditDeckCardTableViewCell {
+      let cardList: [Card] = editDeckViewModel.fetchCards()
+      for card in cardList {
+        if card.id == Int16(cell.tag) {
+          editDeckViewModel.removeCardFromDeckList(at: indexPath.row)
+          break
+        }
       }
+      updateView()
     }
-    updateView()
   }
   
 }
@@ -142,17 +129,17 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
   
   // Collection View - Number Of Items In Section
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return editDeckViewModel.numberOfCardInPlist()
+    return editDeckViewModel.numberOfCards()
   }
   
   
   // Collection View - Cell For Row At Index Path
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: identifier,for:indexPath) as! EditDeckCollectionViewCell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! EditDeckCollectionViewCell
     
     
-    let cardList: [Card] = editDeckViewModel.fetchCardFromPlist()
+    let cardList: [Card] = editDeckViewModel.fetchCards()
     let card = cardList[indexPath.row]
     
     cell.attackLbl.text = String(describing: card.attack)
@@ -169,12 +156,11 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
     cell.addDeckButton.addTarget(self, action: #selector(addButtonTapped), for: UIControlEvents.touchUpInside)
     cell.addDeckButton.tag = indexPath.row
     
-    
     return cell
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: CGFloat((collectionView.frame.size.width / 3) - 15), height: CGFloat(328))
+    return CGSize(width: CGFloat((collectionView.frame.size.width / 3) - margin), height: height)
   }
   
 }

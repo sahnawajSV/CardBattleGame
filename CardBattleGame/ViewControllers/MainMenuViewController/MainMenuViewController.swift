@@ -27,7 +27,7 @@ class MainMenuViewController: UIViewController {
     
     // Hide the Weather Info VIew
     //
-    self.weatherInfoView.alpha = 0
+    weatherInfoView.alpha = 0
     
     // Set Main Model View Delegate
     mainViewModel.delegate = self
@@ -45,14 +45,13 @@ class MainMenuViewController: UIViewController {
 extension MainMenuViewController : MainMenuViewModelDelegate{
   
   func updateWeatherData() {
+    temperatureLbl.text = mainViewModel.temperatureText
+    dateTimeLbl.text = mainViewModel.timeText
+    timeZoneLbl.text = mainViewModel.timeZoneText
+    summeryLbl.text = mainViewModel.summaryText
+    windLbl.text = mainViewModel.windSpeedText
+    weatherIcon.image = mainViewModel.iconImage
     
-    self.temperatureLbl.text = self.mainViewModel.temperatureText
-    self.dateTimeLbl.text = self.mainViewModel.timeText
-    self.timeZoneLbl.text = self.mainViewModel.timeZoneText
-    self.summeryLbl.text = self.mainViewModel.summaryText
-    self.windLbl.text = self.mainViewModel.windSpeedText
-    self.weatherIcon.image = self.mainViewModel.iconImage
-    
-    self.weatherInfoView.fadeIn()
+    weatherInfoView.fadeIn()
   }
 }
