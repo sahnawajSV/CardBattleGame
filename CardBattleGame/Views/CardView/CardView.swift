@@ -20,7 +20,7 @@ class CardView: UIView {
   var attackView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
   var healthView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
   var nameView = UIView(frame: CGRect(x: 0 , y: 0, width: 50, height: 50))
-  
+  var cardImage = UIImageView(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
   //Required for Player To AI Attack
   var cardIndex: Int = 0
   
@@ -76,6 +76,10 @@ class CardView: UIView {
     
     //CARD BUTTON
     cardView.addSubview(cardButton)
+    
+    //CARD Backgroud
+    cardImage = UIImageView(frame: CGRect(x: 0 , y: 0, width: (cardView.frame.size.width), height: (cardView.frame.size.height)))
+    cardImage.image = UIImage.init(named: "1.jpg")
     
     //BG Color based on canAttack value
     cardView.layer.borderColor = UIColor.red.cgColor

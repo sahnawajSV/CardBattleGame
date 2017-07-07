@@ -21,7 +21,11 @@ class CardBGView: UIView {
   }
   
   func addUIBehavior() {
-//    self.dropShadow(scale: true)
+    self.backgroundColor = UIColor.clear
+    self.layer.cornerRadius = 10.0
+    self.layer.borderColor = UIColor.brown.cgColor
+    self.layer.borderWidth = 2
+    self.clipsToBounds = true
   }
 
 }

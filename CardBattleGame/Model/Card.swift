@@ -15,6 +15,7 @@ struct Card: Equatable {
   var attack: Int16
   var battlepoint: Int16
   var health: Int16
+  var imageName: String
   var canAttack: Bool
   
   init?(dictionary: [String: Any]) {
@@ -24,6 +25,7 @@ struct Card: Equatable {
       let attack = dictionary["attack"]  as? Int16,
       let battlepoint = dictionary["battlepoint"] as? Int16,
       let health = dictionary["health"]  as? Int16,
+      let imageName = dictionary["imageName"]  as? String,
       let canAttack = dictionary["canAttack"]  as? Bool else {
         return nil
     }
@@ -33,6 +35,7 @@ struct Card: Equatable {
     self.attack = attack
     self.battlepoint = battlepoint
     self.health = health
+    self.imageName = imageName
     self.canAttack = canAttack
   }
   

@@ -31,21 +31,21 @@
 		8BABABAC1F0380A300B6BB17 /* WeatherDataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABABAB1F0380A300B6BB17 /* WeatherDataParser.swift */; };
 		8BABABAE1F03920F00B6BB17 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BABABAD1F03920F00B6BB17 /* WeatherData.swift */; };
 		E326D59B1EFA915B0034F35B /* CardBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59A1EFA915B0034F35B /* CardBGView.swift */; };
-		E326D59E1EFB8FC90034F35B /* InHandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D59D1EFB8FC90034F35B /* InHandViewController.swift */; };
-		E326D5A21EFB90090034F35B /* InPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A11EFB90090034F35B /* InPlayViewController.swift */; };
 		E326D5A61F037C400034F35B /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A51F037C400034F35B /* Common.swift */; };
 		E326D5A91F03AFF90034F35B /* AIBehaviourManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E326D5A81F03AFF90034F35B /* AIBehaviourManager.swift */; };
-		E37605ED1EF7A11E001AEBBB /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605EC1EF7A11E001AEBBB /* GameManager.swift */; };
 		E37605F11EF7E00E001AEBBB /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605F01EF7E00E001AEBBB /* CardView.swift */; };
-		E37605F31EF92C77001AEBBB /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E37605F21EF92C77001AEBBB /* GameViewModel.swift */; };
 		E3775D501EF16E6F00991CEC /* MainMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */; };
 		E3775D521EF16E7D00991CEC /* EditDeckViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */; };
 		E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */; };
 		E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D591EF16EB400991CEC /* DeckListViewController.swift */; };
 		E3775D5C1EF16EC000991CEC /* EditDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */; };
+		E3BFB0C11F0FAA6E00BDBDFA /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFB0C01F0FAA6E00BDBDFA /* BattleViewController.swift */; };
+		E3BFB0C31F0FABED00BDBDFA /* BattleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFB0C21F0FABED00BDBDFA /* BattleViewModel.swift */; };
+		E3BFB0C51F0FABF800BDBDFA /* BattleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFB0C41F0FABF800BDBDFA /* BattleManager.swift */; };
+		E3BFB0C71F0FAC2A00BDBDFA /* InHandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFB0C61F0FAC2A00BDBDFA /* InHandViewController.swift */; };
+		E3BFB0C91F0FAC3400BDBDFA /* InPlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFB0C81F0FAC3400BDBDFA /* InPlayViewController.swift */; };
 		E3D362C21EF790BC008FB5A7 /* Deck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D362C11EF790BC008FB5A7 /* Deck.swift */; };
 		E3D362C41EF79174008FB5A7 /* Stats.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D362C31EF79174008FB5A7 /* Stats.swift */; };
-		E3D362C81EF792A6008FB5A7 /* BattleSystemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D362C71EF792A6008FB5A7 /* BattleSystemViewController.swift */; };
 		E3D362CC1EF79FAA008FB5A7 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3D362CB1EF79FAA008FB5A7 /* Game.swift */; };
 /* End PBXBuildFile section */
 
@@ -97,21 +97,21 @@
 		8BABABAB1F0380A300B6BB17 /* WeatherDataParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherDataParser.swift; sourceTree = "<group>"; };
 		8BABABAD1F03920F00B6BB17 /* WeatherData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		E326D59A1EFA915B0034F35B /* CardBGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardBGView.swift; sourceTree = "<group>"; };
-		E326D59D1EFB8FC90034F35B /* InHandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InHandViewController.swift; sourceTree = "<group>"; };
-		E326D5A11EFB90090034F35B /* InPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InPlayViewController.swift; sourceTree = "<group>"; };
 		E326D5A51F037C400034F35B /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		E326D5A81F03AFF90034F35B /* AIBehaviourManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AIBehaviourManager.swift; sourceTree = "<group>"; };
-		E37605EC1EF7A11E001AEBBB /* GameManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GameManager.swift; path = BattleViewModel/GameManager.swift; sourceTree = "<group>"; };
 		E37605F01EF7E00E001AEBBB /* CardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		E37605F21EF92C77001AEBBB /* GameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
 		E3775D4F1EF16E6F00991CEC /* MainMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewModel.swift; sourceTree = "<group>"; };
 		E3775D511EF16E7D00991CEC /* EditDeckViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckViewModel.swift; sourceTree = "<group>"; };
 		E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewModel.swift; sourceTree = "<group>"; };
 		E3775D591EF16EB400991CEC /* DeckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewController.swift; sourceTree = "<group>"; };
 		E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckViewController.swift; sourceTree = "<group>"; };
+		E3BFB0C01F0FAA6E00BDBDFA /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
+		E3BFB0C21F0FABED00BDBDFA /* BattleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewModel.swift; sourceTree = "<group>"; };
+		E3BFB0C41F0FABF800BDBDFA /* BattleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleManager.swift; sourceTree = "<group>"; };
+		E3BFB0C61F0FAC2A00BDBDFA /* InHandViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InHandViewController.swift; sourceTree = "<group>"; };
+		E3BFB0C81F0FAC3400BDBDFA /* InPlayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InPlayViewController.swift; sourceTree = "<group>"; };
 		E3D362C11EF790BC008FB5A7 /* Deck.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Deck.swift; sourceTree = "<group>"; };
 		E3D362C31EF79174008FB5A7 /* Stats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Stats.swift; sourceTree = "<group>"; };
-		E3D362C71EF792A6008FB5A7 /* BattleSystemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleSystemViewController.swift; sourceTree = "<group>"; };
 		E3D362CB1EF79FAA008FB5A7 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -307,8 +307,8 @@
 		E326D59C1EFB8F290034F35B /* CardControllers */ = {
 			isa = PBXGroup;
 			children = (
-				E326D59D1EFB8FC90034F35B /* InHandViewController.swift */,
-				E326D5A11EFB90090034F35B /* InPlayViewController.swift */,
+				E3BFB0C61F0FAC2A00BDBDFA /* InHandViewController.swift */,
+				E3BFB0C81F0FAC3400BDBDFA /* InPlayViewController.swift */,
 			);
 			path = CardControllers;
 			sourceTree = "<group>";
@@ -332,7 +332,7 @@
 		E37605F41EF93C81001AEBBB /* GameManager */ = {
 			isa = PBXGroup;
 			children = (
-				E37605EC1EF7A11E001AEBBB /* GameManager.swift */,
+				E3BFB0C41F0FABF800BDBDFA /* BattleManager.swift */,
 			);
 			name = GameManager;
 			sourceTree = "<group>";
@@ -352,7 +352,7 @@
 				E326D59C1EFB8F290034F35B /* CardControllers */,
 				E37605F41EF93C81001AEBBB /* GameManager */,
 				E3775D461EF16E0200991CEC /* BattleViewModel */,
-				E3D362C71EF792A6008FB5A7 /* BattleSystemViewController.swift */,
+				E3BFB0C01F0FAA6E00BDBDFA /* BattleViewController.swift */,
 			);
 			path = BattleViewController;
 			sourceTree = "<group>";
@@ -360,7 +360,7 @@
 		E3775D461EF16E0200991CEC /* BattleViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				E37605F21EF92C77001AEBBB /* GameViewModel.swift */,
+				E3BFB0C21F0FABED00BDBDFA /* BattleViewModel.swift */,
 			);
 			path = BattleViewModel;
 			sourceTree = "<group>";
@@ -577,14 +577,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3D362CC1EF79FAA008FB5A7 /* Game.swift in Sources */,
-				E326D59E1EFB8FC90034F35B /* InHandViewController.swift in Sources */,
 				E3D362C41EF79174008FB5A7 /* Stats.swift in Sources */,
 				8B42F4C71EF265D70097D28A /* CBGErrorHandler.swift in Sources */,
 				8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */,
+				E3BFB0C91F0FAC3400BDBDFA /* InPlayViewController.swift in Sources */,
 				8BABABAE1F03920F00B6BB17 /* WeatherData.swift in Sources */,
 				E3D362C21EF790BC008FB5A7 /* Deck.swift in Sources */,
-				E326D5A21EFB90090034F35B /* InPlayViewController.swift in Sources */,
 				8B1ECD451EFA7B76001EE399 /* EditDeckCollectionViewCell.swift in Sources */,
+				E3BFB0C51F0FABF800BDBDFA /* BattleManager.swift in Sources */,
 				8B42F4C11EF252520097D28A /* ConnectionManager.swift in Sources */,
 				8BABABAC1F0380A300B6BB17 /* WeatherDataParser.swift in Sources */,
 				E326D5A91F03AFF90034F35B /* AIBehaviourManager.swift in Sources */,
@@ -593,15 +593,15 @@
 				E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */,
 				E3775D501EF16E6F00991CEC /* MainMenuViewModel.swift in Sources */,
 				E326D59B1EFA915B0034F35B /* CardBGView.swift in Sources */,
-				E3D362C81EF792A6008FB5A7 /* BattleSystemViewController.swift in Sources */,
-				E37605ED1EF7A11E001AEBBB /* GameManager.swift in Sources */,
 				8B3119A21EF144AB00DD9E78 /* MainMenuViewController.swift in Sources */,
-				E37605F31EF92C77001AEBBB /* GameViewModel.swift in Sources */,
 				8B561F5C1EF3ABAE00104486 /* CoreDataStackManager.swift in Sources */,
+				E3BFB0C31F0FABED00BDBDFA /* BattleViewModel.swift in Sources */,
 				E3775D521EF16E7D00991CEC /* EditDeckViewModel.swift in Sources */,
 				E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */,
 				184AC27A1F02332A00440D19 /* cardLabel.swift in Sources */,
 				E3775D5C1EF16EC000991CEC /* EditDeckViewController.swift in Sources */,
+				E3BFB0C71F0FAC2A00BDBDFA /* InHandViewController.swift in Sources */,
+				E3BFB0C11F0FAA6E00BDBDFA /* BattleViewController.swift in Sources */,
 				8B3119501EF1427700DD9E78 /* AppDelegate.swift in Sources */,
 				8B561F561EF3A1A800104486 /* LocationManager.swift in Sources */,
 				8B3119581EF1427800DD9E78 /* CardBattleGame.xcdatamodeld in Sources */,
