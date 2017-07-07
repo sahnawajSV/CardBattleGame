@@ -82,7 +82,6 @@ class AIBehaviourManager {
           delay(1, closure: {
             self.playerTwoStats.gameStats.playCard(card: card)
             self.delegate?.aiBehaviourManagerDidSelectCardToPlay(self, cardIndex: index)
-            //              self.playCard()
           })
         } else {
           delegate?.aiBehaviourManagerDidEndTurn(self)
@@ -164,13 +163,12 @@ class AIBehaviourManager {
   
   func attackAvatar() {
     for (atkIndex,element) in playerTwoStats.gameStats.inPlay.enumerated() {
-      let when = DispatchTime.now() + .seconds(atkIndex) // change 2 to desired number of seconds
-      DispatchQueue.main.asyncAfter(deadline: when) {
+      delay(Double(atkIndex), closure: {
         var attackingCard: Card = element
         if attackingCard.canAttack {
           self.attackCardToAvatar(attacker: &attackingCard, atkIndex: atkIndex)
         }
-      }
+      })
     }
   }
   

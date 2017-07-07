@@ -36,6 +36,11 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   @IBOutlet private weak var aiView: UIView!
   @IBOutlet private weak var aiDeckView: UIView!
   
+  @IBOutlet private weak var aiHandContainer: UIView!
+  @IBOutlet private weak var aiPlayContainer: UIView!
+  @IBOutlet private weak var playerHandContainer: UIView!
+  @IBOutlet private weak var playerPlayContainer: UIView!
+  
   @IBOutlet private weak var endTurnButton: UIButton!
   
   var playerOneInHandController : InHandViewController!
@@ -96,9 +101,9 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     if gViewModel.isPlayerTurn {
       //Enable EndTurn Button if it is Player One Turn
       endTurnButton.isEnabled = true
-      //playerView.isHidden = true
+      playerView.isHidden = true
     } else {
-      //playerView.isHidden = false
+      playerView.isHidden = false
     }
     
     resetInPlayBorder(allInPlayCardViews: &allPlayerPlayCards, allInPlayCards: gViewModel.playerInPlayCards)
@@ -155,6 +160,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     if let selectedCardPosition: Int = playerOnePlayController.selectedTargetPosition {
       gViewModel.attackAvatar(cardIndex: selectedCardPosition)
       let frame = playerOnePlayController.view.convert(aiView.frame, from:self.view)
+      changeSubviewPositioningForPlayerOne()
       playerOnePlayController.performCardAttackAnimation(cardView: allPlayerPlayCards[selectedCardPosition], toFrame: frame)
       playerOnePlayController.selectedTargetPosition = nil
       gViewModel.updateData()
@@ -186,6 +192,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     cardView.cardIndex = gViewModel.aiInPlayCards.count
     playerTwoPlayController.selectedTargetPosition = gViewModel.aiInPlayCards.count - 1
     let frame = playerTwoPlayController.view.convert(cardView.frame, from:playerTwoInHandController.view)
+    changeSubviewPositioningForPlayerTwo()
     let _ = playerTwoPlayController.updateInHandData(cardView: cardView, olderFrame: frame)
     allAIPlayCards.append(cardView)
     gViewModel.tellAIToContinue()
@@ -201,26 +208,29 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   
   func gameViewModelDidAttackCard(_ gameProtocol: GameProtocol, atkUpdatedHealth: Int, defUpdatedHealth: Int, atkIndex: Int, defIndex: Int) {
     let frame = playerTwoPlayController.view.convert(allPlayerPlayCards[defIndex].frame, from:playerOnePlayController.view)
+    changeSubviewPositioningForPlayerTwo()
     playerTwoPlayController.performCardAttackAnimationForPlayerTwo(cardView: allAIPlayCards[atkIndex], toFrame: frame)
     self.performCardHealthCheck(playerCards: &self.allAIPlayCards, cardIndex: atkIndex, updatedHealth: atkUpdatedHealth)
     self.performCardHealthCheck(playerCards: &self.allPlayerPlayCards, cardIndex: defIndex, updatedHealth: defUpdatedHealth)
-    //    delay(1.5) {
-    //      self.gViewModel.tellAIToContinue()
-    //    }
   }
   
   func gameViewModelDidAttackAvatar(_ gameProtocol: GameProtocol, attacker: Card, atkIndex: Int) {
     let frame = playerTwoPlayController.view.convert(playerView.frame, from:self.view)
+    changeSubviewPositioningForPlayerTwo()
     playerTwoPlayController.performCardAttackAnimationForPlayerTwo(cardView: allAIPlayCards[atkIndex], toFrame: frame)
     self.gViewModel.updateData()
     self.reloadAllViews()
-    //    delay(1.5) {
-    //      self.gViewModel.tellAIToContinue()
-    //    }
   }
   
   func gameViewModelReloadPlayView(_ gameProtocol: GameProtocol) {
     handleInPlayCards(allCards: allAIPlayCards, inPlayViewController: playerTwoPlayController)
+  }
+  
+  func changeSubviewPositioningForPlayerTwo() {
+    playerView.isHidden = false
+    self.view.sendSubview(toBack: playerPlayContainer)
+    self.view.sendSubview(toBack: playerHandContainer)
+    self.view.bringSubview(toFront: aiPlayContainer)
   }
   
   //MARK: - Helpers
@@ -285,6 +295,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
   func inPlayViewControllerDidChangeSelectedTargetPosition(_ inPlayViewController: InPlayViewController, cardIndex: Int) {
     let canPlay = gViewModel.playCardToGameArea(cardIndex: cardIndex)
     if canPlay {
+      changeSubviewPositioningForPlayerOne()
       let newCard: CardView = updateDataForInHandCards(cardIndex: cardIndex, inPlayViewController: inPlayViewController)
       updateAllPlayerCardData(cardIndex: cardIndex, cardView: newCard)
       
@@ -301,6 +312,7 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
         let canAttack = gViewModel.attackCard(atkCardIndex: playerOneCardPosition, defCardIndex: playerTwoCardPosition)
         if canAttack {
           let frame = playerOnePlayController.view.convert(allAIPlayCards[playerTwoCardPosition].frame, from:playerTwoPlayController.view)
+          changeSubviewPositioningForPlayerOne()
           playerOnePlayController.performCardAttackAnimation(cardView: allPlayerPlayCards[playerOneCardPosition], toFrame: frame)
           gViewModel.updateData()
           let attackerHealth: Int = Int(gViewModel.playerInPlayCards[playerOneCardPosition].health)
@@ -354,6 +366,12 @@ class BattleSystemViewController: UIViewController, GameDelegate, InPlayViewCont
     resetInPlayIndex(allCardViews: &allPlayerPlayCards)
   }
   
+  func changeSubviewPositioningForPlayerOne() {
+    playerView.isHidden = true
+    self.view.sendSubview(toBack: aiPlayContainer)
+    self.view.sendSubview(toBack: aiHandContainer)
+    self.view.bringSubview(toFront: playerPlayContainer)
+  }
   
   //Animation Helper
   func performCardAnimation(cardView: CardView, toFrame: CGRect) {

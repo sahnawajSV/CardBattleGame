@@ -271,15 +271,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4n-RG-pdb" userLabel="BottomHand">
-                                <rect key="frame" x="78" y="838" width="1015" height="266"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="G4n-RG-pdb" secondAttribute="height" multiplier="145:38" id="FY1-PS-yLP"/>
-                                </constraints>
-                                <connections>
-                                    <segue destination="Tpm-nG-faD" kind="embed" identifier="PlayerOneInHand" id="IZI-K0-eT0"/>
-                                </connections>
-                            </containerView>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N8R-XC-g1P" userLabel="TopHand">
                                 <rect key="frame" x="78" y="-86" width="1015" height="266"/>
                                 <constraints>
@@ -362,20 +353,15 @@
                                     <segue destination="SO1-pN-hh0" kind="embed" identifier="PlayerOneInPlay" id="756-Gt-vSr"/>
                                 </connections>
                             </containerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4Z-dk-sZI">
-                                <rect key="frame" x="1179" y="474" width="160" height="76"/>
-                                <color key="backgroundColor" red="1" green="0.61827965122801609" blue="0.054927028705691772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4n-RG-pdb" userLabel="BottomHand">
+                                <rect key="frame" x="78" y="838" width="1015" height="266"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="d4Z-dk-sZI" secondAttribute="height" multiplier="40:19" id="BoD-n8-hkY"/>
+                                    <constraint firstAttribute="width" secondItem="G4n-RG-pdb" secondAttribute="height" multiplier="145:38" id="FY1-PS-yLP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
-                                <state key="normal" title="END TURN">
-                                    <color key="titleColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
                                 <connections>
-                                    <action selector="endTurnPressedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="0Wy-Nj-egY"/>
+                                    <segue destination="Tpm-nG-faD" kind="embed" identifier="PlayerOneInHand" id="IZI-K0-eT0"/>
                                 </connections>
-                            </button>
+                            </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bhu-Re-wVF" userLabel="PlayerView">
                                 <rect key="frame" x="465" y="930" width="242" height="94"/>
                                 <subviews>
@@ -419,6 +405,20 @@
                                     <constraint firstItem="BM9-uq-YcI" firstAttribute="top" secondItem="bhu-Re-wVF" secondAttribute="top" id="o02-ZD-Pfi"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4Z-dk-sZI">
+                                <rect key="frame" x="1179" y="474" width="160" height="76"/>
+                                <color key="backgroundColor" red="1" green="0.61827965122801609" blue="0.054927028705691772" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="d4Z-dk-sZI" secondAttribute="height" multiplier="40:19" id="BoD-n8-hkY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <state key="normal" title="END TURN">
+                                    <color key="titleColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="endTurnPressedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="0Wy-Nj-egY"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -457,16 +457,20 @@
                     <connections>
                         <outlet property="aiBattlePointText" destination="my2-eg-hkM" id="oJd-hd-VYm"/>
                         <outlet property="aiDeckView" destination="Neo-Pz-dEQ" id="7eB-qT-HpI"/>
+                        <outlet property="aiHandContainer" destination="N8R-XC-g1P" id="NMk-za-Se3"/>
                         <outlet property="aiHealthText" destination="UL5-vo-1uQ" id="RoZ-CB-PKr"/>
                         <outlet property="aiInDeckText" destination="znn-71-2WD" id="MfU-IW-2Vr"/>
                         <outlet property="aiNameText" destination="SIY-qA-8fi" id="FOn-9V-bCR"/>
+                        <outlet property="aiPlayContainer" destination="lYD-3C-4Db" id="iwT-dN-Q6a"/>
                         <outlet property="aiView" destination="U2E-ef-aeJ" id="lcy-kh-kjW"/>
                         <outlet property="endTurnButton" destination="d4Z-dk-sZI" id="yKK-4M-sxg"/>
                         <outlet property="playerBattlePointText" destination="XMa-xw-XgU" id="f5k-1L-Xmz"/>
                         <outlet property="playerDeckView" destination="fn3-vn-CmY" id="tQf-Fe-3n8"/>
+                        <outlet property="playerHandContainer" destination="G4n-RG-pdb" id="mz3-eh-AVZ"/>
                         <outlet property="playerHealthText" destination="GDJ-Aq-QGl" id="3ZP-6f-Ydk"/>
                         <outlet property="playerInDeckText" destination="Px5-Gw-ouJ" id="lmQ-zD-V3k"/>
                         <outlet property="playerNameText" destination="jjE-F5-ZQS" id="bIy-DH-8wz"/>
+                        <outlet property="playerPlayContainer" destination="43l-f1-LpM" id="HMN-QG-TAZ"/>
                         <outlet property="playerView" destination="bhu-Re-wVF" id="49g-JE-zAl"/>
                     </connections>
                 </viewController>
