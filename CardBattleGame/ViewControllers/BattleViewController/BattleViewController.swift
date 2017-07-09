@@ -71,6 +71,7 @@ class BattleViewController: UIViewController {
   
   private func handleInhandCards(allCards: [Card], inHandViewController: InHandViewController, allCardViews: inout [CardView]) {
     allCardViews.removeAll()
+    isPerformingAnAction = true
     allCardViews = inHandViewController.createCards(allCards: allCards)
   }
   
@@ -122,4 +123,7 @@ class BattleViewController: UIViewController {
       break
     }
   }
+  
+  //InHandViewController Delegate
+  
 }
