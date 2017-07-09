@@ -8,6 +8,13 @@
 
 import UIKit
 
+enum CardState: String {
+  case canAttack
+  case cannotAttack
+  case isSelected
+  case neutral
+}
+
 /// This is the actual Card View containing the BattlePoints, Name, Attack and Health Points data
 class CardView: UIView {
   //MARK: - Accessor Objects
@@ -41,6 +48,10 @@ class CardView: UIView {
   func addUIBehavior(frame: CGRect) {
     let cardView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
     cardView.backgroundColor = UIColor.black
+    
+    //CARD Backgroud
+    cardImage = UIImageView(frame: CGRect(x: 0 , y: 0, width: (cardView.frame.size.width), height: (cardView.frame.size.height)))
+    cardView.addSubview(cardImage)
     
     //BATTLE POINT
     bpView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
@@ -77,15 +88,40 @@ class CardView: UIView {
     //CARD BUTTON
     cardView.addSubview(cardButton)
     
-    //CARD Backgroud
-    cardImage = UIImageView(frame: CGRect(x: 0 , y: 0, width: (cardView.frame.size.width), height: (cardView.frame.size.height)))
-    cardImage.image = UIImage.init(named: "1.jpg")
-    
     //BG Color based on canAttack value
     cardView.layer.borderColor = UIColor.red.cgColor
     cardView.layer.borderWidth = 5.0
     
     
     self.addSubview(cardView)
+  }
+  
+  func toggleHidingOfLabelsOnCard(hideStatus: Bool) {
+    bpView.isHidden = hideStatus
+    healthView.isHidden = hideStatus
+    attackView.isHidden = hideStatus
+    nameView.isHidden = hideStatus
+    cardImage.isHidden = hideStatus
+  }
+  
+  func changeCardState(cardState: CardState) {
+    switch cardState {
+    case .canAttack:
+      layer.borderColor = UIColor.green.cgColor
+      layer.borderWidth = 5.0
+      break
+    case .cannotAttack:
+      layer.borderColor = UIColor.red.cgColor
+      layer.borderWidth = 5.0
+      break
+    case .isSelected:
+      layer.borderColor = UIColor.blue.cgColor
+      layer.borderWidth = 5.0
+      break
+    case .neutral:
+      layer.borderColor = UIColor.yellow.cgColor
+      layer.borderWidth = 5.0
+      break
+    }
   }
 }

@@ -11,14 +11,17 @@ import UIKit
 protocol BattleDelegate: class {
   func reloadAllUIElements(_ battleViewModel: BattleViewModel)
   func createInHandCards(_ battleViewModel: BattleViewModel)
+  func drawANewCard(_ battleViewModel: BattleViewModel)
+  func performCardToCardAttack(_ battleViewModel: BattleViewModel, atkIndex: Int, defIndex: Int)
 }
 
 /// Used as a Formatting class to pass data from BattleManager to BattleViewController
-class BattleViewModel {
+class BattleViewModel: AIBehaviourManagerDelegate {
   //GameManager & Delegate Initialization
   private var bManager: BattleManager = BattleManager()
   weak var delegate: BattleDelegate?
   var isPlayerTurn: Bool = false
+  private var playerTwoLogicReference: AIBehaviourManager!
   
   //MARK: - Used by ViewController
   //Player
@@ -46,16 +49,49 @@ class BattleViewModel {
   //MARK: - Actions
   //MARK: - Initalizers
   func initializeTheGame() {
-    //Draw inital Cards from deck
+    playerTwoLogicReference = bManager.playerTwoLogicReference
+    playerTwoLogicReference.delegate = self
     bManager.drawCardsFromDeck()
-    
-    //Update the Local Data
     updateData()
-    
-    //Pass the message back to ViewController
     tellDelegateToReloadViewData()
     tellDelegateToCreateInHandCards()
   }
+  
+  func toggleTurn(forPlayerOne: Bool) {
+    endPlayerTurn(forPlayerOne: forPlayerOne)
+    
+    //Update Data and call delegates
+    updateData()
+    
+    tellDelegateToReloadViewData()
+    tellDelegateToDrawNewCardInHand()
+  }
+  
+  func endPlayerTurn(forPlayerOne: Bool) {
+    if forPlayerOne {
+      isPlayerTurn = bManager.endPlayerOneTurn()
+      bManager.playerTwoTurnStart()
+    } else {
+      isPlayerTurn = bManager.endPlayerTwoTurn()
+      bManager.playerOneTurnStart()
+    }
+  }
+  
+  func startPlayerTwoChecks() {
+    playerTwoLogicReference.attackWithACard()
+  }
+  
+  func playCardToGameArea(cardIndex: Int) -> Bool {
+    let success = bManager.playCardToGameArea(cardIndex: cardIndex)
+    if success {
+      updateData()
+      tellDelegateToReloadViewData()
+      return true
+    } else {
+      return false
+    }
+  }
+
   
   //MARK: - Helpers
   //MARK: - Model Updates Received
@@ -94,5 +130,23 @@ class BattleViewModel {
   
   func tellDelegateToCreateInHandCards() {
     delegate?.createInHandCards(self)
+  }
+  
+  func tellDelegateToDrawNewCardInHand() {
+    delegate?.drawANewCard(self)
+  }
+  
+  //MARK: Player Two Logic Delegates
+  func didEndTurn(_ aIBehaviourManager: AIBehaviourManager) {
+    toggleTurn(forPlayerOne: false)
+  }
+  
+  func shouldAttackAvatar(_ aIBehaviourManager: AIBehaviourManager) {
+    
+  }
+  
+  func shouldAttackAnotherCard(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, defender: Card, atkIndex: Int, defIndex: Int) {
+    bManager.attackCard(attacker: attacker, defender: defender, atkIndex: atkIndex, defIndex: defIndex)
+    delegate?.performCardToCardAttack(self, atkIndex: atkIndex, defIndex: defIndex)
   }
 }

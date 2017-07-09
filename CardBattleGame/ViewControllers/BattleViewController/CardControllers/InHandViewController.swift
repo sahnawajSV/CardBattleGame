@@ -9,10 +9,13 @@
 import UIKit
 
 protocol InHandViewControllerDelegate: class {
-  func didCompleteCardCreation(_ inHandViewController: InHandViewController)
+  func didCompleteInHandAction(_ inHandViewController: InHandViewController)
+  func cardSelectedInHandToPlay(_ inHandViewController: InHandViewController, cardIndex: Int)
 }
 
-class InHandViewController: BattleViewController {
+class InHandViewController: UIViewController {
+  
+  weak var delegate: InHandViewControllerDelegate?
   
   @IBOutlet private weak var cardOne: UIView!
   @IBOutlet private weak var cardTwo: UIView!
@@ -20,24 +23,56 @@ class InHandViewController: BattleViewController {
   @IBOutlet private weak var cardFour: UIView!
   @IBOutlet private weak var cardFive: UIView!
   
+  private var selectedCardIndex: Int?
+  
+  private var animActionToPerform: Int = 0
+  private var animActionsCompleted: Int = 0
+  
+  private var allCardViews: [CardView] = []
+  
   //Assigned on Prepare Seague as a way to check if the class is working for Player One or for Player Two
   var isPlayer: Bool!
   
   //MARK: - ViewController Calls
-  func createCards(allCards: [Card]) -> [CardView] {
-    var cardViews: [CardView] = []
+  func createCards(allCards: [Card], fromFrame: CGRect) -> [CardView] {
+    allCardViews.removeAll()
+    animActionToPerform = allCards.count
+    animActionsCompleted = 0
     allCards.enumerated().forEach { (index, card) in
       let cardView = createACard(card: card, cardIndex: index)
-      cardViews.append(cardView)
-      let bsViewController: BattleViewController = parent as! BattleViewController
-      let frame = view.convert(bsViewController.playerOneDeckView.frame, from:self.view)
-      performCardMoveAnimation(cardView: cardView, fromFrame: frame, forIndex: index)
+      allCardViews.append(cardView)
+      performCardMoveAnimation(cardView: cardView, fromFrame: fromFrame, forIndex: index)
     }
-    return cardViews
+    return allCardViews
+  }
+  
+  func createACard(card: Card, fromFrame: CGRect, cardIndex: Int) -> [CardView] {
+    animActionToPerform = 1
+    animActionsCompleted = 0
+    let cardView = createACard(card: card, cardIndex: cardIndex)
+    allCardViews.append(cardView)
+    performCardMoveAnimation(cardView: cardView, fromFrame: fromFrame, forIndex: cardIndex)
+    return allCardViews
+  }
+  
+  func removeCard(cardIndex: Int) {
+    allCardViews.remove(at: cardIndex)
+    resetCardPositions()
+  }
+  
+  func resetCardPositions() {
+    animActionToPerform = allCardViews.count
+    animActionsCompleted = 0
+    allCardViews.enumerated().forEach { (index, cardView) in
+      cardView.cardButton.tag = index
+      cardView.changeCardState(cardState: .neutral)
+      performCardMoveAnimation(cardView: cardView, fromFrame: cardView.frame, forIndex: index)
+    }
   }
   
   //MARK: - Animation Helpers
   func performCardMoveAnimation(cardView: CardView, fromFrame: CGRect, forIndex: Int) {
+    cardView.frame = fromFrame
     let frame = getCardFrame(forIndex: forIndex)
     UIView.animate(withDuration: Game.cardMoveAnimationSpeed,
                    delay: 0,
@@ -45,14 +80,34 @@ class InHandViewController: BattleViewController {
                    animations: { () -> Void in
                     cardView.frame = frame
     }, completion: { (finished) -> Void in
-      
+      self.animActionsCompleted += 1
+      if self.animActionsCompleted == self.animActionToPerform {
+        self.animActionsCompleted = 0
+        self.animActionToPerform = 0
+        self.delegate?.didCompleteInHandAction(self)
+      }
     })
   }
 
   //MARK: - Action Methods
   //Action Methods
   func selectInHandCard(button: UIButton) {
-    
+    let cardClickedIndex: Int = button.tag
+    allCardViews.enumerated().forEach { (index, cardView) in
+      if index == cardClickedIndex {
+        cardView.changeCardState(cardState: .isSelected)
+      } else {
+        cardView.changeCardState(cardState: .neutral)
+      }
+    }
+    if cardClickedIndex == selectedCardIndex {
+      let cardView: CardView = allCardViews[cardClickedIndex]
+      cardView.changeCardState(cardState: .neutral)
+      delegate?.cardSelectedInHandToPlay(self, cardIndex: cardClickedIndex)
+      selectedCardIndex = nil
+    } else {
+      selectedCardIndex = cardClickedIndex
+    }
   }
 
   
@@ -91,16 +146,29 @@ class InHandViewController: BattleViewController {
     } else {
       toggleHidingOfLabelsOnCard(hideStatus: true, cardView: cardView)
     }
+    cardView.changeCardState(cardState: .neutral)
     self.view.addSubview(cardView)
     self.view.layoutIfNeeded()
     return cardView
   }
+  
+  /*
+  private func delay(_ delay:Double, closure:@escaping ()->()) {
+    DispatchQueue.main.asyncAfter(
+      deadline: .now() + delay, execute: closure)
+  }
 
+  func resetInHand() {
+    allCardViews.enumerated().forEach { (index, cardView) in
+      cardView.cardButton.tag = index
+    }
+  }*/
   
   func toggleHidingOfLabelsOnCard(hideStatus: Bool, cardView: CardView) {
     cardView.bpView.isHidden = hideStatus
     cardView.healthView.isHidden = hideStatus
     cardView.attackView.isHidden = hideStatus
     cardView.nameView.isHidden = hideStatus
+    cardView.cardImage.isHidden = hideStatus
   }
 }

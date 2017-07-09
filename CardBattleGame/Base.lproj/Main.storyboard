@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3e6-Qr-JeC">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vvz-Fk-ms2">
     <device id="ipad12_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -295,6 +295,9 @@
                                 <state key="normal" title="END TURN">
                                     <color key="titleColor" red="0.96142493409999996" green="0.96142493409999996" blue="0.96142493409999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="endTurnPressedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="PqG-gI-2IW"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apb-6E-dUg" userLabel="PlayerView">
                                 <rect key="frame" x="34" y="454" width="175" height="229"/>
@@ -308,9 +311,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-YF-Y0l">
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aeV-YF-Y0l">
                                         <rect key="frame" x="0.5" y="0.5" width="175" height="229"/>
                                         <state key="normal" image="player_image"/>
+                                        <connections>
+                                            <action selector="avatarClickedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="Iql-JH-dBZ"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20 / 20" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g4o-Pq-Dg4">
                                         <rect key="frame" x="8" y="182" width="159" height="47"/>
@@ -347,9 +353,12 @@
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wPO-uc-Iw9">
                                         <rect key="frame" x="0.0" y="0.0" width="175" height="229"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5Y-HV-7tf">
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y5Y-HV-7tf">
                                         <rect key="frame" x="0.5" y="0.5" width="175" height="229"/>
                                         <state key="normal" image="ai_image"/>
+                                        <connections>
+                                            <action selector="avatarClickedWithSender:" destination="Vvz-Fk-ms2" eventType="touchUpInside" id="Co9-Hy-mBR"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yIN-RQ-hYm">
                                         <rect key="frame" x="0.0" y="1" width="175" height="21"/>
@@ -468,7 +477,7 @@
                         <outlet property="playerOneDeckView" destination="fn3-vn-CmY" id="pyZ-8L-W1d"/>
                         <outlet property="playerOneHandContainer" destination="G4n-RG-pdb" id="vqw-Vn-Cbd"/>
                         <outlet property="playerOneHealthText" destination="g4o-Pq-Dg4" id="73m-Hh-hSE"/>
-                        <outlet property="playerOneInDeckText" destination="NKR-AF-BCK" id="cGv-oq-FS2"/>
+                        <outlet property="playerOneInDeckText" destination="NKR-AF-BCK" id="yAx-Bc-ssP"/>
                         <outlet property="playerOneNameText" destination="Rvb-sr-4S8" id="ArP-ou-ZrH"/>
                         <outlet property="playerOnePlayContainer" destination="43l-f1-LpM" id="CPI-en-EYP"/>
                         <outlet property="playerOneView" destination="apb-6E-dUg" id="Xxq-td-9d3"/>
@@ -484,7 +493,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oiA-cY-SJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1938.3601756954611" y="-52.1484375"/>
+            <point key="canvasLocation" x="1955" y="-52"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="d47-VS-97G">
@@ -970,9 +979,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jVe-pB-xyX">
                                         <rect key="frame" x="0.5" y="0.0" width="166" height="217"/>
                                         <state key="normal" image="cardBG"/>
-                                        <connections>
-                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="Rzp-ne-DsQ"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -990,9 +996,6 @@
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U5B-kS-uvV">
                                         <rect key="frame" x="0.0" y="0.0" width="165.5" height="217"/>
                                         <state key="normal" image="cardBG"/>
-                                        <connections>
-                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="mpg-Fw-PGG"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1010,9 +1013,6 @@
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IhW-Io-wdk">
                                         <rect key="frame" x="0.5" y="0.0" width="166" height="217"/>
                                         <state key="normal" image="cardBG"/>
-                                        <connections>
-                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="eyJ-g9-pvD"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1030,9 +1030,6 @@
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ve1-WC-UH8">
                                         <rect key="frame" x="0.0" y="0.0" width="165.5" height="217"/>
                                         <state key="normal" image="cardBG"/>
-                                        <connections>
-                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="Ydg-cH-NRC"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1050,9 +1047,6 @@
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vho-if-kVG">
                                         <rect key="frame" x="0.5" y="0.0" width="166" height="217"/>
                                         <state key="normal" image="cardBG"/>
-                                        <connections>
-                                            <action selector="moveCardToTargetWithSender:" destination="SO1-pN-hh0" eventType="touchUpInside" id="EHV-we-Bkm"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1243,9 +1237,6 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qah-4V-2K5">
                                         <rect key="frame" x="0.5" y="0.0" width="166" height="217"/>
                                         <state key="normal" image="cardBG"/>
-                                        <connections>
-                                            <action selector="moveCardToTargetWithSender:" destination="Meg-Bm-Gtl" eventType="touchUpInside" id="95Y-0g-jmD"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1263,9 +1254,6 @@
                                     <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pQo-Mf-lbR">
                                         <rect key="frame" x="0.0" y="0.0" width="165.5" height="217"/>
                                         <state key="normal" image="cardBG"/>
-                                        <connections>
-                                            <action selector="moveCardToTargetWithSender:" destination="Meg-Bm-Gtl" eventType="touchUpInside" id="oNf-JW-4U2"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1283,9 +1271,6 @@
                                     <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4hv-XQ-N5b">
                                         <rect key="frame" x="0.5" y="0.0" width="166" height="217"/>
                                         <state key="normal" image="cardBG"/>
-                                        <connections>
-                                            <action selector="moveCardToTargetWithSender:" destination="Meg-Bm-Gtl" eventType="touchUpInside" id="b6R-3x-sMY"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1303,9 +1288,6 @@
                                     <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aGh-cO-d39">
                                         <rect key="frame" x="0.0" y="0.0" width="165.5" height="217"/>
                                         <state key="normal" image="cardBG"/>
-                                        <connections>
-                                            <action selector="moveCardToTargetWithSender:" destination="Meg-Bm-Gtl" eventType="touchUpInside" id="07f-tg-7vG"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1323,9 +1305,6 @@
                                     <button opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WHh-JN-gFY">
                                         <rect key="frame" x="0.5" y="0.0" width="166" height="217"/>
                                         <state key="normal" image="cardBG"/>
-                                        <connections>
-                                            <action selector="moveCardToTargetWithSender:" destination="Meg-Bm-Gtl" eventType="touchUpInside" id="g9L-0K-1NU"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -8,15 +8,79 @@
 
 import UIKit
 
-class InPlayViewController: BattleViewController {
+protocol InPlayViewControllerDelegate: class {
+  func didCompleteInPlayAction(_ inPlayViewController: InPlayViewController)
+  func cardSelectedInPlayToAttack(_ inPlayViewController: InPlayViewController, cardIndex: Int)
+}
+
+class InPlayViewController: UIViewController {
   
-  @IBOutlet private weak var cardOne: UIView!
+  weak var delegate: InPlayViewControllerDelegate?
+  
+  @IBOutlet weak var cardOne: UIView!
   @IBOutlet private weak var cardTwo: UIView!
   @IBOutlet private weak var cardThree: UIView!
   @IBOutlet private weak var cardFour: UIView!
   @IBOutlet private weak var cardFive: UIView!
+  
+  var allCards: [CardView] = []
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
+  func playACard(cardView: CardView, currentFrame: CGRect, cardIndex: Int) {
+    cardView.cardButton.removeTarget(nil, action: nil, for: .touchUpInside)
+    cardView.cardButton.tag = allCards.count
+    cardView.cardButton.addTarget(self, action: #selector(selectInPlayCard(sender:)), for: .touchUpInside)
+    toggleHidingOfLabelsOnCard(hideStatus: false, cardView: cardView)
+    view.addSubview(cardView)
+    allCards.append(cardView)
+    cardView.changeCardState(cardState: .cannotAttack)
+    performCardMoveAnimation(cardView: cardView, fromFrame: currentFrame, forIndex: cardIndex)
+  }
+  
+  //Action Methods
+  func selectInPlayCard(sender: UIButton) {
+    delegate?.cardSelectedInPlayToAttack(self, cardIndex: sender.tag)
+  }
+  
+  //Helpers
+  func getCardFrame(forIndex: Int) -> CGRect {
+    var frame = CGRect.zero
+    switch forIndex {
+    case 0:
+      frame = cardOne.frame
+    case 1:
+      frame = cardTwo.frame
+    case 2:
+      frame = cardThree.frame
+    case 3:
+      frame = cardFour.frame
+    case 4:
+      frame = cardFive.frame
+    default:
+      break
+    }
+    
+    return frame
+  }
+  
+  //MARK: - Animation Helpers
+  func performCardMoveAnimation(cardView: CardView, fromFrame: CGRect, forIndex: Int) {
+    cardView.frame = fromFrame
+    let frame = getCardFrame(forIndex: forIndex)
+    UIView.animate(withDuration: Game.cardMoveAnimationSpeed,
+                   delay: 0,
+                   options: UIViewAnimationOptions.curveEaseIn,
+                   animations: { () -> Void in
+                    cardView.frame = frame
+    }, completion: { (finished) -> Void in
+      self.delegate?.didCompleteInPlayAction(self)
+    })
+  }
+
+  func toggleHidingOfLabelsOnCard(hideStatus: Bool, cardView: CardView) {
+    cardView.bpView.isHidden = hideStatus
+    cardView.healthView.isHidden = hideStatus
+    cardView.attackView.isHidden = hideStatus
+    cardView.nameView.isHidden = hideStatus
+    cardView.cardImage.isHidden = hideStatus
   }
 }
