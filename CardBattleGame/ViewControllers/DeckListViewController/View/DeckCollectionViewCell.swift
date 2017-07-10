@@ -15,20 +15,15 @@ class DeckCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var battlePointLbl: UILabel!
   @IBOutlet weak var addDeckButton: UIButton!
   
-  override var isHighlighted: Bool {
-    willSet {
-      onSelected(newValue)
-    }
-  }
-  
   override var isSelected: Bool {
     willSet {
-      onSelected(newValue)
+      contentView.backgroundColor = newValue ? .orange : .clear
     }
   }
   
-  func onSelected(_ newValue: Bool) {
-    contentView.backgroundColor = newValue ? .orange : .clear
+  override var isHighlighted: Bool {
+    willSet {
+      contentView.backgroundColor = newValue ? .green : .clear
+    }
   }
-  
 }
