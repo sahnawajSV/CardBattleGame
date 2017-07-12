@@ -40,3 +40,8 @@ extension UIView {
   }
 }
 
+extension CGFloat {
+  var degrees: CGFloat {
+    return self * CGFloat(180.0 / Double.pi)
+  }
+}

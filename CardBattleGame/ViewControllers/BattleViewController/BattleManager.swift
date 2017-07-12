@@ -24,8 +24,8 @@ class BattleManager {
     let globalCardData = CardListDataSource()
     let cardList = globalCardData.fetchCardList()
     
-    let plCardArray: [Card] = randomCards(cardArray: cardList)
-    let aiCardArray: [Card]  = randomCards(cardArray: cardList)
+    let plCardArray: [Card] = randomCards(cardArray: cardList, num: Game.maximumCardPerDeck)
+    let aiCardArray: [Card]  = randomCards(cardArray: cardList, num: Game.maximumCardPerDeck)
     
     let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: plCardArray)
     let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: aiCardArray)
@@ -87,8 +87,14 @@ class BattleManager {
     playerOneStats.gameStats.allowAllPlayCardsToAttack()
   }
   
-  func attackAvatar() {
-    
+  func attackAvatar(playerStats: Stats, opponentStats: Stats, cardIndex: Int) {
+    var card: Card = playerStats.gameStats.inPlay[cardIndex]
+    if card.canAttack {
+      let attackValue = card.attack
+      card.canAttack = false
+      playerStats.gameStats.inPlay[cardIndex] = card
+      opponentStats.gameStats.getHurt(attackValue: Int(attackValue))
+    }
   }
   
   func attackCard(attacker: Card, defender: Card, atkIndex: Int, defIndex: Int) {
@@ -99,11 +105,11 @@ class BattleManager {
     atkCard.canAttack = false
     
     if isPlayerTurn {
-      performCardHealthCheck(forPlayer: playerTwoStats, cardIndex: atkIndex, card: atkCard)
-      performCardHealthCheck(forPlayer: playerOneStats, cardIndex: defIndex, card: defCard)
-    } else {
       performCardHealthCheck(forPlayer: playerOneStats, cardIndex: atkIndex, card: atkCard)
       performCardHealthCheck(forPlayer: playerTwoStats, cardIndex: defIndex, card: defCard)
+    } else {
+      performCardHealthCheck(forPlayer: playerTwoStats, cardIndex: atkIndex, card: atkCard)
+      performCardHealthCheck(forPlayer: playerOneStats, cardIndex: defIndex, card: defCard)
     }
   }
   

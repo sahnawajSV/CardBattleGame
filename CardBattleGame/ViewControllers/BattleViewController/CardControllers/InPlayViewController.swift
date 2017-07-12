@@ -24,6 +24,8 @@ class InPlayViewController: UIViewController {
   @IBOutlet private weak var cardFive: UIView!
   
   var allCards: [CardView] = []
+  private var animActionToPerform: Int = 0
+  private var animActionsCompleted: Int = 0
 
   func playACard(cardView: CardView, currentFrame: CGRect, cardIndex: Int) {
     cardView.cardButton.removeTarget(nil, action: nil, for: .touchUpInside)
@@ -34,6 +36,20 @@ class InPlayViewController: UIViewController {
     allCards.append(cardView)
     cardView.changeCardState(cardState: .cannotAttack)
     performCardMoveAnimation(cardView: cardView, fromFrame: currentFrame, forIndex: cardIndex)
+  }
+  
+  func removeCard(cardIndex: Int) {
+    allCards.remove(at: cardIndex)
+    resetCardPositions()
+  }
+  
+  func resetCardPositions() {
+    animActionToPerform = allCards.count
+    animActionsCompleted = 0
+    allCards.enumerated().forEach { (index, cardView) in
+      cardView.cardButton.tag = index
+      performCardMoveAnimation(cardView: cardView, fromFrame: cardView.frame, forIndex: index)
+    }
   }
   
   //Action Methods

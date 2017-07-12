@@ -12,7 +12,11 @@ protocol BattleDelegate: class {
   func reloadAllUIElements(_ battleViewModel: BattleViewModel)
   func createInHandCards(_ battleViewModel: BattleViewModel)
   func drawANewCard(_ battleViewModel: BattleViewModel)
-  func performCardToCardAttack(_ battleViewModel: BattleViewModel, atkIndex: Int, defIndex: Int)
+  func performCardToCardAttack(_ battleViewModel: BattleViewModel, atkIndex: Int, defIndex: Int, atkCard: Card, defCard: Card)
+  func performCardToAvatarAttack(_ battleViewModel: BattleViewModel, cardIndex: Int)
+  func didSelectCardToPlay(_ battleViewModel: BattleViewModel, cardIndex: Int)
+  func winLossConditionReached(_ battleViewModel: BattleViewModel, isVictorious: Bool)
+  func playerTwoDidEndTurn(_ battleViewModel: BattleViewModel)
 }
 
 /// Used as a Formatting class to pass data from BattleManager to BattleViewController
@@ -78,6 +82,7 @@ class BattleViewModel: AIBehaviourManagerDelegate {
   }
   
   func startPlayerTwoChecks() {
+    updateData()
     playerTwoLogicReference.attackWithACard()
   }
   
@@ -91,7 +96,16 @@ class BattleViewModel: AIBehaviourManagerDelegate {
       return false
     }
   }
+  
+  func performAttackOnAvatar(cardIndex: Int) {
+    bManager.attackAvatar(playerStats: bManager.playerOneStats, opponentStats: bManager.playerTwoStats, cardIndex: cardIndex)
+    updateData()
+  }
 
+  func performAttackOnCard(atkIndex: Int, defIndex: Int) {
+    bManager.attackCard(attacker: playerOneInPlayCards[atkIndex], defender: playerTwoInPlayCards[defIndex], atkIndex: atkIndex, defIndex: defIndex)
+    updateData()
+  }
   
   //MARK: - Helpers
   //MARK: - Model Updates Received
@@ -120,6 +134,12 @@ class BattleViewModel: AIBehaviourManagerDelegate {
     
     //Set Turn Status
     isPlayerTurn = bManager.isPlayerTurn
+    
+    if bManager.playerOneStats.gameStats.health <= 0 {
+      delegate?.winLossConditionReached(self, isVictorious: false)
+    } else if bManager.playerTwoStats.gameStats.health <= 0 {
+      delegate?.winLossConditionReached(self, isVictorious: true)
+    }
   }
 
   //MARK: - Delegates
@@ -138,15 +158,24 @@ class BattleViewModel: AIBehaviourManagerDelegate {
   
   //MARK: Player Two Logic Delegates
   func didEndTurn(_ aIBehaviourManager: AIBehaviourManager) {
+    delegate?.playerTwoDidEndTurn(self)
     toggleTurn(forPlayerOne: false)
   }
   
-  func shouldAttackAvatar(_ aIBehaviourManager: AIBehaviourManager) {
-    
+  func shouldAttackAvatar(_ aIBehaviourManager: AIBehaviourManager, cardIndex: Int) {
+    bManager.attackAvatar(playerStats: bManager.playerTwoStats, opponentStats: bManager.playerOneStats, cardIndex: cardIndex)
+    updateData()
+    delegate?.performCardToAvatarAttack(self, cardIndex: cardIndex)
   }
   
   func shouldAttackAnotherCard(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, defender: Card, atkIndex: Int, defIndex: Int) {
     bManager.attackCard(attacker: attacker, defender: defender, atkIndex: atkIndex, defIndex: defIndex)
-    delegate?.performCardToCardAttack(self, atkIndex: atkIndex, defIndex: defIndex)
+    updateData()
+    delegate?.performCardToCardAttack(self, atkIndex: atkIndex, defIndex: defIndex, atkCard: attacker, defCard: defender)
+  }
+  
+  func didSelectCardToPlay(_ aIBehaviourManager: AIBehaviourManager, cardIndex: Int) {
+    updateData()
+    delegate?.didSelectCardToPlay(self, cardIndex: cardIndex)
   }
 }

@@ -16,7 +16,8 @@ enum AttackLogic: String {
 ///Passes the message to BattleSystemViewController in order to manage UI Updates
 protocol AIBehaviourManagerDelegate: class {
   func didEndTurn(_ aIBehaviourManager: AIBehaviourManager)
-  func shouldAttackAvatar(_ aIBehaviourManager: AIBehaviourManager)
+  func didSelectCardToPlay(_ aIBehaviourManager: AIBehaviourManager, cardIndex: Int)
+  func shouldAttackAvatar(_ aIBehaviourManager: AIBehaviourManager, cardIndex: Int)
   func shouldAttackAnotherCard(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, defender: Card, atkIndex: Int, defIndex: Int)
 }
 
@@ -34,7 +35,30 @@ class AIBehaviourManager {
   }
   
   private func playACard() {
-    delegate?.didEndTurn(self)
+    if playerTwoStats.gameStats.inPlay.count < 5 {
+      if playerTwoStats.gameStats.inHand.count > 0 {
+        let availableBattlePoints: Int = playerTwoStats.gameStats.battlePoints
+        var cardToPlay: Card?
+        var cardIndex: Int?
+        for (index,card) in self.playerTwoStats.gameStats.inHand.enumerated() {
+          if Int(card.battlepoint) <= availableBattlePoints {
+            cardToPlay = card
+            cardIndex = index
+            break
+          }
+        }
+        if let index = cardIndex, let card = cardToPlay {
+            playerTwoStats.gameStats.playCard(card: card)
+            delegate?.didSelectCardToPlay(self, cardIndex: index)
+        } else {
+          delegate?.didEndTurn(self)
+        }
+      } else {
+        delegate?.didEndTurn(self)
+      }
+    } else {
+      delegate?.didEndTurn(self)
+    }
   }
   
   func attackWithACard() {
@@ -47,16 +71,16 @@ class AIBehaviourManager {
         let lowHealthThresholdOfPlayer: Int = Int(15 * playerOneStats.gameStats.health / 100)
         
         if playerOneStats.gameStats.health - totalAttackPower <= lowHealthThresholdOfPlayer {
-          delegate?.shouldAttackAvatar(self)
+          attackAvatar()
         } else {
           if playerOneStats.gameStats.inPlay.count > 0 {
             if !checkForAttackLogic(logicType: AttackLogic.cardCanSurvive) {
               if !checkForAttackLogic(logicType: AttackLogic.cardWillNotSurvive) {
-                delegate?.shouldAttackAvatar(self)
+                attackAvatar()
               }
             }
           } else {
-            delegate?.shouldAttackAvatar(self)
+            attackAvatar()
           }
         }
       }
@@ -77,6 +101,21 @@ class AIBehaviourManager {
     let totalAttackPower = attackPower.reduce(0) { (totalAttackPower, attackPower) in totalAttackPower + Int(attackPower) }
     
     return totalAttackPower
+  }
+  
+  func attackAvatar() {
+    var cardIndex: Int?
+    playerTwoStats.gameStats.inPlay.enumerated().forEach { (index, card) in
+      if card.canAttack {
+        cardIndex = index
+        return
+      }
+    }
+    if let index = cardIndex {
+      delegate?.shouldAttackAvatar(self, cardIndex: index)
+    } else {
+      playACard()
+    }
   }
 
   func checkForAttackLogic(logicType: AttackLogic) -> Bool {

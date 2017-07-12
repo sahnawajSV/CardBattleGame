@@ -20,6 +20,9 @@ extension Game {
   static let cardMoveAnimationSpeed = 0.5
   static let cardMoveToAttackPosAnimationSpeed = 0.50
   static let cardAttackAnimationSpeed = 0.25
+  static let cardsAwardedOnWin = 3
+  static let cardsAwardedOnLoss = 1
+  static let turnTimer = 30
 }
 
 
@@ -64,10 +67,10 @@ class Game {
   }
   
   func playCard(card: Card) {
-    let updatedBattlePoints = battlePoints - Int(card.battlepoint)
-    battlePoints = updatedBattlePoints
-    inPlay.append(card)
     if let index = inHand.index(of: card) {
+      let updatedBattlePoints = battlePoints - Int(card.battlepoint)
+      battlePoints = updatedBattlePoints
+      inPlay.append(card)
       inHand.remove(at: index)
     }
   }
@@ -89,6 +92,7 @@ class Game {
     inPlay.enumerated().forEach { (index, cardInPlay) in
       var card: Card = cardInPlay
       card.canAttack = true
+      inPlay[index] = card
     }
   }
   

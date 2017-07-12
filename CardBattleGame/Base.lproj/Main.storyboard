@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Vvz-Fk-ms2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8Ma-nX-70N">
     <device id="ipad12_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -198,7 +198,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YXc-Kj-13P" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="665.44655929721807" y="-52.1484375"/>
+            <point key="canvasLocation" x="1358.5651537335284" y="-52.1484375"/>
         </scene>
         <!--Battle View Controller-->
         <scene sceneID="FJh-rk-nrK">
@@ -493,7 +493,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oiA-cY-SJH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1955" y="-52"/>
+            <point key="canvasLocation" x="2647.7306002928258" y="-52.1484375"/>
         </scene>
         <!--Main Menu View Controller-->
         <scene sceneID="d47-VS-97G">
@@ -624,6 +624,8 @@
                             <constraint firstItem="SiX-5c-wdD" firstAttribute="top" secondItem="T6D-tZ-exl" secondAttribute="bottom" constant="28" id="zYI-Vf-Cwg"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="IsX-2k-e1d"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="dateTimeLbl" destination="y4V-1a-Fqh" id="euQ-oo-Aom"/>
                         <outlet property="summeryLbl" destination="E1v-UG-iLU" id="jag-0c-xLR"/>
@@ -636,7 +638,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mBB-6l-jKc" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="16.251830161054173" y="-52.1484375"/>
+            <point key="canvasLocation" x="709.37042459736449" y="-52.1484375"/>
         </scene>
         <!--Edit Deck View Controller-->
         <scene sceneID="DQg-wD-Mbi">
@@ -830,7 +832,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kxk-Kg-Nyo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1307.1742313323571" y="-52.1484375"/>
+            <point key="canvasLocation" x="2000.2928257686674" y="-52.1484375"/>
         </scene>
         <!--In Hand View Controller-->
         <scene sceneID="gJe-dh-zTP">
@@ -1090,6 +1092,47 @@
             </objects>
             <point key="canvasLocation" x="1700" y="664"/>
         </scene>
+        <!--Win Loss View Controller-->
+        <scene sceneID="acg-Ve-17Z">
+            <objects>
+                <viewController storyboardIdentifier="WinLoss" id="597-en-fv9" customClass="WinLossViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="OeI-Xd-ksa"/>
+                        <viewControllerLayoutGuide type="bottom" id="I9j-Uv-8fK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mlS-0r-Rgg">
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9n6-lj-YNX">
+                                <rect key="frame" x="282" y="272" width="832" height="444"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Brg-ZC-JN7" userLabel="BottomHand">
+                                <rect key="frame" x="144" y="371" width="1079" height="282"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Brg-ZC-JN7" secondAttribute="height" multiplier="1079:282" id="dlg-sQ-baD"/>
+                                </constraints>
+                                <connections>
+                                    <segue destination="rEn-nr-Nzp" kind="embed" identifier="Winnings" id="7M7-Cq-fbu"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Brg-ZC-JN7" firstAttribute="width" secondItem="mlS-0r-Rgg" secondAttribute="height" multiplier="1079:1024" id="ZBX-Xh-TPB"/>
+                            <constraint firstItem="Brg-ZC-JN7" firstAttribute="centerX" secondItem="mlS-0r-Rgg" secondAttribute="centerX" id="b7H-mc-uca"/>
+                            <constraint firstItem="Brg-ZC-JN7" firstAttribute="centerY" secondItem="mlS-0r-Rgg" secondAttribute="centerY" id="ph0-mG-mTz"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fireworksImageView" destination="9n6-lj-YNX" id="GOO-cG-Hzs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vbb-H2-NYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3295.6076134699852" y="-51.5625"/>
+        </scene>
         <!--In Hand View Controller-->
         <scene sceneID="EKX-X5-1iH">
             <objects>
@@ -1347,6 +1390,111 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6iI-9m-go3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2191" y="664"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="T4f-MT-GQg">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="8Ma-nX-70N" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sti-QS-tqp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="3e6-Qr-JeC" kind="relationship" relationship="rootViewController" id="cyM-gT-iG0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2nf-p2-Y5Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="16.251830161054173" y="-52.1484375"/>
+        </scene>
+        <!--Cards Won View Controller-->
+        <scene sceneID="aTO-0m-5bO">
+            <objects>
+                <viewController id="rEn-nr-Nzp" customClass="CardsWonViewController" customModule="CardBattleGame" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="5cf-cU-Bh3"/>
+                        <viewControllerLayoutGuide type="bottom" id="unq-dl-OUv"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Ddt-Da-atr">
+                        <rect key="frame" x="0.0" y="0.0" width="1079" height="282"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E3x-vR-v5u" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="222" y="4" width="206.5" height="270"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvb-ho-lwu">
+                                        <rect key="frame" x="0.5" y="0.5" width="206.5" height="270"/>
+                                        <state key="normal" image="cardBG"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="E3x-vR-v5u" secondAttribute="height" multiplier="97:127" id="AGl-gs-D6F"/>
+                                    <constraint firstItem="yvb-ho-lwu" firstAttribute="centerX" secondItem="E3x-vR-v5u" secondAttribute="centerX" id="Isp-Lw-1zO"/>
+                                    <constraint firstItem="yvb-ho-lwu" firstAttribute="height" secondItem="E3x-vR-v5u" secondAttribute="height" id="KVe-F9-HVb"/>
+                                    <constraint firstItem="yvb-ho-lwu" firstAttribute="centerY" secondItem="E3x-vR-v5u" secondAttribute="centerY" id="WPJ-Xe-DLz"/>
+                                    <constraint firstItem="yvb-ho-lwu" firstAttribute="width" secondItem="E3x-vR-v5u" secondAttribute="width" id="bOa-gg-BBR"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kby-c2-d93" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="436" y="4" width="206" height="270"/>
+                                <subviews>
+                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SyT-1U-guc">
+                                        <rect key="frame" x="0.5" y="0.5" width="206" height="270"/>
+                                        <state key="normal" image="cardBG"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="SyT-1U-guc" firstAttribute="width" secondItem="kby-c2-d93" secondAttribute="width" id="0rN-wi-doy"/>
+                                    <constraint firstItem="SyT-1U-guc" firstAttribute="centerY" secondItem="kby-c2-d93" secondAttribute="centerY" id="A2P-qd-ErN"/>
+                                    <constraint firstItem="SyT-1U-guc" firstAttribute="height" secondItem="kby-c2-d93" secondAttribute="height" id="EeI-ML-hvq"/>
+                                    <constraint firstItem="SyT-1U-guc" firstAttribute="centerX" secondItem="kby-c2-d93" secondAttribute="centerX" id="L7e-WY-hMD"/>
+                                    <constraint firstAttribute="width" secondItem="kby-c2-d93" secondAttribute="height" multiplier="97:127" id="miS-lg-cpm"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfR-bO-zm3" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
+                                <rect key="frame" x="651" y="4" width="206" height="270"/>
+                                <subviews>
+                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRN-Gl-S1o">
+                                        <rect key="frame" x="0.5" y="0.5" width="206" height="270"/>
+                                        <state key="normal" image="cardBG"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="HRN-Gl-S1o" firstAttribute="centerX" secondItem="OfR-bO-zm3" secondAttribute="centerX" id="Pug-md-tda"/>
+                                    <constraint firstAttribute="width" secondItem="OfR-bO-zm3" secondAttribute="height" multiplier="97:127" id="WzJ-CR-Xjh"/>
+                                    <constraint firstItem="HRN-Gl-S1o" firstAttribute="centerY" secondItem="OfR-bO-zm3" secondAttribute="centerY" id="qFk-4z-eMA"/>
+                                    <constraint firstItem="HRN-Gl-S1o" firstAttribute="height" secondItem="OfR-bO-zm3" secondAttribute="height" id="tOQ-mm-gsd"/>
+                                    <constraint firstItem="HRN-Gl-S1o" firstAttribute="width" secondItem="OfR-bO-zm3" secondAttribute="width" id="tdr-gj-IhH"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kby-c2-d93" firstAttribute="leading" secondItem="E3x-vR-v5u" secondAttribute="trailing" constant="8" symbolic="YES" id="0MO-LO-3Gy"/>
+                            <constraint firstItem="OfR-bO-zm3" firstAttribute="bottom" secondItem="kby-c2-d93" secondAttribute="bottom" id="GCa-5y-xOV"/>
+                            <constraint firstItem="OfR-bO-zm3" firstAttribute="centerY" secondItem="Ddt-Da-atr" secondAttribute="centerY" constant="-2" id="IzS-6Q-5gm"/>
+                            <constraint firstItem="OfR-bO-zm3" firstAttribute="top" secondItem="kby-c2-d93" secondAttribute="top" id="LkY-xJ-oWx"/>
+                            <constraint firstItem="OfR-bO-zm3" firstAttribute="centerX" secondItem="Ddt-Da-atr" secondAttribute="centerX" constant="214.5" id="aL9-gk-wTd"/>
+                            <constraint firstItem="OfR-bO-zm3" firstAttribute="leading" secondItem="kby-c2-d93" secondAttribute="trailing" constant="9" id="dH5-8G-xq0"/>
+                            <constraint firstItem="OfR-bO-zm3" firstAttribute="bottom" secondItem="E3x-vR-v5u" secondAttribute="bottom" id="ghx-3r-9hf"/>
+                            <constraint firstItem="OfR-bO-zm3" firstAttribute="top" secondItem="5cf-cU-Bh3" secondAttribute="bottom" constant="4" id="oU4-oK-VRB"/>
+                            <constraint firstItem="OfR-bO-zm3" firstAttribute="top" secondItem="E3x-vR-v5u" secondAttribute="top" id="pmt-vk-a7d"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cardOne" destination="E3x-vR-v5u" id="oRp-HB-a2A"/>
+                        <outlet property="cardThree" destination="OfR-bO-zm3" id="gDf-8B-f6F"/>
+                        <outlet property="cardTwo" destination="kby-c2-d93" id="t1j-AM-PLW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6wS-j2-FvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3296" y="490"/>
         </scene>
     </scenes>
     <resources>
