@@ -10,7 +10,7 @@ import UIKit
 
 class WinLossViewController: UIViewController {
   
-  @IBOutlet weak var fireworksImageView: UIImageView!
+  @IBOutlet weak var winStatusText: UILabel!
   private var winningsViewController: CardsWonViewController!
   var isVictorious: Bool!
   private var plWinnings: [Card]!
@@ -21,23 +21,22 @@ class WinLossViewController: UIViewController {
     let cardList = globalCardData.fetchCardList()
     
     if isVictorious {
-      NSLog("VICTORY!!")
+      winStatusText.text = "WINNER!!!"
       plWinnings = randomCards(cardArray: cardList, num: Game.cardsAwardedOnWin)
     } else {
-      NSLog("LOST. TRY AGAIN!!")
+      winStatusText.text = "DEFEAT!!!"
       plWinnings = randomCards(cardArray: cardList, num: Game.cardsAwardedOnLoss)
     }
     displayWinnings()
-//    displayFireWorks()
   }
   
   func displayWinnings() {
     let _ = winningsViewController.createCards(allCards: plWinnings)
   }
   
-  func displayFireWorks() {
-//    let fireworksGif: UIImage = UIImage.gifImageWithName(name: "giphy")!
-//    fireworksImageView.image = fireworksGif
+  //MARK: - Action Methods
+  @IBAction private func backToMainMenu(sender: UIButton) {
+    navigationController?.popToRootViewController(animated: true)
   }
   
   //MARK: - Container View Preparation Segue

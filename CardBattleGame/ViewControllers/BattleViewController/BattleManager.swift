@@ -44,8 +44,6 @@ class BattleManager {
   }
   
   //MARK: - ViewModel Calls
-
-  
   func endPlayerOneTurn() -> Bool {
     isPlayerTurn = false
     return isPlayerTurn

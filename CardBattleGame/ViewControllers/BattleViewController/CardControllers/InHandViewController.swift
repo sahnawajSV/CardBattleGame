@@ -152,23 +152,12 @@ class InHandViewController: UIViewController {
     return cardView
   }
   
-  /*
-  private func delay(_ delay:Double, closure:@escaping ()->()) {
-    DispatchQueue.main.asyncAfter(
-      deadline: .now() + delay, execute: closure)
-  }
-
-  func resetInHand() {
-    allCardViews.enumerated().forEach { (index, cardView) in
-      cardView.cardButton.tag = index
-    }
-  }*/
-  
   func toggleHidingOfLabelsOnCard(hideStatus: Bool, cardView: CardView) {
     cardView.bpView.isHidden = hideStatus
     cardView.healthView.isHidden = hideStatus
     cardView.attackView.isHidden = hideStatus
     cardView.nameView.isHidden = hideStatus
     cardView.cardImage.isHidden = hideStatus
+    cardView.cardBack.isHidden = !hideStatus
   }
 }

@@ -28,6 +28,7 @@ class CardView: UIView {
   var healthView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
   var nameView = UIView(frame: CGRect(x: 0 , y: 0, width: 50, height: 50))
   var cardImage = UIImageView(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
+  var cardBack = UIImageView(frame: CGRect(x: 0 , y: 0, width: 194, height: 254))
   //Required for Player To AI Attack
   var cardIndex: Int = 0
   
@@ -48,6 +49,11 @@ class CardView: UIView {
   func addUIBehavior(frame: CGRect) {
     let cardView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
     cardView.backgroundColor = UIColor.black
+    
+    //CARD Back
+    cardBack = UIImageView(frame: CGRect(x: 0 , y: 0, width: (cardView.frame.size.width), height: (cardView.frame.size.height)))
+    cardBack.image = #imageLiteral(resourceName: "cardFlipBG")
+    cardView.addSubview(cardBack)
     
     //CARD Backgroud
     cardImage = UIImageView(frame: CGRect(x: 0 , y: 0, width: (cardView.frame.size.width), height: (cardView.frame.size.height)))

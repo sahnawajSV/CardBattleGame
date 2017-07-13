@@ -98,5 +98,6 @@ class InPlayViewController: UIViewController {
     cardView.attackView.isHidden = hideStatus
     cardView.nameView.isHidden = hideStatus
     cardView.cardImage.isHidden = hideStatus
+    cardView.cardBack.isHidden = !hideStatus
   }
 }

@@ -42,6 +42,8 @@ class BattleViewController: UIViewController, BattleDelegate, InHandViewControll
   @IBOutlet private weak var playerOneHandContainer: UIView!
   @IBOutlet private weak var playerOnePlayContainer: UIView!
   
+  @IBOutlet private weak var viewBG: UIImageView!
+  
   @IBOutlet private weak var endTurnButton: UIButton!
   
   private var playerOneInHandController: InHandViewController!
@@ -89,12 +91,16 @@ class BattleViewController: UIViewController, BattleDelegate, InHandViewControll
   private func handleDrawingOfNewCard(allCards: [Card], inHandViewController: InHandViewController, allCardViews: inout [CardView]) {
     if allCardViews.count < 5 {
       isPerformingAnAction = true
-      let frame = getPlayerDeckViewFrame(inHandViewController: inHandViewController, forDeckView: playerOneDeckView)
+      var frame: CGRect = CGRect.zero
+      if bViewModel.isPlayerTurn {
+        frame = getPlayerDeckViewFrame(inHandViewController: inHandViewController, forDeckView: playerOneDeckView)
+      } else {
+        frame = getPlayerDeckViewFrame(inHandViewController: inHandViewController, forDeckView: playerTwoDeckView)
+      }
       if let newCard = allCards.last {
         allCardViews = inHandViewController.createACard(card: newCard, fromFrame: frame, cardIndex: allCards.count-1)
       }
     } else {
-      //Since Drawing a Card Animation cannot trigger the same
       if !bViewModel.isPlayerTurn {
         bViewModel.startPlayerTwoChecks()
       }
@@ -103,19 +109,17 @@ class BattleViewController: UIViewController, BattleDelegate, InHandViewControll
   
   private func handleCardToCardAttack(atkIndex: Int, defIndex: Int, atkCard: Card, defCard: Card) {
     isPerformingAnAction = true
+    let updatedAttackerHealth: Int16 = atkCard.health - defCard.attack
+    let updatedDefenderHealth: Int16 = defCard.health - atkCard.attack
     if bViewModel.isPlayerTurn {
       let atkCardView: CardView = allPlayerOneInPlayCards[atkIndex]
       let defCardView: CardView = allPlayerTwoInPlayCards[defIndex]
-      let updatedAttackerHealth: Int16 = atkCard.health - defCard.attack
-      let updatedDefenderHealth: Int16 = defCard.health - atkCard.attack
       atkCardView.changeCardState(cardState: .cannotAttack)
       bViewModel.performAttackOnCard(atkIndex: atkIndex, defIndex: defIndex)
       performCardToCardAttack(atkView: atkCardView, defView: defCardView, attackerPlayViewController: playerOnePlayController, defenderPlayViewController: playerTwoPlayController, atkIndex: atkIndex, defIndex: defIndex, atkHealth: updatedAttackerHealth, defHealth: updatedDefenderHealth)
     } else {
       let atkCardView: CardView = allPlayerTwoInPlayCards[atkIndex]
       let defCardView: CardView = allPlayerOneInPlayCards[defIndex]
-      let updatedAttackerHealth: Int16 = atkCard.health - defCard.attack
-      let updatedDefenderHealth: Int16 = defCard.health - atkCard.attack
       atkCardView.changeCardState(cardState: .cannotAttack)
       performCardToCardAttack(atkView: atkCardView, defView: defCardView, attackerPlayViewController: playerTwoPlayController, defenderPlayViewController: playerOnePlayController, atkIndex: atkIndex, defIndex: defIndex, atkHealth: updatedAttackerHealth, defHealth: updatedDefenderHealth)
     }
@@ -165,10 +169,14 @@ class BattleViewController: UIViewController, BattleDelegate, InHandViewControll
   //MARK: - Actions
   @IBAction private func endTurnPressed(sender: UIButton) {
     if !isPerformingAnAction {
-      bViewModel.toggleTurn(forPlayerOne: true)
-      timer?.invalidate()
-      count = Game.turnTimer
-      timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+      view.bringSubview(toFront: playerOneHandContainer)
+      view.bringSubview(toFront: playerTwoHandContainer)
+      if bViewModel.isPlayerTurn {
+        bViewModel.toggleTurn(forPlayerOne: true)
+        timer?.invalidate()
+        count = Game.turnTimer
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)
+      }
     }
   }
   
@@ -193,6 +201,11 @@ class BattleViewController: UIViewController, BattleDelegate, InHandViewControll
   func completedAllAnimations() {
     isPerformingAnAction = false
     attackCardIndex = nil
+    view.sendSubview(toBack: playerOneHandContainer)
+    view.sendSubview(toBack: playerTwoHandContainer)
+    view.sendSubview(toBack: viewBG)
+    view.bringSubview(toFront: playerTwoHandContainer)
+    view.bringSubview(toFront: playerOneHandContainer)
     if !bViewModel.isPlayerTurn {
       resetInHandOrPlayIndex(allCardViews: &allPlayerOneInPlayCards)
       resetInHandOrPlayIndex(allCardViews: &allPlayerTwoInPlayCards)
@@ -224,9 +237,6 @@ class BattleViewController: UIViewController, BattleDelegate, InHandViewControll
     swordImage.image = #imageLiteral(resourceName: "sword")
     view.addSubview(swordImage)
     let angle = degreesToRotateObjectWithPosition(objPos: defView.center, andTouchPoint: swordImage.center)
-    if !bViewModel.isPlayerTurn {
-     swordImage.transform = CGAffineTransform(rotationAngle: (180 * CGFloat(Double.pi)) / 180.0)
-    }
     swordImage.transform = CGAffineTransform(rotationAngle: (angle * CGFloat(Double.pi)) / 180.0)
     let defFrame = view.convert(defView.frame, from:defenderPlayViewController.view)
     UIView.animate(withDuration: Game.cardAttackAnimationSpeed,
@@ -424,11 +434,20 @@ class BattleViewController: UIViewController, BattleDelegate, InHandViewControll
   
   private func drawNewCardFromDeck() {
     if bViewModel.isPlayerTurn {
-      handleDrawingOfNewCard(allCards: bViewModel.playerOneInHandCards, inHandViewController: playerOneInHandController, allCardViews: &allPlayerOneInHandCards)
+      if bViewModel.playerOneInDeckCards.count > 0 {
+        view.bringSubview(toFront: playerOneHandContainer)
+       handleDrawingOfNewCard(allCards: bViewModel.playerOneInHandCards, inHandViewController: playerOneInHandController, allCardViews: &allPlayerOneInHandCards)
+      }
       handlePlayerOneTurnStart()
     } else {
-      handleDrawingOfNewCard(allCards: bViewModel.playerTwoInHandCards, inHandViewController: playerTwoInHandController, allCardViews: &allPlayerTwoInHandCards)
-      handlePlayerTwoTurnStart()
+      if bViewModel.playerTwoInDeckCards.count > 0 {
+        view.bringSubview(toFront: playerTwoHandContainer)
+       handleDrawingOfNewCard(allCards: bViewModel.playerTwoInHandCards, inHandViewController: playerTwoInHandController, allCardViews: &allPlayerTwoInHandCards)
+        handlePlayerTwoTurnStart()
+      } else {
+        handlePlayerTwoTurnStart()
+        completedAllAnimations()
+      }
     }
   }
   
@@ -451,6 +470,8 @@ class BattleViewController: UIViewController, BattleDelegate, InHandViewControll
   }
   
   func playerTwoDidEndTurn(_ battleViewModel: BattleViewModel) {
+    isPerformingAnAction = false
+    attackCardIndex = nil
     timer?.invalidate()
     count = Game.turnTimer
     timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(update), userInfo: nil, repeats: true)

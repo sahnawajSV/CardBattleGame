@@ -17,9 +17,18 @@ class CardsWonViewController: UIViewController {
   
   func createCards(allCards: [Card]) -> [CardView] {
     allCardViews.removeAll()
-    allCards.enumerated().forEach { (index, card) in
-      let cardView = createACard(card: card, cardIndex: index)
+    if allCards.count == Game.cardsAwardedOnLoss {
+      let cardView = createACard(card: allCards[0], cardIndex: 1)
+      cardOne.isHidden = true
+      cardThree.isHidden = true
       allCardViews.append(cardView)
+    } else {
+      allCards.enumerated().forEach { (index, card) in
+        let cardView = createACard(card: card, cardIndex: index)
+        cardOne.isHidden = false
+        cardThree.isHidden = false
+        allCardViews.append(cardView)
+      }
     }
     return allCardViews
   }

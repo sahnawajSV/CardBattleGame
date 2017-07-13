@@ -39,7 +39,7 @@
 		E3775D541EF16E8C00991CEC /* DeckListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */; };
 		E3775D5A1EF16EB400991CEC /* DeckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D591EF16EB400991CEC /* DeckListViewController.swift */; };
 		E3775D5C1EF16EC000991CEC /* EditDeckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */; };
-		E3A1231C1F1631FA001BACBA /* CardsWonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A1231B1F1631FA001BACBA /* CardsWonViewController.swift */; };
+		E3A123221F173DF5001BACBA /* CardsWonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3A123211F173DF5001BACBA /* CardsWonViewController.swift */; };
 		E3BFB0C11F0FAA6E00BDBDFA /* BattleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFB0C01F0FAA6E00BDBDFA /* BattleViewController.swift */; };
 		E3BFB0C31F0FABED00BDBDFA /* BattleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFB0C21F0FABED00BDBDFA /* BattleViewModel.swift */; };
 		E3BFB0C51F0FABF800BDBDFA /* BattleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3BFB0C41F0FABF800BDBDFA /* BattleManager.swift */; };
@@ -107,7 +107,7 @@
 		E3775D531EF16E8C00991CEC /* DeckListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewModel.swift; sourceTree = "<group>"; };
 		E3775D591EF16EB400991CEC /* DeckListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeckListViewController.swift; sourceTree = "<group>"; };
 		E3775D5B1EF16EC000991CEC /* EditDeckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditDeckViewController.swift; sourceTree = "<group>"; };
-		E3A1231B1F1631FA001BACBA /* CardsWonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsWonViewController.swift; sourceTree = "<group>"; };
+		E3A123211F173DF5001BACBA /* CardsWonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardsWonViewController.swift; sourceTree = "<group>"; };
 		E3BFB0C01F0FAA6E00BDBDFA /* BattleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewController.swift; sourceTree = "<group>"; };
 		E3BFB0C21F0FABED00BDBDFA /* BattleViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleViewModel.swift; sourceTree = "<group>"; };
 		E3BFB0C41F0FABF800BDBDFA /* BattleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BattleManager.swift; sourceTree = "<group>"; };
@@ -449,7 +449,7 @@
 		E3A1231A1F1631E5001BACBA /* CardController */ = {
 			isa = PBXGroup;
 			children = (
-				E3A1231B1F1631FA001BACBA /* CardsWonViewController.swift */,
+				E3A123211F173DF5001BACBA /* CardsWonViewController.swift */,
 			);
 			path = CardController;
 			sourceTree = "<group>";
@@ -599,7 +599,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3D362CC1EF79FAA008FB5A7 /* Game.swift in Sources */,
-				E3A1231C1F1631FA001BACBA /* CardsWonViewController.swift in Sources */,
 				E3D362C41EF79174008FB5A7 /* Stats.swift in Sources */,
 				8B42F4C71EF265D70097D28A /* CBGErrorHandler.swift in Sources */,
 				8B42F4CC1EF29B1C0097D28A /* ViewAnimation.swift in Sources */,
@@ -625,6 +624,7 @@
 				184AC27A1F02332A00440D19 /* cardLabel.swift in Sources */,
 				E3775D5C1EF16EC000991CEC /* EditDeckViewController.swift in Sources */,
 				E3BFB0C71F0FAC2A00BDBDFA /* InHandViewController.swift in Sources */,
+				E3A123221F173DF5001BACBA /* CardsWonViewController.swift in Sources */,
 				E3BFB0C11F0FAA6E00BDBDFA /* BattleViewController.swift in Sources */,
 				8B3119501EF1427700DD9E78 /* AppDelegate.swift in Sources */,
 				8B561F561EF3A1A800104486 /* LocationManager.swift in Sources */,
