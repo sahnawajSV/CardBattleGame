@@ -38,6 +38,12 @@ extension UIView {
     self.layer.shouldRasterize = true
     self.layer.rasterizationScale = scale ? UIScreen.main.scale : 1
   }
+  
+  func roundBorder(cornerRadius: CGFloat, borderWidth: CGFloat, borderColor: CGColor) {
+    self.layer.cornerRadius = cornerRadius
+    self.layer.borderWidth = borderWidth
+    self.layer.borderColor = borderColor
+  }
 }
 
 extension UIViewController {
@@ -47,6 +53,6 @@ extension UIViewController {
     let okAction  = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) { (action) in
     }
     alertController.addAction(okAction)
-    navigationController?.present(alertController, animated: true, completion: nil)
+    self.present(alertController, animated: true, completion: nil)
   }
 }

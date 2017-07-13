@@ -8,13 +8,23 @@
 
 import UIKit
 
+protocol EditDeckCollectionViewCellDelegate : class {
+  func didPressAddButton(_ sender: UICollectionViewCell)
+}
 
-/// Edit Deck UICollectionViewCell used to set the IBOutlet to the custom Deck cell  
+/// Edit Deck UICollectionViewCell used to set the IBOutlet to the custom Deck cell
 class EditDeckCollectionViewCell: UICollectionViewCell {
-    
-    @IBOutlet weak var nameLbl: UILabel!
-    @IBOutlet weak var healthLbl: UILabel!
-    @IBOutlet weak var attackLbl: UILabel!
-    @IBOutlet weak var battlePointLbl: UILabel!
-    @IBOutlet weak var addDeckButton: UIButton!
+  
+  weak var cellDelegate: EditDeckCollectionViewCellDelegate?
+  
+  @IBOutlet weak var cardView: UIView!
+  @IBOutlet weak var nameLbl: UILabel!
+  @IBOutlet weak var healthLbl: UILabel!
+  @IBOutlet weak var attackLbl: UILabel!
+  @IBOutlet weak var battlePointLbl: UILabel!
+  @IBOutlet weak var addDeckButton: UIButton!
+  
+  @IBAction func addButtonPressed(_ sender: UIButton) {
+    cellDelegate?.didPressAddButton(self)
+  }
 }

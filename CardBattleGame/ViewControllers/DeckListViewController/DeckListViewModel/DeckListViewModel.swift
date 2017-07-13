@@ -58,9 +58,10 @@ class DeckListViewModel: NSObject {
     guard let deckList: DeckList = fetchedResultsController.object(at: indexPath) as? DeckList else {
       return nil
     }
-    guard let name = deckList.name, let deckCards: [DeckCard] = deckList.deckCard?.allObjects as? [DeckCard] else {
+    guard let name = deckList.name else {
       return nil
     }
+    let deckCards = deckList.cardList
     let deck = Deck(name: name, id: deckList.id, cardList: convertCoreDataDeckCardToCard(deckCards: deckCards))
     return deck
 }
@@ -85,7 +86,7 @@ class DeckListViewModel: NSObject {
   }
   
   func selectDeck(at indexPath: IndexPath) {
-    guard let deck: DeckList = fetchedResultsController.object(at: indexPath) as? DeckList else {
+    guard let deck = fetchedResultsController.object(at: indexPath) as? DeckList else {
       return
     }
     selectedDeckIndex = indexPath
@@ -94,9 +95,7 @@ class DeckListViewModel: NSObject {
       deckNameText = name
     }
     
-    if let cardList = deck.deckCard?.allObjects as? [DeckCard] {
-      cards = cardList
-    }
+    cards = deck.cardList
   }
   
   func fetchCardFromSelectedDeck(at indexPath: IndexPath) -> DeckCard {
@@ -105,5 +104,11 @@ class DeckListViewModel: NSObject {
   
   func selectedDeck() -> [DeckCard] {
     return cards
+  }
+}
+
+extension DeckList {
+  var cardList: [DeckCard] {
+    return (deckCard?.allObjects as? [DeckCard]) ?? []
   }
 }

@@ -25,7 +25,6 @@ class GameManager {
     let globalCardData = CardListDataSource()
     let cardList = globalCardData.fetchCardList()
     
-//    let plCardArray: [Card] = randomCards(cardArray: plDeck.cardList)
     let aiCardArray: [Card]  = randomCards(cardArray: cardList)
     
     let playerDeckList = plDeck //Deck(name: plDeck.name, id: plDeck.id, cardList: plCardArray)

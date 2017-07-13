@@ -14,16 +14,24 @@ class DeckCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var attackLbl: UILabel!
   @IBOutlet weak var battlePointLbl: UILabel!
   @IBOutlet weak var addDeckButton: UIButton!
+  @IBOutlet weak var cardView: UIView!
   
   override var isSelected: Bool {
     willSet {
-      contentView.backgroundColor = newValue ? .orange : .clear
+      contentView.backgroundColor = .clear
+      if newValue {
+        contentView.backgroundColor = .orange
+      }
+      
     }
   }
   
   override var isHighlighted: Bool {
     willSet {
-      contentView.backgroundColor = newValue ? .green : .clear
+      contentView.backgroundColor = .clear
+      if newValue {
+        contentView.backgroundColor = .green
+      }
     }
   }
 }

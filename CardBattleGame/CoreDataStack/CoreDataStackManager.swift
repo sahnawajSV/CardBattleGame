@@ -64,8 +64,8 @@ class CoreDataStackManager: NSObject {
   ///
   /// - Parameter name: deck name
   /// - Returns:
-  func fetchDeckResult(for name: String) throws -> [DeckList]? {
-    let fetchRequest = NSFetchRequest<DeckList>()
+  func fetchDeckResult(for name: String) throws -> [DeckList] {
+    let fetchRequest: NSFetchRequest = DeckList.fetchRequest()
     fetchRequest.predicate = NSPredicate(format: "name == %@", name)
     
     // Create Entity Description
@@ -74,24 +74,10 @@ class CoreDataStackManager: NSObject {
     // Configure Fetch Request
     fetchRequest.entity = entityDescription
     do {
-      let result = try managedObjectContext.fetch(fetchRequest)
-      return result
+      return try managedObjectContext.fetch(fetchRequest)
     } catch {
        throw ErrorType.failedManagedObjectFetchRequest
     }
-  }
-  
-  
-  /// Fetch Card Objects from deck with name
-  ///
-  /// - Parameter name: deck name
-  /// - Returns: card objects
-  func fetchFromDeck(with name: String) throws -> [DeckCard]? {
-    guard let deckItem = try fetchDeck(with: name) else {
-      return nil
-    }
-    let deckCard = deckItem.mutableSetValue(forKey: "deckCard")
-    return Array(deckCard) as? [DeckCard]
   }
   
   
@@ -111,11 +97,13 @@ class CoreDataStackManager: NSObject {
     newItem.id = card.id
     newItem.name = card.name
     newItem.canAttack = card.canAttack
-    guard let deckItem = try fetchDeck(with: name) else {
+    do {
+      let deckItem = try fetchDeck(with: name)
+      deckItem.addToDeckCard(newItem)
+      saveContext()
+    } catch {
       throw ErrorType.failedManagedObjectFetchRequest
     }
-    deckItem.addToDeckCard(newItem)
-    saveContext()
   }
   
   
@@ -124,11 +112,16 @@ class CoreDataStackManager: NSObject {
   ///
   /// - Parameter name: name of the deck
   /// - Returns: deck managed object
-  private func fetchDeck(with name: String) throws -> DeckList? {
-    guard let result = try fetchDeckResult(for: name), let deck = result.first else {
+  private func fetchDeck(with name: String) throws -> DeckList {
+    do {
+      let result = try fetchDeckResult(for: name)
+      guard let deck = result.first else {
+        throw ErrorType.failedManagedObjectFetchRequest
+      }
+      return deck
+    } catch {
       throw ErrorType.failedManagedObjectFetchRequest
     }
-    return deck
   }
   
   
@@ -138,15 +131,19 @@ class CoreDataStackManager: NSObject {
   ///   - name: deck name
   ///   - id: deck id
   /// - Throws: error if deck creation failed
-  func createDeck(with name: String, id: Int) throws {
-    guard let result = try fetchDeckResult(for: name) else {
+  func createDeck(with name: String, id: Int) throws -> DeckList {//return created deck
+    do {
+      let result = try fetchDeckResult(for: name)
+      if result.isEmpty, let newItem: DeckList = NSEntityDescription.insertNewObject(forEntityName: "DeckList", into: managedObjectContext) as? DeckList {
+        newItem.name = name
+        newItem.id = Int16(id)
+        saveContext()
+        return newItem
+      } else {
+        throw ErrorType.deckAlreadyExists
+      }
+    } catch {
       throw ErrorType.failedManagedObjectFetchRequest
-    }
-    if result.isEmpty, let newItem: DeckList = NSEntityDescription.insertNewObject(forEntityName: "DeckList", into: managedObjectContext) as? DeckList {
-      newItem.name = name
-      saveContext()
-    } else {
-      throw ErrorType.deckAlreadyExists
     }
   }
   
@@ -154,16 +151,15 @@ class CoreDataStackManager: NSObject {
   /// Fetch Deck list from the storage
   ///
   /// - Returns: deck lest array
-  func fetchDeckList() throws -> [DeckList]? {
-    let fetchRequest = NSFetchRequest<DeckList>()
+  func fetchDeckList() throws -> [DeckList] {
+    let fetchRequest: NSFetchRequest = DeckList.fetchRequest()
     // Create Entity Description
     let entityDescription = NSEntityDescription.entity(forEntityName: "DeckList", in: managedObjectContext)
     
     // Configure Fetch Request
     fetchRequest.entity = entityDescription
     do {
-      let result = try managedObjectContext.fetch(fetchRequest)
-      return result
+      return try managedObjectContext.fetch(fetchRequest)
     } catch {
       throw ErrorType.failedManagedObjectFetchRequest
     }

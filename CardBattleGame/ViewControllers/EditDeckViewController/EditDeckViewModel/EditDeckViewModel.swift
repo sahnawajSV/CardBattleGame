@@ -14,8 +14,6 @@ import CoreData
 class EditDeckViewModel: NSObject {
   fileprivate var deckCard: [Card] = []
   
-  var selectedDeckName: String = ""
-  
   private let coreDataManager = CoreDataStackManager.sharedInstance
   private let cardListDataSource = CardListDataSource.sharedInstance
   
@@ -64,8 +62,8 @@ class EditDeckViewModel: NSObject {
   ///   - name: name description
   ///   - id: id of the deck
   /// - Throws: throw error if deck creation failed
-  func createDeck(with name: String, id: Int) throws {
-    try coreDataManager.createDeck(with: name, id: id)
+  @discardableResult func createDeck(with name: String, id: Int) throws -> DeckList {
+    return try coreDataManager.createDeck(with: name, id: id)
   }
   
   /// Create Deck with name and store the cards in the deck
@@ -73,10 +71,10 @@ class EditDeckViewModel: NSObject {
   /// - Parameter name: deck name
   func saveCardsToDeck(with name: String) {
     do {
-      try createDeck(with: name, id: numberOfAddedCards()+1)
-      deckCard.forEach { card in
-          add(card: card, toDeck: name)
-      }
+        try createDeck(with: name, id: numberOfDeck()+1)
+        deckCard.forEach { card in
+            add(card: card, toDeck: name)
+        }
     } catch {
       CBGErrorHandler.handle(error: ErrorType.deckAlreadyExists)
     }
@@ -85,8 +83,10 @@ class EditDeckViewModel: NSObject {
   func numberOfAddedCards() -> Int {
     return deckCard.count
   }
-  
-  func addCardToDeckList(_ card: Card) {
+
+  func addCardToDeck(from indexPath: IndexPath) {
+    let cardList: [Card] = fetchCards()
+    let card = cardList[indexPath.row]
     deckCard.append(card)
   }
   
@@ -106,5 +106,14 @@ class EditDeckViewModel: NSObject {
   
   func isCardSelected(_ card: Card) -> Bool {
     return deckCard.contains(card)
+  }
+  
+  func numberOfDeck() throws -> Int {
+    do {
+      let count = try coreDataManager.fetchDeckList().count
+      return count
+    } catch {
+      return 0
+    }
   }
 }

@@ -11,9 +11,6 @@ import CoreData
 
 /// Deck List View Controller : Display list of Decks created by the user.
 class DeckListViewController: UIViewController {
-  fileprivate let height: CGFloat = 328
-  fileprivate let margin: CGFloat = 15
-  
   var deckListViewModel = DeckListViewModel()
   
   fileprivate let tableViewCellReuseIdentifier = "tableViewCellReuseIdentifier"
@@ -23,6 +20,8 @@ class DeckListViewController: UIViewController {
   @IBOutlet weak var deckCollectionView: UICollectionView!
   @IBOutlet weak var deckCardsTableView: UITableView!
   @IBOutlet weak var deckNameLabel: UILabel!
+  @IBOutlet weak var battleButton: UIButton!
+  @IBOutlet weak var backButton: UIButton!
   
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -32,6 +31,9 @@ class DeckListViewController: UIViewController {
     
     deckCardsTableView.delegate = self
     deckCardsTableView.dataSource = self
+    
+    battleButton.roundBorder(cornerRadius: 4.0, borderWidth: 2.0, borderColor: UIColor.white.cgColor)
+    backButton.roundBorder(cornerRadius: 4.0, borderWidth: 2.0, borderColor: UIColor.white.cgColor)
     
     deckListViewModel.performDeckCardFetchRequest()
   }
@@ -47,7 +49,7 @@ class DeckListViewController: UIViewController {
     // Get the new view controller using segue.destinationViewController.
     // Pass the selected object to the new view controller.
     if segue.identifier == battleSegueIdentifier, let battleSystemVC = segue.destination as? BattleSystemViewController, let indexpath = sender as? IndexPath {
-        battleSystemVC.deck = deckListViewModel.fetchDeck(at: indexpath)
+      battleSystemVC.deck = deckListViewModel.fetchDeck(at: indexpath)
     }
   }
   
@@ -81,20 +83,15 @@ extension DeckListViewController: UICollectionViewDelegate, UICollectionViewData
   
   // Collection View - Cell For Row At Index Path
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as! DeckCollectionViewCell
-    
-    if let newItem: Deck = deckListViewModel.fetchDeck(at: indexPath) {
-      cell.nameLbl.text = newItem.name
+    if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as? DeckCollectionViewCell {
+      if let newItem: Deck = deckListViewModel.fetchDeck(at: indexPath) {
+        cell.nameLbl.text = newItem.name
+      }
+      cell.cardView.roundBorder(cornerRadius: 8.0, borderWidth: 2.0, borderColor: UIColor.white.cgColor)
+      cell.cardView.clipsToBounds = true
+      return cell
     }
-    return cell
-  }
-  
-  
-  
-  // MARK:- UICollectionViewDelegate Methods
-  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    return CGSize(width: CGFloat((collectionView.frame.size.width / 3) - margin), height: CGFloat(328))
+    fatalError("Unresolved error")
   }
   
   // MARK:- UICollectionViewDelegate Methods
@@ -112,10 +109,13 @@ extension DeckListViewController: UITableViewDelegate, UITableViewDataSource {
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellReuseIdentifier, for: indexPath) as! DeckCardTableViewCell
-    let newItem: DeckCard = deckListViewModel.fetchCardFromSelectedDeck(at: indexPath)
-    cell.cardNameLabel?.text = newItem.name
-    return cell
+    if let cell = tableView.dequeueReusableCell(withIdentifier: tableViewCellReuseIdentifier, for: indexPath) as? DeckCardTableViewCell {
+      let newItem: DeckCard = deckListViewModel.fetchCardFromSelectedDeck(at: indexPath)
+      cell.cardNameLabel?.text = newItem.name
+      cell.cardNameLabel.roundBorder(cornerRadius: 4.0, borderWidth: 2.0, borderColor: UIColor.white.cgColor)
+      return cell
+    }
+    fatalError("Unresolved error")
   }
   
 }

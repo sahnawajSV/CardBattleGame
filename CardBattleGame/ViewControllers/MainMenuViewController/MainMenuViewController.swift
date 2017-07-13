@@ -14,6 +14,8 @@ class MainMenuViewController: UIViewController {
   
   var mainViewModel = MainMenuViewModel()
   
+  @IBOutlet weak var deckBuilderButton: UIButton!
+  @IBOutlet weak var battleButton: UIButton!
   @IBOutlet weak var timeZoneLbl: UILabel!
   @IBOutlet weak var dateTimeLbl: UILabel!
   @IBOutlet weak var summeryLbl: UILabel!
@@ -28,6 +30,10 @@ class MainMenuViewController: UIViewController {
     // Hide the Weather Info VIew
     //
     weatherInfoView.alpha = 0
+    
+    //Create Round Button
+    deckBuilderButton.roundBorder(cornerRadius: 4.0, borderWidth: 2.0, borderColor: UIColor.white.cgColor)
+    battleButton.roundBorder(cornerRadius: 4.0, borderWidth: 2.0, borderColor: UIColor.white.cgColor)
     
     // Set Main Model View Delegate
     mainViewModel.delegate = self
