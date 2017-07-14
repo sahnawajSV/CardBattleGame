@@ -67,12 +67,7 @@ class CoreDataStackManager: NSObject {
   func fetchDeckResult(for name: String) throws -> [DeckList] {
     let fetchRequest: NSFetchRequest = DeckList.fetchRequest()
     fetchRequest.predicate = NSPredicate(format: "name == %@", name)
-    
-    // Create Entity Description
-    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckList", in: managedObjectContext)
-    
-    // Configure Fetch Request
-    fetchRequest.entity = entityDescription
+  
     do {
       return try managedObjectContext.fetch(fetchRequest)
     } catch {
@@ -88,7 +83,7 @@ class CoreDataStackManager: NSObject {
   ///   - card: card managed object
   
   func add(card: Card, toDeck name: String) throws {
-    guard let newItem: DeckCard = NSEntityDescription.insertNewObject(forEntityName: "DeckCard", into: managedObjectContext) as? DeckCard else {
+    guard let newItem = NSEntityDescription.insertNewObject(forEntityName: "DeckCard", into: managedObjectContext) as? DeckCard else {
       throw ErrorType.faildToCreateDeck
     }
     newItem.attack = card.attack
@@ -134,7 +129,7 @@ class CoreDataStackManager: NSObject {
   func createDeck(with name: String, id: Int) throws -> DeckList {//return created deck
     do {
       let result = try fetchDeckResult(for: name)
-      if result.isEmpty, let newItem: DeckList = NSEntityDescription.insertNewObject(forEntityName: "DeckList", into: managedObjectContext) as? DeckList {
+      if result.isEmpty, let newItem = NSEntityDescription.insertNewObject(forEntityName: "DeckList", into: managedObjectContext) as? DeckList {
         newItem.name = name
         newItem.id = Int16(id)
         saveContext()
@@ -153,11 +148,6 @@ class CoreDataStackManager: NSObject {
   /// - Returns: deck lest array
   func fetchDeckList() throws -> [DeckList] {
     let fetchRequest: NSFetchRequest = DeckList.fetchRequest()
-    // Create Entity Description
-    let entityDescription = NSEntityDescription.entity(forEntityName: "DeckList", in: managedObjectContext)
-    
-    // Configure Fetch Request
-    fetchRequest.entity = entityDescription
     do {
       return try managedObjectContext.fetch(fetchRequest)
     } catch {

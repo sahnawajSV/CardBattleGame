@@ -55,7 +55,7 @@ class DeckListViewModel: NSObject {
   /// - Parameter indexPath: indexpath of the deck
   /// - Returns: Deck Model Object
   func fetchDeck(at indexPath: IndexPath) -> Deck? {
-    guard let deckList: DeckList = fetchedResultsController.object(at: indexPath) as? DeckList else {
+    guard let deckList = fetchedResultsController.object(at: indexPath) as? DeckList else {
       return nil
     }
     guard let name = deckList.name else {

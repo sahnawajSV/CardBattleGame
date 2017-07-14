@@ -113,7 +113,7 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
       return
     }
     
-    if let cell : EditDeckCardTableViewCell = tableView.cellForRow(at: indexPath) as? EditDeckCardTableViewCell {
+    if let cell = tableView.cellForRow(at: indexPath) as? EditDeckCardTableViewCell {
       let cardList: [Card] = editDeckViewModel.fetchCards()
       for card in cardList {
         if card.id == Int16(cell.tag) {
