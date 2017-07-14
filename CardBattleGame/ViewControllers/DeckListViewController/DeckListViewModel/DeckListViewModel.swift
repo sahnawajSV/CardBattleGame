@@ -17,12 +17,13 @@ class DeckListViewModel: NSObject {
   var selectedDeckIndex: IndexPath?
   
   // NSFetchedResultsController to updated uitableview if there is any changes in the Coredata storage
-  private let fetchedResultsController: NSFetchedResultsController<NSFetchRequestResult>
+  private let fetchedResultsController: NSFetchedResultsController<DeckList>
   
   private let coreDataManager = CoreDataStackManager.sharedInstance
 
   override init() {
-    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DeckList")
+//    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DeckList")
+    let request: NSFetchRequest<DeckList> = DeckList.fetchRequest()
     let departmentSort = NSSortDescriptor(key: "name", ascending: true)
     request.sortDescriptors = [departmentSort]
     let moc = coreDataManager.managedObjectContext
@@ -55,9 +56,7 @@ class DeckListViewModel: NSObject {
   /// - Parameter indexPath: indexpath of the deck
   /// - Returns: Deck Model Object
   func fetchDeck(at indexPath: IndexPath) -> Deck? {
-    guard let deckList = fetchedResultsController.object(at: indexPath) as? DeckList else {
-      return nil
-    }
+    let deckList = fetchedResultsController.object(at: indexPath)
     guard let name = deckList.name else {
       return nil
     }
@@ -86,9 +85,7 @@ class DeckListViewModel: NSObject {
   }
   
   func selectDeck(at indexPath: IndexPath) {
-    guard let deck = fetchedResultsController.object(at: indexPath) as? DeckList else {
-      return
-    }
+    let deck = fetchedResultsController.object(at: indexPath)
     selectedDeckIndex = indexPath
     
     if let name = deck.name {
