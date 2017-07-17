@@ -94,11 +94,8 @@ class InHandViewController: UIViewController {
   func selectInHandCard(button: UIButton) {
     let cardClickedIndex: Int = button.tag
     allCardViews.enumerated().forEach { (index, cardView) in
-      if index == cardClickedIndex {
-        cardView.changeCardState(cardState: .isSelected)
-      } else {
-        cardView.changeCardState(cardState: .neutral)
-      }
+      let state: CardState = index == cardClickedIndex ? .isSelected : .neutral
+      cardView.changeCardState(cardState: state)
     }
     if cardClickedIndex == selectedCardIndex {
       let cardView: CardView = allCardViews[cardClickedIndex]
@@ -113,22 +110,11 @@ class InHandViewController: UIViewController {
   
   //Helpers
   func getCardFrame(forIndex: Int) -> CGRect {
-    var frame = CGRect.zero
-    switch forIndex {
-    case 0:
-      frame = cardOne.frame
-    case 1:
-      frame = cardTwo.frame
-    case 2:
-      frame = cardThree.frame
-    case 3:
-      frame = cardFour.frame
-    case 4:
-      frame = cardFive.frame
-    default:
-      break
+    let cards = [cardOne, cardTwo, cardThree, cardFour, cardFive]
+    guard forIndex < cards.count, let card =  cards[forIndex] else {
+      return .zero
     }
-    return frame
+    return card.frame
   }
   
   private func createACard(card: Card, cardIndex: Int) -> CardView {

@@ -57,8 +57,8 @@ class BattleViewModel: AIBehaviourManagerDelegate {
     playerTwoLogicReference.delegate = self
     bManager.drawCardsFromDeck()
     updateData()
-    tellDelegateToReloadViewData()
-    tellDelegateToCreateInHandCards()
+    notifyDelegateToReloadViewData()
+    notifyDelegateToCreateInHandCards()
   }
   
   func toggleTurn(forPlayerOne: Bool) {
@@ -67,8 +67,8 @@ class BattleViewModel: AIBehaviourManagerDelegate {
     //Update Data and call delegates
     updateData()
     
-    tellDelegateToReloadViewData()
-    tellDelegateToDrawNewCardInHand()
+    notifyDelegateToReloadViewData()
+    notifyDelegateToDrawNewCardInHand()
   }
   
   func endPlayerTurn(forPlayerOne: Bool) {
@@ -86,11 +86,11 @@ class BattleViewModel: AIBehaviourManagerDelegate {
     playerTwoLogicReference.attackWithACard()
   }
   
-  func playCardToGameArea(cardIndex: Int) -> Bool {
-    let success = bManager.playCardToGameArea(cardIndex: cardIndex)
+  func playCard(cardIndex: Int) -> Bool {
+    let success = bManager.playCard(cardIndex: cardIndex)
     if success {
       updateData()
-      tellDelegateToReloadViewData()
+      notifyDelegateToReloadViewData()
       return true
     } else {
       return false
@@ -143,16 +143,16 @@ class BattleViewModel: AIBehaviourManagerDelegate {
   }
 
   //MARK: - Delegates
-  func tellDelegateToReloadViewData() {
+  func notifyDelegateToReloadViewData() {
     //Pass the message to ViewController to display required Data
     delegate?.reloadAllUIElements(self)
   }
   
-  func tellDelegateToCreateInHandCards() {
+  func notifyDelegateToCreateInHandCards() {
     delegate?.createInHandCards(self)
   }
   
-  func tellDelegateToDrawNewCardInHand() {
+  func notifyDelegateToDrawNewCardInHand() {
     delegate?.drawANewCard(self)
   }
   
@@ -162,13 +162,13 @@ class BattleViewModel: AIBehaviourManagerDelegate {
     toggleTurn(forPlayerOne: false)
   }
   
-  func shouldAttackAvatar(_ aIBehaviourManager: AIBehaviourManager, cardIndex: Int) {
+  func attackAvatar(_ aIBehaviourManager: AIBehaviourManager, cardIndex: Int) {
     bManager.attackAvatar(playerStats: bManager.playerTwoStats, opponentStats: bManager.playerOneStats, cardIndex: cardIndex)
     updateData()
     delegate?.performCardToAvatarAttack(self, cardIndex: cardIndex)
   }
   
-  func shouldAttackAnotherCard(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, defender: Card, atkIndex: Int, defIndex: Int) {
+  func attackAnotherCard(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, defender: Card, atkIndex: Int, defIndex: Int) {
     bManager.attackCard(attacker: attacker, defender: defender, atkIndex: atkIndex, defIndex: defIndex)
     updateData()
     delegate?.performCardToCardAttack(self, atkIndex: atkIndex, defIndex: defIndex, atkCard: attacker, defCard: defender)

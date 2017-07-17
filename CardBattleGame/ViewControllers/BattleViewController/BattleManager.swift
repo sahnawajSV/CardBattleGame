@@ -24,8 +24,8 @@ class BattleManager {
     let globalCardData = CardListDataSource()
     let cardList = globalCardData.fetchCardList()
     
-    let plCardArray: [Card] = randomCards(cardArray: cardList, num: Game.maximumCardPerDeck)
-    let aiCardArray: [Card]  = randomCards(cardArray: cardList, num: Game.maximumCardPerDeck)
+    let plCardArray: [Card] = cardList.subArray(size: Game.maximumCardPerDeck)
+    let aiCardArray: [Card]  = cardList.subArray(size: Game.maximumCardPerDeck)
     
     let playerDeckList = Deck(name: "Deck_1", id: "1", cardList: plCardArray)
     let aiDeckList = Deck(name: "Deck_1", id: "1", cardList: aiCardArray)
@@ -111,7 +111,7 @@ class BattleManager {
     }
   }
   
-  func playCardToGameArea(cardIndex: Int) -> Bool {
+  func playCard(cardIndex: Int) -> Bool {
     if isPlayerTurn {
       return updateBattlePoints(playerStats: playerOneStats, cardIndex: cardIndex)
     } else {

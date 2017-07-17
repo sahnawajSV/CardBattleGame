@@ -8,28 +8,35 @@
 
 import UIKit
 
-class CardsWonViewController: UIViewController {
-  @IBOutlet weak var cardOne: UIView!
-  @IBOutlet weak var cardTwo: UIView!
-  @IBOutlet weak var cardThree: UIView!
+extension CardsWonViewController {
+  static let cardWidth: CGFloat = 206
+  static let cardHeight: CGFloat = 270
+  static let gapOffset: CGFloat = 20
+}
+
+
+class CardsWonViewController: UIViewController, UIScrollViewDelegate {
+  @IBOutlet weak var scrollView: UIScrollView!
   
   private var allCardViews: [CardView] = []
   
-  func createCards(allCards: [Card]) -> [CardView] {
+  override func viewDidLoad() {
+    scrollView.delegate = self
+  }
+  
+  func createWinningCardsView(allCards: [Card]) -> [CardView] {
     allCardViews.removeAll()
-    if allCards.count == Game.cardsAwardedOnLoss {
-      let cardView = createACard(card: allCards[0], cardIndex: 1)
-      cardOne.isHidden = true
-      cardThree.isHidden = true
+    allCards.enumerated().forEach { (index, card) in
+      let cardView = createACard(card: card, cardIndex: index)
       allCardViews.append(cardView)
-    } else {
-      allCards.enumerated().forEach { (index, card) in
-        let cardView = createACard(card: card, cardIndex: index)
-        cardOne.isHidden = false
-        cardThree.isHidden = false
-        allCardViews.append(cardView)
-      }
     }
+    let contentWidth = (CardsWonViewController.cardWidth + CardsWonViewController.gapOffset) * CGFloat(allCards.count)
+    scrollView.contentSize = CGSize(width: contentWidth, height: CardsWonViewController.cardHeight)
+    if contentWidth < scrollView.bounds.size.width {
+      let newContentOffsetX: CGFloat = (scrollView.contentSize.width/2) - (scrollView.bounds.size.width/2)
+      scrollView.contentOffset = CGPoint(x: newContentOffsetX, y: 0);
+    }
+
     return allCardViews
   }
   
@@ -43,22 +50,19 @@ class CardsWonViewController: UIViewController {
     cardView.cardButton.tag = cardIndex
     cardView.cardImage.image = UIImage.init(named: card.imageName)
     cardView.changeCardState(cardState: .neutral)
-    self.view.addSubview(cardView)
+    scrollView.addSubview(cardView)
     self.view.layoutIfNeeded()
     return cardView
   }
+
   
+  //Helpers
   func getCardFrame(forIndex: Int) -> CGRect {
     var frame = CGRect.zero
-    switch forIndex {
-    case 0:
-      frame = cardOne.frame
-    case 1:
-      frame = cardTwo.frame
-    case 2:
-      frame = cardThree.frame
-    default:
-      break
+    if forIndex == 0 {
+      frame = CGRect(x: 0, y: 0, width: CardsWonViewController.cardWidth, height: CardsWonViewController.cardHeight)
+    } else {
+      frame = CGRect(x: allCardViews[forIndex-1].frame.origin.x + allCardViews[forIndex-1].frame.size.width + CardsWonViewController.gapOffset, y: 0, width: CardsWonViewController.cardWidth, height: CardsWonViewController.cardHeight)
     }
     return frame
   }

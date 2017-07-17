@@ -45,3 +45,18 @@ extension CGFloat {
     return self * CGFloat(180.0 / Double.pi)
   }
 }
+
+extension Array {
+  func subArray(size: Int) -> [Element] {
+    var result = [Element]()
+    if size < count {
+      var temporaryArray = self
+      while result.count < size {
+        let idx = getRandomNumber(maxNumber: temporaryArray.count)
+        result.append(temporaryArray[idx])
+        temporaryArray.remove(at: idx)
+      }
+    }
+    return result
+  }
+}

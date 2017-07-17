@@ -394,7 +394,7 @@ class BattleViewController: UIViewController, BattleDelegate, InHandViewControll
   
   func cardSelectedInHandToPlay(_ inHandViewController: InHandViewController, cardIndex: Int) {
     if !isPerformingAnAction {
-      let success = bViewModel.playCardToGameArea(cardIndex: cardIndex)
+      let success = bViewModel.playCard(cardIndex: cardIndex)
       if success {
         if bViewModel.isPlayerTurn {
           handleCardPlay(cardIndex: cardIndex, allInHandCards: &allPlayerOneInHandCards)

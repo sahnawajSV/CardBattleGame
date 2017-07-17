@@ -18,10 +18,3 @@ func generateRandomNumber(min: Int, max: Int) -> Int {
   return randomNum
 }
 
-func randomCards(cardArray: [Card], num: Int) -> [Card]  {
-  var returnArray: [Card] = []
-  for _ in 0..<num {
-    returnArray.append(cardArray[getRandomNumber(maxNumber: cardArray.count)])
-  }
-  return returnArray
-}

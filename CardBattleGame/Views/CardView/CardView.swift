@@ -47,19 +47,19 @@ class CardView: UIView {
   }
   
   func addUIBehavior(frame: CGRect) {
-    let cardView = UIView(frame: CGRect(x: 0, y: 0, width: frame.size.width, height: frame.size.height))
+    let cardView = UIView(frame: CGRect(origin: .zero, size: frame.size))
     cardView.backgroundColor = UIColor.black
     
     //CARD Back
-    cardBack = UIImageView(frame: CGRect(x: 0 , y: 0, width: (cardView.frame.size.width), height: (cardView.frame.size.height)))
+    cardBack = UIImageView(frame: CGRect(origin: .zero, size: cardView.frame.size))
     cardBack.image = #imageLiteral(resourceName: "cardFlipBG")
     cardView.addSubview(cardBack)
     
-    //CARD Backgroud
-    cardImage = UIImageView(frame: CGRect(x: 0 , y: 0, width: (cardView.frame.size.width), height: (cardView.frame.size.height)))
+    //Card Background Image
+    cardImage = UIImageView(frame: CGRect(origin: .zero, size: cardView.frame.size))
     cardView.addSubview(cardImage)
     
-    //BATTLE POINT
+    //Battle Points
     bpView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
     bpView.backgroundColor = UIColor.blue
     
@@ -67,14 +67,14 @@ class CardView: UIView {
     
     cardView.addSubview(bpView)
     
-    //ATTACK
+    //Attack
     attackView = UIView(frame: CGRect(x: 0, y: 0 + (cardView.frame.size.height) - 50, width: 50, height: 50))
     attackView.backgroundColor = UIColor.init(colorLiteralRed: 0.75, green: 0.12, blue: 0.0078, alpha: 1)
     
     attackView.addSubview(attackText)
     cardView.addSubview(attackView)
     
-    //HEALTH
+    //Health
     healthView = UIView(frame: CGRect(x: 0 + (cardView.frame.size.width) - 50, y: 0 + (cardView.frame.size.height) - 50, width: 50, height: 50))
     healthView.backgroundColor = UIColor.init(colorLiteralRed: 0.12, green: 0.75, blue: 0.0078, alpha: 1)
     
@@ -82,16 +82,16 @@ class CardView: UIView {
     
     cardView.addSubview(healthView)
     
-    //CARD NAME
-    nameView = UIView(frame: CGRect(x: 0 , y: 0, width: (cardView.frame.size.width), height: (cardView.frame.size.height)))
+    //Card Name
+    nameView = UIView(frame: CGRect(origin: .zero, size: cardView.frame.size))
     nameView.backgroundColor = UIColor.clear
     
-    nameText = cardLabel(frame: CGRect(x: 0 , y: 0, width: (nameView.frame.size.width), height: (nameView.frame.size.height)))
+    nameText = cardLabel(frame: CGRect(origin: .zero, size: nameView.frame.size))
     
     nameView.addSubview(nameText)
     cardView.addSubview(nameView)
     
-    //CARD BUTTON
+    //Card Button
     cardView.addSubview(cardButton)
     
     //BG Color based on canAttack value
@@ -114,20 +114,18 @@ class CardView: UIView {
     switch cardState {
     case .canAttack:
       layer.borderColor = UIColor.green.cgColor
-      layer.borderWidth = 5.0
       break
     case .cannotAttack:
       layer.borderColor = UIColor.red.cgColor
-      layer.borderWidth = 5.0
       break
     case .isSelected:
       layer.borderColor = UIColor.blue.cgColor
-      layer.borderWidth = 5.0
       break
     case .neutral:
       layer.borderColor = UIColor.yellow.cgColor
-      layer.borderWidth = 5.0
+      
       break
     }
+    layer.borderWidth = 5.0
   }
 }

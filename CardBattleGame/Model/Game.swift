@@ -20,8 +20,8 @@ extension Game {
   static let cardMoveAnimationSpeed = 0.5
   static let cardMoveToAttackPosAnimationSpeed = 0.50
   static let cardAttackAnimationSpeed = 0.25
-  static let cardsAwardedOnWin = 3
-  static let cardsAwardedOnLoss = 1
+  static let cardsAwardedOnWin = 10
+  static let cardsAwardedOnLoss = 5
   static let turnTimer = 30
 }
 

@@ -17,8 +17,8 @@ enum AttackLogic: String {
 protocol AIBehaviourManagerDelegate: class {
   func didEndTurn(_ aIBehaviourManager: AIBehaviourManager)
   func didSelectCardToPlay(_ aIBehaviourManager: AIBehaviourManager, cardIndex: Int)
-  func shouldAttackAvatar(_ aIBehaviourManager: AIBehaviourManager, cardIndex: Int)
-  func shouldAttackAnotherCard(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, defender: Card, atkIndex: Int, defIndex: Int)
+  func attackAvatar(_ aIBehaviourManager: AIBehaviourManager, cardIndex: Int)
+  func attackAnotherCard(_ aiBehaviourManager: AIBehaviourManager, attacker: Card, defender: Card, atkIndex: Int, defIndex: Int)
 }
 
 ///Handles all gameplay logic related to Player Two.
@@ -112,7 +112,7 @@ class AIBehaviourManager {
       }
     }
     if let index = cardIndex {
-      delegate?.shouldAttackAvatar(self, cardIndex: index)
+      delegate?.attackAvatar(self, cardIndex: index)
     } else {
       playACard()
     }
@@ -153,7 +153,7 @@ class AIBehaviourManager {
     }
     
     if let atkcard = attacker, let defCard = defender, let atkIndex = attackerIndex, let defIndex = defenderIndex {
-      delegate?.shouldAttackAnotherCard(self, attacker: atkcard, defender: defCard, atkIndex: atkIndex, defIndex: defIndex)
+      delegate?.attackAnotherCard(self, attacker: atkcard, defender: defCard, atkIndex: atkIndex, defIndex: defIndex)
       
       return true
     } else {

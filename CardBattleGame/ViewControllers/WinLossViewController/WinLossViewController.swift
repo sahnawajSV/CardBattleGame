@@ -13,25 +13,25 @@ class WinLossViewController: UIViewController {
   @IBOutlet weak var winStatusText: UILabel!
   private var winningsViewController: CardsWonViewController!
   var isVictorious: Bool!
-  private var plWinnings: [Card]!
+  private var winnings: [Card]!
   
   override func viewDidLoad() {
     super.viewDidLoad()
     let globalCardData = CardListDataSource()
     let cardList = globalCardData.fetchCardList()
-    
+    isVictorious = true
     if isVictorious {
       winStatusText.text = "WINNER!!!"
-      plWinnings = randomCards(cardArray: cardList, num: Game.cardsAwardedOnWin)
+      winnings = cardList.subArray(size: Game.cardsAwardedOnWin)
     } else {
       winStatusText.text = "DEFEAT!!!"
-      plWinnings = randomCards(cardArray: cardList, num: Game.cardsAwardedOnLoss)
+      winnings = cardList.subArray(size: Game.cardsAwardedOnLoss)
     }
     displayWinnings()
   }
   
   func displayWinnings() {
-    let _ = winningsViewController.createCards(allCards: plWinnings)
+    let _ = winningsViewController.createWinningCardsView(allCards: winnings)
   }
   
   //MARK: - Action Methods
@@ -50,7 +50,6 @@ class WinLossViewController: UIViewController {
       if let winnings = segue.destination as? CardsWonViewController {
         winningsViewController = winnings
       }
-      break
     default:
       break
     }

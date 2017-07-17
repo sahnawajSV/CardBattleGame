@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="8Ma-nX-70N">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="597-en-fv9">
     <device id="ipad12_9" orientation="landscape">
         <adaptation id="fullscreen"/>
     </device>
@@ -1106,9 +1106,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Brg-ZC-JN7" userLabel="BottomHand">
-                                <rect key="frame" x="144" y="371" width="1079" height="282"/>
+                                <rect key="frame" x="0.0" y="371" width="1366" height="282"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Brg-ZC-JN7" secondAttribute="height" multiplier="1079:282" id="dlg-sQ-baD"/>
+                                    <constraint firstAttribute="width" secondItem="Brg-ZC-JN7" secondAttribute="height" multiplier="1079:282" constant="287" id="dlg-sQ-baD"/>
                                 </constraints>
                                 <connections>
                                     <segue destination="rEn-nr-Nzp" kind="embed" identifier="Winnings" id="7M7-Cq-fbu"/>
@@ -1140,7 +1140,7 @@
                             <constraint firstItem="vWQ-Zx-wZ4" firstAttribute="width" secondItem="mlS-0r-Rgg" secondAttribute="height" multiplier="549:1024" id="KOg-Vz-qSJ"/>
                             <constraint firstAttribute="leadingMargin" secondItem="ffH-KM-PR6" secondAttribute="leading" id="Lcp-IY-0qs"/>
                             <constraint firstItem="ffH-KM-PR6" firstAttribute="top" secondItem="OeI-Xd-ksa" secondAttribute="bottom" id="RJw-Yb-KOv"/>
-                            <constraint firstItem="Brg-ZC-JN7" firstAttribute="width" secondItem="mlS-0r-Rgg" secondAttribute="height" multiplier="1079:1024" id="ZBX-Xh-TPB"/>
+                            <constraint firstItem="Brg-ZC-JN7" firstAttribute="width" secondItem="mlS-0r-Rgg" secondAttribute="height" multiplier="1079:1024" constant="287" id="ZBX-Xh-TPB"/>
                             <constraint firstItem="Brg-ZC-JN7" firstAttribute="centerX" secondItem="mlS-0r-Rgg" secondAttribute="centerX" id="b7H-mc-uca"/>
                             <constraint firstItem="vWQ-Zx-wZ4" firstAttribute="centerX" secondItem="mlS-0r-Rgg" secondAttribute="centerX" id="bCi-WF-CcI"/>
                             <constraint firstItem="ffH-KM-PR6" firstAttribute="width" secondItem="mlS-0r-Rgg" secondAttribute="height" multiplier="101:256" constant="70" id="o80-j1-hEu"/>
@@ -1154,7 +1154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vbb-H2-NYX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3487" y="-185"/>
+            <point key="canvasLocation" x="3486.6764275256219" y="-185.15625"/>
         </scene>
         <!--In Hand View Controller-->
         <scene sceneID="EKX-X5-1iH">
@@ -1441,83 +1441,23 @@
                         <viewControllerLayoutGuide type="bottom" id="unq-dl-OUv"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ddt-Da-atr">
-                        <rect key="frame" x="0.0" y="0.0" width="1079" height="282"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1366" height="282"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E3x-vR-v5u" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="222" y="4" width="206.5" height="270"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yvb-ho-lwu">
-                                        <rect key="frame" x="0.5" y="0.5" width="206.5" height="270"/>
-                                        <state key="normal" image="cardBG"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="E3x-vR-v5u" secondAttribute="height" multiplier="97:127" id="AGl-gs-D6F"/>
-                                    <constraint firstItem="yvb-ho-lwu" firstAttribute="centerX" secondItem="E3x-vR-v5u" secondAttribute="centerX" id="Isp-Lw-1zO"/>
-                                    <constraint firstItem="yvb-ho-lwu" firstAttribute="height" secondItem="E3x-vR-v5u" secondAttribute="height" id="KVe-F9-HVb"/>
-                                    <constraint firstItem="yvb-ho-lwu" firstAttribute="centerY" secondItem="E3x-vR-v5u" secondAttribute="centerY" id="WPJ-Xe-DLz"/>
-                                    <constraint firstItem="yvb-ho-lwu" firstAttribute="width" secondItem="E3x-vR-v5u" secondAttribute="width" id="bOa-gg-BBR"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kby-c2-d93" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="436" y="4" width="206" height="270"/>
-                                <subviews>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SyT-1U-guc">
-                                        <rect key="frame" x="0.5" y="0.5" width="206" height="270"/>
-                                        <state key="normal" image="cardBG"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="SyT-1U-guc" firstAttribute="width" secondItem="kby-c2-d93" secondAttribute="width" id="0rN-wi-doy"/>
-                                    <constraint firstItem="SyT-1U-guc" firstAttribute="centerY" secondItem="kby-c2-d93" secondAttribute="centerY" id="A2P-qd-ErN"/>
-                                    <constraint firstItem="SyT-1U-guc" firstAttribute="height" secondItem="kby-c2-d93" secondAttribute="height" id="EeI-ML-hvq"/>
-                                    <constraint firstItem="SyT-1U-guc" firstAttribute="centerX" secondItem="kby-c2-d93" secondAttribute="centerX" id="L7e-WY-hMD"/>
-                                    <constraint firstAttribute="width" secondItem="kby-c2-d93" secondAttribute="height" multiplier="97:127" id="miS-lg-cpm"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OfR-bO-zm3" customClass="CardBGView" customModule="CardBattleGame" customModuleProvider="target">
-                                <rect key="frame" x="651" y="4" width="206" height="270"/>
-                                <subviews>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HRN-Gl-S1o">
-                                        <rect key="frame" x="0.5" y="0.5" width="206" height="270"/>
-                                        <state key="normal" image="cardBG"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="HRN-Gl-S1o" firstAttribute="centerX" secondItem="OfR-bO-zm3" secondAttribute="centerX" id="Pug-md-tda"/>
-                                    <constraint firstAttribute="width" secondItem="OfR-bO-zm3" secondAttribute="height" multiplier="97:127" id="WzJ-CR-Xjh"/>
-                                    <constraint firstItem="HRN-Gl-S1o" firstAttribute="centerY" secondItem="OfR-bO-zm3" secondAttribute="centerY" id="qFk-4z-eMA"/>
-                                    <constraint firstItem="HRN-Gl-S1o" firstAttribute="height" secondItem="OfR-bO-zm3" secondAttribute="height" id="tOQ-mm-gsd"/>
-                                    <constraint firstItem="HRN-Gl-S1o" firstAttribute="width" secondItem="OfR-bO-zm3" secondAttribute="width" id="tdr-gj-IhH"/>
-                                </constraints>
-                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AlA-8N-M7f">
+                                <rect key="frame" x="0.0" y="0.0" width="1366" height="282"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="kby-c2-d93" firstAttribute="leading" secondItem="E3x-vR-v5u" secondAttribute="trailing" constant="8" symbolic="YES" id="0MO-LO-3Gy"/>
-                            <constraint firstItem="OfR-bO-zm3" firstAttribute="bottom" secondItem="kby-c2-d93" secondAttribute="bottom" id="GCa-5y-xOV"/>
-                            <constraint firstItem="OfR-bO-zm3" firstAttribute="centerY" secondItem="Ddt-Da-atr" secondAttribute="centerY" constant="-2" id="IzS-6Q-5gm"/>
-                            <constraint firstItem="OfR-bO-zm3" firstAttribute="top" secondItem="kby-c2-d93" secondAttribute="top" id="LkY-xJ-oWx"/>
-                            <constraint firstItem="OfR-bO-zm3" firstAttribute="centerX" secondItem="Ddt-Da-atr" secondAttribute="centerX" constant="214.5" id="aL9-gk-wTd"/>
-                            <constraint firstItem="OfR-bO-zm3" firstAttribute="leading" secondItem="kby-c2-d93" secondAttribute="trailing" constant="9" id="dH5-8G-xq0"/>
-                            <constraint firstItem="OfR-bO-zm3" firstAttribute="bottom" secondItem="E3x-vR-v5u" secondAttribute="bottom" id="ghx-3r-9hf"/>
-                            <constraint firstItem="OfR-bO-zm3" firstAttribute="top" secondItem="5cf-cU-Bh3" secondAttribute="bottom" constant="4" id="oU4-oK-VRB"/>
-                            <constraint firstItem="OfR-bO-zm3" firstAttribute="top" secondItem="E3x-vR-v5u" secondAttribute="top" id="pmt-vk-a7d"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="cardOne" destination="E3x-vR-v5u" id="oRp-HB-a2A"/>
-                        <outlet property="cardThree" destination="OfR-bO-zm3" id="gDf-8B-f6F"/>
-                        <outlet property="cardTwo" destination="kby-c2-d93" id="t1j-AM-PLW"/>
+                        <outlet property="scrollView" destination="AlA-8N-M7f" id="bMN-ba-lmc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wS-j2-FvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3488" y="692"/>
+            <point key="canvasLocation" x="3487.9941434846264" y="691.9921875"/>
         </scene>
     </scenes>
     <resources>
