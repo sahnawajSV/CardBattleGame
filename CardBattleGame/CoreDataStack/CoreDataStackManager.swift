@@ -65,7 +65,7 @@ class CoreDataStackManager: NSObject {
   /// - Parameter name: deck name
   /// - Returns:
   func fetchDeckResult(for name: String) throws -> [DeckList] {
-    let fetchRequest: NSFetchRequest = DeckList.fetchRequest()
+    let fetchRequest: NSFetchRequest<DeckList> = DeckList.fetchRequest()
     fetchRequest.predicate = NSPredicate(format: "name == %@", name)
   
     do {
@@ -147,7 +147,7 @@ class CoreDataStackManager: NSObject {
   ///
   /// - Returns: deck lest array
   func fetchDeckList() throws -> [DeckList] {
-    let fetchRequest: NSFetchRequest = DeckList.fetchRequest()
+    let fetchRequest: NSFetchRequest<DeckList> = DeckList.fetchRequest()
     do {
       return try managedObjectContext.fetch(fetchRequest)
     } catch {

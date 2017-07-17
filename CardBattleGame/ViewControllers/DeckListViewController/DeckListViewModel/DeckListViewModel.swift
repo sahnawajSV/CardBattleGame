@@ -22,7 +22,6 @@ class DeckListViewModel: NSObject {
   private let coreDataManager = CoreDataStackManager.sharedInstance
 
   override init() {
-//    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "DeckList")
     let request: NSFetchRequest<DeckList> = DeckList.fetchRequest()
     let departmentSort = NSSortDescriptor(key: "name", ascending: true)
     request.sortDescriptors = [departmentSort]
