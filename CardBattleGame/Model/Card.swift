@@ -16,6 +16,7 @@ struct Card: Equatable {
   var battlepoint: Int16
   var health: Int16
   var canAttack: Bool
+  var quantity: Int16
   
   init?(dictionary: [String: Any]) {
     
@@ -34,15 +35,17 @@ struct Card: Equatable {
     self.battlepoint = battlepoint
     self.health = health
     self.canAttack = canAttack
+    self.quantity = 5
   }
   
-  init(name: String, id: Int16, attack: Int16, battlepoint: Int16, health: Int16, canAttack: Bool) {
+  init(name: String, id: Int16, attack: Int16, battlepoint: Int16, health: Int16, canAttack: Bool, quantity: Int16) {
     self.name = name
     self.id = id
     self.attack = attack
     self.battlepoint = battlepoint
     self.health = health
     self.canAttack = canAttack
+    self.quantity = quantity
   }
   
   public static func ==(lhs: Card, rhs: Card) -> Bool {

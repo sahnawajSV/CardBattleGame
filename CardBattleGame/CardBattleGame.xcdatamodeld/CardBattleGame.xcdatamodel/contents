@@ -12,6 +12,7 @@
         <attribute name="health" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <relationship name="deckList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="DeckList" inverseName="deckCard" inverseEntity="DeckList" syncable="YES"/>
     </entity>
     <entity name="DeckList" representedClassName="DeckList" syncable="YES" codeGenerationType="class">
@@ -19,9 +20,19 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="deckCard" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DeckCard" inverseName="deckList" inverseEntity="DeckCard" syncable="YES"/>
     </entity>
+    <entity name="PlayerOwnedCard" representedClassName="PlayerOwnedCard" syncable="YES" codeGenerationType="class">
+        <attribute name="attack" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="battlepoint" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="canAttack" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="health" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <elements>
         <element name="Avatar" positionX="27" positionY="-180" width="128" height="90"/>
-        <element name="DeckCard" positionX="43" positionY="101" width="128" height="148"/>
+        <element name="DeckCard" positionX="43" positionY="101" width="128" height="165"/>
         <element name="DeckList" positionX="306" positionY="-28" width="128" height="88"/>
+        <element name="PlayerOwnedCard" positionX="189" positionY="-9" width="128" height="150"/>
     </elements>
 </model>

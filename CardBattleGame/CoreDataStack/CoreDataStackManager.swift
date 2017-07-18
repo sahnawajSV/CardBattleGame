@@ -67,7 +67,6 @@ class CoreDataStackManager: NSObject {
   func fetchDeckResult(for name: String) throws -> [DeckList] {
     let fetchRequest: NSFetchRequest<DeckList> = DeckList.fetchRequest()
     fetchRequest.predicate = NSPredicate(format: "name == %@", name)
-  
     do {
       return try managedObjectContext.fetch(fetchRequest)
     } catch {
@@ -81,7 +80,6 @@ class CoreDataStackManager: NSObject {
   /// - Parameters:
   ///   - name: deck name
   ///   - card: card managed object
-  
   func add(card: Card, toDeck name: String) throws {
     guard let newItem = NSEntityDescription.insertNewObject(forEntityName: "DeckCard", into: managedObjectContext) as? DeckCard else {
       throw ErrorType.faildToCreateDeck
@@ -92,15 +90,11 @@ class CoreDataStackManager: NSObject {
     newItem.id = card.id
     newItem.name = card.name
     newItem.canAttack = card.canAttack
-    do {
-      let deckItem = try fetchDeck(with: name)
-      deckItem.addToDeckCard(newItem)
-      saveContext()
-    } catch {
-      throw ErrorType.failedManagedObjectFetchRequest
-    }
+    newItem.quantity = card.quantity
+    let deckItem = try fetchDeck(with: name)
+    deckItem.addToDeckCard(newItem)
+    saveContext()
   }
-  
   
   
   /// Fetch Deck Object with name
@@ -108,15 +102,11 @@ class CoreDataStackManager: NSObject {
   /// - Parameter name: name of the deck
   /// - Returns: deck managed object
   private func fetchDeck(with name: String) throws -> DeckList {
-    do {
-      let result = try fetchDeckResult(for: name)
-      guard let deck = result.first else {
-        throw ErrorType.failedManagedObjectFetchRequest
-      }
-      return deck
-    } catch {
+    let result = try fetchDeckResult(for: name)
+    guard let deck = result.first else {
       throw ErrorType.failedManagedObjectFetchRequest
     }
+    return deck
   }
   
   
@@ -127,18 +117,14 @@ class CoreDataStackManager: NSObject {
   ///   - id: deck id
   /// - Throws: error if deck creation failed
   func createDeck(with name: String, id: Int) throws -> DeckList {//return created deck
-    do {
-      let result = try fetchDeckResult(for: name)
-      if result.isEmpty, let newItem = NSEntityDescription.insertNewObject(forEntityName: "DeckList", into: managedObjectContext) as? DeckList {
-        newItem.name = name
-        newItem.id = Int16(id)
-        saveContext()
-        return newItem
-      } else {
-        throw ErrorType.deckAlreadyExists
-      }
-    } catch {
-      throw ErrorType.failedManagedObjectFetchRequest
+    let result = try fetchDeckResult(for: name)
+    if result.isEmpty, let newItem = NSEntityDescription.insertNewObject(forEntityName: "DeckList", into: managedObjectContext) as? DeckList {
+      newItem.name = name
+      newItem.id = Int16(id)
+      saveContext()
+      return newItem
+    } else {
+      throw ErrorType.deckAlreadyExists
     }
   }
   
@@ -148,6 +134,36 @@ class CoreDataStackManager: NSObject {
   /// - Returns: deck lest array
   func fetchDeckList() throws -> [DeckList] {
     let fetchRequest: NSFetchRequest<DeckList> = DeckList.fetchRequest()
+    do {
+      return try managedObjectContext.fetch(fetchRequest)
+    } catch {
+      throw ErrorType.failedManagedObjectFetchRequest
+    }
+  }
+  
+  /// Add Player Owned Card to the Storage
+  ///
+  /// - Parameter card: Player Owned Card
+  func add(playerOwned card: Card) {
+    if let newItem = NSEntityDescription.insertNewObject(forEntityName: "PlayerOwnedCard", into: managedObjectContext) as? PlayerOwnedCard {
+      newItem.attack = card.attack
+      newItem.battlepoint = card.battlepoint
+      newItem.health = card.health
+      newItem.id = card.id
+      newItem.name = card.name
+      newItem.canAttack = card.canAttack
+      newItem.quantity = card.quantity
+      saveContext()
+    }
+  }
+  
+  
+  /// Fetch Player Owned Cards
+  ///
+  /// - Returns: Array of Player Owned Cards
+  /// - Throws: Managed Object Fetch Request Error
+  func fetchPlayerOwnedCard() throws -> [PlayerOwnedCard] {
+    let fetchRequest: NSFetchRequest<PlayerOwnedCard> = PlayerOwnedCard.fetchRequest()
     do {
       return try managedObjectContext.fetch(fetchRequest)
     } catch {

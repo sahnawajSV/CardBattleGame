@@ -18,9 +18,9 @@ func generateRandomNumber(min: Int, max: Int) -> Int {
   return randomNum
 }
 
-func randomCards(cardArray: [Card]) -> [Card]  {
+func randomCards(cardArray: [Card], maximumCard: Int) -> [Card]  {
   var returnArray: [Card] = []
-  for _ in 0...Game.maximumCardPerDeck {
+  for _ in 0..<maximumCard {
     returnArray.append(cardArray[getRandomNumber(maxNumber: cardArray.count)])
   }
   return returnArray

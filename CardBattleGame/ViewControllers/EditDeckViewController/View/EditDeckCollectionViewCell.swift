@@ -17,6 +17,7 @@ class EditDeckCollectionViewCell: UICollectionViewCell {
   
   weak var cellDelegate: EditDeckCollectionViewCellDelegate?
   
+  @IBOutlet weak var cardQuantityLbl: UILabel!
   @IBOutlet weak var cardView: UIView!
   @IBOutlet weak var nameLbl: UILabel!
   @IBOutlet weak var healthLbl: UILabel!

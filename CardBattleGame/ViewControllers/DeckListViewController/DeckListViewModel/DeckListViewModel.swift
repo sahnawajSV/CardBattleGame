@@ -59,10 +59,10 @@ class DeckListViewModel: NSObject {
     guard let name = deckList.name else {
       return nil
     }
-    let deckCards = deckList.cardList
+    let deckCards = populateDeckCards(from: deckList.cardList)
     let deck = Deck(name: name, id: deckList.id, cardList: convertCoreDataDeckCardToCard(deckCards: deckCards))
     return deck
-}
+  }
   
   
   /// Convert Core Data Stored Card Managed Object to Model Card Object
@@ -74,7 +74,7 @@ class DeckListViewModel: NSObject {
       guard let name = card.name else {
         return nil
       }
-      return Card(name: name, id: card.id, attack: card.attack, battlepoint: card.battlepoint, health: card.health, canAttack: card.canAttack)
+      return Card(name: name, id: card.id, attack: card.attack, battlepoint: card.battlepoint, health: card.health, canAttack: card.canAttack, quantity: 1)
     })
     return cardsInDeck
   }
@@ -91,7 +91,8 @@ class DeckListViewModel: NSObject {
       deckNameText = name
     }
     
-    cards = deck.cardList
+    cards = populateDeckCards(from: deck.cardList)
+    
   }
   
   func fetchCardFromSelectedDeck(at indexPath: IndexPath) -> DeckCard {
@@ -100,6 +101,16 @@ class DeckListViewModel: NSObject {
   
   func selectedDeck() -> [DeckCard] {
     return cards
+  }
+  
+  func populateDeckCards(from cardsLst: [DeckCard]) -> [DeckCard] {
+    var newCards: [DeckCard] = []
+    cardsLst.forEach({ card in
+     for _ in 0..<card.quantity {
+        newCards.append(card)
+      }
+    })
+    return newCards
   }
 }
 

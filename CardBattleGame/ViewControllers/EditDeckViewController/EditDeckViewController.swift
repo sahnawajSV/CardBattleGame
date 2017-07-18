@@ -71,13 +71,16 @@ class EditDeckViewController: UIViewController {
   // MARK : Action
   //
   @IBAction func saveDeckAction(_ sender: Any) {
-    if let name = deckNameTextField.text, !name.isEmpty {
-      //create deck with name
-      editDeckViewModel.saveCardsToDeck(with: name)
-      navigationController?.popViewController(animated: true)
-    } else {
+    guard let name = deckNameTextField.text, !name.isEmpty else {
       cbg_presentErrorAlert(withTitle: "Error", message: "Please Enter the Deck Name.")
+      return
     }
+    guard numberOfAddedCards() > EditDeckViewModel.minimumCardLimit else {
+      cbg_presentErrorAlert(withTitle: "Error", message: "Minimum 5 cards required to create a Deck.")
+      return
+    }
+    editDeckViewModel.saveCardsToDeck(with: name)
+    navigationController?.popViewController(animated: true)
   }
 }
 
@@ -114,7 +117,7 @@ extension EditDeckViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     if let cell = tableView.cellForRow(at: indexPath) as? EditDeckCardTableViewCell {
-      let cardList: [Card] = editDeckViewModel.fetchCards()
+      let cardList: [Card] = editDeckViewModel.playerOwnedCards
       for card in cardList {
         if card.id == Int16(cell.tag) {
           editDeckViewModel.removeCardFromDeckList(at: indexPath.row)
@@ -141,7 +144,7 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
     
     if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellReuseIdentifier, for: indexPath) as? EditDeckCollectionViewCell {
     
-      let cardList: [Card] = editDeckViewModel.fetchCards()
+      let cardList: [Card] = editDeckViewModel.playerOwnedCards
       let card = cardList[indexPath.row]
       
       cell.attackLbl.text = String(describing: card.attack)
@@ -149,12 +152,17 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
       cell.battlePointLbl.text = String(describing: card.battlepoint)
       cell.nameLbl.text = String(describing: card.name)
       
-      if editDeckViewModel.isCardSelected(card) {
-        cell.addDeckButton.isHidden = true
-      } else {
+      if card.quantity > 0 {
         cell.addDeckButton.isHidden = false
+        cell.cardQuantityLbl.isHidden = false
+        cell.cardQuantityLbl.text = String(describing: card.quantity)
+      } else {
+        cell.addDeckButton.isHidden = true
+        cell.cardQuantityLbl.isHidden = true
       }
+      
       cell.cellDelegate = self
+      cell.addDeckButton.roundBorder(cornerRadius: 8.0, borderWidth: 2.0, borderColor: UIColor.white.cgColor)
       
       cell.cardView.roundBorder(cornerRadius: 8.0, borderWidth: 2.0, borderColor: UIColor.white.cgColor)
       cell.cardView.clipsToBounds = true
@@ -165,6 +173,10 @@ extension EditDeckViewController: UICollectionViewDelegate, UICollectionViewData
   }
   
   func didPressAddButton(_ sender: UICollectionViewCell) {
+    guard numberOfAddedCards() < EditDeckViewModel.maximumCardLimit else {
+      cbg_presentErrorAlert(withTitle: "Error", message: "You can not add more than 20 cards.")
+      return
+    }
     if let indexPath = deckCollectionView.indexPath(for: sender) {
       editDeckViewModel.addCardToDeck(from: indexPath)
       updateView()

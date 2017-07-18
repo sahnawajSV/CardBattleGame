@@ -25,7 +25,7 @@ class GameManager {
     let globalCardData = CardListDataSource()
     let cardList = globalCardData.fetchCardList()
     
-    let aiCardArray: [Card]  = randomCards(cardArray: cardList)
+    let aiCardArray: [Card]  = randomCards(cardArray: cardList, maximumCard: Game.maximumCardPerDeck)
     
     let playerDeckList = plDeck //Deck(name: plDeck.name, id: plDeck.id, cardList: plCardArray)
     let aiDeckList = Deck(name: "Deck_1", id: 0, cardList: aiCardArray)
